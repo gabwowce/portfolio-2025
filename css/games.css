@@ -50,7 +50,7 @@ button:hover .game-name {
 }
 
 /* Games nav */
-.game-link {
+/* .game-link {
   --pad: 12px;
   position: relative;
   display: inline-flex;
@@ -75,6 +75,7 @@ button:hover .game-name {
   filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.15));
   transition: transform 0.2s ease;
 }
+*/
 
 /* hover/active būsenos */
 .game-link:hover {
@@ -109,4 +110,82 @@ button:hover .game-name {
 
 #rules-title {
   margin: 0;
+}
+
+/* ===========================
+   Lock veikia tik puslapiuose,
+   kur yra #screen-lock elementas
+   =========================== */
+
+#screen-lock {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  /* paslepiam visa main turini, paliekam tik pranesima */
+  main.content:has(#screen-lock) > :not(#screen-lock) {
+    display: none !important;
+  }
+
+  /* pranesimas virsuje, be centravimo */
+  main.content:has(#screen-lock) #screen-lock {
+    display: block;
+    position: sticky;
+    top: 90px; /* pakoreguok pagal header auksti */
+    z-index: 50;
+    padding: 16px 0; /* kad nespaustu container */
+    margin: 0; /* svarbu */
+  }
+
+  main.content:has(#screen-lock) .screen-lock__card {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    background: var(--c3, #fff);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+  }
+
+  main.content:has(#screen-lock) .screen-lock__card h2 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  main.content:has(#screen-lock) .screen-lock__card p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    opacity: 0.9;
+  }
+
+  main.content:has(#screen-lock) .screen-lock__hint {
+    opacity: 0.75;
+    font-size: 14px;
+  }
+}
+
+.main-nav .nav-link.game-link {
+  --pad: 12px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  gap: 8px;
+  padding: 8px calc(var(--pad) + 14px) 8px calc(var(--pad) + 28px);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* mobile – dar biškį daugiau vietos */
+@media (max-width: 480px) {
+  .main-nav .nav-link.game-link {
+    padding-left: calc(var(--pad) + 48px);
+  }
+  .main-nav .nav-link.game-link::before {
+    font-size: 16px;
+  }
 }
