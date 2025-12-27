@@ -60,11 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- SCORE ---
   let score = 0;
-  const scoreEl =
-    document.getElementById("score") || document.querySelector(".score");
+  const scoreEl = document.getElementById("score");
   const addScore = (pts) => {
     score += pts;
-    if (scoreEl) scoreEl.textContent = score.toLocaleString("lt-LT");
+    scoreEl.textContent = score.toLocaleString("lt-LT");
   };
 
   // --- STATE ---

@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Controls
   const openSetupBtn = document.getElementById("openSetup");
   const restartBtn = document.getElementById("restart");
-  const setupBox = document.querySelector(".setup"); // the visible setup form box
+  const setupBox = document.querySelector(".setup");
   const startBtn = document.getElementById("startGame");
-  const setupForm = document.getElementById("playerForm"); // keep if you have only ONE form
+  const setupForm = document.getElementById("playerForm");
 
   // Inputs (scope to the setup box to avoid duplicate-ID issues)
   const p1Input = setupBox ? setupBox.querySelector("#player1") : null;

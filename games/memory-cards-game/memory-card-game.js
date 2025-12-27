@@ -1,192 +1,218 @@
-const cardsArray = [
-  { name: "Apple", img: "../memory-cards-game/img/apple.png" },
-  { name: "Papaya", img: "../memory-cards-game/img/papaya.png" },
-  { name: "Soursop", img: "../memory-cards-game/img/soursop.png" },
-  { name: "Coconut", img: "../memory-cards-game/img/coconut.png" },
-  { name: "Kumquat", img: "../memory-cards-game/img/kumquat.png" },
-  {
-    name: "Bactris-gasipaes",
-    img: "../memory-cards-game/img/bactris-gasipaes.png",
-  },
-  { name: "Banana", img: "../memory-cards-game/img/banana.png" },
-  { name: "Dragon-fruit", img: "../memory-cards-game/img/dragon-fruit.png" },
+// ../memory-cards-game/memory-card-game.js
 
-  { name: "Apple", img: "../memory-cards-game/img/apple.png" },
-  { name: "Papaya", img: "../memory-cards-game/img/papaya.png" },
-  { name: "Soursop", img: "../memory-cards-game/img/soursop.png" },
-  { name: "Coconut", img: "../memory-cards-game/img/coconut.png" },
-  { name: "Kumquat", img: "../memory-cards-game/img/kumquat.png" },
-  {
-    name: "Bactris-gasipaes",
-    img: "../memory-cards-game/img/bactris-gasipaes.png",
-  },
-  { name: "Banana", img: "../memory-cards-game/img/banana.png" },
-  { name: "Dragon-fruit", img: "../memory-cards-game/img/dragon-fruit.png" },
+// ----- Konfigūracija -----
+
+const ALL_CARDS = [
+  "apple",
+  "bactris-gasipaes",
+  "banana",
+  "coconut",
+  "dragon-fruit",
+  "kumquat",
+  "papaya",
+  "soursop",
+  "avocado",
+  "maclura",
+  "yumberry",
+  "tangerine",
+  "fig",
+  "acai",
+  "wax-apple",
+  "guarana",
+  "strawberry",
+  "candied-fruit",
+  "pitahaya",
+  "strawberry_2",
+  "raspberry",
+  "lime",
+  "orange",
+  "vanil",
+  "group",
+  "wat",
+  "melo",
+  "citr",
+  "che",
+  "avo",
+  "org",
+  "ann",
 ];
 
+// poros + stulpelių skaičius + kortelės px
+const DIFFICULTY = {
+  easy: { pairs: 8, cols: 4, cardSize: 120 }, // 4×4
+  medium: { pairs: 18, cols: 6, cardSize: 110 }, // 6×6
+  hard: { pairs: 32, cols: 8, cardSize: 90 }, // 8×8
+};
+
+// ----- DOM -----
+
 const gameBoard = document.querySelector(".game-board");
+const difficultyButtons = document.querySelectorAll(".diff-btn");
 const timeEl = document.getElementById("time");
 const movesEl = document.getElementById("moves");
 const bestEl = document.getElementById("best");
 const restartBtn = document.getElementById("restart");
 const statusEl = document.getElementById("status");
 
-let firstCard, secondCard;
-let hasFlippedCard = false;
-let lockBoard = false;
+// ----- State -----
+
+let currentDiff = "easy";
+let cards = [];
+let firstCard = null;
+let secondCard = null;
+let lock = false;
 let moves = 0;
 let matchedPairs = 0;
-const totalPairs = cardsArray.length / 2;
+let totalPairs = 0;
 
 let startTime = null;
 let timerInterval = null;
 
+// ----- Init -----
+
 init();
 
 function init() {
-  // best time iš localStorage
-  const best = localStorage.getItem("mem_best_time_ms");
-  bestEl.textContent = best ? formatTime(+best) : "—";
-
-  createBoard();
-  attachHandlers();
-}
-
-function attachHandlers() {
-  restartBtn.addEventListener("click", restart);
-  // klaviatūra: Enter/Space apverčia
-  gameBoard.addEventListener("keydown", (e) => {
-    if (
-      e.key === "Enter" ||
-      e.key === " " ||
-      e.key === "Spacebar" ||
-      e.key === "Space"
-    ) {
-      const el = document.activeElement;
-      const card = el && el.closest(".g-card");
-      if (card) {
-        e.preventDefault(); // kad nestrigtų dvigubi click'ai
-        flipCard.call(card);
-      }
-    }
+  // difficulty mygtukai
+  difficultyButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      difficultyButtons.forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      currentDiff = btn.dataset.diff;
+      startNewGame();
+    });
   });
-}
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+  // restart
+  if (restartBtn) {
+    restartBtn.addEventListener("click", () => {
+      startNewGame();
+      announce("Žaidimas pradėtas iš naujo.");
+    });
   }
-  return array;
+
+  startNewGame();
 }
 
-function createBoard() {
+// ----- Naujas žaidimas -----
+
+function startNewGame() {
+  const { pairs, cols, cardSize } = DIFFICULTY[currentDiff];
+
+  totalPairs = pairs;
+  matchedPairs = 0;
+  moves = 0;
+  movesEl.textContent = "0";
+
+  stopTimer(true);
+  startTime = null;
+  timeEl.textContent = "00:00";
+
+  // lenta pagal lygį
+  gameBoard.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
+  gameBoard.style.setProperty("--card-size", `${cardSize}px`);
+
+  // pasirenkam korteles
+  const selectedNames = ALL_CARDS.slice(0, pairs);
+  cards = shuffle([...selectedNames, ...selectedNames]).map((name) => ({
+    name,
+    img: `../memory-cards-game/img/${name}.png`,
+  }));
+
+  renderBoard();
+  loadBestTime();
+  announce(`Lygis: ${getDiffLabel(currentDiff)}. Žaidimas iš naujo.`);
+}
+
+// ----- Lentos atvaizdavimas -----
+
+function renderBoard() {
   gameBoard.innerHTML = "";
-  shuffle(cardsArray);
-  cardsArray.forEach((card, idx) => {
+
+  cards.forEach((card) => {
     const el = document.createElement("button");
     el.type = "button";
     el.className = "g-card";
     el.dataset.name = card.name;
     el.setAttribute("role", "gridcell");
     el.setAttribute("aria-label", "Paslėpta kortelė");
-    el.setAttribute("tabindex", "0");
 
-    const inner = document.createElement("div");
-    inner.className = "g-card-inner";
+    el.innerHTML = `
+      <div class="g-card-inner">
+        <div class="g-card-front"></div>
+        <div class="g-card-back">
+          <img src="${card.img}" alt="${card.name}" />
+        </div>
+      </div>
+    `;
 
-    const front = document.createElement("div");
-    front.className = "g-card-front";
-
-    const back = document.createElement("div");
-    back.className = "g-card-back";
-
-    const img = document.createElement("img");
-    img.src = card.img;
-    img.alt = card.name;
-    back.append(img);
-
-    inner.append(front, back);
-    el.append(inner);
-    el.addEventListener("click", flipCard);
-
+    el.addEventListener("click", () => handleFlip(el));
     gameBoard.appendChild(el);
   });
-
-  // reset HUD
-  moves = 0;
-  matchedPairs = 0;
-  movesEl.textContent = moves.toString();
-  stopTimer(true); // clear only
 }
 
-function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
-  this.classList.add("flipped");
-  this.setAttribute("aria-label", `${this.dataset.name}, atversta`);
+// ----- Žaidimo logika -----
 
-  // start timer ties pirmu ėjimu
+function handleFlip(cardEl) {
+  if (lock) return;
+  if (cardEl === firstCard) return;
+
   if (!startTime) startTimer();
 
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
+  cardEl.classList.add("flipped");
+
+  if (!firstCard) {
+    firstCard = cardEl;
     return;
   }
-  secondCard = this;
+
+  secondCard = cardEl;
   moves++;
-  movesEl.textContent = moves.toString();
-  checkForMatch();
+  movesEl.textContent = String(moves);
+
+  checkMatch();
 }
 
-function checkForMatch() {
+function checkMatch() {
   const isMatch = firstCard.dataset.name === secondCard.dataset.name;
-  isMatch ? keepOpen() : unflip();
-}
 
-function keepOpen() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
-  matchedPairs++;
+  if (isMatch) {
+    firstCard.setAttribute(
+      "aria-label",
+      `${firstCard.dataset.name}, rasta pora`
+    );
+    secondCard.setAttribute(
+      "aria-label",
+      `${secondCard.dataset.name}, rasta pora`
+    );
 
-  // announce(
-  //   `Rasta pora: ${firstCard.dataset.name}. Porų: ${matchedPairs}/${totalPairs}.`
-  // );
+    matchedPairs++;
+    resetSelection();
 
-  resetTurn();
-
-  if (matchedPairs === totalPairs) {
-    const elapsed = stopTimer();
-    saveBest(elapsed);
-    announce(`Pergalė! Laikas: ${formatTime(elapsed)}, ėjimai: ${moves}.`);
-    // galima pridėti animaciją ar konfeti – palikau tau :)
+    if (matchedPairs === totalPairs) {
+      const elapsed = stopTimer();
+      saveBest(elapsed);
+      announce(`Pergalė! Laikas: ${formatTime(elapsed)}, ėjimai: ${moves}.`);
+    }
+  } else {
+    lock = true;
+    setTimeout(() => {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+      firstCard.setAttribute("aria-label", "Paslėpta kortelė");
+      secondCard.setAttribute("aria-label", "Paslėpta kortelė");
+      resetSelection();
+      lock = false;
+    }, 650);
   }
 }
 
-function unflip() {
-  lockBoard = true;
-  setTimeout(() => {
-    firstCard.classList.remove("flipped");
-    firstCard.setAttribute("aria-label", "Paslėpta kortelė");
-    secondCard.classList.remove("flipped");
-    secondCard.setAttribute("aria-label", "Paslėpta kortelė");
-    resetTurn();
-  }, 650);
+function resetSelection() {
+  firstCard = null;
+  secondCard = null;
 }
 
-function resetTurn() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
-}
-
-function restart() {
-  stopTimer(true);
-  startTime = null;
-  timeEl.textContent = "00:00";
-  createBoard();
-  announce("Žaidimas pradėtas iš naujo.");
-}
+// ----- Laikmatis / geriausias laikas -----
 
 function startTimer() {
   startTime = performance.now();
@@ -211,16 +237,23 @@ function stopTimer(onlyClear = false) {
 }
 
 function formatTime(ms) {
-  const total = Math.floor(ms / 1000);
-  const m = Math.floor(total / 60)
-    .toString()
-    .padStart(2, "0");
-  const s = (total % 60).toString().padStart(2, "0");
+  const totalSec = Math.floor(ms / 1000);
+  const m = String(Math.floor(totalSec / 60)).padStart(2, "0");
+  const s = String(totalSec % 60).padStart(2, "0");
   return `${m}:${s}`;
 }
 
+function bestKey() {
+  return `mem_best_time_ms_${currentDiff}`;
+}
+
+function loadBestTime() {
+  const best = localStorage.getItem(bestKey());
+  bestEl.textContent = best ? formatTime(+best) : "—";
+}
+
 function saveBest(ms) {
-  const key = "mem_best_time_ms";
+  const key = bestKey();
   const best = localStorage.getItem(key);
   if (!best || ms < +best) {
     localStorage.setItem(key, String(ms));
@@ -228,6 +261,29 @@ function saveBest(ms) {
   }
 }
 
+// ----- Pagalbinės -----
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function announce(msg) {
-  statusEl.textContent = msg;
+  if (statusEl) statusEl.textContent = msg;
+}
+
+function getDiffLabel(diff) {
+  switch (diff) {
+    case "easy":
+      return "Lengvas";
+    case "medium":
+      return "Vidutinis";
+    case "hard":
+      return "Sunkus";
+    default:
+      return diff;
+  }
 }

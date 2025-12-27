@@ -1,66 +1,94 @@
-.game-board {
-  margin: clamp(50px, 8vw, 100px) auto;
-  display: grid;
-  justify-self: center;
-  grid-template-columns: repeat(4, 120px);
-  gap: 0.5rem;
+/* ⚠️ ĮSPĖJIMAS DĖL PER MAŽO EKRANO */
+.game-warning {
+  display: none;
+  margin: clamp(40px, 8vw, 80px) auto;
+  max-width: 520px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  text-align: center;
+  background: #fff3cd;
+  border: 1px solid #ffe08a;
+  color: #7c2d12;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.g-card {
-  width: 120px;
-  height: 120px;
-  background-color: #33333317;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
+/* kai žaidimas išjungtas – slepiam lentą ir sidebar, rodome įspėjimą */
+.game-disabled .game-board,
+.game-disabled .game-sidebar {
+  display: none;
+}
+.game-disabled .game-warning {
+  display: block;
+}
+
+/* ================= LENTA + KORTELĖS ================= */
+/* Lenta */
+.game-board {
+  margin: clamp(40px, 6vw, 80px) auto;
+  display: grid;
+  gap: 10px;
   justify-content: center;
-  font-size: 24px;
-  color: white;
+}
+
+/* Viena kortelė */
+.g-card {
+  width: var(--card-size, 120px);
+  height: var(--card-size, 120px);
+  border: none;
+  padding: 0;
+  background: transparent;
   cursor: pointer;
   position: relative;
-  perspective: 1000px;
-  border: 1px solid #3333330e;
+  perspective: 800px;
 }
 
+/* Vidus – sukiojamas kvadratas */
 .g-card-inner {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s;
+  border-radius: 8px;
+  background: #333;
   transform-style: preserve-3d;
+  transition: transform 0.4s ease;
 }
 
+/* Flip būsena */
 .g-card.flipped .g-card-inner {
   transform: rotateY(180deg);
 }
 
+/* Priekinė ir galinė pusė */
 .g-card-front,
 .g-card-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+  inset: 0;
   border-radius: 8px;
+  backface-visibility: hidden;
 }
 
 .g-card-front {
-  background-color: #333;
+  background: #333;
 }
 
 .g-card-back {
-  background: white;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: rotateY(180deg);
 }
 
-.g-card img {
+/* Paveiksliukas */
+.g-card-back img {
   width: 90%;
   height: 90%;
-  object-fit: cover;
-  border-radius: 8px;
+  object-fit: contain;
 }
+
+/* ================= HUD / ŠONINĖ KORTA ================= */
+
 .hud {
   display: grid;
   gap: 10px;
@@ -78,13 +106,11 @@
 .game-sidebar .card {
   padding: clamp(16px, 2.4vw, 24px);
 }
-
 .game-sidebar .card h2 {
   margin: 0 0 10px;
   line-height: 1.15;
   letter-spacing: -0.01em;
 }
-
 .game-sidebar .card ol {
   margin: 0 0 14px 1.25rem;
   padding: 0;
@@ -121,7 +147,6 @@
 .game-sidebar .card .stat:last-child {
   border-bottom: 0;
 }
-
 .game-sidebar .card .stat span {
   color: var(--muted, #6b7280);
 }
@@ -144,4 +169,65 @@
 }
 .game-sidebar .card .btn-pill:active {
   transform: translateY(1px);
+}
+
+/* ================= SUDĖTINGUMO MYGTUKAI ================= */
+
+.difficulty {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.difficulty > span {
+  color: var(--muted, #6b7280);
+}
+
+/* mygtukų grupė */
+.difficulty-buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* vienas mygtukas */
+.diff-btn {
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle, #d4d4d8);
+  padding: 5px 14px;
+  background: #fff;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text, #111827);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease, transform 0.05s ease;
+}
+
+.diff-btn:hover {
+  border-color: color-mix(in srgb, var(--accent, #476eae) 55%, #000);
+  box-shadow: 0 2px 5px rgb(15 23 42 / 0.12);
+}
+
+.diff-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.12);
+}
+
+/* aktyvus lygis */
+.diff-btn.is-active {
+  background: var(--accent, #fe7743);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 3px 10px rgb(15 23 42 / 0.15);
+}
+
+/* klaviatūros fokusas */
+.diff-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent, #476eae) 80%, #fff);
+  outline-offset: 2px;
 }

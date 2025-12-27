@@ -446,3 +446,77 @@
 .btn-pill.is-err {
   background: var(--warn, #b00020);
 }
+
+.fi {
+  position: relative;
+}
+
+.field-error {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #dc2626;
+}
+
+.fi.error input,
+.fi.error textarea {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.15);
+}
+
+.form-note.ok {
+  color: #15803d;
+}
+
+.form-note.err {
+  color: #dc2626;
+}
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.contact-modal.is-open {
+  display: flex;
+}
+
+.contact-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.contact-modal__box {
+  position: relative;
+  max-width: 420px;
+  width: 90%;
+  background: var(--surface, #fff);
+  border-radius: 16px;
+  padding: 24px 20px 18px;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.2);
+  z-index: 1;
+}
+
+.contact-modal__box h3 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.contact-modal__box p {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+}
+
+.contact-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
