@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="lt">
   <head>
     <meta charset="utf-8" />
@@ -669,7 +669,7 @@
 
           <!-- Quick links -->
           <nav class="footer-card" aria-labelledby="flinks">
-            <h3 id="flinks" class="footer-title">Trumpi saitai</h3>
+            <h3 id="flinks" class="footer-title">Nuorodos</h3>
             <ul class="footer-list">
               <li>
                 <a class="footer-link" href="/lt/index.html">Pagrindinis</a>
@@ -777,7 +777,7 @@
           wrap.addEventListener("keydown", (e) => {
             const isOpen = wrap.getAttribute("aria-open") === "true";
             const idx = items.findIndex((i) =>
-              i.classList.contains("is-active")
+              i.classList.contains("is-active"),
             );
             if (e.key === "Escape") {
               close();
@@ -816,7 +816,7 @@
       });
       document.addEventListener("DOMContentLoaded", function () {
         var forms = document.querySelectorAll(
-          'form[action^="https://formspree.io/"]'
+          'form[action^="https://formspree.io/"]',
         );
         if (!forms || !forms.length) return;
 
@@ -857,7 +857,7 @@
             var budget = form.querySelector('select[name="budget"]');
             var timeline = form.querySelector('select[name="timeline"]');
             var msg = form.querySelector(
-              'textarea[name="message"], input[name="Message"]'
+              'textarea[name="message"], input[name="Message"]',
             );
 
             if (name && !name.value.trim()) {
@@ -890,7 +890,7 @@
 
             if (!ok) {
               var firstInvalid = form.querySelector(
-                ".fi.invalid input, .fi.invalid textarea, .fi.invalid select"
+                ".fi.invalid input, .fi.invalid textarea, .fi.invalid select",
               );
               if (firstInvalid) firstInvalid.focus();
             }
@@ -931,7 +931,7 @@
 
             // Honeypot
             var hp = form.querySelector(
-              'input[name="hp"], input[name="company"], input[name="_gotcha"]'
+              'input[name="hp"], input[name="company"], input[name="_gotcha"]',
             );
             if (hp && hp.value) return;
 
@@ -954,7 +954,7 @@
                     "is-ok",
                     icons.check + " Sent",
                     "Thanks! Your brief was sent. I will get back to you within 24 hours.",
-                    "ok"
+                    "ok",
                   );
                 } else {
                   return res
@@ -973,7 +973,7 @@
                         "is-err",
                         icons.cross + " Try again",
                         msg,
-                        "err"
+                        "err",
                       );
                     })
                     .catch(function () {
@@ -981,7 +981,7 @@
                         "is-err",
                         icons.cross + " Try again",
                         "Could not send. Please try again.",
-                        "err"
+                        "err",
                       );
                     });
                 }
@@ -991,7 +991,7 @@
                   "is-err",
                   icons.cross + " Try again",
                   "Network error. Check your connection and try again.",
-                  "err"
+                  "err",
                 );
               })
               .finally(function () {
