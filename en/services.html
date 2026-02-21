@@ -66,6 +66,7 @@
 
     <!-- CSS/JS (be dvigubų //) -->
     <script src="../js/script.js" defer></script>
+    <script src="../js/contact-form.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/about.css" />
     <link rel="stylesheet" href="../css/aside.css" />
@@ -513,7 +514,6 @@
                   placeholder="Your name"
                   required
                 />
-                <span class="error" aria-live="polite"></span>
               </label>
               <label class="fi">
                 <span>Email</span>
@@ -523,7 +523,6 @@
                   placeholder="name@email.com"
                   required
                 />
-                <span class="error" aria-live="polite"></span>
               </label>
             </div>
 
@@ -554,8 +553,6 @@
                   </ul>
                   <input type="hidden" name="timeline" value="" />
                 </div>
-
-                <span class="error" aria-live="polite"></span>
               </label>
             </div>
 
@@ -567,7 +564,6 @@
                 placeholder="Scope, goals, references, tech stack (if any)…"
                 required
               ></textarea>
-              <span class="error" aria-live="polite"></span>
             </label>
 
             <label class="fi fi-full">
@@ -1017,5 +1013,31 @@
         });
       });
     </script>
+    <div id="contactSuccessModal" class="contact-modal" aria-hidden="true">
+      <div class="contact-modal__backdrop" data-modal-close></div>
+
+      <div
+        class="contact-modal__box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contactSuccessTitle"
+      >
+        <button
+          type="button"
+          class="contact-modal__close"
+          data-modal-close
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <h3 id="contactSuccessTitle">Message sent</h3>
+        <p>
+          Thanks! I’ve received your message and usually reply within 24 hours.
+        </p>
+
+        <button type="button" class="btn-pill" data-modal-close>Got it</button>
+      </div>
+    </div>
   </body>
 </html>

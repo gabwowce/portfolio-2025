@@ -135,6 +135,20 @@
   position: relative;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
+.fi.error .c-select__btn {
+  border-color: #e11d48; /* arba tavo raudona */
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15);
+}
+
+/* jei turi ikoną/rodyklę ar wrapperį – kad ir jis gautų signalą */
+.fi.error .c-select {
+  /* optional */
+}
+
+/* jei nori, kad focus ir error nesipyktų */
+.fi.error .c-select__btn:focus {
+  outline: none;
+}
 .c-select__btn::after {
   content: "";
   position: absolute;

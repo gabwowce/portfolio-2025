@@ -66,6 +66,7 @@
 
     <!-- CSS/JS (be dvigubų //) -->
     <script src="../js/script.js" defer></script>
+    <script src="../js/contact-form.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/about.css" />
     <link rel="stylesheet" href="../css/aside.css" />
@@ -520,7 +521,6 @@
                   placeholder="Jūsų vardas"
                   required
                 />
-                <span class="error" aria-live="polite"></span>
               </label>
               <label class="fi">
                 <span>El. paštas</span>
@@ -530,7 +530,6 @@
                   placeholder="vardas@el.pastas.com"
                   required
                 />
-                <span class="error" aria-live="polite"></span>
               </label>
             </div>
 
@@ -538,6 +537,10 @@
               class="grid"
               style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
             >
+              <label class="fi">
+                <span>Tel. numeris</span>
+                <input type="tel" name="phone" />
+              </label>
               <label class="fi">
                 <span>Terminas</span>
 
@@ -561,8 +564,6 @@
                   </ul>
                   <input type="hidden" name="timeline" value="" />
                 </div>
-
-                <span class="error" aria-live="polite"></span>
               </label>
             </div>
 
@@ -574,17 +575,16 @@
                 placeholder="Apimtis, tikslai, nuorodos, technologijos (jei yra)..."
                 required
               ></textarea>
-              <span class="error" aria-live="polite"></span>
             </label>
 
-            <label class="fi fi-full">
+            <!-- <label class="fi fi-full">
               <span>Nuorodos (neprivaloma)</span>
               <input
                 type="url"
                 name="links"
                 placeholder="https://figma.com/file/... arba https://github.com/..."
               />
-            </label>
+            </label> -->
 
             <input type="text" name="_gotcha" style="display: none" />
 
@@ -1006,5 +1006,36 @@
         });
       });
     </script>
+
+    <div id="contactSuccessModal" class="contact-modal" aria-hidden="true">
+      <div class="contact-modal__backdrop" data-modal-close></div>
+
+      <div
+        class="contact-modal__box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contactSuccessTitle"
+      >
+        <button
+          type="button"
+          class="contact-modal__close"
+          data-modal-close
+          aria-label="Uždaryti"
+        >
+          ×
+        </button>
+
+        <h3 id="contactSuccessTitle">Žinutė išsiųsta</h3>
+        <p>Ačiū! Tavo žinutę gavau, paprastai atrašau per 24 val.</p>
+
+        <div
+          class="contact-modal__summary"
+          id="contactSuccessSummary"
+          hidden
+        ></div>
+
+        <button type="button" class="btn-pill" data-modal-close>Puiku</button>
+      </div>
+    </div>
   </body>
 </html>
