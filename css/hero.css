@@ -1,6 +1,7 @@
 .card-hero,
 .card-hero2 {
-  background: radial-gradient(
+  background:
+    radial-gradient(
       1200px 600px at 80% -200px,
       var(--accent-elements),
       transparent 100%
@@ -24,16 +25,26 @@
   line-height: 0.9;
   letter-spacing: -0.02em;
   margin: 0 0 0.6rem;
-  font-family: "Clash Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+  font-family:
+    "Clash Grotesk",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
     sans-serif;
   font-weight: 700;
 }
 .display-x {
-  font-size: clamp(44px, 9vw, 100px);
+  font-size: clamp(44px, 9vw, 80px);
   line-height: 0.9;
   letter-spacing: -0.02em;
   margin: 0 0 0.6rem;
-  font-family: "Clash Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+  font-family:
+    "Clash Grotesk",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
     sans-serif;
   font-weight: 700;
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -115,7 +115,7 @@
     <!-- HEADER (be aside) -->
     <header class="site-header">
       <div class="container header-in">
-        <a id="brand" class="brand" href="/en/index.html">
+        <a id="brand" class="brand" href="/en">
           <span class="icon" aria-hidden="true">GT</span>
           <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
         </a>
@@ -541,7 +541,10 @@ a:hover{ color: var(--link-hover); }
 
           <div class="cta-stack" style="margin-top: 14px">
             <a class="btn" href="mailto:gt1230112301@gmail.com">Email Me</a>
-            <a class="btn outline" href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf" download
+            <a
+              class="btn outline"
+              href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf"
+              download
               >Download CV</a
             >
           </div>
@@ -665,7 +668,10 @@ a:hover{ color: var(--link-hover); }
                 >
               </li>
               <li>
-                <a class="footer-link" href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf" download
+                <a
+                  class="footer-link"
+                  href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf"
+                  download
                   >CV / Resume</a
                 >
               </li>
@@ -747,7 +753,7 @@ a:hover{ color: var(--link-hover); }
           btn.setAttribute("aria-expanded", String(open));
         };
         btn.addEventListener("click", () =>
-          setOpen(menu.getAttribute("aria-expanded") !== "true")
+          setOpen(menu.getAttribute("aria-expanded") !== "true"),
         );
 
         // choose theme
@@ -775,8 +781,8 @@ a:hover{ color: var(--link-hover); }
           items.forEach((i) =>
             i.setAttribute(
               "aria-current",
-              i.dataset.theme === theme ? "true" : "false"
-            )
+              i.dataset.theme === theme ? "true" : "false",
+            ),
           );
           // recolor header swatch
           // (nebūtina: rely on CSS var)
@@ -786,7 +792,7 @@ a:hover{ color: var(--link-hover); }
         const setScrolled = () => {
           document.documentElement.classList.toggle(
             "scrolled",
-            window.scrollY > 8
+            window.scrollY > 8,
           );
         };
         setScrolled();
@@ -803,11 +809,11 @@ a:hover{ color: var(--link-hover); }
               window.innerHeight || document.documentElement.clientHeight;
             const visible = Math.max(
               0,
-              Math.min(rect.bottom, vh) - Math.max(rect.top, 0)
+              Math.min(rect.bottom, vh) - Math.max(rect.top, 0),
             );
             const ratio = Math.max(
               0,
-              Math.min(1, visible / Math.min(rect.height, vh))
+              Math.min(1, visible / Math.min(rect.height, vh)),
             );
             rail.style.setProperty("--progress", ratio.toFixed(3));
           };
@@ -827,7 +833,7 @@ a:hover{ color: var(--link-hover); }
             },
             {
               threshold: 0.2,
-            }
+            },
           );
           obs.observe(rail);
         }
@@ -881,7 +887,7 @@ a:hover{ color: var(--link-hover); }
 
           // responsive – perbraižyti poziciją
           window.addEventListener("resize", () =>
-            moveThumb(seg.querySelector(".seg-btn.is-active") || btns[0])
+            moveThumb(seg.querySelector(".seg-btn.is-active") || btns[0]),
           );
         }
       });

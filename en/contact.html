@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -116,7 +116,7 @@
     <!-- HEADER (no aside) -->
     <header class="site-header">
       <div class="container header-in">
-        <a id="brand" class="brand" href="/en/index.html">
+        <a id="brand" class="brand" href="/en">
           <span class="icon" aria-hidden="true">GT</span>
           <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
         </a>
@@ -136,7 +136,7 @@
           <button class="nav-close" id="navClose" aria-label="Close menu">
             ✕
           </button>
-          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="/">Home</a>
           <a class="nav-link" href="about.html">About</a>
           <a class="nav-link" href="portfolio.html">Portfolio</a>
           <a class="nav-link" href="services.html">Services</a>
@@ -477,7 +477,10 @@
 
           <div class="cta-stack" style="margin-top: 14px">
             <a class="btn" href="mailto:gt1230112301@gmail.com">Email Me</a>
-            <a class="btn outline" href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf" download
+            <a
+              class="btn outline"
+              href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf"
+              download
               >Download CV</a
             >
           </div>
@@ -591,7 +594,10 @@
                 >
               </li>
               <li>
-                <a class="footer-link" href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf" download
+                <a
+                  class="footer-link"
+                  href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf"
+                  download
                   >CV / Resume</a
                 >
               </li>
@@ -646,7 +652,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         // Paimam visas Formspree formas (pvz., .contact-form ir .newsletter)
         const forms = document.querySelectorAll(
-          'form[action^="https://formspree.io/"]'
+          'form[action^="https://formspree.io/"]',
         );
         if (forms.length === 0) return;
 
@@ -688,7 +694,7 @@
 
             // Jei yra honeypot (hp ar _gotcha) ir ji užpildyta – nutraukiam
             const hp = form.querySelector(
-              'input[name="hp"], input[name="company"], input[name="_gotcha"]'
+              'input[name="hp"], input[name="company"], input[name="_gotcha"]',
             );
             if (hp && hp.value) return;
 
@@ -710,7 +716,7 @@
                   "is-ok",
                   `${icons.check} Sent`,
                   "Thanks! Your message was sent.",
-                  "ok"
+                  "ok",
                 );
               } else {
                 let msg = "Could not send. Please try again.";
@@ -732,7 +738,7 @@
                 "is-err",
                 `${icons.cross} Try again`,
                 "Network error. Check your connection and try again.",
-                "err"
+                "err",
               );
             } finally {
               setTimeout(() => {
