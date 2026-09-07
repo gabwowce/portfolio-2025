@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Claude Code Guardrails – Free Resource | Gabrielė</title>
+    <meta name="description" content="A ready .claude/settings.json with five safety hooks and a guard.sh script, so Claude Code stops before doing something destructive. Free, read on the page." />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://gabwowce.github.io/portfolio-2025/en/resources/claude-code-guardrails.html" />
+    <link rel="alternate" href="https://gabwowce.github.io/portfolio-2025/en/resources/claude-code-guardrails.html" hreflang="en" />
+    <link rel="alternate" href="https://gabwowce.github.io/portfolio-2025/en/resources/claude-code-guardrails.html" hreflang="x-default" />
+
+    <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#313030" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Claude Code Guardrails – Free Resource" />
+    <meta property="og:description" content="Five safety hooks + guard.sh for Claude Code, explained. Free, read on the page." />
+    <meta property="og:url" content="https://gabwowce.github.io/portfolio-2025/en/resources/claude-code-guardrails.html" />
+    <meta property="og:image" content="https://gabwowce.github.io/portfolio-2025/img/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" href="../../fonts/clash/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="../../js/script.js" defer></script>
+    <script src="../../js/resource-page.js" defer></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/about.css" />
+    <link rel="stylesheet" href="../../css/aside.css" />
+    <link rel="stylesheet" href="../../css/contact-me.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <link rel="stylesheet" href="../../css/hero.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/projects.css" />
+    <link rel="stylesheet" href="../../css/resources.css" />
+
+    <!--
+      JSON-LD carries the Offer/price from day one (currently 0 / free)
+      so this template flips to a paid product later without a rewrite —
+      see design brief §6.
+    -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Claude Code Guardrails",
+            "description": "A .claude/settings.json with five safety hooks and a guard.sh script for Claude Code, with a plain-language explanation of each hook.",
+            "url": "https://gabwowce.github.io/portfolio-2025/en/resources/claude-code-guardrails.html",
+            "brand": { "@type": "Brand", "name": "Codeart" },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-in">
+            <a id="brand" class="brand" href="/en"> <span class="icon" aria-hidden="true">GT</span>
+                <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+            </a>
+            <button class="hamburger" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+    </button>
+            <nav class="main-nav">
+                <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="../about.html">About</a>
+                <a class="nav-link" href="../portfolio.html">Portfolio</a>
+                <a class="nav-link active" href="../resources.html">Resources</a>
+                <a class="nav-link" href="../contact.html">Contact</a>
+
+                <div class="nav-lang">
+                    <a id="langSwitch" class="nav-link" href="/en/" hreflang="en" aria-label="Switch language">EN</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="card-hero hero u-stagger">
+        <div class="container">
+            <div class="resource-hero hero-copy">
+                <div class="resource-meta u-reveal">
+                    <span class="pill pill--free">Free</span>
+                    <span class="resource-card__type">Guardrails · .claude/settings.json</span>
+                </div>
+                <h1 class="display-l u-reveal">Claude Code Guardrails</h1>
+                <p class="lead u-reveal">Claude Code can run shell commands on its own. These are the five hooks that stop it from running the dangerous ones — and the reasoning behind each one.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="content content--single container">
+
+        <!-- 1. Problem -->
+        <section class="resource-section u-reveal">
+            <h2>The problem</h2>
+            <p>An agent that can run arbitrary shell commands will, sooner or later, try to run one you did not mean to approve. Guardrails catch that before it executes — not after.</p>
+        </section>
+
+        <!-- 2. What's inside -->
+        <section class="resource-section u-reveal">
+            <h2>What's inside</h2>
+            <ul>
+                <li>A <code>.claude/settings.json</code> with five hook definitions</li>
+                <li>A <code>guard.sh</code> script the hooks call into</li>
+                <li>A plain-language explanation of what each hook blocks and why</li>
+                <li>Drop-in setup — no build step, no dependencies</li>
+            </ul>
+        </section>
+
+        <!-- 3. Content -->
+        <section class="resource-section u-reveal">
+            <h2>The hooks, explained</h2>
+            <div class="pending-note">
+                <strong>Content in progress.</strong> The actual <code>settings.json</code>, <code>guard.sh</code>, and the
+                per-hook write-up are being finalized by Gabrielė and will be published here directly — this page is not a
+                placeholder landing page, the real content will replace this note in place. If you're reading this and want
+                a heads-up when it's live, the fastest way is to follow
+                <a href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" target="_blank" rel="noopener">the socials below</a>.
+            </div>
+            <!--
+              When the real content lands, replace the note above with the actual
+              code blocks, e.g.:
+
+              <div class="code-block">
+                <span class="code-block__label">.claude/settings.json</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+                <pre><code>...</code></pre>
+              </div>
+              <p>Explanation of what this hook does and why it matters...</p>
+
+              (repeat per hook, then guard.sh)
+            -->
+        </section>
+
+        <!-- 4. Download -->
+        <section class="resource-section u-reveal">
+            <h2>Get it</h2>
+            <div class="resource-download">
+                <button class="btn-pill" type="button" disabled data-price="0" data-currency="EUR">Download the full package →</button>
+                <span class="price">Free — no email required · not published yet</span>
+            </div>
+        </section>
+
+        <!-- 5. Who made this -->
+        <section class="resource-section u-reveal">
+            <h2>Who made this</h2>
+            <div class="resource-author">
+                <img src="../../img/avatar-profile.webp" alt="Gabrielė – profile photo" width="72" height="72" loading="lazy" decoding="async">
+                <div>
+                    <p class="muted" style="margin-bottom:8px">I'm Gabrielė — I build web and mobile products, and share what I actually use day to day on TikTok as Codeart. This resource is one of those things.</p>
+                    <div class="socials" aria-label="Social links">
+                        <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="Email" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. What's next -->
+        <section class="resource-section u-reveal">
+            <h2>What's next</h2>
+            <div class="resource-next">
+                <a class="card resource-card resource-card--soon" href="../resources.html">
+                    <span class="pill pill--soon">Coming soon</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">CLAUDE.md Template</h3>
+                </a>
+                <a class="card resource-card resource-card--soon" href="../resources.html">
+                    <span class="pill pill--soon">Coming soon</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">Vibe Coding Map</h3>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <section class="cta-contact">
+            <div class="container footer-card-flex">
+                <div class="cta-contact__text">
+                    <h3>Have a project in mind?</h3>
+                    <p>A free 20-min chat — I reply within 24 hours with an initial plan and price.</p>
+                </div>
+                <a class="btn-pill" href="/en/contact.html">Contact me →</a>
+            </div>
+        </section>
+
+        <div class="footer-in container">
+            <div class="footer-top">
+                <section>
+                    <a class="brand" href="/en/index.html"> <span class="icon" aria-hidden="true">GT</span>
+                        <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+                    </a>
+                    <p class="brand-note">Developer & product builder. Focused on user experience and quality.</p>
+                    <div class="socials" aria-label="Social links">
+                        <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="Email" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="footer-card" aria-labelledby="flinks">
+                    <h3 id="flinks" class="footer-title">Quick links</h3>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="/en/index.html">Home</a></li>
+                        <li><a class="footer-link" href="/en/about.html">About</a></li>
+                        <li><a class="footer-link" href="/en/portfolio.html">Portfolio</a></li>
+                        <li><a class="footer-link" href="/en/resources.html">Resources</a></li>
+                        <li><a class="footer-link" href="/en/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <section class="footer-card" aria-labelledby="fnews">
+                    <h3 id="fnews" class="footer-title">Quick message</h3>
+                    <form class="newsletter" action="https://formspree.io/f/xeorkyne" method="POST">
+                        <input class="input" type="email" name="email" placeholder="Email" aria-label="Email" required>
+                        <input class="input" type="text" name="Message" placeholder="Message" aria-label="Message" required>
+                        <input type="text" name="_gotcha" style="display:none">
+                        <button class="btn-pill" type="submit">Say hi 👋</button>
+                        <p class="form-note" role="status" aria-live="polite"></p>
+                        <small class="brand-note">Message me — I reply within 24 h.</small>
+                    </form>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 Gabrielė · Codeart</span>
+                <div class="mini-nav">
+                    <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

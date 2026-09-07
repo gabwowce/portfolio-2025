@@ -1,0 +1,194 @@
+/* Resources: list page + single-resource template (v2) */
+
+/*
+  .content (style.css) is a 2-column grid (1fr 340px) built for pages
+  with a sidebar. Resource pages have no aside and behaved unpredictably
+  under that grid (auto-placed items, inconsistent shrink-to-fit widths),
+  so they opt out of it entirely with .content--single.
+*/
+.content.content--single {
+  display: block;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding-block: 24px 48px;
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.resource-card--soon {
+  opacity: 0.65;
+}
+.resource-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.resource-card__type {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.resource-card__title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.resource-card__title a {
+  color: var(--text);
+}
+.resource-card__title a:hover {
+  color: var(--accent);
+}
+.resource-card code {
+  background: var(--secondary-bg);
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.pill--free {
+  background: var(--accent-elements);
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 0;
+}
+.pill--soon {
+  background: var(--secondary-bg);
+  color: var(--muted);
+  margin-left: 0;
+}
+.link-ghost--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---- Single resource page ---- */
+
+.resource-hero {
+  max-width: 760px;
+}
+.resource-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.resource-section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-block: 32px;
+  border-top: 1px solid var(--border);
+}
+.resource-section:first-of-type {
+  border-top: 0;
+  padding-top: 8px;
+}
+.resource-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.resource-section ul {
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.code-block {
+  position: relative;
+  background: #171717;
+  color: #f2f0e9;
+  border-radius: var(--radius-sm);
+  padding: 18px 18px 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.code-block pre {
+  margin: 0;
+  white-space: pre;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+.code-block__label {
+  position: absolute;
+  top: 10px;
+  left: 18px;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #b9b6ac;
+}
+.code-block__copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  appearance: none;
+  border: 1px solid #4a4948;
+  background: #3a3938;
+  color: #f2f0e9;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.code-block__copy:hover {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+.code-block pre {
+  padding-top: 22px;
+}
+
+.pending-note {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  color: var(--muted);
+  background: var(--secondary-bg);
+}
+
+.resource-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.resource-download .price {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.resource-download .btn-pill:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+  filter: none;
+}
+
+.resource-author {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.resource-author img {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.resource-next {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
