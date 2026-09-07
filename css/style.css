@@ -7,111 +7,67 @@
   font-display: swap;
 }
 
+/*
+  Codeart v2 brand palette — derived from the video/TikTok brand system,
+  not from the site. Same accent + typography everywhere; only the
+  light/dark ground swaps between /lt (light, client-facing) and
+  /en (dark, portfolio-facing). See design brief §4.
+*/
 :root {
-  --bg: #ffffffff;
-  --secondary-bg: #fffaf6;
-  --card: #fff;
-  --text: #362f27;
-  --card-text: #362f27e3;
-  --card-text-hover: #22201dff;
-  --text-on-accent: #362f27;
-  --muted: #6c6c6c;
-  --muted2: #362f2733;
-  --border: #e5e2db;
-  --accent: #362f27;
-  --accent-fg: #fff;
-  --accent-elements: #ffe9d6;
-  --link: #ffaa5fff;
-  --link-hover: #ff9539ff;
-  --radius: 14px;
-  --brand: #2f60ff;
-  --brand-ink: #1636a3;
-  --ok: #5D866C;
-  --warn: #865d5dff;
+  --bg: #f2f0e9;
+  --secondary-bg: #e9e6db;
+  --card: #ffffff;
+  --text: #171717;
+  --card-text: #171717e3;
+  --card-text-hover: #000000ff;
+  --text-on-accent: #171717;
+  --muted: #5c5850;
+  --muted2: #17171733;
+  --border: #ddd7c8;
+  --accent: #d97757;
+  --accent-fg: #171717;
+  --accent-elements: #f2d9cd;
+  --link: #d97757;
+  --link-hover: #c1613f;
+  --brand: #d97757;
+  --brand-ink: #a85337;
+  --ok: #5d866c;
+  --warn: #865d5d;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.06);
   --radius: 18px;
   --radius-sm: 12px;
   --header-h: 64px;
-  --dot-accent: #362f27d2;
-  --dot-hover: #362f27ff;
+  --dot-accent: #171717d2;
+  --dot-hover: #171717ff;
+  --grid-line: #17171712;
 }
-:root[data-theme="ocean"] {
-  --bg: #ffffffff;
-  --secondary-bg: #f6f9fdff;
-  --card: #ffffff;
-  --text: #0f172a;
-  --text-on-accent:#ffffffff;
-  --muted: #6b7280;
-  --muted2: #476eae1c;
-  --border: #e2e8f0;
-  --accent: #476eae;
-  --accent-fg: #fff;
-  --accent-elements: #d2e1fcff;
-  --link: #FE7743;
-  --link-hover: #e66d3dff;
-  --brand: #1e40af;s
-  --brand-ink: #0b2b7a;
-  --dot-accent: #362f27d2;
-  --dot-hover: #362f27ff;
-}
-:root[data-theme="forest"] {
-  --bg: #ffffffff;
-  --secondary-bg: #f7fcf9ff;
-  --card: #ffffff;
-  --text: #0d1b16;
-  --text-on-accent:#ffffffff;
-  --muted: #5b6b64;
-  --muted2: #5f8b4c18;
-  --border: #dfeae3;
-  --accent: #5F8B4C;
-  --accent-fg: #fff;
-  --accent-elements: #e9f6ef;
-  --link: #FF9A9A;
-  --link-hover: #ff9393ff;
-  --brand: #0a5b3a;
-  --brand-ink: #053d27;
-  --dot-accent: #362f27d2;
-  --dot-hover: #362f27ff;
-}
-:root[data-theme="rose"] {
-  --bg: #ffffffff;
-  --secondary-bg: #fff8fbff;
-  --card: #ffffff;
-  --text: #261317;
-  --text-on-accent:#261317;
-  --muted: #7a5a63;
-  --muted2: #e69db818;
-  --border: #f4d8e2;
-  --accent: #E69DB8;
-  --accent-fg: #fff;
-  --accent-elements: #ffd6e5ff;
-  --link: #80C4E9;
-  --link-hover: #6fb2d6ff;
-  --brand: #b83256;
-  --brand-ink: #821d39;
-  --dot-accent: #362f27d2;
-  --dot-hover: #362f27ff;
-}
-:root[data-theme="slate"] {
-  --bg: #1c1e22ff;
-  --secondary-bg: #262a31ff;
-  --card: #111318;
-  --text: #e5e7eb;
-  --card-text: #fff4fcff;
+:root[data-theme="dark"] {
+  --bg: #313030;
+  --secondary-bg: #3a3938;
+  --card: #3a3938;
+  --text: #f2f0e9;
+  --card-text: #f2f0e9e3;
   --card-text-hover: #ffffffff;
-  --text-on-accent:#ffffffff;
-  --muted: #c9c9c9ff;
-  --muted2: #b664a418;
-  --border: #242933;
-  --accent: #b664a462;
-  --accent-fg: #e5e7eb;
-  --accent-elements: #b664a462;
-  --link: #2562b3ff;
-  --link-hover: #1b55a1ff;
-  --brand: #94a3b8;
-  --brand-ink: #cbd5e1;
-  --dot-accent: #fff4fcff;
+  --text-on-accent: #171717;
+  --muted: #b9b6ac;
+  --muted2: #f2f0e933;
+  --border: #4a4948;
+  --accent: #d97757;
+  --accent-fg: #171717;
+  --accent-elements: #4a3a34;
+  --link: #e69179;
+  --link-hover: #f2a88f;
+  --brand: #d97757;
+  --brand-ink: #f2a88f;
+  --ok: #8fb89e;
+  --warn: #d99f8f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --header-h: 64px;
+  --dot-accent: #f2f0e9d2;
   --dot-hover: #ffffffff;
+  --grid-line: #f2f0e912;
 }
 
 :where(h1, h2, h3, h4, h5, h6, p) {
@@ -123,10 +79,14 @@ p {
 }
 html {
   box-sizing: border-box;
-  font-family: "Clash Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
-    sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   font-weight: 400;
   color: var(--text);
+}
+:where(h1, h2, h3, h4, h5, h6, .display-x, .display-l, .heading-section) {
+  font-family: "Clash Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
 }
 *,
 *::before,
@@ -135,7 +95,14 @@ html {
 }
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: linear-gradient(
+      to right,
+      var(--grid-line) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 a {
   color: inherit;

@@ -84,57 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const root = document.documentElement;
-  const menu = document.getElementById("themeMenu");
-  const btn = document.getElementById("themeBtn");
-  const list = menu.querySelector(".theme-list");
-  const items = Array.from(list.querySelectorAll("[data-theme]"));
-
-  // apply saved theme
-  const saved = localStorage.getItem("theme") || "cream";
-  applyTheme(saved);
-
-  // open/close
-  const setOpen = (open) => {
-    menu.setAttribute("aria-expanded", String(open));
-    btn.setAttribute("aria-expanded", String(open));
-  };
-  btn.addEventListener("click", () =>
-    setOpen(menu.getAttribute("aria-expanded") !== "true")
-  );
-
-  // choose theme
-  items.forEach((el) => {
-    el.addEventListener("click", () => {
-      const t = el.dataset.theme;
-      applyTheme(t);
-      setOpen(false);
-      btn.focus();
-    });
-  });
-
-  // a11y: esc / outside click
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setOpen(false);
-  });
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target)) setOpen(false);
-  });
-
-  function applyTheme(theme) {
-    root.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-    // update current state
-    items.forEach((i) =>
-      i.setAttribute(
-        "aria-current",
-        i.dataset.theme === theme ? "true" : "false"
-      )
-    );
-    // recolor header swatch
-    // (nebūtina: rely on CSS var)
-  }
-
   /* Header blur tik kai scroll > 8px */
   const setScrolled = () => {
     document.documentElement.classList.toggle("scrolled", window.scrollY > 8);

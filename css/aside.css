@@ -119,7 +119,7 @@
   margin: 4px auto 10px;
   display: block;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  background: #f5f6fa;
+  background: var(--secondary-bg);
 }
 .avatar-neo-halo {
   position: relative;
