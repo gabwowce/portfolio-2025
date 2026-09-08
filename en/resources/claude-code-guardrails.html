@@ -114,45 +114,171 @@
         <section class="resource-section u-reveal">
             <h2>What's inside</h2>
             <ul>
-                <li>A <code>.claude/settings.json</code> with five hook definitions</li>
-                <li>A <code>guard.sh</code> script the hooks call into</li>
-                <li>A plain-language explanation of what each hook blocks and why</li>
-                <li>Drop-in setup — no build step, no dependencies</li>
+                <li>A <code>.claude/settings.json</code> wiring up three hook registrations</li>
+                <li>A <code>guard.sh</code> script implementing five distinct safety checks</li>
+                <li>A plain-language explanation of what each check blocks and why</li>
+                <li>Drop-in setup — one dependency (<code>jq</code>), no build step</li>
             </ul>
         </section>
 
         <!-- 3. Content -->
         <section class="resource-section u-reveal">
-            <h2>The hooks, explained</h2>
-            <div class="pending-note">
-                <strong>Content in progress.</strong> The actual <code>settings.json</code>, <code>guard.sh</code>, and the
-                per-hook write-up are being finalized by Gabrielė and will be published here directly — this page is not a
-                placeholder landing page, the real content will replace this note in place. If you're reading this and want
-                a heads-up when it's live, the fastest way is to follow
-                <a href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" target="_blank" rel="noopener">the socials below</a>.
-            </div>
-            <!--
-              When the real content lands, replace the note above with the actual
-              code blocks, e.g.:
+            <h2>How it's wired</h2>
+            <p class="muted">Claude Code hooks are just shell commands the CLI runs before or after a tool call, fed a JSON payload on stdin. <code>guard.sh</code> reads that payload once and runs five checks against it. A <code>PreToolUse</code> hook can block the call outright (exit code 2); a <code>PostToolUse</code> hook can only observe, so it's used here for the audit log.</p>
 
-              <div class="code-block">
+            <div class="code-block">
                 <span class="code-block__label">.claude/settings.json</span>
                 <button class="code-block__copy" data-copy>Copy</button>
-                <pre><code>...</code></pre>
-              </div>
-              <p>Explanation of what this hook does and why it matters...</p>
+                <pre><code>{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/guard.sh" }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/guard.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/guard.sh" }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+            </div>
+            <p class="muted">Three hook registrations, five checks — <code>guard.sh</code> looks at <code>hook_event_name</code> and <code>tool_name</code> to decide which checks apply to this call.</p>
 
-              (repeat per hook, then guard.sh)
-            -->
+            <h3 style="margin-top:28px">1 · Destructive filesystem commands</h3>
+            <p class="muted">Blocks <code>rm -rf</code> aimed at <code>/</code>, <code>~</code>, or the current directory, raw disk writes via <code>dd</code>, and fork-bomb patterns. These are the commands where there is no undo.</p>
+
+            <h3 style="margin-top:24px">2 · Force-push and history rewrites on protected branches</h3>
+            <p class="muted">Blocks <code>git push --force</code> (or <code>-f</code>) specifically when the target is <code>main</code> or <code>master</code>, plus <code>filter-branch</code> and force-pushing <code>--all</code>. Force-pushing a feature branch you own is still allowed — the check only fires on shared history.</p>
+
+            <h3 style="margin-top:24px">3 · Skipping safety checks</h3>
+            <p class="muted">Blocks <code>--no-verify</code> and <code>--no-gpg-sign</code> (both exist to skip a check someone deliberately set up), <code>chmod 777</code>, and piping a remote script straight into a shell (<code>curl ... | bash</code>, <code>wget ... | sh</code>) — read a script before it runs, always.</p>
+
+            <h3 style="margin-top:24px">4 · Writes to sensitive files</h3>
+            <p class="muted">Blocks <code>Write</code>/<code>Edit</code>/<code>MultiEdit</code> targeting <code>.env</code>, SSH keys, <code>.aws/credentials</code>, <code>credentials.json</code>, or <code>.git/config</code>. If a credential needs to change, do it by hand — an agent shouldn't be the one touching it.</p>
+
+            <h3 style="margin-top:24px">5 · Audit log</h3>
+            <p class="muted">Every Bash command that runs — blocked or not — gets one line in <code>.claude/guard.log</code> with a timestamp. It never blocks anything; it just means there's always a record, even for the commands the other four checks didn't catch.</p>
+
+            <div class="code-block" style="margin-top:20px">
+                <span class="code-block__label">.claude/guard.sh</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+                <pre><code>#!/usr/bin/env bash
+# Claude Code Guardrails — guard.sh
+# Reads a PreToolUse/PostToolUse hook payload from stdin and decides
+# whether to allow, block, or just log the tool call.
+#
+# Exit codes (per Claude Code's hook contract):
+#   0 = allow (stdout/stderr shown to user only)
+#   2 = block (stderr is fed back to Claude as the reason)
+
+set -euo pipefail
+
+payload="$(cat)"
+tool_name="$(echo "$payload" | jq -r '.tool_name // empty')"
+command="$(echo "$payload" | jq -r '.tool_input.command // empty')"
+file_path="$(echo "$payload" | jq -r '.tool_input.file_path // empty')"
+hook_event="$(echo "$payload" | jq -r '.hook_event_name // empty')"
+
+log_dir="$(dirname "$0")"
+log_file="$log_dir/guard.log"
+
+block() {
+  echo "Guardrails blocked this: $1" >&2
+  exit 2
+}
+
+# 1: destructive filesystem commands
+check_destructive_fs() {
+  case "$command" in
+    *"rm -rf /"*|*"rm -rf ~"*|*"rm -rf \$HOME"*|*"rm -rf ."*)
+      block "destructive rm -rf targeting root, home, or the current directory." ;;
+    *"dd if="*"of=/dev/"*)
+      block "raw disk write via dd — this can destroy a whole disk." ;;
+    *":(){ :|:& };:"*)
+      block "fork bomb pattern detected." ;;
+  esac
+}
+
+# 2: force-push / history rewrite on protected branches
+check_protected_branch() {
+  case "$command" in
+    *"push"*"--force"*|*"push -f"*)
+      if echo "$command" | grep -qE '(^|[[:space:]])(main|master)([[:space:]]|$)'; then
+        block "force-push to main/master."
+      fi ;;
+    *"filter-branch"*|*"push"*"--force"*"--all"*)
+      block "history-rewriting operation (filter-branch / force-push --all)." ;;
+  esac
+}
+
+# 3: skipping safety checks
+check_skip_safety() {
+  case "$command" in
+    *"--no-verify"*|*"--no-gpg-sign"*)
+      block "a flag that skips commit hooks or signature verification." ;;
+    *"chmod 777"*|*"chmod -R 777"*)
+      block "chmod 777 — overly permissive file permissions." ;;
+    *"curl"*"| bash"*|*"curl"*"|bash"*|*"wget"*"| sh"*|*"wget"*"|sh"*)
+      block "piping a remote script straight into a shell — read it first." ;;
+  esac
+}
+
+# 4: writes to sensitive files
+check_sensitive_write() {
+  case "$file_path" in
+    *".env"*|*"id_rsa"*|*"id_ed25519"*|*".aws/credentials"*|*".ssh/"*|*"credentials.json"*|*".git/config")
+      block "write to a sensitive/credentials path ($file_path). Edit it by hand instead." ;;
+  esac
+}
+
+# 5: audit log (never blocks, just records)
+write_audit_log() {
+  printf '%s\t%s\t%s\n' "$(date -Iseconds)" "$tool_name" "${command:-$file_path}" >> "$log_file"
+}
+
+case "$hook_event" in
+  PreToolUse)
+    if [ "$tool_name" = "Bash" ]; then
+      check_destructive_fs
+      check_protected_branch
+      check_skip_safety
+    fi
+    if [ "$tool_name" = "Write" ] || [ "$tool_name" = "Edit" ] || [ "$tool_name" = "MultiEdit" ]; then
+      check_sensitive_write
+    fi
+    ;;
+  PostToolUse)
+    write_audit_log
+    ;;
+esac
+
+exit 0</code></pre>
+            </div>
+            <p class="muted">Requires <code>jq</code> (already on most dev machines; <code>brew install jq</code> / <code>apt install jq</code> if not). Make it executable once: <code>chmod +x .claude/guard.sh</code>.</p>
         </section>
 
         <!-- 4. Download -->
         <section class="resource-section u-reveal">
             <h2>Get it</h2>
             <div class="resource-download">
-                <button class="btn-pill" type="button" disabled data-price="0" data-currency="EUR">Download the full package →</button>
-                <span class="price">Free — no email required · not published yet</span>
+                <a class="btn-pill" href="../../docs/resources/claude-code-guardrails.pdf" download data-price="0" data-currency="EUR">Download the PDF guide →</a>
+                <span class="price">Free — no email required</span>
             </div>
+            <p class="muted" style="margin-top:10px">The PDF has the same content as this page (both hooks, the full <code>guard.sh</code>, and setup steps) formatted to read offline or print. The code blocks above are copy-paste ready if you just want the files.</p>
         </section>
 
         <!-- 5. Who made this -->
