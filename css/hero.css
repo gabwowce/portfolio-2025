@@ -158,3 +158,83 @@
     padding: 0.4rem 0.5rem;
   }
 }
+
+/*
+  Hero interaction: a soft cursor-follow spotlight + gentle parallax on
+  the character illustration and headline. js/script.js sets --mx/--my
+  (cursor position, 0-100%) and --px/--py (-1..1, offset from center)
+  on .hero via mousemove/mouseleave; here is purely the CSS reaction to
+  those variables, so the JS stays tiny and this degrades gracefully
+  (variables just default to center) if JS ever fails to load.
+*/
+.hero {
+  --mx: 50%;
+  --my: 40%;
+  --px: 0;
+  --py: 0;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    480px 480px at var(--mx) var(--my),
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.hero.hero--active::before {
+  opacity: 1;
+}
+.hero-portrait2 {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(calc(var(--px) * -10px), calc(var(--py) * -10px), 0)
+    rotate(calc(var(--px) * -1deg));
+}
+.hero-copy {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(calc(var(--px) * 6px), calc(var(--py) * 4px), 0);
+}
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .hero::before {
+    display: none;
+  }
+  .hero-portrait2,
+  .hero-copy {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+/*
+  Hero entrance: a more noticeable version of the site-wide u-reveal,
+  scoped to the hero only, so the one section every visitor sees first
+  gets the bigger motion without changing scroll-reveal everywhere
+  else. Plays automatically on load via .u-stagger's existing
+  IntersectionObserver (hero is always in the initial viewport).
+*/
+.hero .hero-copy.u-reveal,
+.hero .hero-copy > .u-reveal {
+  transform: translateY(28px);
+  transition-duration: 0.9s;
+}
+.hero .hero-portrait2.u-reveal {
+  transform: translateY(18px) scale(0.94);
+  filter: blur(6px);
+  transition-duration: 1.05s;
+}
+.hero .hero-portrait2.u-reveal.is-inview {
+  filter: blur(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-copy.u-reveal,
+  .hero .hero-copy > .u-reveal,
+  .hero .hero-portrait2.u-reveal {
+    transform: none;
+    filter: none;
+  }
+}

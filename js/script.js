@@ -363,3 +363,47 @@ document.addEventListener("DOMContentLoaded", () => {
     isLT ? "Switch to English" : "Perjungti į lietuvių"
   );
 })();
+
+// Hero mouse-parallax + cursor spotlight.
+// Sets --mx/--my (cursor position) and --px/--py (-1..1 offset from
+// center) on .hero; css/hero.css does the actual transforms. Skipped
+// entirely for reduced-motion or touch-only devices — hover:none
+// devices have no cursor to react to anyway.
+(function () {
+  var hero = document.querySelector(".hero");
+  if (!hero) return;
+
+  var reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  var noHover = window.matchMedia("(hover: none)").matches;
+  if (reduceMotion || noHover) return;
+
+  var raf = null;
+  var targetX = 0.5,
+    targetY = 0.4;
+
+  function apply() {
+    raf = null;
+    hero.style.setProperty("--mx", targetX * 100 + "%");
+    hero.style.setProperty("--my", targetY * 100 + "%");
+    hero.style.setProperty("--px", (targetX * 2 - 1).toFixed(3));
+    hero.style.setProperty("--py", (targetY * 2 - 1).toFixed(3));
+  }
+
+  hero.addEventListener("pointerenter", function () {
+    hero.classList.add("hero--active");
+  });
+  hero.addEventListener("pointerleave", function () {
+    hero.classList.remove("hero--active");
+    targetX = 0.5;
+    targetY = 0.4;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  hero.addEventListener("pointermove", function (e) {
+    var rect = hero.getBoundingClientRect();
+    targetX = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+    targetY = Math.min(1, Math.max(0, (e.clientY - rect.top) / rect.height));
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+})();
