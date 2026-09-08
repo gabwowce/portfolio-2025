@@ -26,10 +26,11 @@
 
 .footer-card {
   background: radial-gradient(
-    900px 460px at 18% -120px,
-    var(--accent-elements) 0%,
-    transparent 45%
-  );
+      900px 460px at 18% -120px,
+      color-mix(in srgb, var(--accent-elements) 70%, transparent) 0%,
+      transparent 65%
+    ),
+    var(--card);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: clamp(22px, 3.2vw, 32px);
