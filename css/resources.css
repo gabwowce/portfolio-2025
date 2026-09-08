@@ -192,3 +192,250 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
 }
+
+/* ---- Hook flow diagram ---- */
+
+.hook-flow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0 24px;
+  --i: 0;
+}
+.hook-flow__node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.hook-flow__node svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.hook-flow__arrow {
+  color: var(--muted);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.hook-flow__branch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hook-flow__node--ok {
+  border-color: color-mix(in srgb, var(--ok) 45%, var(--border));
+  color: var(--ok);
+}
+.hook-flow__node--ok svg {
+  color: var(--ok);
+}
+.hook-flow__node--block {
+  border-color: color-mix(in srgb, var(--warn) 45%, var(--border));
+  color: var(--warn);
+}
+.hook-flow__node--block svg {
+  color: var(--warn);
+}
+@media (max-width: 640px) {
+  .hook-flow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hook-flow__arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+}
+
+/* ---- Hook cards (the five checks) ---- */
+
+.hook-cards {
+  display: grid;
+  gap: 16px;
+  margin: 20px 0;
+}
+.hook-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  background: var(--card);
+}
+.hook-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.hook-card__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent-elements);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.hook-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
+.hook-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.hook-card p {
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.hook-example {
+  border-radius: 10px;
+  background: #171717;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.82rem;
+  overflow: hidden;
+}
+.hook-example__line {
+  padding: 9px 14px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.5;
+  border-left: 3px solid transparent;
+}
+.hook-example__line--cmd {
+  color: #f2f0e9;
+}
+.hook-example__line--cmd::before {
+  content: "$";
+  color: #6b6864;
+  flex-shrink: 0;
+}
+.hook-example__line--block {
+  color: #f2a88f;
+  background: color-mix(in srgb, #d97757 12%, transparent);
+  border-left-color: #d97757;
+}
+.hook-example__line--ok {
+  color: #a8d9bb;
+  background: color-mix(in srgb, #5d866c 14%, transparent);
+  border-left-color: #5d866c;
+}
+
+/* ---- Live tester ---- */
+
+.hook-tester {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+  background: var(--card);
+  margin: 20px 0;
+}
+.hook-tester__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 640px) {
+  .hook-tester__fields {
+    grid-template-columns: 1fr;
+  }
+}
+.hook-tester__field label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.hook-tester__field input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.85rem;
+}
+.hook-tester__field input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.hook-tester__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.hook-tester__chip {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--secondary-bg);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+.hook-tester__chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.hook-tester__result {
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  transition: transform 0.15s ease;
+}
+.hook-tester__result[hidden] {
+  display: none;
+}
+.hook-tester__result svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.hook-tester__result--block {
+  background: color-mix(in srgb, var(--warn) 16%, transparent);
+  color: var(--warn);
+  border: 1px solid color-mix(in srgb, var(--warn) 40%, transparent);
+}
+.hook-tester__result--ok {
+  background: color-mix(in srgb, var(--ok) 16%, transparent);
+  color: var(--ok);
+  border: 1px solid color-mix(in srgb, var(--ok) 40%, transparent);
+}
+.hook-tester__result--empty {
+  background: var(--secondary-bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+@keyframes hookShake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+.hook-tester__result--shake {
+  animation: hookShake 0.4s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hook-tester__result--shake {
+    animation: none;
+  }
+}
