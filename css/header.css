@@ -11,7 +11,9 @@
 }
 /* Kai scrolled ↓ */
 .scrolled .site-header {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: saturate(1.2) blur(8px);
+  -webkit-backdrop-filter: saturate(1.2) blur(8px);
 }
 .header-in {
   display: grid;
