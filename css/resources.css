@@ -84,7 +84,7 @@
 
 .resource-section {
   max-width: 760px;
-  margin: 0 auto;
+  margin: 0;
   padding-block: 32px;
   border-top: 1px solid var(--border);
 }

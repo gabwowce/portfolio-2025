@@ -12,7 +12,7 @@
       transparent 100%
     );
 
-  padding: calc(var(--header-h) + 2rem) 0.9rem 0;
+  padding: calc(var(--header-h) + 3.5rem) 0.9rem 0;
 }
 
 .hero {
