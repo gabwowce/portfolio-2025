@@ -22,10 +22,15 @@
   margin-top: 10px;
 }
 
+/*
+  The three cards are one route, not three claims, so a rail runs down
+  through the gaps between them - the same connector the whiteboard
+  uses for its four steps.
+*/
 .proof__list {
   display: flex;
   flex-direction: column;
-  gap: clamp(18px, 2.6vw, 28px);
+  gap: clamp(30px, 4vw, 46px);
 }
 
 /* ---- Card ------------------------------------------------------ */
@@ -37,6 +42,27 @@
   padding: clamp(18px, 2.4vw, 28px);
   transition: border-color 0.25s ease, transform 0.25s ease,
     box-shadow 0.25s ease;
+}
+.proof-card {
+  position: relative;
+}
+/*
+  Anchored under the icon: card padding plus half the icon's width, so
+  the rail lines up with the icon column above and below it.
+*/
+.proof-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: calc(clamp(18px, 2.4vw, 28px) + clamp(44px, 4vw, 56px) / 2);
+  width: 2px;
+  height: clamp(30px, 4vw, 46px);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--accent) 55%, transparent),
+    color-mix(in srgb, var(--accent) 20%, transparent)
+  );
+  pointer-events: none;
 }
 .proof-card:hover {
   border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
@@ -70,6 +96,13 @@
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.proof-card__stage {
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 .proof-card__head h3 {
   font-size: clamp(1.15rem, 2vw, 1.6rem);
