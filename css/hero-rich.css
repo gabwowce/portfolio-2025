@@ -277,10 +277,15 @@
   justify-content: center;
   min-height: 320px;
 }
+/*
+  Above everything else on the stage - the board, the ring and the
+  handwritten notes all sit behind her, so nothing draws across the
+  figure.
+*/
 .hero-stage img {
   position: relative;
-  z-index: 3;
-  height: clamp(320px, 58vh, 600px);
+  z-index: 5;
+  height: clamp(340px, 66vh, 680px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -297,17 +302,107 @@
     color-mix(in srgb, var(--accent) 8%, transparent),
     transparent 55%
   );
-  padding: clamp(1rem, 2vw, 1.7rem);
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  overflow: hidden;
   pointer-events: none;
+}
+
+/* Window chrome across the top of the panel */
+.hero-board__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.hero-board__dots {
+  display: flex;
+  gap: 5px;
+}
+.hero-board__dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.hero-board__dots i:nth-child(2) {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+.hero-board__dots i:nth-child(3) {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.hero-board__path {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/*
+  The four-step arc as a numbered rail down the left edge, where the
+  figure standing centre-stage never covers it.
+*/
+.hero-board__steps {
+  list-style: none;
+  margin: 0;
+  padding: clamp(0.9rem, 1.8vw, 1.5rem) 0 0 clamp(0.9rem, 1.8vw, 1.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.35rem, 0.9vw, 0.7rem);
+  align-items: flex-start;
+}
+.hero-board__steps li {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+/* Connector rail between the numbers */
+.hero-board__steps li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 0.42em;
+  top: 1.5em;
+  bottom: calc(-1 * clamp(0.35rem, 0.9vw, 0.7rem) - 0.35em);
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent
+  );
+}
+.hero-board__num {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.66rem;
+  color: color-mix(in srgb, var(--accent) 70%, transparent);
+  flex-shrink: 0;
 }
 .hero-board__line {
   font-family: "Caveat", "Segoe Script", cursive;
   font-size: clamp(17px, 1.5vw, 25px);
   line-height: 1.25;
   color: var(--accent);
+}
+
+/* Stack chips along the bottom edge; the figure crosses in front of them */
+.hero-board__chips {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 clamp(0.9rem, 1.8vw, 1.4rem) clamp(0.9rem, 1.8vw, 1.4rem);
+}
+.hero-board__chips span {
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+  border-radius: 999px;
+  padding: 3px 9px;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
 }
 
 .hero-stage__ring {
@@ -431,9 +526,10 @@
   max-width: 150px;
   rotate: -6deg;
 }
+/* Inside the panel, in the clear area above her shoulder. */
 .hero-note--board {
-  top: 6%;
-  right: -2%;
+  top: 9%;
+  right: 4%;
   max-width: 165px;
   rotate: -4deg;
   color: var(--text);
@@ -583,11 +679,13 @@
   .hero-note--orb {
     display: none;
   }
+  /*
+    The stacked hero shrinks the panel to about a third of its desktop
+    size; the handwritten note has nowhere to sit there without landing
+    on the step list or her face, so it goes.
+  */
   .hero-note--board {
-    top: 0;
-    right: 0;
-    font-size: 15px;
-    max-width: 130px;
+    display: none;
   }
   .hero-scroll {
     display: none;

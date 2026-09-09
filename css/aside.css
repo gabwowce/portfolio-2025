@@ -145,7 +145,7 @@
 
 @media (max-width: 1024px) {
   .sidebar {
-    position: block;
+    position: static;
     margin: clamp(3rem, 10vw, 5rem) 0;
   }
 

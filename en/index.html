@@ -158,11 +158,29 @@
 
             <!-- Middle: character on a lit stage -->
             <figure class="hero-stage u-reveal">
+                <!--
+                  The board behind the character reads as a workspace panel:
+                  window chrome, the four-step arc as a numbered rail, and the
+                  stack as chips along the bottom. Everything is pinned to the
+                  panel's edges so the figure standing in front of it never
+                  covers the content.
+                -->
                 <div class="hero-stage__board" aria-hidden="true">
-                    <span class="hero-board__line">Ideas</span>
-                    <span class="hero-board__line">Products</span>
-                    <span class="hero-board__line">People</span>
-                    <span class="hero-board__line">Impact</span>
+                    <div class="hero-board__bar">
+                        <span class="hero-board__dots"><i></i><i></i><i></i></span>
+                        <span class="hero-board__path">~/codeart</span>
+                    </div>
+
+                    <ol class="hero-board__steps">
+                        <li><span class="hero-board__num">01</span><span class="hero-board__line">Ideas</span></li>
+                        <li><span class="hero-board__num">02</span><span class="hero-board__line">Products</span></li>
+                        <li><span class="hero-board__num">03</span><span class="hero-board__line">People</span></li>
+                        <li><span class="hero-board__num">04</span><span class="hero-board__line">Impact</span></li>
+                    </ol>
+
+                    <div class="hero-board__chips">
+                        <span>React</span><span>Next.js</span><span>TypeScript</span><span>Supabase</span>
+                    </div>
                 </div>
                 <span class="hero-note hero-note--board" aria-hidden="true">Same person, bigger ideas.</span>
                 <picture>
