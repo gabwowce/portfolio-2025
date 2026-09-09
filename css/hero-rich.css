@@ -72,6 +72,7 @@
 .hero-rich__copy {
   position: relative;
   z-index: 3;
+  min-width: 0;
 }
 
 .hero-eyebrow {
@@ -272,10 +273,54 @@
   position: relative;
   margin: 0;
   align-self: stretch;
+  /*
+    Without this the image's intrinsic 900px becomes the track's
+    min-content size and starves the copy column next to it.
+  */
+  min-width: 0;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  /* She stands to the right of the panel, so the diagram stays readable. */
+  justify-content: flex-end;
   min-height: 320px;
+}
+/*
+  The picture box tracks the figure's real width, so the lit plinth
+  anchored to it follows her instead of the stage's centre.
+*/
+.hero-stage picture {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-right: -6%;
+}
+.hero-stage picture::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: -1%;
+  left: 50%;
+  translate: -50% 0;
+  width: 62%;
+  aspect-ratio: 3 / 1;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+  box-shadow: 0 0 70px color-mix(in srgb, var(--accent) 26%, transparent),
+    inset 0 0 44px color-mix(in srgb, var(--accent) 14%, transparent);
+  pointer-events: none;
+}
+/*
+  Below 1280px the <picture> swaps to the sitting pose, which doesn't
+  stand on anything - the plinth would float detached underneath it.
+*/
+@media (max-width: 1279px) {
+  .hero-stage picture::after {
+    display: none;
+  }
+  .hero-stage picture {
+    margin-right: 0;
+  }
 }
 /*
   Above everything else on the stage - the board, the ring and the
@@ -294,7 +339,7 @@
 .hero-stage__board {
   position: absolute;
   z-index: 1;
-  inset: 4% 2% 24% 4%;
+  inset: 2% 40% 8% 0;
   border-radius: 20px;
   border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
   background: linear-gradient(
@@ -342,92 +387,94 @@
 }
 
 /*
-  The four-step arc as a numbered rail down the left edge, where the
-  figure standing centre-stage never covers it.
+  The process as a diagram: a lit icon tile per step, joined by a
+  connector rail with a node at each junction, ending in a handwritten
+  goal. Sits in the left half of the panel, clear of the figure.
 */
-.hero-board__steps {
+.hero-flow {
   list-style: none;
   margin: 0;
-  padding: clamp(0.9rem, 1.8vw, 1.5rem) 0 0 clamp(0.9rem, 1.8vw, 1.4rem);
+  padding: clamp(0.7rem, 1.5vw, 1.1rem) 0 0 clamp(0.7rem, 1.4vw, 1.1rem);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.35rem, 0.9vw, 0.7rem);
+  gap: clamp(0.5rem, 1.1vw, 0.85rem);
   align-items: flex-start;
 }
-.hero-board__steps li {
+.hero-flow__step {
   position: relative;
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.75rem 0.4rem 0.4rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+  background: color-mix(in srgb, var(--bg) 42%, transparent);
 }
-/* Connector rail between the numbers */
-.hero-board__steps li:not(:last-child)::before {
+/* Connector rail, with a node sitting on it between each pair of steps */
+.hero-flow__step:not(:last-child)::before,
+.hero-flow__step:not(:last-child)::after {
   content: "";
   position: absolute;
-  left: 0.42em;
-  top: 1.5em;
-  bottom: calc(-1 * clamp(0.35rem, 0.9vw, 0.7rem) - 0.35em);
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--accent) 40%, transparent),
-    transparent
-  );
-}
-.hero-board__num {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.66rem;
-  color: color-mix(in srgb, var(--accent) 70%, transparent);
-  flex-shrink: 0;
-}
-.hero-board__line {
-  font-family: "Caveat", "Segoe Script", cursive;
-  font-size: clamp(17px, 1.5vw, 25px);
-  line-height: 1.25;
-  color: var(--accent);
-}
-
-/* Stack chips along the bottom edge; the figure crosses in front of them */
-.hero-board__chips {
-  margin-top: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 0 clamp(0.9rem, 1.8vw, 1.4rem) clamp(0.9rem, 1.8vw, 1.4rem);
-}
-.hero-board__chips span {
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
-  border-radius: 999px;
-  padding: 3px 9px;
-  background: color-mix(in srgb, var(--bg) 55%, transparent);
-}
-
-.hero-stage__ring {
-  position: absolute;
-  z-index: 2;
-  bottom: -2%;
-  left: 50%;
-  translate: -50% 0;
-  width: 62%;
-  aspect-ratio: 3 / 1;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
-  box-shadow: 0 0 70px color-mix(in srgb, var(--accent) 26%, transparent),
-    inset 0 0 44px color-mix(in srgb, var(--accent) 14%, transparent);
+  left: calc(0.4rem + 17px);
   pointer-events: none;
 }
+.hero-flow__step:not(:last-child)::before {
+  top: 100%;
+  height: clamp(0.5rem, 1.1vw, 0.85rem);
+  width: 1px;
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.hero-flow__step:not(:last-child)::after {
+  top: calc(100% + clamp(0.5rem, 1.1vw, 0.85rem) / 2);
+  translate: -2.5px -2.5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 75%, transparent);
+}
+.hero-flow__ico {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  color: var(--accent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent),
+    inset 0 0 12px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.hero-flow__ico svg {
+  width: 18px;
+  height: 18px;
+}
+.hero-flow__txt {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.hero-flow__txt strong {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: clamp(17px, 1.4vw, 22px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text);
+}
+.hero-flow__txt small {
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
 
-/*
-  Below 1280px the <picture> swaps to the sitting pose, which doesn't
-  stand on anything — the ring would float detached underneath it.
-*/
-@media (max-width: 1279px) {
-  .hero-stage__ring {
-    display: none;
-  }
+.hero-flow__goal {
+  margin: auto 0 clamp(0.7rem, 1.4vw, 1.1rem) clamp(0.7rem, 1.4vw, 1.1rem);
+  padding-top: 0.6rem;
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: clamp(17px, 1.5vw, 23px);
+  line-height: 1.15;
+  color: var(--accent);
 }
 
 /* ---- Right rail ---- */
@@ -439,36 +486,82 @@
   position: relative;
   z-index: 3;
 }
-.hero-rail__item {
+/*
+  Capability cards. The diagram carries the claim - a real interface, a
+  requirement becoming a user, an idea becoming a shipped product - so
+  the copy underneath can stay to one line of plain language.
+*/
+.hero-cap {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 0.8rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 55%, transparent);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.hero-rail__ico {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border));
-  background: var(--card);
-  box-shadow: 0 0 26px color-mix(in srgb, var(--accent) 14%, transparent);
+.hero-cap:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  transform: translateY(-2px);
 }
-.hero-rail__ico svg {
-  width: 18px;
-  height: 18px;
-}
-.hero-rail__item strong {
+.hero-cap__viz {
   display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
+  border-radius: 9px;
+  padding: 0.5rem;
+  margin-bottom: 0.35rem;
+  background: color-mix(in srgb, var(--secondary-bg) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}
+.hero-cap__viz svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hero-cap strong {
+  font-size: 0.86rem;
+  line-height: 1.25;
   color: var(--text);
 }
-.hero-rail__item small {
-  font-size: 0.76rem;
+.hero-cap small {
+  font-size: 0.73rem;
+  line-height: 1.4;
   color: var(--muted);
+}
+
+/*
+  Shared vocabulary for the card diagrams: structure in the border
+  colour, filled placeholders in a dimmed foreground, and exactly one
+  accent element per diagram so the eye lands on the point being made.
+*/
+.hero-cap__viz .viz-frame {
+  stroke: color-mix(in srgb, var(--text) 26%, transparent);
+  stroke-width: 1;
+}
+.hero-cap__viz .viz-accent-frame {
+  stroke: color-mix(in srgb, var(--accent) 55%, transparent);
+  stroke-width: 1;
+}
+.hero-cap__viz .viz-dim-f {
+  fill: color-mix(in srgb, var(--text) 22%, transparent);
+}
+.hero-cap__viz .viz-fill {
+  fill: color-mix(in srgb, var(--text) 12%, transparent);
+}
+.hero-cap__viz .viz-dim-s {
+  stroke: color-mix(in srgb, var(--text) 30%, transparent);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero-cap__viz .viz-accent-f {
+  fill: var(--accent);
+}
+.hero-cap__viz .viz-accent-s {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .hero-avail {
@@ -639,63 +732,73 @@
 
 /* ---- Responsive ---- */
 
-@media (max-width: 1180px) {
-  .hero-rich__grid {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-  .hero-rail {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.6rem;
-  }
-  .hero-avail {
-    margin-top: 0;
-  }
-  .hero-note--rail {
-    display: none;
-  }
-  .hero-note--board {
-    right: 2%;
-  }
-}
-
-@media (max-width: 860px) {
+/*
+  The three-column hero needs roughly 870px of content width, which the
+  container only reaches at 1280px. Below that everything stacks - the
+  same breakpoint at which <picture> swaps to the seated pose, so the
+  layout and the artwork change together.
+*/
+@media (max-width: 1279px) {
   .hero-rich__grid {
     grid-template-columns: 1fr;
     min-height: 0;
+    gap: 1.6rem;
   }
   .hero-stage {
     order: -1;
-    min-height: 260px;
+    min-height: 300px;
   }
   .hero-stage img {
-    height: clamp(240px, 38vh, 360px);
+    height: clamp(260px, 42vh, 420px);
   }
   .hero-stage__board {
-    inset: 0 2% 22% 2%;
+    inset: 0 40% 10% 0;
   }
-  .hero-note--orb {
-    display: none;
+  .hero-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 1rem;
   }
-  /*
-    The stacked hero shrinks the panel to about a third of its desktop
-    size; the handwritten note has nowhere to sit there without landing
-    on the step list or her face, so it goes.
-  */
-  .hero-note--board {
-    display: none;
+  .hero-cap {
+    flex: 1 1 220px;
   }
+  .hero-avail {
+    flex: 1 1 100%;
+    margin-top: 0;
+  }
+  .hero-note--orb,
+  .hero-note--rail,
   .hero-scroll {
     display: none;
   }
 }
 
-@media (max-width: 520px) {
-  .hero-rail__item {
-    flex: 1 1 100%;
+/*
+  Narrower than this the panel and the figure can no longer sit side by
+  side without her covering a step, so the panel becomes a block in the
+  flow and she stands below it.
+*/
+@media (max-width: 720px) {
+  .hero-stage {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
   }
+  .hero-stage__board {
+    position: static;
+    inset: auto;
+  }
+  .hero-flow__goal {
+    margin-bottom: clamp(0.7rem, 1.4vw, 1.1rem);
+  }
+  .hero-stage picture {
+    align-self: center;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 520px) {
   .hero-stats {
     gap: 1rem;
   }

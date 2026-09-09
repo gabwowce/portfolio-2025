@@ -159,57 +159,121 @@
             <!-- Middle: character on a lit stage -->
             <figure class="hero-stage u-reveal">
                 <!--
-                  The board behind the character reads as a workspace panel:
-                  window chrome, the four-step arc as a numbered rail, and the
-                  stack as chips along the bottom. Everything is pinned to the
-                  panel's edges so the figure standing in front of it never
-                  covers the content.
+                  The board behind the character is the process itself, drawn
+                  as a diagram: four steps as lit icon tiles down a connector
+                  rail, ending in a handwritten goal. It sits in the left half
+                  of the stage so the figure, who stands to the right of it,
+                  never covers a step.
                 -->
                 <div class="hero-stage__board" aria-hidden="true">
                     <div class="hero-board__bar">
                         <span class="hero-board__dots"><i></i><i></i><i></i></span>
-                        <span class="hero-board__path">~/codeart</span>
+                        <span class="hero-board__path">how I work</span>
                     </div>
 
-                    <ol class="hero-board__steps">
-                        <li><span class="hero-board__num">01</span><span class="hero-board__line">Ideas</span></li>
-                        <li><span class="hero-board__num">02</span><span class="hero-board__line">Products</span></li>
-                        <li><span class="hero-board__num">03</span><span class="hero-board__line">People</span></li>
-                        <li><span class="hero-board__num">04</span><span class="hero-board__line">Impact</span></li>
+                    <ol class="hero-flow">
+                        <li class="hero-flow__step">
+                            <span class="hero-flow__ico">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>
+                            </span>
+                            <span class="hero-flow__txt"><strong>1. Problem</strong><small>Understand the need</small></span>
+                        </li>
+                        <li class="hero-flow__step">
+                            <span class="hero-flow__ico">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M7 13h4v4H7zM14 13h3M14 16h3"/></svg>
+                            </span>
+                            <span class="hero-flow__txt"><strong>2. UX</strong><small>Plan the solution</small></span>
+                        </li>
+                        <li class="hero-flow__step">
+                            <span class="hero-flow__ico">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>
+                            </span>
+                            <span class="hero-flow__txt"><strong>3. Code</strong><small>Build it properly</small></span>
+                        </li>
+                        <li class="hero-flow__step">
+                            <span class="hero-flow__ico">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3.5 2.5 5 6 5 10l-2.5 3h-5L7 12c0-4 1.5-7.5 5-10z"/><circle cx="12" cy="9" r="1.6"/><path d="M9.5 16 7 19M14.5 16l2.5 3"/></svg>
+                            </span>
+                            <span class="hero-flow__txt"><strong>4. Product</strong><small>Ship real value</small></span>
+                        </li>
                     </ol>
 
-                    <div class="hero-board__chips">
-                        <span>React</span><span>Next.js</span><span>TypeScript</span><span>Supabase</span>
-                    </div>
+                    <p class="hero-flow__goal">Ideas &rarr; product.<br>That&rsquo;s the goal.</p>
                 </div>
-                <span class="hero-note hero-note--board" aria-hidden="true">Same person, bigger ideas.</span>
                 <picture>
                     <source media="(max-width: 1279px)" srcset="../img/person/cross-legs-loptop-450.webp 450w, ../img/person/cross-legs-loptop.webp 900w" sizes="(max-width: 640px) 62vw, 420px">
                     <img src="../img/person/standing-still.webp" srcset="../img/person/standing-still-450.webp 450w, ../img/person/standing-still.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="Gabrielė – developer and product builder" width="900" height="1259" loading="eager" fetchpriority="high" decoding="async">
                 </picture>
-                <div class="hero-stage__ring" aria-hidden="true"></div>
             </figure>
 
-            <!-- Right: value rail -->
-            <aside class="hero-rail u-stagger" aria-label="What I focus on">
-                <div class="hero-rail__item u-reveal">
-                    <span class="hero-rail__ico" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg>
+            <!--
+              Right rail: what I can actually build, each card carrying a
+              small diagram of the thing it claims rather than a generic
+              icon - an interface, a flow from requirement to user, and the
+              path from idea to shipped product.
+            -->
+            <aside class="hero-rail u-stagger" aria-label="What I build">
+                <article class="hero-cap u-reveal">
+                    <span class="hero-cap__viz" aria-hidden="true">
+                        <svg viewBox="0 0 132 62" fill="none">
+                            <rect x=".6" y=".6" width="130.8" height="60.8" rx="6" class="viz-frame"/>
+                            <path d="M0 13h132" class="viz-frame"/>
+                            <circle cx="9" cy="7" r="2" class="viz-accent-f"/><circle cx="16" cy="7" r="2" class="viz-dim-f"/><circle cx="23" cy="7" r="2" class="viz-dim-f"/>
+                            <path d="M0 13v49" class="viz-frame"/>
+                            <rect x="7" y="20" width="26" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="7" y="28" width="20" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="7" y="36" width="24" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="7" y="44" width="18" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="42" y="20" width="52" height="26" rx="3" class="viz-fill"/>
+                            <rect x="102" y="20" width="23" height="7" rx="3.5" class="viz-accent-f"/>
+                            <rect x="102" y="32" width="23" height="14" rx="3" class="viz-fill"/>
+                            <rect x="42" y="51" width="34" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="84" y="51" width="41" height="3" rx="1.5" class="viz-dim-f"/>
+                        </svg>
                     </span>
-                    <div><strong>Clean code</strong><small>Better products</small></div>
-                </div>
-                <div class="hero-rail__item u-reveal">
-                    <span class="hero-rail__ico" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M17 11a3 3 0 1 0-2-5.2M21 20a5 5 0 0 0-4-4.9"/></svg>
+                    <strong>Build complex interfaces</strong>
+                    <small>Data-heavy systems turned into clean, scalable UIs.</small>
+                </article>
+
+                <article class="hero-cap u-reveal">
+                    <span class="hero-cap__viz" aria-hidden="true">
+                        <svg viewBox="0 0 132 62" fill="none">
+                            <rect x="6" y="14" width="34" height="34" rx="4" class="viz-frame"/>
+                            <rect x="12" y="21" width="22" height="8" rx="2" class="viz-dim-s"/>
+                            <path d="m12 34 11 8 11-8v9H12z" class="viz-dim-s"/>
+                            <rect x="50" y="14" width="32" height="34" rx="4" class="viz-frame"/>
+                            <rect x="56" y="21" width="20" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="56" y="28" width="14" height="3" rx="1.5" class="viz-dim-f"/>
+                            <rect x="56" y="35" width="20" height="3" rx="1.5" class="viz-dim-f"/>
+                            <path d="M86 31h12m0 0-4-4m4 4-4 4" class="viz-accent-s"/>
+                            <rect x="104" y="14" width="22" height="34" rx="4" class="viz-accent-frame"/>
+                            <circle cx="115" cy="26" r="4.5" class="viz-accent-f"/>
+                            <path d="M108 41a7 7 0 0 1 14 0z" class="viz-accent-f"/>
+                        </svg>
                     </span>
-                    <div><strong>User focused</strong><small>Always</small></div>
-                </div>
-                <div class="hero-rail__item u-reveal">
-                    <span class="hero-rail__ico" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                    <strong>Design around real users</strong>
+                    <small>Requirements turned into something people can use.</small>
+                </article>
+
+                <article class="hero-cap u-reveal">
+                    <span class="hero-cap__viz" aria-hidden="true">
+                        <svg viewBox="0 0 132 62" fill="none">
+                            <rect x="2" y="17" width="28" height="28" rx="6" class="viz-accent-frame"/>
+                            <path d="M13 38h4M14 41h2M16 22a4 4 0 0 0-2.3 7.2V31h4.6v-1.8A4 4 0 0 0 16 22z" class="viz-accent-s"/>
+                            <path d="M34 31h7m0 0-3-3m3 3-3 3" class="viz-dim-s"/>
+                            <rect x="45" y="17" width="28" height="28" rx="6" class="viz-accent-frame"/>
+                            <path d="m55 26-3 5 3 5M63 26l3 5-3 5" class="viz-accent-s"/>
+                            <path d="M77 31h7m0 0-3-3m3 3-3 3" class="viz-dim-s"/>
+                            <rect x="88" y="17" width="28" height="28" rx="6" class="viz-frame"/>
+                            <rect x="94" y="24" width="16" height="12" rx="2" class="viz-dim-s"/>
+                            <path d="M98 39h8" class="viz-dim-s"/>
+                            <circle cx="126" cy="31" r="5.4" class="viz-accent-s"/>
+                            <path d="m123.6 31 1.7 1.8 3.1-3.4" class="viz-accent-s"/>
+                        </svg>
                     </span>
-                    <div><strong>Ideas to reality</strong><small>Step by step</small></div>
-                </div>
+                    <strong>Ship, not just mock up</strong>
+                    <small>From concept to production, step by step.</small>
+                </article>
 
                 <div class="hero-avail u-reveal">
                     <span class="hero-avail__dot" aria-hidden="true"></span>
