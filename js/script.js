@@ -410,3 +410,69 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!raf) raf = requestAnimationFrame(apply);
   });
 })();
+
+/*
+  Theme toggle.
+  ------------------------------------------------------------------
+  The source of truth is the data-theme attribute on <html>:
+
+    absent            -> follow the OS, via prefers-color-scheme in CSS
+    "light" / "dark"  -> the visitor chose, and that overrides the OS
+
+  A stored choice is already applied by the inline script in <head>, so
+  this file only handles clicks and keeps the browser UI colour in step.
+  Nothing here runs before paint, so there is no flash either way.
+*/
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  var darkMedia = window.matchMedia
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : null;
+
+  function activeTheme() {
+    var chosen = root.getAttribute("data-theme");
+    if (chosen === "dark" || chosen === "light") return chosen;
+    return darkMedia && darkMedia.matches ? "dark" : "light";
+  }
+
+  /*
+    Keep the address-bar / task-switcher colour matching the page. The
+    value is read from the live tokens so it can never drift from the
+    palette in style.css.
+  */
+  function syncBrowserChrome() {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    var bg = getComputedStyle(root).getPropertyValue("--bg").trim();
+    if (bg) meta.setAttribute("content", bg);
+  }
+
+  function setTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {
+      /* private mode: the choice just won't outlive the tab */
+    }
+    syncBrowserChrome();
+  }
+
+  btn.addEventListener("click", function () {
+    setTheme(activeTheme() === "dark" ? "light" : "dark");
+  });
+
+  /*
+    With no explicit choice stored, follow the OS if it changes while
+    the page is open. A stored choice keeps winning.
+  */
+  if (darkMedia && darkMedia.addEventListener) {
+    darkMedia.addEventListener("change", function () {
+      if (!root.getAttribute("data-theme")) syncBrowserChrome();
+    });
+  }
+
+  syncBrowserChrome();
+})();

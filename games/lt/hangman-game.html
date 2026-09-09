@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="lt">
   <head>
+    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -270,6 +271,10 @@
             </ul>
           </div>
           <!-- Language switcher -->
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Perjungti šviesią ir tamsią temą" title="Perjungti šviesią ir tamsią temą">
+              <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+              <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+          </button>
           <div class="nav-lang">
             <!-- noscript/fallback gali vesti į EN pradžią -->
             <a

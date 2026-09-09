@@ -37,66 +37,148 @@
 
 
 /*
-  Codeart v2 brand palette — derived from the video/TikTok brand system,
-  not from the site. Same accent + typography everywhere; only the
-  light/dark ground swaps between /lt (light, client-facing) and
-  /en (dark, portfolio-facing). See design brief §4.
+  Codeart v2 brand palette - derived from the video/TikTok brand system,
+  not from the site. Same accent and typography in both modes; only the
+  ground swaps. See design brief section 4.
+
+  Each colour is written once, as a --c-light-* / --c-dark-* pair. The
+  two blocks below only MAP those pairs onto the tokens the rest of the
+  site uses, so a colour can never drift between the two modes.
+
+  Which mode applies:
+    - no data-theme on <html>  -> the operating system decides, via
+      prefers-color-scheme;
+    - data-theme="light|dark"  -> the visitor chose, and that wins in
+      both directions (including choosing light on a dark OS).
 */
 :root {
-  --bg: #f2f0e9;
-  --secondary-bg: #e9e6db;
-  --card: #ffffff;
-  --text: #171717;
-  --card-text: #171717e3;
-  --card-text-hover: #000000ff;
-  --text-on-accent: #171717;
-  --muted: #5c5850;
-  --muted2: #17171733;
-  --border: #ddd7c8;
+  /* ---- light palette ---- */
+  --c-light-bg: #f2f0e9;
+  --c-light-secondary-bg: #e9e6db;
+  --c-light-card: #ffffff;
+  --c-light-text: #171717;
+  --c-light-card-text: #171717e3;
+  --c-light-card-text-hover: #000000;
+  --c-light-muted: #5c5850;
+  --c-light-muted2: #17171733;
+  --c-light-border: #ddd7c8;
+  --c-light-accent-elements: #f2d9cd;
+  --c-light-link: #d97757;
+  --c-light-link-hover: #c1613f;
+  --c-light-brand-ink: #a85337;
+  --c-light-ok: #5d866c;
+  --c-light-warn: #865d5d;
+  --c-light-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --c-light-dot-accent: #171717d2;
+  --c-light-dot-hover: #171717;
+  --c-light-grid-line: #17171712;
+
+  /* ---- dark palette ---- */
+  --c-dark-bg: #313030;
+  --c-dark-secondary-bg: #3a3938;
+  --c-dark-card: #3a3938;
+  --c-dark-text: #f2f0e9;
+  --c-dark-card-text: #f2f0e9e3;
+  --c-dark-card-text-hover: #ffffff;
+  --c-dark-muted: #b9b6ac;
+  --c-dark-muted2: #f2f0e933;
+  --c-dark-border: #4a4948;
+  --c-dark-accent-elements: #4a3a34;
+  --c-dark-link: #e69179;
+  --c-dark-link-hover: #f2a88f;
+  --c-dark-brand-ink: #f2a88f;
+  --c-dark-ok: #8fb89e;
+  --c-dark-warn: #d99f8f;
+  --c-dark-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --c-dark-dot-accent: #f2f0e9d2;
+  --c-dark-dot-hover: #ffffff;
+  --c-dark-grid-line: #f2f0e912;
+
+  /* ---- shared in both modes ---- */
   --accent: #d97757;
   --accent-fg: #171717;
-  --accent-elements: #f2d9cd;
-  --link: #d97757;
-  --link-hover: #c1613f;
+  --text-on-accent: #171717;
   --brand: #d97757;
-  --brand-ink: #a85337;
-  --ok: #5d866c;
-  --warn: #865d5d;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.06);
   --radius: 18px;
   --radius-sm: 12px;
   --header-h: 64px;
-  --dot-accent: #171717d2;
-  --dot-hover: #171717ff;
-  --grid-line: #17171712;
+
+  /* ---- light is the default mapping ---- */
+  color-scheme: light;
+  --bg: var(--c-light-bg);
+  --secondary-bg: var(--c-light-secondary-bg);
+  --card: var(--c-light-card);
+  --text: var(--c-light-text);
+  --card-text: var(--c-light-card-text);
+  --card-text-hover: var(--c-light-card-text-hover);
+  --muted: var(--c-light-muted);
+  --muted2: var(--c-light-muted2);
+  --border: var(--c-light-border);
+  --accent-elements: var(--c-light-accent-elements);
+  --link: var(--c-light-link);
+  --link-hover: var(--c-light-link-hover);
+  --brand-ink: var(--c-light-brand-ink);
+  --ok: var(--c-light-ok);
+  --warn: var(--c-light-warn);
+  --shadow: var(--c-light-shadow);
+  --dot-accent: var(--c-light-dot-accent);
+  --dot-hover: var(--c-light-dot-hover);
+  --grid-line: var(--c-light-grid-line);
 }
+
+/*
+  The dark mapping is applied from two places: the system preference
+  (unless the visitor explicitly chose light) and the explicit dark
+  choice. A media query cannot be merged into a plain selector list, so
+  the mapping appears twice - but every colour it references is defined
+  once above, so the two can only ever differ in which token is mapped.
+*/
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: var(--c-dark-bg);
+    --secondary-bg: var(--c-dark-secondary-bg);
+    --card: var(--c-dark-card);
+    --text: var(--c-dark-text);
+    --card-text: var(--c-dark-card-text);
+    --card-text-hover: var(--c-dark-card-text-hover);
+    --muted: var(--c-dark-muted);
+    --muted2: var(--c-dark-muted2);
+    --border: var(--c-dark-border);
+    --accent-elements: var(--c-dark-accent-elements);
+    --link: var(--c-dark-link);
+    --link-hover: var(--c-dark-link-hover);
+    --brand-ink: var(--c-dark-brand-ink);
+    --ok: var(--c-dark-ok);
+    --warn: var(--c-dark-warn);
+    --shadow: var(--c-dark-shadow);
+    --dot-accent: var(--c-dark-dot-accent);
+    --dot-hover: var(--c-dark-dot-hover);
+    --grid-line: var(--c-dark-grid-line);
+  }
+}
+
 :root[data-theme="dark"] {
-  --bg: #313030;
-  --secondary-bg: #3a3938;
-  --card: #3a3938;
-  --text: #f2f0e9;
-  --card-text: #f2f0e9e3;
-  --card-text-hover: #ffffffff;
-  --text-on-accent: #171717;
-  --muted: #b9b6ac;
-  --muted2: #f2f0e933;
-  --border: #4a4948;
-  --accent: #d97757;
-  --accent-fg: #171717;
-  --accent-elements: #4a3a34;
-  --link: #e69179;
-  --link-hover: #f2a88f;
-  --brand: #d97757;
-  --brand-ink: #f2a88f;
-  --ok: #8fb89e;
-  --warn: #d99f8f;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-  --radius: 18px;
-  --radius-sm: 12px;
-  --header-h: 64px;
-  --dot-accent: #f2f0e9d2;
-  --dot-hover: #ffffffff;
-  --grid-line: #f2f0e912;
+  color-scheme: dark;
+  --bg: var(--c-dark-bg);
+  --secondary-bg: var(--c-dark-secondary-bg);
+  --card: var(--c-dark-card);
+  --text: var(--c-dark-text);
+  --card-text: var(--c-dark-card-text);
+  --card-text-hover: var(--c-dark-card-text-hover);
+  --muted: var(--c-dark-muted);
+  --muted2: var(--c-dark-muted2);
+  --border: var(--c-dark-border);
+  --accent-elements: var(--c-dark-accent-elements);
+  --link: var(--c-dark-link);
+  --link-hover: var(--c-dark-link-hover);
+  --brand-ink: var(--c-dark-brand-ink);
+  --ok: var(--c-dark-ok);
+  --warn: var(--c-dark-warn);
+  --shadow: var(--c-dark-shadow);
+  --dot-accent: var(--c-dark-dot-accent);
+  --dot-hover: var(--c-dark-dot-hover);
+  --grid-line: var(--c-dark-grid-line);
 }
 
 :where(h1, h2, h3, h4, h5, h6, p) {
