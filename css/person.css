@@ -93,13 +93,14 @@
 /* ---- Figure standing on the contact CTA card ------------------- */
 
 /*
-  The pointing-down pose stands on the CTA card's top edge and points at
-  the button inside it. It overflows the card upwards, so the section
-  reserves the height it needs instead of letting it collide with
+  The pointing-down pose is a half-body crop, so it has no feet to stand
+  on: it is flush with the card's top edge and reads as leaning over it,
+  pointing at the button inside. It overflows the card upwards, so the
+  section reserves the height it needs rather than colliding with
   whatever section comes before.
 */
 .cta-contact:has(.person-cta) {
-  padding-top: clamp(150px, 19vw, 285px);
+  padding-top: clamp(130px, 16vw, 240px);
 }
 .footer-card-flex:has(.person-cta) {
   position: relative;
@@ -109,11 +110,12 @@
   z-index: 2;
   right: clamp(14px, 3vw, 46px);
   bottom: 100%;
-  margin-bottom: -14px;
+  /* Flush with the card edge - any gap would look like she is floating. */
+  margin-bottom: -2px;
   pointer-events: none;
 }
 .person-cta img {
-  height: clamp(180px, 17vw, 250px);
+  height: clamp(160px, 15vw, 215px);
   /*
     The figure is absolutely positioned with no width of its own, so a
     percentage max-width would resolve against a shrink-to-fit box and
@@ -122,8 +124,8 @@
   max-width: none;
 }
 .person-cta::before {
-  bottom: 12%;
-  width: 125%;
+  bottom: -10%;
+  width: 130%;
 }
 /*
   Below this width the card goes to a stacked layout and the figure has

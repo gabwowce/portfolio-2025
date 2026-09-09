@@ -23,10 +23,9 @@ SRC = ROOT / "img" / "person"
 WIDTHS = {"": 900, "-450": 450}
 QUALITY = 82
 
-# Head crop for the round profile image, as fractions of the alpha bbox.
-PROFILE_POSE = "standing-still"
-PROFILE_BOX = (0.395, 0.005, 0.700, 0.215)  # left, top, right, bottom
-
+# The round profile image has its own square master.
+PROFILE_SRC = "profile"
+PROFILE_SIZE = 320
 
 def crop_to_alpha(im):
     return im.crop(im.getbbox())
@@ -41,23 +40,22 @@ def save_webp(im, path, width):
 
 def main():
     for src in sorted(SRC.glob("*.png")):
+        if src.stem == PROFILE_SRC:
+            continue  # handled below, as a square portrait
         im = crop_to_alpha(Image.open(src).convert("RGBA"))
         for suffix, width in WIDTHS.items():
             dst = src.with_name(f"{src.stem}{suffix}.webp")
             size = save_webp(im, dst, width)
             print(f"{dst.relative_to(ROOT)}  {size[0]}x{size[1]}  {dst.stat().st_size // 1024} KB")
 
-    # Square headshot, from the same master so the face matches every pose.
-    im = crop_to_alpha(Image.open(SRC / f"{PROFILE_POSE}.png").convert("RGBA"))
-    l, t, r, b = PROFILE_BOX
-    head = im.crop((int(l * im.width), int(t * im.height),
-                    int(r * im.width), int(b * im.height)))
-    side = max(head.size)
-    square = Image.new("RGBA", (side, side), (0, 0, 0, 0))
-    square.paste(head, ((side - head.width) // 2, (side - head.height) // 2), head)
+    # The round profile image: its own square master, so it only needs
+    # resizing - no guessing at where the face sits in a full-body pose.
+    im = Image.open(SRC / f"{PROFILE_SRC}.png").convert("RGBA")
     dst = SRC / "avatar-profile.webp"
-    square.resize((320, 320), Image.LANCZOS).save(dst, "WEBP", quality=88, method=6)
-    print(f"{dst.relative_to(ROOT)}  320x320  {dst.stat().st_size // 1024} KB")
+    im.resize((PROFILE_SIZE, PROFILE_SIZE), Image.LANCZOS).save(
+        dst, "WEBP", quality=88, method=6
+    )
+    print(f"{dst.relative_to(ROOT)}  {PROFILE_SIZE}x{PROFILE_SIZE}  {dst.stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":
