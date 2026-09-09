@@ -409,60 +409,60 @@
                     <article class="proof-card u-reveal">
                         <div class="proof-card__head">
                             <span class="proof-card__ico" aria-hidden="true">
-                                <svg viewBox="0 0 24 24"><path d="M8.5 8 5 12l3.5 4M15.5 8l3.5 4-3.5 4M13.5 5.5l-3 13"/></svg>
+                                <svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M17.5 12v3.5M20.5 12v2.5"/></svg>
                             </span>
                             <div>
-                                <h3>Production code, not demo code</h3>
-                                <p class="muted">Typed, reviewed, tested, deployed. Generating code quickly is easy now — the value is in knowing which of it to keep, and being able to change it in six months.</p>
+                                <h3>Six months later, it's still cheap to change</h3>
+                                <p class="muted">Most projects get expensive after launch, because nobody dares touch the code. Yours stays changeable — and everything is handed over, so you're never locked to me.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">03</span>
                         </div>
 
                         <div class="proof-card__viz">
-                            <svg viewBox="0 0 640 216" role="img" aria-label="Code, then automated checks passing, then a deployed release.">
-                                <text class="vz-label" x="8" y="12">Written &amp; reviewed</text>
-                                <rect class="vz-panel" x="8" y="22" width="212" height="164" rx="8"/>
-                                <path class="vz-rule" d="M8 44h212"/>
-                                <circle class="vz-bar" cx="24" cy="33" r="3"/><circle class="vz-bar-soft" cx="34" cy="33" r="3"/><circle class="vz-bar-soft" cx="44" cy="33" r="3"/>
-                                <text class="vz-ink" x="58" y="36">invoice-total.ts</text>
-                                <text class="vz-code vz-code-key" x="22" y="64">export function</text>
-                                <text class="vz-code vz-code-txt" x="118" y="64">total(</text>
-                                <text class="vz-code vz-code-txt" x="30" y="80">rows: Line[],</text>
-                                <text class="vz-code vz-code-txt" x="30" y="96">vat: Rate</text>
-                                <text class="vz-code vz-code-txt" x="22" y="112">): Money {</text>
-                                <text class="vz-code vz-code-key" x="30" y="128">return</text>
-                                <text class="vz-code vz-code-txt" x="72" y="128">rows.reduce(sum)</text>
-                                <text class="vz-code vz-code-txt" x="38" y="144">.withVat(vat);</text>
-                                <text class="vz-code vz-code-txt" x="22" y="160">}</text>
-                                <rect class="vz-accent-soft" x="22" y="168" width="90" height="12" rx="6"/>
-                                <text class="vz-ink" x="30" y="177">money, not float</text>
+                            <svg viewBox="0 0 640 200" role="img" aria-label="A request six months after launch becomes a small change rather than a rebuild, on a project that has been fully handed over.">
+                                <text class="vz-label" x="8" y="12">Six months after launch</text>
+                                <rect class="vz-panel" x="8" y="22" width="204" height="150" rx="8"/>
+                                <rect class="vz-sunk" x="24" y="42" width="172" height="56" rx="12"/>
+                                <path class="vz-sunk" d="M36 98v12l14-12z"/>
+                                <text class="vz-ink" x="38" y="64">&#8220;Can we add invoicing</text>
+                                <text class="vz-ink" x="38" y="80">for the Berlin office?&#8221;</text>
+                                <circle class="vz-bar" cx="34" cy="132" r="9"/>
+                                <text class="vz-ink-strong" x="52" y="130">Your team</text>
+                                <text class="vz-ink" x="52" y="144">month 6, not month 1</text>
 
-                                <path class="vz-arrow" d="M234 104h26m0 0-7-6m7 6-7 6"/>
+                                <path class="vz-arrow" d="M226 97h26m0 0-7-6m7 6-7 6"/>
 
-                                <text class="vz-label" x="274" y="12">Checks on every push</text>
-                                <rect class="vz-panel" x="274" y="22" width="176" height="164" rx="8"/>
-                                <circle class="vz-ok" cx="292" cy="48" r="7" opacity=".18"/><path class="vz-ok-stroke" d="m289 48 2.5 2.5 5-5.5"/>
-                                <text class="vz-ink" x="308" y="52">Types</text>
-                                <circle class="vz-ok" cx="292" cy="80" r="7" opacity=".18"/><path class="vz-ok-stroke" d="m289 80 2.5 2.5 5-5.5"/>
-                                <text class="vz-ink" x="308" y="84">Unit tests · 128</text>
-                                <circle class="vz-ok" cx="292" cy="112" r="7" opacity=".18"/><path class="vz-ok-stroke" d="m289 112 2.5 2.5 5-5.5"/>
-                                <text class="vz-ink" x="308" y="116">Accessibility</text>
-                                <circle class="vz-ok" cx="292" cy="144" r="7" opacity=".18"/><path class="vz-ok-stroke" d="m289 144 2.5 2.5 5-5.5"/>
-                                <text class="vz-ink" x="308" y="148">Build</text>
-                                <path class="vz-rule" d="M290 164h144"/>
-                                <text class="vz-ink-strong" x="290" y="179">Nothing merges red</text>
+                                <text class="vz-label" x="266" y="12">What it takes</text>
+                                <rect class="vz-panel" x="266" y="22" width="196" height="150" rx="8"/>
+                                <text class="vz-ink-strong" x="282" y="46">A change, not a rewrite</text>
+                                <rect class="vz-sunk" x="282" y="58" width="164" height="22" rx="5"/>
+                                <rect class="vz-ok" x="290" y="65" width="8" height="8" rx="2"/>
+                                <text class="vz-code vz-code-txt" x="306" y="73">src/invoicing.ts</text>
+                                <rect class="vz-sunk" x="282" y="86" width="164" height="22" rx="5"/>
+                                <rect class="vz-accent" x="290" y="93" width="8" height="8" rx="2"/>
+                                <text class="vz-code vz-code-txt" x="306" y="101">src/routes.ts</text>
+                                <text class="vz-ink" x="282" y="126">Two files touched. Nothing</text>
+                                <text class="vz-ink" x="282" y="140">else had to move.</text>
+                                <path class="vz-rule" d="M282 150h164"/>
+                                <circle class="vz-ok" cx="288" cy="162" r="7" opacity=".18"/>
+                                <path class="vz-ok-stroke" d="m285 162 2.5 2.5 5-5.5"/>
+                                <text class="vz-ink" x="302" y="166">tests still pass</text>
 
-                                <path class="vz-arrow" d="M464 104h26m0 0-7-6m7 6-7 6"/>
+                                <path class="vz-arrow" d="M476 97h26m0 0-7-6m7 6-7 6"/>
 
-                                <text class="vz-label" x="504" y="12">Live</text>
-                                <rect class="vz-panel" x="504" y="22" width="128" height="164" rx="8"/>
-                                <circle class="vz-ok" cx="568" cy="74" r="22" opacity=".16"/>
-                                <path class="vz-ok-stroke" d="m558 74 7 7 13-14"/>
-                                <text class="vz-ink-strong" x="568" y="116" text-anchor="middle">Deployed</text>
-                                <text class="vz-ink" x="568" y="132" text-anchor="middle">real users, real data</text>
-                                <rect class="vz-sunk" x="512" y="144" width="112" height="18" rx="9"/>
-                                <text class="vz-ink" x="568" y="156" text-anchor="middle">rollback: one command</text>
-                                <text class="vz-hand" x="568" y="178" text-anchor="middle" style="font-size:13px">still mine after launch</text>
+                                <text class="vz-label" x="516" y="12">And if I vanish</text>
+                                <rect class="vz-panel" x="516" y="22" width="116" height="150" rx="8"/>
+                                <circle class="vz-ok" cx="532" cy="44" r="6" opacity=".18"/><path class="vz-ok-stroke" d="m529.5 44 2 2 4-4.5"/>
+                                <text class="vz-ink" x="546" y="47">Repository</text>
+                                <circle class="vz-ok" cx="532" cy="68" r="6" opacity=".18"/><path class="vz-ok-stroke" d="m529.5 68 2 2 4-4.5"/>
+                                <text class="vz-ink" x="546" y="71">Documentation</text>
+                                <circle class="vz-ok" cx="532" cy="92" r="6" opacity=".18"/><path class="vz-ok-stroke" d="m529.5 92 2 2 4-4.5"/>
+                                <text class="vz-ink" x="546" y="95">All accounts</text>
+                                <circle class="vz-ok" cx="532" cy="116" r="6" opacity=".18"/><path class="vz-ok-stroke" d="m529.5 116 2 2 4-4.5"/>
+                                <text class="vz-ink" x="546" y="119">Deployment</text>
+                                <path class="vz-rule" d="M530 130h88"/>
+                                <text class="vz-ink-strong" x="574" y="146" text-anchor="middle">Yours, in full</text>
+                                <text class="vz-hand" x="574" y="165" text-anchor="middle" style="font-size:13px">any dev can pick it up</text>
                             </svg>
                         </div>
                     </article>

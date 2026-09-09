@@ -361,7 +361,7 @@
   position: absolute;
   z-index: 1;
   /* Width comes from the inset; height follows the drawing's own ratio. */
-  inset: 1% -6% auto 44%;
+  inset: 5% 1% auto 51%;
   aspect-ratio: 240 / 404;
   border-radius: 10px;
   border: 3px solid color-mix(in srgb, var(--text) 20%, transparent);
