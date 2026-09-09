@@ -96,10 +96,23 @@
     </section>
 
     <main class="content content--single container">
+
+        <!--
+          Topics are filters on one page, not separate section pages.
+          A category only earns its own page once it has enough pieces to
+          fill one — an empty room reads worse than no room at all.
+        -->
+        <div class="segmented resources-filter" role="tablist" aria-label="Filter by topic" data-filter-target=".resources-grid .resource-card">
+            <span class="seg-thumb" aria-hidden="true"></span>
+            <button class="seg-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="seg-btn" data-filter="ai-dev" role="tab" aria-selected="false">Building with AI</button>
+            <button class="seg-btn" data-filter="learning" role="tab" aria-selected="false">Learning to code now</button>
+        </div>
+
         <section class="resources-grid u-stagger">
 
             <!-- Resource: available -->
-            <article class="card resource-card u-reveal">
+            <article class="card resource-card u-reveal" data-cat="ai-dev">
                 <div class="resource-card__top">
                     <span class="pill pill--free">Free</span>
                     <span class="resource-card__type">Guardrails</span>
@@ -112,7 +125,7 @@
             </article>
 
             <!-- Resource: coming soon -->
-            <article class="card resource-card resource-card--soon u-reveal">
+            <article class="card resource-card resource-card--soon u-reveal" data-cat="ai-dev">
                 <div class="resource-card__top">
                     <span class="pill pill--soon">Coming soon</span>
                     <span class="resource-card__type">Template</span>
@@ -123,7 +136,7 @@
             </article>
 
             <!-- Resource: coming soon -->
-            <article class="card resource-card resource-card--soon u-reveal">
+            <article class="card resource-card resource-card--soon u-reveal" data-cat="learning">
                 <div class="resource-card__top">
                     <span class="pill pill--soon">Coming soon</span>
                     <span class="resource-card__type">Guide</span>

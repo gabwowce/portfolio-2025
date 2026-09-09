@@ -167,8 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!btn) return;
       setActive(btn);
 
-      const f = btn.dataset.filter; // 'all' | 'web' | 'mobile' | 'desktop'
-      document.querySelectorAll(".featured-grid .project").forEach((card) => {
+      const f = btn.dataset.filter; // 'all' | 'web' | 'mobile' | ...
+      // Numatytai filtruoja projektus; kiti sąrašai (pvz. resursų temos)
+      // nurodo savo taikinį per data-filter-target.
+      const target = seg.dataset.filterTarget || ".featured-grid .project";
+      document.querySelectorAll(target).forEach((card) => {
         const cats = (card.dataset.cat || "").split(/\s+/); // palaiko 'web desktop'
         const show = f === "all" || cats.includes(f);
         card.classList.toggle("is-hidden", !show);

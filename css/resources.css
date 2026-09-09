@@ -17,6 +17,14 @@
   padding-block: 24px 48px;
 }
 
+/* Topic filter reuses the portfolio's segmented control for consistency */
+.resources-filter {
+  margin: 24px 0 0;
+}
+.resource-card.is-hidden {
+  display: none;
+}
+
 .resource-card {
   display: flex;
   flex-direction: column;
