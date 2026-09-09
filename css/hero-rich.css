@@ -119,6 +119,72 @@
   color: var(--accent);
 }
 
+/*
+  The </> mark: treated as a glowing object rather than text — layered
+  glow behind it, a lit inner edge, and a slow breathing pulse. This is
+  the one element in the hero that is deliberately "lit".
+*/
+.code-mark {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  isolation: isolate;
+  padding: 0 0.06em;
+  font-size: 0.72em;
+  letter-spacing: -0.04em;
+}
+.code-mark__glyph {
+  position: relative;
+  z-index: 2;
+  color: #ffb595;
+  background: linear-gradient(180deg, #ffd0b8 0%, var(--accent) 55%, #b4553a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 85%, transparent))
+    drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 55%, transparent))
+    drop-shadow(0 0 38px color-mix(in srgb, var(--accent) 32%, transparent));
+}
+/* soft halo behind the glyph */
+.code-mark::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: -35% -18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent 75%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+  animation: codeMarkPulse 4.5s ease-in-out infinite;
+}
+@keyframes codeMarkPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .code-mark::before {
+    animation: none;
+  }
+}
+/* On the light /lt theme the neon needs a darker core to stay readable */
+:root:not([data-theme="dark"]) .code-mark__glyph {
+  background: linear-gradient(180deg, var(--accent) 0%, #b4553a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 45%, transparent));
+}
+
 .hero-rich__copy .lead {
   max-width: 46ch;
   margin-bottom: 1.8rem;
@@ -394,26 +460,87 @@
   z-index: 3;
 }
 
-/* ---- Parallax hooks (vars set by js/script.js on .hero) ---- */
+/* ---- Parallax: deliberately only the "scenery" ----
 
-.hero-rich .hero-stage {
-  transform: translate3d(calc(var(--px) * -10px), calc(var(--py) * -8px), 0);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hero-rich .hero-rich__copy {
-  transform: translate3d(calc(var(--px) * 5px), calc(var(--py) * 3px), 0);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
+  Rule of thumb used here: things that are part of the *set* drift with
+  the cursor; things you read or click stay put. Text that shifts while
+  you read it and buttons that move while you aim at them feel broken,
+  not premium — so the copy, the CTAs, the stat row and the rail are
+  all anchored. Only the orb (far), the board and the character (mid)
+  move, and the further away it is, the more it drifts.
+*/
 .hero-rich .hero-rich__orb {
-  transform: translate3d(calc(var(--px) * 14px), calc(var(--py) * 10px), 0);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(calc(var(--px) * 16px), calc(var(--py) * 12px), 0);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-rich .hero-stage__board {
+  transform: translate3d(calc(var(--px) * -7px), calc(var(--py) * -5px), 0);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-rich .hero-stage picture,
+.hero-rich .hero-stage img {
+  transform: translate3d(calc(var(--px) * -12px), calc(var(--py) * -7px), 0);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-rich .hero-note {
+  transform: translate3d(calc(var(--px) * -5px), calc(var(--py) * -4px), 0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media (prefers-reduced-motion: reduce), (hover: none) {
-  .hero-rich .hero-stage,
-  .hero-rich .hero-rich__copy,
-  .hero-rich .hero-rich__orb {
+  .hero-rich .hero-rich__orb,
+  .hero-rich .hero-stage__board,
+  .hero-rich .hero-stage picture,
+  .hero-rich .hero-stage img,
+  .hero-rich .hero-note {
     transform: none !important;
     transition: none;
+  }
+}
+
+/* ---- Cursor-lit grid ----
+
+  The page-wide grid is a static background image on <body>. Here a
+  second copy of the same 64px lattice is drawn over the hero and
+  masked to a soft circle that follows the cursor, so cells light up
+  around the pointer instead of the whole grid glowing at once.
+*/
+.hero-rich__grid-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    220px 220px at var(--mx) var(--my),
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 42%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    220px 220px at var(--mx) var(--my),
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 42%,
+    transparent 72%
+  );
+}
+.hero-rich.hero--active .hero-rich__grid-glow {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .hero-rich__grid-glow {
+    display: none;
   }
 }
 
