@@ -290,6 +290,13 @@
 */
 .hero-stage picture {
   position: relative;
+  /*
+    The z-index has to live here, not on the <img>. The parallax rules
+    put a transform on <picture>, and a transform creates a stacking
+    context - which trapped the image's own z-index inside it while
+    <picture> itself stayed at auto, letting the board paint over her.
+  */
+  z-index: 5;
   display: block;
   width: fit-content;
   max-width: 100%;
@@ -336,145 +343,131 @@
   object-fit: contain;
 }
 
+/*
+  The whiteboard. It is a physical object in the scene - a board on a
+  splayed stand with a marker tray - because that is what the character
+  presents at in her own illustrations. The surface takes --card, so it
+  is a glass board in dark mode and a plain whiteboard in light.
+*/
 .hero-stage__board {
   position: absolute;
   z-index: 1;
-  inset: 2% 40% 8% 0;
-  border-radius: 20px;
-  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+  /* Width comes from the inset; height follows the drawing's own ratio. */
+  inset: 1% 42% auto -8%;
+  aspect-ratio: 240 / 404;
+  border-radius: 10px;
+  border: 3px solid color-mix(in srgb, var(--text) 20%, transparent);
   background: linear-gradient(
-    155deg,
-    color-mix(in srgb, var(--accent) 8%, transparent),
-    transparent 55%
+    158deg,
+    color-mix(in srgb, var(--text) 6%, var(--card)) 0%,
+    var(--card) 55%
   );
-  padding: 0;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent);
+  padding: clamp(0.45rem, 1vw, 0.85rem);
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
   pointer-events: none;
 }
 
-/* Window chrome across the top of the panel */
-.hero-board__bar {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.6rem 0.9rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
-  background: color-mix(in srgb, var(--accent) 5%, transparent);
-}
-.hero-board__dots {
-  display: flex;
-  gap: 5px;
-}
-.hero-board__dots i {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 45%, transparent);
-}
-.hero-board__dots i:nth-child(2) {
-  background: color-mix(in srgb, var(--accent) 28%, transparent);
-}
-.hero-board__dots i:nth-child(3) {
-  background: color-mix(in srgb, var(--accent) 16%, transparent);
-}
-.hero-board__path {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  color: var(--muted);
+/* Marker tray along the bottom edge */
+.hero-stage__board::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 100%;
+  height: 7px;
+  border-radius: 0 0 5px 5px;
+  background: color-mix(in srgb, var(--text) 30%, transparent);
 }
 
 /*
-  The process as a diagram: a lit icon tile per step, joined by a
-  connector rail with a node at each junction, ending in a handwritten
-  goal. Sits in the left half of the panel, clear of the figure.
+  Two legs splaying outward from the tray. Each half of the box carries
+  one diagonal: the left half draws "/" and the right half "\", so the
+  stand widens towards the floor the way an easel does.
 */
-.hero-flow {
-  list-style: none;
-  margin: 0;
-  padding: clamp(0.7rem, 1.5vw, 1.1rem) 0 0 clamp(0.7rem, 1.4vw, 1.1rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.5rem, 1.1vw, 0.85rem);
-  align-items: flex-start;
-}
-.hero-flow__step {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.4rem 0.75rem 0.4rem 0.4rem;
-  border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
-  background: color-mix(in srgb, var(--bg) 42%, transparent);
-}
-/* Connector rail, with a node sitting on it between each pair of steps */
-.hero-flow__step:not(:last-child)::before,
-.hero-flow__step:not(:last-child)::after {
+.hero-stage__board::after {
   content: "";
   position: absolute;
-  left: calc(0.4rem + 17px);
-  pointer-events: none;
-}
-.hero-flow__step:not(:last-child)::before {
-  top: 100%;
-  height: clamp(0.5rem, 1.1vw, 0.85rem);
-  width: 1px;
-  background: color-mix(in srgb, var(--accent) 55%, transparent);
-}
-.hero-flow__step:not(:last-child)::after {
-  top: calc(100% + clamp(0.5rem, 1.1vw, 0.85rem) / 2);
-  translate: -2.5px -2.5px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 75%, transparent);
-}
-.hero-flow__ico {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-  border-radius: 9px;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  background: color-mix(in srgb, var(--accent) 9%, transparent);
-  color: var(--accent);
-  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent),
-    inset 0 0 12px color-mix(in srgb, var(--accent) 10%, transparent);
-}
-.hero-flow__ico svg {
-  width: 18px;
-  height: 18px;
-}
-.hero-flow__txt {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.hero-flow__txt strong {
-  font-family: "Caveat", "Segoe Script", cursive;
-  font-size: clamp(17px, 1.4vw, 22px);
-  font-weight: 600;
-  line-height: 1.1;
-  color: var(--text);
-}
-.hero-flow__txt small {
-  font-size: 0.72rem;
-  line-height: 1.3;
-  color: var(--muted);
+  left: 16%;
+  right: 16%;
+  top: calc(100% + 7px);
+  height: 62px;
+  --leg: color-mix(in srgb, var(--text) 30%, transparent);
+  background-image: linear-gradient(
+      to bottom left,
+      transparent calc(50% - 2px),
+      var(--leg) calc(50% - 2px),
+      var(--leg) calc(50% + 2px),
+      transparent calc(50% + 2px)
+    ),
+    linear-gradient(
+      to bottom right,
+      transparent calc(50% - 2px),
+      var(--leg) calc(50% - 2px),
+      var(--leg) calc(50% + 2px),
+      transparent calc(50% + 2px)
+    );
+  background-size: 50% 100%, 50% 100%;
+  background-position: left top, right top;
+  background-repeat: no-repeat;
 }
 
-.hero-flow__goal {
-  margin: auto 0 clamp(0.7rem, 1.4vw, 1.1rem) clamp(0.7rem, 1.4vw, 1.1rem);
-  padding-top: 0.6rem;
+.hero-board__sketch {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ---- What is drawn on the board ---- */
+
+.hero-board__sketch text {
   font-family: "Caveat", "Segoe Script", cursive;
-  font-size: clamp(17px, 1.5vw, 23px);
-  line-height: 1.15;
-  color: var(--accent);
+}
+.bd-title {
+  font-size: 21px;
+  font-weight: 600;
+  fill: var(--text);
+}
+.bd-underline {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.bd-box {
+  fill: color-mix(in srgb, var(--accent) 7%, transparent);
+  stroke: color-mix(in srgb, var(--accent) 48%, transparent);
+  stroke-width: 1.6;
+}
+.bd-ico {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bd-arrow {
+  fill: none;
+  stroke: color-mix(in srgb, var(--accent) 75%, transparent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bd-label {
+  font-size: 18px;
+  font-weight: 600;
+  fill: var(--text);
+}
+.bd-cap {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 10.5px;
+  fill: var(--muted);
+}
+.bd-goal {
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--accent);
 }
 
 /* ---- Right rail ---- */
@@ -788,9 +781,14 @@
   .hero-stage__board {
     position: static;
     inset: auto;
+    aspect-ratio: 240 / 404;
+    max-width: 320px;
+    margin: 0 auto;
   }
-  .hero-flow__goal {
-    margin-bottom: clamp(0.7rem, 1.4vw, 1.1rem);
+  /* No room for the stand once the board is a block in the flow. */
+  .hero-stage__board::before,
+  .hero-stage__board::after {
+    display: none;
   }
   .hero-stage picture {
     align-self: center;

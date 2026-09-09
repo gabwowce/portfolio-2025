@@ -164,46 +164,60 @@
             <!-- Middle: character on a lit stage -->
             <figure class="hero-stage u-reveal">
                 <!--
-                  The board behind the character is the process itself, drawn
-                  as a diagram: four steps as lit icon tiles down a connector
-                  rail, ending in a handwritten goal. It sits in the left half
-                  of the stage so the figure, who stands to the right of it,
-                  never covers a step.
+                  A whiteboard on a stand, the same object the character
+                  presents at in her own illustrations - not a browser
+                  window. The process is drawn on it in marker: four nodes
+                  down a flow with sketch icons, hand-lettered labels and
+                  a goal at the bottom. The wobble comes from a turbulence
+                  filter applied to the shapes only, so the lettering stays
+                  crisp.
                 -->
                 <div class="hero-stage__board" aria-hidden="true">
-                    <div class="hero-board__bar">
-                        <span class="hero-board__dots"><i></i><i></i><i></i></span>
-                        <span class="hero-board__path">how I work</span>
-                    </div>
+                    <svg class="hero-board__sketch" viewBox="0 0 240 404" preserveAspectRatio="xMidYMin meet">
+                        <defs>
+                            <filter id="boardInk" x="-6%" y="-4%" width="112%" height="108%">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="n"/>
+                                <feDisplacementMap in="SourceGraphic" in2="n" scale="1.7" xChannelSelector="R" yChannelSelector="G"/>
+                            </filter>
+                        </defs>
 
-                    <ol class="hero-flow">
-                        <li class="hero-flow__step">
-                            <span class="hero-flow__ico">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>
-                            </span>
-                            <span class="hero-flow__txt"><strong>1. Problem</strong><small>Understand the need</small></span>
-                        </li>
-                        <li class="hero-flow__step">
-                            <span class="hero-flow__ico">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M7 13h4v4H7zM14 13h3M14 16h3"/></svg>
-                            </span>
-                            <span class="hero-flow__txt"><strong>2. UX</strong><small>Plan the solution</small></span>
-                        </li>
-                        <li class="hero-flow__step">
-                            <span class="hero-flow__ico">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>
-                            </span>
-                            <span class="hero-flow__txt"><strong>3. Code</strong><small>Build it properly</small></span>
-                        </li>
-                        <li class="hero-flow__step">
-                            <span class="hero-flow__ico">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3.5 2.5 5 6 5 10l-2.5 3h-5L7 12c0-4 1.5-7.5 5-10z"/><circle cx="12" cy="9" r="1.6"/><path d="M9.5 16 7 19M14.5 16l2.5 3"/></svg>
-                            </span>
-                            <span class="hero-flow__txt"><strong>4. Product</strong><small>Ship real value</small></span>
-                        </li>
-                    </ol>
+                        <text class="bd-title" x="16" y="27">How I work</text>
+                        <path class="bd-underline" d="M16 36c24 4.5 47-3 71 1.2s45 4 65-1.4"/>
 
-                    <p class="hero-flow__goal">Ideas &rarr; product.<br>That&rsquo;s the goal.</p>
+                        <g class="bd-shapes" filter="url(#boardInk)">
+                            <rect class="bd-box" x="14" y="52" width="212" height="58" rx="12"/>
+                            <rect class="bd-box" x="14" y="130" width="212" height="58" rx="12"/>
+                            <rect class="bd-box" x="14" y="208" width="212" height="58" rx="12"/>
+                            <rect class="bd-box" x="14" y="286" width="212" height="58" rx="12"/>
+
+                            <g class="bd-ico">
+                                <circle cx="46" cy="76" r="7.5"/><path d="M42 88h8M43.5 91.5h5"/>
+                                <rect x="35" y="149" width="22" height="20" rx="2.5"/><path d="M35 155.5h22M39.5 160h6.5v6h-6.5zM49 160h4.5M49 164.5h4.5"/>
+                                <path d="m41 231-5 6 5 6M51 231l5 6-5 6M48.8 229l-5.6 16"/>
+                                <path d="M46 304.5c2.7 2 3.9 4.8 3.9 8L48.2 315h-4.4l-1.7-2.5c0-3.2 1.2-6 3.9-8z"/><circle cx="46" cy="310" r="1.4"/><path d="m43.4 317-2.6 3.2M48.6 317l2.6 3.2"/>
+                            </g>
+
+                            <g class="bd-arrow">
+                                <path d="M46 112v9"/><path d="m42.7 120.5 3.3 4 3.3-4"/>
+                                <path d="M46 190v9"/><path d="m42.7 198.5 3.3 4 3.3-4"/>
+                                <path d="M46 268v9"/><path d="m42.7 276.5 3.3 4 3.3-4"/>
+                            </g>
+                        </g>
+
+                        <g class="bd-text">
+                            <text class="bd-label" x="72" y="78">1. Problem</text>
+                            <text class="bd-cap" x="72" y="93">understand the need</text>
+                            <text class="bd-label" x="72" y="156">2. UX</text>
+                            <text class="bd-cap" x="72" y="171">plan the solution</text>
+                            <text class="bd-label" x="72" y="234">3. Code</text>
+                            <text class="bd-cap" x="72" y="249">build it properly</text>
+                            <text class="bd-label" x="72" y="312">4. Product</text>
+                            <text class="bd-cap" x="72" y="327">ship real value</text>
+                        </g>
+
+                        <text class="bd-goal" x="16" y="376">Ideas &#8594; product.</text>
+                        <text class="bd-goal" x="16" y="395">That&#8217;s the goal.</text>
+                    </svg>
                 </div>
                 <picture>
                     <source media="(max-width: 1279px)" srcset="../img/person/cross-legs-loptop-450.webp 450w, ../img/person/cross-legs-loptop.webp 900w" sizes="(max-width: 640px) 62vw, 420px">
