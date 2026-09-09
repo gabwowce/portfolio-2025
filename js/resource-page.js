@@ -22,28 +22,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*
-  Live guardrails tester. This is a JS port of the real .claude/guard.sh
-  checks shipped on this page — not a simplified imitation. Each function
-  mirrors that script's bash `case` patterns exactly (glob *"x"* ==
-  "contains x"; a pattern with no trailing * means "ends with"), and was
-  cross-checked against the actual guard.sh output for the same inputs
-  before shipping (including the ordered dd if=/of= case, where argument
-  order matters). If guard.sh ever changes, this must change with it.
+  Live guardrails tester — a JS port of the real .claude/guard.sh shipped
+  on this page, kept rule-for-rule in step with it (same flag-order
+  handling, same "only look after push" rule, same secrets patterns).
+  Both implementations are run against the same table of cases before
+  shipping; tools/sync-guardrails.py keeps the page's code blocks
+  generated from the script itself. If guard.sh changes, change this too.
 */
 function checkDestructiveFs(command) {
-  if (
-    command.includes("rm -rf /") ||
-    command.includes("rm -rf ~") ||
-    command.includes("rm -rf $HOME") ||
-    command.includes("rm -rf .")
-  ) {
-    return "destructive rm -rf targeting root, home, or the current directory.";
+  const c = " " + command + " ";
+
+  if (/(^|[;&|(]|\s)rm(\s|$)/.test(c)) {
+    const rec = /(\s-[a-zA-Z]*[rR][a-zA-Z]*(\s|$)|\s--recursive(\s|$))/.test(c);
+    const force = /(\s-[a-zA-Z]*f[a-zA-Z]*(\s|$)|\s--force(\s|$))/.test(c);
+    const target = /(\s\/(\s|$)|\s\/\*|\s~|\$HOME|\s\.\/?(\s|$)|\s\.\.\/?(\s|$)|--no-preserve-root)/.test(c);
+    if (rec && force && target) {
+      return "recursive force-delete aimed at root, home, or the working directory.";
+    }
   }
-  if (
-    command.includes("dd if=") &&
-    command.includes("of=/dev/") &&
-    command.indexOf("of=/dev/") > command.indexOf("dd if=")
-  ) {
+  if (/dd\s.*of=\/dev\//.test(c)) {
     return "raw disk write via dd — this can destroy a whole disk.";
   }
   if (command.includes(":(){ :|:& };:")) {
@@ -53,19 +50,28 @@ function checkDestructiveFs(command) {
 }
 
 function checkProtectedBranch(command) {
-  const forcePush =
-    (command.includes("push") && command.includes("--force")) ||
-    command.includes("push -f");
-  if (forcePush && /(^|\s)(main|master)(\s|$)/.test(command)) {
+  if (command.includes("filter-branch")) {
+    return "history-rewriting operation (filter-branch).";
+  }
+
+  // Only what comes after "push", so `cd main && git push origin dev`
+  // isn't mistaken for a push to main.
+  const m = /[Pp]ush([\s\S]*)$/.exec(command);
+  if (!m) return null;
+  const afterPush = m[1];
+
+  if (/(^|\s)\+[^\s]*(main|master)(\s|:|$)/.test(afterPush)) {
+    return "force-push to main/master via a + refspec.";
+  }
+
+  const forced = /(\s-f(\s|$)|--force(\s|$)|--force-with-lease)/.test(afterPush);
+  if (!forced) return null;
+
+  if (/(^|\s|:)(main|master)(\s|:|$)/.test(afterPush)) {
     return "force-push to main/master.";
   }
-  if (
-    command.includes("filter-branch") ||
-    (command.includes("push") &&
-      command.includes("--force") &&
-      command.includes("--all"))
-  ) {
-    return "history-rewriting operation (filter-branch / force-push --all).";
+  if (/\s--all(\s|$)/.test(afterPush)) {
+    return "force-push --all rewrites every branch, main/master included.";
   }
   return null;
 }
@@ -74,20 +80,18 @@ function checkSkipSafety(command) {
   if (command.includes("--no-verify") || command.includes("--no-gpg-sign")) {
     return "a flag that skips commit hooks or signature verification.";
   }
-  if (command.includes("chmod 777") || command.includes("chmod -R 777")) {
+  if (/chmod\s+(-[a-zA-Z]+\s+)*777/.test(command)) {
     return "chmod 777 — overly permissive file permissions.";
   }
-  if (
-    command.includes("curl") &&
-    (command.includes("| bash") || command.includes("|bash"))
-  ) {
+  if (/(curl|wget)[^|]*\|\s*(sudo\s+)*(ba|z|k|da|c)?sh(\s|$)/.test(command)) {
     return "piping a remote script straight into a shell — read it first.";
   }
-  if (
-    command.includes("wget") &&
-    (command.includes("| sh") || command.includes("|sh"))
-  ) {
-    return "piping a remote script straight into a shell — read it first.";
+  return null;
+}
+
+function checkSecretWriteViaBash(command) {
+  if (/(>>?|tee\s+(-a\s+)*)\s*[^\s]*(\.env|id_rsa|id_ed25519|\.aws\/credentials|credentials\.json|\.ssh\/)/.test(command)) {
+    return "writing to a secrets file from the shell. Edit it by hand instead.";
   }
   return null;
 }
@@ -151,7 +155,8 @@ function initGuardTester() {
       const reason =
         checkDestructiveFs(command) ||
         checkProtectedBranch(command) ||
-        checkSkipSafety(command);
+        checkSkipSafety(command) ||
+        checkSecretWriteViaBash(command);
       if (reason) {
         render("block", "Blocked — " + reason);
         return;

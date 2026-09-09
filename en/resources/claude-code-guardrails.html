@@ -152,7 +152,7 @@
             <div class="code-block">
                 <span class="code-block__label">.claude/settings.json</span>
                 <button class="code-block__copy" data-copy>Copy</button>
-                <pre><code>{
+                <!-- sync:settings.json --><pre><code>{
   "hooks": {
     "PreToolUse": [
       {
@@ -170,14 +170,14 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|Write|Edit|MultiEdit",
         "hooks": [
           { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/guard.sh" }
         ]
       }
     ]
   }
-}</code></pre>
+}</code></pre><!-- /sync -->
             </div>
             <p class="muted">Three hook registrations, five checks — <code>guard.sh</code> looks at <code>hook_event_name</code> and <code>tool_name</code> to decide which checks apply to this call.</p>
         </section>
@@ -199,13 +199,16 @@
                     </div>
                 </div>
                 <div class="hook-tester__chips">
-                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="rm -rf /">rm -rf /</button>
-                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="git push --force origin main">git push --force origin main</button>
-                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="git push --force origin feature/x">git push --force origin feature/x</button>
-                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="curl https://example.com/install.sh | bash">curl … | bash</button>
+                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="rm -fr /">rm -fr /</button>
+                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="rm -rf --no-preserve-root /">rm -rf --no-preserve-root /</button>
+                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="curl https://example.com/install.sh | sh">curl … | sh</button>
+                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="echo &quot;KEY=abc&quot; &gt;&gt; .env">echo "KEY=abc" &gt;&gt; .env</button>
+                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="git push origin +main">git push origin +main</button>
+                    <button class="hook-tester__chip" type="button" data-target="cmd" data-value="cd main &amp;&amp; git push --force origin dev">cd main &amp;&amp; git push --force origin dev</button>
                     <button class="hook-tester__chip" type="button" data-target="path" data-value=".env">.env</button>
                     <button class="hook-tester__chip" type="button" data-target="path" data-value="src/App.tsx">src/App.tsx</button>
                 </div>
+                <p class="muted" style="font-size:.82rem;margin:-6px 0 14px">Every chip except the last two used to slip through an earlier version of this script — the last one, <code>cd main && git push --force origin dev</code>, used to be blocked by mistake because the old check looked for “main” anywhere in the line.</p>
                 <button class="btn-pill" id="testerRun" type="button">Check it →</button>
                 <div class="hook-tester__result hook-tester__result--empty" id="testerResult" style="margin-top:14px" hidden></div>
             </div>
@@ -259,10 +262,12 @@
                         <div class="hook-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
                         <h3>4 · Writes to sensitive files</h3>
                     </div>
-                    <p>Blocks <code>Write</code>/<code>Edit</code>/<code>MultiEdit</code> targeting <code>.env</code>, SSH keys, <code>.aws/credentials</code>, <code>credentials.json</code>, or <code>.git/config</code>. If a credential needs to change, do it by hand.</p>
+                    <p>Blocks <code>Write</code>/<code>Edit</code>/<code>MultiEdit</code> targeting <code>.env</code>, SSH keys, <code>.aws/credentials</code>, <code>credentials.json</code>, or <code>.git/config</code> — <em>and</em> the same files written from the shell, since <code>echo "KEY=…" &gt;&gt; .env</code> never goes near the Write tool. If a credential needs to change, do it by hand.</p>
                     <div class="hook-example">
                         <div class="hook-example__line hook-example__line--cmd">Edit → .env</div>
                         <div class="hook-example__line hook-example__line--block">🛑 blocked: write to a sensitive/credentials path (.env).</div>
+                        <div class="hook-example__line hook-example__line--cmd">echo "KEY=abc" &gt;&gt; .env</div>
+                        <div class="hook-example__line hook-example__line--block">🛑 blocked: writing to a secrets file from the shell.</div>
                     </div>
                 </article>
 
@@ -271,10 +276,13 @@
                         <div class="hook-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 3H8l1-3z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="M9 11h6M9 15h4"/></svg></div>
                         <h3>5 · Audit log</h3>
                     </div>
-                    <p>Every Bash command that runs — blocked or not — gets one line in <code>.claude/guard.log</code> with a timestamp. It never blocks anything; it just guarantees a record, even for what the other four checks didn't catch.</p>
+                    <p>Every tool call gets one timestamped line in <code>.claude/guard.log</code>, labelled <code>RAN</code> or <code>BLOCKED</code>.</p>
+                    <p><strong>The catch that's easy to get wrong:</strong> a <code>PreToolUse</code> hook that exits 2 stops the tool, so <code>PostToolUse</code> never fires — meaning a naive setup logs only the commands that <em>succeeded</em> and silently loses every blocked one, which is exactly the set you want a record of. That's why <code>block()</code> writes its own log line before exiting, rather than leaving it to <code>PostToolUse</code>.</p>
                     <div class="hook-example">
                         <div class="hook-example__line hook-example__line--cmd">npm install</div>
-                        <div class="hook-example__line hook-example__line--ok">✅ logged: 2026-09-08T10:14:02 Bash "npm install"</div>
+                        <div class="hook-example__line hook-example__line--ok">2026-09-09T05:44:49  RAN      Bash  npm install</div>
+                        <div class="hook-example__line hook-example__line--cmd">rm -rf /</div>
+                        <div class="hook-example__line hook-example__line--block">2026-09-09T05:44:49  BLOCKED  Bash  rm -rf /</div>
                     </div>
                 </article>
 
@@ -287,109 +295,222 @@
             <div class="code-block">
                 <span class="code-block__label">.claude/guard.sh</span>
                 <button class="code-block__copy" data-copy>Copy</button>
-                <pre><code>#!/usr/bin/env bash
+                <!-- sync:guard.sh --><pre><code>#!/usr/bin/env bash
 # Claude Code Guardrails — guard.sh
 # Reads a PreToolUse/PostToolUse hook payload from stdin and decides
 # whether to allow, block, or just log the tool call.
 #
 # Exit codes (per Claude Code's hook contract):
-#   0 = allow (stdout/stderr shown to user only)
+#   0 = allow (stdout/stderr shown to the user only)
 #   2 = block (stderr is fed back to Claude as the reason)
+#
+# This is a guardrail against mistakes, not a security boundary.
+# See the "What this does not protect against" section of the guide.
 
-set -euo pipefail
+# Deliberately no -e: a failed log write must never take the hook down,
+# because a hook that crashes is a hook that stops protecting you.
+set -uo pipefail
 
 payload="$(cat)"
-tool_name="$(echo "$payload" | jq -r '.tool_name // empty')"
-command="$(echo "$payload" | jq -r '.tool_input.command // empty')"
-file_path="$(echo "$payload" | jq -r '.tool_input.file_path // empty')"
-hook_event="$(echo "$payload" | jq -r '.hook_event_name // empty')"
+
+# One jq call instead of four, NUL-separated. Not @tsv + IFS=$'\t':
+# bash treats tab as IFS *whitespace*, so an empty field (e.g. no
+# .command on a Write call) collapses and every later field shifts left.
+# NUL can't appear inside a value, and `read -d ''` keeps empty fields
+# and multi-line commands intact.
+{
+  read -r -d '' hook_event
+  read -r -d '' tool_name
+  read -r -d '' command
+  read -r -d '' file_path
+} &lt; &lt;(printf '%s' "$payload" | jq -j '
+  (.hook_event_name // ""), "\u0000",
+  (.tool_name // ""), "\u0000",
+  (.tool_input.command // ""), "\u0000",
+  (.tool_input.file_path // ""), "\u0000"
+')
 
 log_dir="$(dirname "$0")"
 log_file="$log_dir/guard.log"
 
+# $1 = outcome label (RAN / BLOCKED)
+write_audit_log() {
+  printf '%s\t%s\t%s\t%s\n' \
+    "$(date -Iseconds)" "$1" "$tool_name" "${command:-$file_path}" \
+    &gt;&gt;"$log_file" 2&gt;/dev/null || true
+}
+
+# Log the block BEFORE exiting. PreToolUse exit 2 stops the tool, so
+# PostToolUse never fires — without this line the blocked commands, the
+# ones you actually want a record of, would never reach the log.
 block() {
-  echo "Guardrails blocked this: $1" >&2
+  write_audit_log "BLOCKED"
+  echo "Guardrails blocked this: $1" &gt;&amp;2
   exit 2
 }
 
-# 1: destructive filesystem commands
+# --- 1: destructive filesystem commands ----------------------------------
+# Flag-order independent: -rf, -fr, -r -f, --recursive --force all count.
 check_destructive_fs() {
+  local c=" $command "
+
+  if printf '%s' "$c" | grep -qE '(^|[;&amp;|(]|[[:space:]])rm([[:space:]]|$)'; then
+    local rec=0 force=0
+    printf '%s' "$c" | grep -qE '([[:space:]]-[a-zA-Z]*[rR][a-zA-Z]*([[:space:]]|$)|[[:space:]]--recursive([[:space:]]|$))' &amp;&amp; rec=1
+    printf '%s' "$c" | grep -qE '([[:space:]]-[a-zA-Z]*f[a-zA-Z]*([[:space:]]|$)|[[:space:]]--force([[:space:]]|$))' &amp;&amp; force=1
+    if [ "$rec" -eq 1 ] &amp;&amp; [ "$force" -eq 1 ]; then
+      if printf '%s' "$c" | grep -qE '([[:space:]]/([[:space:]]|$)|[[:space:]]/\*|[[:space:]]~|\$HOME|[[:space:]]\./?([[:space:]]|$)|[[:space:]]\.\./?([[:space:]]|$)|--no-preserve-root)'; then
+        block "recursive force-delete aimed at root, home, or the working directory."
+      fi
+    fi
+  fi
+
+  if printf '%s' "$c" | grep -qE 'dd[[:space:]].*of=/dev/'; then
+    block "raw disk write via dd — this can destroy a whole disk."
+  fi
+
   case "$command" in
-    *"rm -rf /"*|*"rm -rf ~"*|*"rm -rf \$HOME"*|*"rm -rf ."*)
-      block "destructive rm -rf targeting root, home, or the current directory." ;;
-    *"dd if="*"of=/dev/"*)
-      block "raw disk write via dd — this can destroy a whole disk." ;;
-    *":(){ :|:& };:"*)
-      block "fork bomb pattern detected." ;;
+    *":(){ :|:&amp; };:"*) block "fork bomb pattern detected." ;;
   esac
 }
 
-# 2: force-push / history rewrite on protected branches
+# --- 2: force-push / history rewrite on protected branches ---------------
 check_protected_branch() {
   case "$command" in
-    *"push"*"--force"*|*"push -f"*)
-      if echo "$command" | grep -qE '(^|[[:space:]])(main|master)([[:space:]]|$)'; then
-        block "force-push to main/master."
-      fi ;;
-    *"filter-branch"*|*"push"*"--force"*"--all"*)
-      block "history-rewriting operation (filter-branch / force-push --all)." ;;
+    *"filter-branch"*)
+      block "history-rewriting operation (filter-branch)." ;;
   esac
+
+  # Only inspect what comes AFTER "push", so `cd main &amp;&amp; git push origin dev`
+  # is not mistaken for a push to main.
+  local after_push
+  after_push="$(printf '%s' "$command" | sed -n 's/.*[Pp]ush//p')"
+  [ -z "$after_push" ] &amp;&amp; return 0
+
+  # A leading + in a refspec is a force push even without --force.
+  if printf '%s' "$after_push" | grep -qE '(^|[[:space:]])\+[^[:space:]]*(main|master)([[:space:]]|:|$)'; then
+    block "force-push to main/master via a + refspec."
+  fi
+
+  local forced=0
+  printf '%s' "$after_push" | grep -qE '([[:space:]]-f([[:space:]]|$)|--force([[:space:]]|$)|--force-with-lease)' &amp;&amp; forced=1
+  [ "$forced" -eq 0 ] &amp;&amp; return 0
+
+  if printf '%s' "$after_push" | grep -qE '(^|[[:space:]]|:)(main|master)([[:space:]]|:|$)'; then
+    block "force-push to main/master."
+  fi
+  if printf '%s' "$after_push" | grep -qE '[[:space:]]--all([[:space:]]|$)'; then
+    block "force-push --all rewrites every branch, main/master included."
+  fi
 }
 
-# 3: skipping safety checks
+# --- 3: skipping safety checks -------------------------------------------
 check_skip_safety() {
   case "$command" in
     *"--no-verify"*|*"--no-gpg-sign"*)
       block "a flag that skips commit hooks or signature verification." ;;
-    *"chmod 777"*|*"chmod -R 777"*)
-      block "chmod 777 — overly permissive file permissions." ;;
-    *"curl"*"| bash"*|*"curl"*"|bash"*|*"wget"*"| sh"*|*"wget"*"|sh"*)
-      block "piping a remote script straight into a shell — read it first." ;;
   esac
+
+  if printf '%s' "$command" | grep -qE 'chmod[[:space:]]+(-[a-zA-Z]+[[:space:]]+)*777'; then
+    block "chmod 777 — overly permissive file permissions."
+  fi
+
+  # Any remote fetch piped into any shell: curl|sh, curl|bash,
+  # wget|sh, wget | sudo bash, ...
+  if printf '%s' "$command" | grep -qE '(curl|wget)[^|]*\|[[:space:]]*(sudo[[:space:]]+)*(ba|z|k|da|c)?sh([[:space:]]|$)'; then
+    block "piping a remote script straight into a shell — read it first."
+  fi
 }
 
-# 4: writes to sensitive files
+# --- 4: secrets ----------------------------------------------------------
+is_sensitive_path() {
+  case "$1" in
+    *".env"*|*"id_rsa"*|*"id_ed25519"*|*".aws/credentials"*|*".ssh/"*|*"credentials.json"*) return 0 ;;
+    *".git/config") return 0 ;;
+  esac
+  return 1
+}
+
+# Write/Edit/MultiEdit tools
 check_sensitive_write() {
-  case "$file_path" in
-    *".env"*|*"id_rsa"*|*"id_ed25519"*|*".aws/credentials"*|*".ssh/"*|*"credentials.json"*|*".git/config")
-      block "write to a sensitive/credentials path ($file_path). Edit it by hand instead." ;;
-  esac
+  if is_sensitive_path "$file_path"; then
+    block "write to a sensitive/credentials path ($file_path). Edit it by hand instead."
+  fi
 }
 
-# 5: audit log (never blocks, just records)
-write_audit_log() {
-  printf '%s\t%s\t%s\n' "$(date -Iseconds)" "$tool_name" "${command:-$file_path}" >> "$log_file"
+# The same files, but written from the shell — `echo ... &gt;&gt; .env`, `tee`.
+# The file_path check above only sees the Write/Edit tools.
+check_secret_write_via_bash() {
+  if printf '%s' "$command" | grep -qE '(&gt;&gt;?|tee[[:space:]]+(-a[[:space:]]+)*)[[:space:]]*[^[:space:]]*(\.env|id_rsa|id_ed25519|\.aws/credentials|credentials\.json|\.ssh/)'; then
+    block "writing to a secrets file from the shell. Edit it by hand instead."
+  fi
 }
 
+# --- dispatch ------------------------------------------------------------
 case "$hook_event" in
   PreToolUse)
     if [ "$tool_name" = "Bash" ]; then
       check_destructive_fs
       check_protected_branch
       check_skip_safety
+      check_secret_write_via_bash
     fi
-    if [ "$tool_name" = "Write" ] || [ "$tool_name" = "Edit" ] || [ "$tool_name" = "MultiEdit" ]; then
-      check_sensitive_write
-    fi
+    case "$tool_name" in
+      Write|Edit|MultiEdit) check_sensitive_write ;;
+    esac
     ;;
   PostToolUse)
-    write_audit_log
+    write_audit_log "RAN"
     ;;
 esac
 
-exit 0</code></pre>
+exit 0</code></pre><!-- /sync -->
             </div>
             <p class="muted">Requires <code>jq</code> (already on most dev machines; <code>brew install jq</code> / <code>apt install jq</code> if not). Make it executable once: <code>chmod +x .claude/guard.sh</code>.</p>
+        </section>
+
+        <!-- 3e. Honest limits -->
+        <section class="resource-section u-reveal">
+            <h2>What this does <em>not</em> protect against</h2>
+            <p class="muted">This is a guardrail against mistakes — yours and the agent's — not a security boundary. It is pattern matching on a command string, and pattern matching can always be walked around. Being straight about that is the point:</p>
+            <ul>
+                <li><strong>Deliberate evasion.</strong> Anything that hides the command from the matcher gets through: base64-decoding into a shell, writing a script and running it, an unusual alias, a language runtime shelling out.</li>
+                <li><strong>Prompt injection.</strong> If a page or file talks the agent into something destructive, these checks only catch it when the final command happens to match a pattern.</li>
+                <li><strong>Files pulled in with <code>@</code>.</strong> Attaching a file in the prompt doesn't call a tool, so <code>PreToolUse</code> never runs. The <code>.env</code> rule here does not stop <code>.env</code> being <em>read</em> that way — use a <code>Read</code> deny rule in permissions for that.</li>
+                <li><strong>Everything not on the list.</strong> There is no <code>sudo</code> rule, no network rule, no package-install rule. Five checks, that's it.</li>
+                <li><strong>Non-bash environments.</strong> It's a bash script with a <code>jq</code> dependency — on Windows it needs WSL or Git Bash.</li>
+            </ul>
+            <p class="muted">Where it does earn its keep: the 2 a.m. <code>rm -rf</code>, the force-push to <code>main</code> you meant to aim at your branch, the <code>curl | sh</code> you didn't read, and a log of what actually happened.</p>
+        </section>
+
+        <!-- 3f. Testing -->
+        <section class="resource-section u-reveal">
+            <h2>Check that it's actually running</h2>
+            <p class="muted">A hook that silently isn't wired up feels exactly like a hook that's working. Feed the script a payload by hand — no Claude Code required:</p>
+            <div class="code-block">
+                <span class="code-block__label">verify</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+                <pre><code>echo '{"hook_event_name":"PreToolUse","tool_name":"Bash","tool_input":{"command":"rm -rf /"}}' \
+  | .claude/guard.sh; echo "exit=$?"
+
+# expected:
+# Guardrails blocked this: recursive force-delete aimed at root, home, ...
+# exit=2</code></pre>
+            </div>
+            <p class="muted">Then check registration with <code>/hooks</code> inside Claude Code, and run it with <code>claude --debug</code> to watch hooks fire. <code>exit=0</code> where you expected <code>2</code> means the pattern didn't match; no output at all usually means the file isn't executable (<code>chmod +x</code>) or the path in <code>settings.json</code> is wrong.</p>
+            <p class="muted"><strong>Need to get past it on purpose?</strong> That's a fair question, and there's no clever answer: comment out the check, or move the hook into <code>.claude/settings.local.json</code> (git-ignored, yours only) instead of <code>.claude/settings.json</code> (committed, shared with the team). A guardrail you can't turn off is one people delete entirely.</p>
         </section>
 
         <!-- 4. Download -->
         <section class="resource-section u-reveal">
             <h2>Get it</h2>
             <div class="resource-download">
-                <a class="btn-pill" href="../../docs/resources/claude-code-guardrails.pdf" download data-price="0" data-currency="EUR">Download the PDF guide →</a>
+                <a class="btn-pill" href="../../docs/resources/claude-code-guardrails/guard.sh" download data-price="0" data-currency="EUR">Download guard.sh →</a>
+                <a class="btn-outline" href="../../docs/resources/claude-code-guardrails/settings.json" download>settings.json</a>
+                <a class="btn-outline" href="../../docs/resources/claude-code-guardrails.pdf" download>PDF guide</a>
                 <span class="price">Free — no email required</span>
             </div>
-            <p class="muted" style="margin-top:10px">The PDF has the same content as this page (both hooks, the full <code>guard.sh</code>, and setup steps) formatted to read offline or print. The code blocks above are copy-paste ready if you just want the files.</p>
+            <p class="muted" style="margin-top:10px">These are the actual files, not a copy — the code blocks on this page are generated from them, so what you read above is byte-for-byte what you download.</p>
         </section>
 
         <!-- 5. Who made this -->
