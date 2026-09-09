@@ -32,6 +32,9 @@
     <!-- Preloads -->
     <link rel="preload" href="../fonts/clash/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Caveat: the handwritten annotation accents in the hero (self-hosted) -->
+    <link rel="preload" href="../fonts/caveat/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- CSS/JS (from /en/ go one level up) -->
     <script src="../js/script.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
@@ -45,6 +48,7 @@
     <link rel="stylesheet" href="../css/card.css" />
     <link rel="stylesheet" href="../css/projects.css" />
     <link rel="stylesheet" href="../css/games.css" />
+    <link rel="stylesheet" href="../css/hero-rich.css" />
 
     <!-- JSON-LD: WebSite + Person (EN) -->
     <script type="application/ld+json">
@@ -122,22 +126,82 @@
         </div>
     </section> -->
     <!-- HERO -->
-    <section class="card-hero2 hero u-stagger">
-        <div class="container hero-grid">
-            <div class="hero-copy">
-                <h1 class="display-xl u-reveal">DEVELOPER <span style="font-weight:300;"><span class="type-caret" aria-hidden="true">&lt;/&gt;</span>Product Builder</span></h1>
-                <p class="lead u-reveal">
-                    I turn ideas into working web and mobile products.
-                </p>
+    <section class="hero hero-rich">
+        <div class="hero-rich__orb" aria-hidden="true"></div>
+        <span class="hero-note hero-note--orb" aria-hidden="true">A more open internet for everyone.</span>
+
+        <div class="container hero-rich__grid">
+
+            <!-- Left: copy -->
+            <div class="hero-rich__copy u-stagger">
+                <p class="hero-eyebrow u-reveal"><span class="hero-eyebrow__dot"></span>Build · Solve · Create</p>
+                <h1 class="hero-rich__title u-reveal">Developer <span class="hero-rich__slash">/</span><br>Product Builder</h1>
+                <p class="lead u-reveal">I turn ideas into working web and mobile products. Focused on clean code, real user value, and a better internet.</p>
+
+                <div class="hero-rich__ctas u-reveal">
+                    <a class="btn-glow" href="portfolio.html">View my work
+                        <span class="btn-glow__ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+                        </span>
+                    </a>
+                    <a class="btn-outline" href="about.html">About me</a>
+                </div>
+
+                <dl class="hero-stats u-reveal">
+                    <div class="hero-stat"><dt>4+</dt><dd>Years experience</dd></div>
+                    <div class="hero-stat"><dt>20+</dt><dd>Projects shipped</dd></div>
+                    <div class="hero-stat"><dt>Happy</dt><dd>Clients &amp; collaborators</dd></div>
+                </dl>
             </div>
-            <figure class="hero-portrait2 u-reveal">
+
+            <!-- Middle: character on a lit stage -->
+            <figure class="hero-stage u-reveal">
+                <div class="hero-stage__board" aria-hidden="true">
+                    <span class="hero-board__line">Ideas</span>
+                    <span class="hero-board__line">Products</span>
+                    <span class="hero-board__line">People</span>
+                    <span class="hero-board__line">Impact</span>
+                </div>
+                <span class="hero-note hero-note--board" aria-hidden="true">Same person, bigger ideas.</span>
                 <picture>
                     <source media="(max-width: 1279px)" srcset="../img/avatar-sitting-loptop.webp">
-                    <img src="../img/avatar-standing.webp" alt="Gabrielė – Programuotoja" width="400" height="900" loading="eager" fetchpriority="high" decoding="async">
+                    <img src="../img/avatar-standing.webp" alt="Gabrielė – developer and product builder" width="400" height="900" loading="eager" fetchpriority="high" decoding="async">
                 </picture>
+                <div class="hero-stage__ring" aria-hidden="true"></div>
             </figure>
 
+            <!-- Right: value rail -->
+            <aside class="hero-rail u-stagger" aria-label="What I focus on">
+                <div class="hero-rail__item u-reveal">
+                    <span class="hero-rail__ico" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 8-4 4 4 4M16 8l4 4-4 4"/></svg>
+                    </span>
+                    <div><strong>Clean code</strong><small>Better products</small></div>
+                </div>
+                <div class="hero-rail__item u-reveal">
+                    <span class="hero-rail__ico" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M17 11a3 3 0 1 0-2-5.2M21 20a5 5 0 0 0-4-4.9"/></svg>
+                    </span>
+                    <div><strong>User focused</strong><small>Always</small></div>
+                </div>
+                <div class="hero-rail__item u-reveal">
+                    <span class="hero-rail__ico" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                    </span>
+                    <div><strong>Ideas to reality</strong><small>Step by step</small></div>
+                </div>
+
+                <div class="hero-avail u-reveal">
+                    <span class="hero-avail__dot" aria-hidden="true"></span>
+                    <span class="hero-avail__text">Available for<br>new opportunities</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 3 10.5 13.5M21 3l-7 18-3.5-7.5L3 10z"/></svg>
+                </div>
+
+                <span class="hero-note hero-note--rail" aria-hidden="true">Let's build something great.</span>
+            </aside>
+
         </div>
+        <span class="hero-scroll" aria-hidden="true">Scroll</span>
     </section>
 
     <main>
