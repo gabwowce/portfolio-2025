@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="../css/blog.css" />
     <link rel="stylesheet" href="../css/contact-me.css" />
     <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/person.css" />
     <link rel="stylesheet" href="../css/hero.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/card.css" />
@@ -121,7 +122,7 @@
                 </p>
             </div>
             <figure class="hero-portrait2 u-reveal">
-                <img \ src="../img/avatar-standing.webp" alt="Gabriele – Frontend developer" width="400" height="900" loading="eager" decoding="sync" fetchpriority="high">
+                <img \ src="../img/person/standing-still.webp" srcset="../img/person/standing-still-450.webp 450w, ../img/person/standing-still.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="Gabrielė – developer and product builder" width="900" height="1259" loading="eager" decoding="sync" fetchpriority="high">
             </figure>
         </div>
     </section> -->
@@ -165,8 +166,8 @@
                 </div>
                 <span class="hero-note hero-note--board" aria-hidden="true">Same person, bigger ideas.</span>
                 <picture>
-                    <source media="(max-width: 1279px)" srcset="../img/avatar-sitting-loptop.webp">
-                    <img src="../img/avatar-standing.webp" alt="Gabrielė – developer and product builder" width="400" height="900" loading="eager" fetchpriority="high" decoding="async">
+                    <source media="(max-width: 1279px)" srcset="../img/person/cross-legs-loptop-450.webp 450w, ../img/person/cross-legs-loptop.webp 900w" sizes="(max-width: 640px) 62vw, 420px">
+                    <img src="../img/person/standing-still.webp" srcset="../img/person/standing-still-450.webp 450w, ../img/person/standing-still.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="Gabrielė – developer and product builder" width="900" height="1259" loading="eager" fetchpriority="high" decoding="async">
                 </picture>
                 <div class="hero-stage__ring" aria-hidden="true"></div>
             </figure>
@@ -279,7 +280,11 @@
     </div>
 
     <!-- Badges -->
-    <div class="about-expect u-stagger">
+    <div class="person-band person-band--wide u-stagger">
+      <figure class="person-figure u-reveal">
+        <img src="../img/person/standing-lecture-en.webp" srcset="../img/person/standing-lecture-en-450.webp 450w, ../img/person/standing-lecture-en.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="Gabrielė presenting a project plan on a whiteboard" width="900" height="1163" loading="lazy" decoding="async">
+      </figure>
+      <div class="person-band__body about-expect u-stagger">
       <h3 class="u-reveal">What you can expect</h3>
       <ul class="expect-grid u-stagger">
         <li class="expect-item u-reveal"><i></i>Clear communication</li>
@@ -289,6 +294,7 @@
         <li class="expect-item u-reveal"><i></i>Attention to UX details</li>
         <li class="expect-item u-reveal"><i></i>Clean handoff</li>
       </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -587,6 +593,9 @@
     <footer class="site-footer" role="contentinfo">
         <section class="cta-contact">
             <div class="container footer-card-flex">
+                <figure class="person-figure person-cta" aria-hidden="true">
+                    <img src="../img/person/two-fingers-down.webp" srcset="../img/person/two-fingers-down-450.webp 450w, ../img/person/two-fingers-down.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1297" loading="lazy" decoding="async">
+                </figure>
                 <div class="cta-contact__text">
                     <h3>Have a project in mind?</h3>
                     <p>A free 20-min chat — I reply within 24 hours with an initial plan and price.</p>

@@ -483,7 +483,7 @@
 }
 
 .expect-item {
-  color: var(--card-text);c
+  color: var(--card-text);
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 999px;

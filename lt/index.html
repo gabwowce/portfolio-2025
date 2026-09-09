@@ -74,6 +74,7 @@
     <link rel="stylesheet" href="../css/blog.css" />
     <link rel="stylesheet" href="../css/contact-me.css" />
     <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/person.css" />
     <link rel="stylesheet" href="../css/hero.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/card.css" />
@@ -172,13 +173,13 @@
           <picture>
             <source
               media="(max-width: 1279px)"
-              srcset="../img/avatar-sitting-loptop.webp"
+              srcset="../img/person/cross-legs-loptop.webp"
             />
             <img
-              src="../img/avatar-standing.webp"
-              alt="Gabrielė – Programuotoja"
-              width="400"
-              height="900"
+              src="../img/person/standing-still.webp" srcset="../img/person/standing-still-450.webp 450w, ../img/person/standing-still.webp 900w" sizes="(max-width: 640px) 62vw, 420px"
+              alt="Gabrielė – programuotoja"
+              width="900"
+              height="1259"
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -263,7 +264,11 @@
           </div>
 
           <!-- Badges -->
-          <div class="about-expect u-stagger">
+          <div class="person-band person-band--wide u-stagger">
+            <figure class="person-figure u-reveal">
+              <img src="../img/person/standing-lecture-lt.webp" srcset="../img/person/standing-lecture-lt-450.webp 450w, ../img/person/standing-lecture-lt.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="Gabrielė prie lentos pristato projekto planą" width="900" height="1180" loading="lazy" decoding="async">
+            </figure>
+            <div class="person-band__body about-expect u-stagger">
             <h3 class="u-reveal">Ko galite tikėtis dirbdami su manimi</h3>
             <ul class="expect-grid u-stagger">
               <li class="expect-item u-reveal"><i></i>Aiškus bendravimas</li>
@@ -273,6 +278,7 @@
               <li class="expect-item u-reveal"><i></i>Dėmesys UX</li>
               <li class="expect-item u-reveal"><i></i>Aiškus perdavimas</li>
             </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -840,6 +846,9 @@
     <footer class="site-footer" role="contentinfo">
       <section class="cta-contact">
         <div class="container footer-card-flex">
+            <figure class="person-figure person-cta" aria-hidden="true">
+                <img src="../img/person/two-fingers-down.webp" srcset="../img/person/two-fingers-down-450.webp 450w, ../img/person/two-fingers-down.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1297" loading="lazy" decoding="async">
+            </figure>
           <div class="cta-contact__text">
             <h3>Turite projekto idėją?</h3>
             <p>Nemokamas 20 min. pokalbis — atsakau per 24 val. su pirminiu planu ir kaina.</p>

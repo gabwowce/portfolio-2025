@@ -1,0 +1,220 @@
+/*
+  Character placements outside the hero.
+  ------------------------------------------------------------------
+  The illustrated character is the strongest identity element on the
+  site, so it should not appear only once per page. These components
+  reuse the hero's visual language - an accent radial glow behind the
+  figure and Caveat handwriting for annotations - so a character on the
+  homepage's "what you can expect" band reads as the same system as the
+  hero, not as a stock image dropped into a section.
+*/
+
+/* ---- Base figure ---------------------------------------------- */
+
+.person-figure {
+  position: relative;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  isolation: isolate;
+}
+
+/* Accent bloom, so the figure sits in light rather than on flat background */
+.person-figure::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 4%;
+  translate: -50% 0;
+  width: 108%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--accent) 26%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 8%, transparent) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.person-figure img {
+  position: relative;
+  z-index: 2;
+  width: auto;
+  max-width: 100%;
+  height: clamp(230px, 30vw, 420px);
+  object-fit: contain;
+}
+
+/* ---- Handwritten annotation ----------------------------------- */
+
+.person-note {
+  position: absolute;
+  z-index: 3;
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: clamp(16px, 1.4vw, 22px);
+  line-height: 1.2;
+  color: var(--accent);
+  max-width: 15ch;
+  pointer-events: none;
+}
+
+/* ---- Band: figure beside a block of content -------------------- */
+
+.person-band {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 56px);
+}
+.person-band__body {
+  min-width: 0;
+}
+
+@media (max-width: 860px) {
+  .person-band {
+    grid-template-columns: 1fr;
+  }
+  /*
+    On narrow screens the copy is the point and the figure is decoration,
+    so it moves below and shrinks rather than pushing the text down.
+  */
+  .person-band .person-figure {
+    order: 2;
+  }
+  .person-band .person-figure img {
+    height: clamp(200px, 46vw, 300px);
+  }
+}
+
+/* ---- Figure standing on the contact CTA card ------------------- */
+
+/*
+  The pointing-down pose stands on the CTA card's top edge and points at
+  the button inside it. It overflows the card upwards, so the section
+  reserves the height it needs instead of letting it collide with
+  whatever section comes before.
+*/
+.cta-contact:has(.person-cta) {
+  padding-top: clamp(150px, 19vw, 285px);
+}
+.footer-card-flex:has(.person-cta) {
+  position: relative;
+}
+.person-cta {
+  position: absolute;
+  z-index: 2;
+  right: clamp(14px, 3vw, 46px);
+  bottom: 100%;
+  margin-bottom: -14px;
+  pointer-events: none;
+}
+.person-cta img {
+  height: clamp(180px, 17vw, 250px);
+  /*
+    The figure is absolutely positioned with no width of its own, so a
+    percentage max-width would resolve against a shrink-to-fit box and
+    collapse the image to nothing.
+  */
+  max-width: none;
+}
+.person-cta::before {
+  bottom: 12%;
+  width: 125%;
+}
+/*
+  Below this width the card goes to a stacked layout and the figure has
+  nowhere to stand without covering the copy, so it is dropped.
+*/
+@media (max-width: 1080px) {
+  .person-cta {
+    display: none;
+  }
+  .cta-contact:has(.person-cta) {
+    padding-top: clamp(28px, 5vw, 48px);
+  }
+}
+
+/* ---- Band variant: the "what you can expect" pill grid ---------- */
+
+/*
+  The lecture pose is wide (the character plus a whiteboard), so it
+  needs a roomier column than the standing poses do.
+*/
+.person-band--wide {
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+}
+
+/* The band now owns the section's top margin instead of the inner block. */
+.person-band:has(.about-expect) {
+  margin-top: clamp(48px, 8vw, 96px);
+}
+.person-band .about-expect {
+  margin-top: 0;
+  text-align: left;
+}
+/*
+  Inside a band the pill grid has ~2/3 of the width it has full-bleed,
+  so it drops from three columns to two rather than squeezing three.
+*/
+.person-band .expect-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: none;
+  margin-inline: 0;
+}
+@media (max-width: 1180px) {
+  .person-band .expect-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 860px) {
+  .person-band--wide {
+    grid-template-columns: 1fr;
+  }
+  .person-band .about-expect {
+    text-align: center;
+  }
+  .person-band .expect-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .person-band .expect-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Figure closing out a short sidebar ------------------------ */
+
+/*
+  On /about and /contact the aside runs about half the height of the
+  main column, leaving a tall empty gutter. A figure at the foot of the
+  sidebar closes that column off instead of letting it trail away.
+  Purely decorative, so it goes when the layout stacks to one column.
+*/
+.person-aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(20px, 3vw, 36px);
+}
+.person-aside img {
+  height: clamp(240px, 22vw, 340px);
+}
+.person-aside .person-note {
+  position: static;
+  display: block;
+  margin: 0 0 -8px;
+  max-width: none;
+  text-align: center;
+  rotate: -3deg;
+}
+@media (max-width: 1024px) {
+  .person-aside {
+    display: none;
+  }
+}
