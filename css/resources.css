@@ -447,3 +447,48 @@
     animation: none;
   }
 }
+
+/*
+  Tool chip. The category filter says what a resource is about; this says
+  what it needs to be useful. Claude Code pieces carry the accent so they
+  are findable at a glance without a filter tab of their own.
+
+  Deliberately a word, not a logo: another company's mark on a card of
+  ours would imply an endorsement that does not exist.
+*/
+.resource-card__tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.resource-card__tool::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+.resource-card__tool.tool--claude {
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+}
+.resource-card__tool.tool--claude::before {
+  opacity: 1;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* The top row now carries three things, so it wraps rather than squeezes. */
+.resource-card__top {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
