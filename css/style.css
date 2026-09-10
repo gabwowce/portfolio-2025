@@ -207,13 +207,6 @@ html {
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image: linear-gradient(
-      to right,
-      var(--grid-line) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: 64px 64px;
 }
 a {
   color: inherit;
@@ -697,5 +690,94 @@ html.nav-fade {
   .start-steps {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+}
+
+/*
+  Page-wide atmosphere.
+  ------------------------------------------------------------------
+  The accent blooms and the cursor-lit grid used to live inside the
+  hero, which is why the page went flat the moment you scrolled past
+  it. They are page-level layers now, fixed to the viewport so the
+  light follows you down the page instead of scrolling away, and both
+  sit behind everything via a negative z-index on the body's own
+  stacking context.
+*/
+
+/*
+  The backdrop: the 64px lattice plus the static accent blooms. Both are
+  fixed to the viewport, which keeps the lattice on the same lines as the
+  lit copy above it without paying for a scroll-attached background.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: linear-gradient(
+      to right,
+      var(--grid-line) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(
+      70vw 60vh at 78% -8%,
+      color-mix(in srgb, var(--accent) 11%, transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      60vw 55vh at 6% 106%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 70%
+    );
+  background-size: 64px 64px, 64px 64px, auto, auto;
+}
+
+/*
+  A second copy of the body's 64px lattice, drawn in the accent and
+  masked to a soft circle that follows the cursor - so cells light up
+  around the pointer anywhere on the page, not only in the hero.
+*/
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent) 34%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 34%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    260px 260px at var(--gx, 50%) var(--gy, 40%),
+    #000 0%,
+    rgba(0, 0, 0, 0.5) 45%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    260px 260px at var(--gx, 50%) var(--gy, 40%),
+    #000 0%,
+    rgba(0, 0, 0, 0.5) 45%,
+    transparent 72%
+  );
+}
+/* Only once the pointer has actually been somewhere on the page. */
+:root.cursor-lit body::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  body::after {
+    display: none;
   }
 }

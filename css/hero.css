@@ -18,7 +18,6 @@
 .hero {
   position: relative;
   overflow: visible;
-  border-bottom: 1px solid var(--border);
 }
 .display-xl {
   font-size: clamp(44px, 9vw, 120px);

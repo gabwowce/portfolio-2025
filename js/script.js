@@ -394,11 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hero.style.setProperty("--py", (targetY * 2 - 1).toFixed(3));
   }
 
-  hero.addEventListener("pointerenter", function () {
-    hero.classList.add("hero--active");
-  });
   hero.addEventListener("pointerleave", function () {
-    hero.classList.remove("hero--active");
     targetX = 0.5;
     targetY = 0.4;
     if (!raf) raf = requestAnimationFrame(apply);
@@ -475,4 +471,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   syncBrowserChrome();
+})();
+
+/*
+  Page-wide cursor light.
+  ------------------------------------------------------------------
+  Feeds the mask position for body::after, in viewport coordinates, so
+  the lit grid follows the pointer on every page rather than only
+  inside the hero. Writes to the root element, not to a section, and
+  only ever sets two custom properties - the painting is entirely CSS.
+*/
+(function () {
+  var root = document.documentElement;
+  if (!window.matchMedia) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(hover: none)").matches) return;
+
+  var x = 0, y = 0, raf = null;
+
+  function paint() {
+    raf = null;
+    root.style.setProperty("--gx", x + "px");
+    root.style.setProperty("--gy", y + "px");
+  }
+
+  window.addEventListener(
+    "pointermove",
+    function (e) {
+      x = e.clientX;
+      y = e.clientY;
+      if (!root.classList.contains("cursor-lit")) root.classList.add("cursor-lit");
+      if (!raf) raf = requestAnimationFrame(paint);
+    },
+    { passive: true }
+  );
+
+  /* Fade the light out when the pointer leaves the window entirely. */
+  document.addEventListener("pointerleave", function () {
+    root.classList.remove("cursor-lit");
+  });
 })();
