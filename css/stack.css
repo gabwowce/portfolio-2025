@@ -159,3 +159,38 @@
     white-space: normal;
   }
 }
+
+/* ---- AI-inside-the-product card (services section) --------------- */
+
+/*
+  Same card as every service card - just wider content. The flow reuses
+  .stack-flow/.stack-node verbatim rather than inventing a second
+  component: an AI agent's own pipeline (context -> tools -> action ->
+  result) is the same shape as a project's architecture strip, so it
+  earns the same drawing.
+*/
+.ai-strip {
+  margin-top: clamp(18px, 2.6vw, 28px);
+}
+.ai-strip__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: clamp(16px, 2.2vw, 24px);
+}
+.ai-strip__head .about-ico {
+  flex-shrink: 0;
+}
+.ai-strip .stack-flow {
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+.ai-strip .stack-node {
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .ai-strip__head {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
