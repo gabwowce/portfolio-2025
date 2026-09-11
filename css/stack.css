@@ -1,0 +1,161 @@
+/*
+  Project architecture strip.
+  ------------------------------------------------------------------
+  A portfolio that shows screenshots says "I made screens". This says
+  "I built a system": the actual pieces, left to right, in the order
+  data moves through them - client, API, storage, and the services
+  wired in alongside.
+
+  Anything AI-shaped takes the accent and a glow, because that is the
+  part a visitor is scanning for and the part that is hardest to fake.
+  It reuses the same drawing language as the homepage mockups: dimmed
+  structure, one lit element carrying the point.
+*/
+
+.stack {
+  margin-top: clamp(14px, 2vw, 20px);
+  padding-top: clamp(14px, 2vw, 18px);
+  border-top: 1px solid var(--border);
+}
+
+.stack__label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stack-flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.stack-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.stack-node small {
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/*
+  The connector sits in the gap, so it appears between nodes without
+  needing an element of its own - and disappears at the end of a
+  wrapped row, where an arrow would point at nothing.
+*/
+.stack-node + .stack-node::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: color-mix(in srgb, var(--text) 28%, transparent);
+}
+
+/* The part worth looking at. */
+.stack-node--ai {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.stack-node--ai small {
+  color: color-mix(in srgb, var(--accent) 80%, var(--muted));
+}
+.stack-node--ai::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  animation: stackPulse 2.6s ease-in-out infinite;
+}
+@keyframes stackPulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* Facts about the system, rather than about the tools. */
+.stack-facts {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.stack-facts li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.stack-facts strong {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+/*
+  Card-level marker, so the portfolio can be scanned for AI work
+  without reading every strip.
+*/
+.stack-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.stack-badge::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-node--ai::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .stack-node {
+    white-space: normal;
+  }
+}
