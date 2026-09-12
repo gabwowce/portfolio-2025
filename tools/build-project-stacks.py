@@ -111,7 +111,7 @@ def strip_html(pid, spec, lang, indent):
     if facts:
         out.append(f'{i}  <ul class="stack-facts">')
         for value, label in facts:
-            out.append(f'{i}    <li><strong>{esc(pick(value, lang))}</strong>'
+            out.append(f'{i}    <li><strong>{esc(pick(value, lang))}</strong> '
                        f'{esc(pick(label, lang))}</li>')
         out.append(f'{i}  </ul>')
     out.append(f'{i}</div>')

@@ -168,7 +168,7 @@ def sys_card(lang, share):
     tiles = "\n".join(
         f'                  <li>{t}</li>' for t in d["domains"])
     facts = "\n".join(
-        f'                <li><strong>{v}</strong>{l}</li>'
+        f'                <li><strong>{v}</strong> {l}</li>'
         for v, l in SYS_FACTS[lang])
     return f'''<article
             class="project project-xl project--sys u-stagger"
