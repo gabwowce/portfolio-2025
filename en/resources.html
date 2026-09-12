@@ -11,6 +11,9 @@
     <meta name="robots" content="index,follow" />
 
     <link rel="canonical" href="https://codeart.lt/en/resources.html" />
+    <link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources.html" />
+    <link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources.html" />
+    <link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/resources.html" />
     <!-- Canonical + hreflang -->
     <!-- Icons / theme -->
     <link rel="icon" href="../img/favicon.svg" type="image/svg+xml" />
@@ -105,54 +108,129 @@
           A category only earns its own page once it has enough pieces to
           fill one — an empty room reads worse than no room at all.
         -->
-        <div class="segmented resources-filter" role="tablist" aria-label="Filter by topic" data-filter-target=".resources-grid .resource-card">
-            <span class="seg-thumb" aria-hidden="true"></span>
-            <button class="seg-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
-            <button class="seg-btn" data-filter="ai-dev" role="tab" aria-selected="false">Building with AI</button>
-            <button class="seg-btn" data-filter="learning" role="tab" aria-selected="false">Learning to code now</button>
-        </div>
+        <!-- TRACKS:START -->
+      <p class="resources-intro u-reveal">The resources are laid out as ordered tracks — follow one through, or jump to the step you're missing. Empty steps are listed on purpose: you see the whole path, not just the part that's written.</p>
 
-        <section class="resources-grid u-stagger">
+      <section class="track u-reveal" id="track-claude-code" data-cat="ai-dev">
+        <header class="track__head">
+          <span class="track__num" aria-hidden="true">01</span>
+          <div class="track__headtext">
+            <h2 class="track__title">Claude Code from scratch</h2>
+            <p class="track__blurb">From the first launch to an agent working inside your project safely and on your rules. Go in order — each step builds on the one before it.</p>
+            <p class="track__meta">
+              <span class="resource-card__tool tool--claude">Claude Code</span>
+              <span>6 steps · 1 ready</span>
+            </p>
+          </div>
+        </header>
+        <ol class="track-steps">
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">1</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">What Claude Code is, and getting it running</h3>
+              <p class="track-step__desc">How an agent in your terminal differs from a chat in a browser, and what it can reach on your machine.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">2</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Project, context and CLAUDE.md</h3>
+              <p class="track-step__desc">What the agent needs to know about your codebase to stop guessing — and how to write it down once.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step is-ready">
+            <span class="track-step__n" aria-hidden="true">3</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Guardrails: stopping the agent before it breaks things</h3>
+              <p class="track-step__desc">A ready <code>.claude/settings.json</code> with five safety hooks plus a <code>guard.sh</code> script — with a plain-language explanation of what each one actually blocks.</p>
+              <a class="link-ghost" href="/en/resources/claude-code-guardrails.html" hreflang="en">Read it →</a>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">4</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Hooks in depth: when to ask, how to test them</h3>
+              <p class="track-step__desc">When blocking is too strict and allowing is too risky — the third option, and how to prove it works.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">5</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Your own commands and skills</h3>
+              <p class="track-step__desc">Turning repeated work into one command instead of retyping the same prompt every time.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">6</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">MCP: wiring in your own tools</h3>
+              <p class="track-step__desc">Letting the agent reach your database, API or internal system — and only as far as you allow.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+        </ol>
+      </section>
 
-            <!-- Resource: available -->
-            <article class="card resource-card u-reveal" data-cat="ai-dev">
-                <div class="resource-card__top">
-                    <span class="pill pill--free">Free</span>
-                    <span class="resource-card__type">Guardrails</span>
-                    <span class="resource-card__tool tool--claude">Claude Code</span>
-                </div>
-                <h2 class="resource-card__title">
-                    <a href="resources/claude-code-guardrails.html">Claude Code Guardrails</a>
-                </h2>
-                <p class="muted">A ready <code>.claude/settings.json</code> with five safety hooks plus a <code>guard.sh</code> script, so Claude Code stops before doing something destructive — with a plain-language explanation of what each hook actually blocks.</p>
-                <a class="link-ghost" href="resources/claude-code-guardrails.html">Read it →</a>
-            </article>
-
-            <!-- Resource: coming soon -->
-            <article class="card resource-card resource-card--soon u-reveal" data-cat="ai-dev">
-                <div class="resource-card__top">
-                    <span class="pill pill--soon">Coming soon</span>
-                    <span class="resource-card__type">Template</span>
-                    <span class="resource-card__tool tool--claude">Claude Code</span>
-                </div>
-                <h2 class="resource-card__title">CLAUDE.md Template</h2>
-                <p class="muted">A starting <code>CLAUDE.md</code> for handing a codebase to Claude Code with the context it actually needs — project structure, conventions, and the things that are easy to get wrong.</p>
-                <span class="link-ghost link-ghost--disabled" aria-disabled="true">Not published yet</span>
-            </article>
-
-            <!-- Resource: coming soon -->
-            <article class="card resource-card resource-card--soon u-reveal" data-cat="learning">
-                <div class="resource-card__top">
-                    <span class="pill pill--soon">Coming soon</span>
-                    <span class="resource-card__type">Guide</span>
-                    <span class="resource-card__tool">Any AI tool</span>
-                </div>
-                <h2 class="resource-card__title">Vibe Coding Map</h2>
-                <p class="muted">A map of where AI-assisted ("vibe") coding actually speeds you up, and where it quietly creates a mess you'll pay for later.</p>
-                <span class="link-ghost link-ghost--disabled" aria-disabled="true">Not published yet</span>
-            </article>
-
-        </section>
+      <section class="track u-reveal" id="track-start" data-cat="learning">
+        <header class="track__head">
+          <span class="track__num" aria-hidden="true">02</span>
+          <div class="track__headtext">
+            <h2 class="track__title">How to start coding now</h2>
+            <p class="track__blurb">A beginner's path at a time when AI writes half the code for you. Not "learn the syntax", but how to learn so that you still know it yourself a year from now.</p>
+            <p class="track__meta">
+              <span class="resource-card__tool">Any AI tool</span>
+              <span>5 steps · 0 ready</span>
+            </p>
+          </div>
+        </header>
+        <ol class="track-steps">
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">1</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Where to start — and what you can't skip</h3>
+              <p class="track-step__desc">What changed in the last two years, and what stayed exactly the same.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">2</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Your setup: editor, terminal, Git</h3>
+              <p class="track-step__desc">The minimum kit that covers your first six months, without the extra noise.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">3</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">A first project, from empty folder to live</h3>
+              <p class="track-step__desc">Small but complete: from an empty folder to a link you can send someone.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">4</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">The vibe coding map: where AI helps, where it hurts</h3>
+              <p class="track-step__desc">Where AI-assisted coding genuinely speeds you up, and where it quietly creates a mess you'll pay for later.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">5</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">A portfolio that means something</h3>
+              <p class="track-step__desc">Why three tutorial clones say nothing, and what to show instead.</p>
+              <span class="track-step__soon">Coming soon</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+      <!-- TRACKS:END -->
     </main>
 
     <footer class="site-footer" role="contentinfo">

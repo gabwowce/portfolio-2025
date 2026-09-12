@@ -62,10 +62,20 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codeart.lt/en/resources.html</loc>
-    <lastmod>2026-09-10</lastmod>
+    <loc>https://codeart.lt/lt/resources.html</loc>
+    <lastmod>2026-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources.html"/>
+  </url>
+  <url>
+    <loc>https://codeart.lt/en/resources.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources.html"/>
   </url>
   <url>
     <loc>https://codeart.lt/en/resources/claude-code-guardrails.html</loc>

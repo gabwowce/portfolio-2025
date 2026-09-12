@@ -5,13 +5,27 @@
   left: 0;
   right: 0;
   z-index: 99999;
-  background: transparent; /* jokio fono */
+  /*
+    Transparent-until-scrolled looked fine over a light hero, but a dark
+    hero (resource pages, dark theme) is close enough to the header's own
+    color that the bar disappeared into the page - no edge, no shadow,
+    nothing marking where "chrome" stops and "content" starts. A always-on
+    hairline + soft shadow gives it a boundary at every scroll position;
+    the background/blur below still only kick in once scrolled, so the
+    header reads as a bar first, then gains a solid backing as content
+    passes under it.
+  */
+  background: transparent;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  box-shadow: 0 1px 24px color-mix(in srgb, #000 10%, transparent);
   padding: 0 0.9rem;
   -webkit-backdrop-filter: saturate(1.2) blur(8px);
+  backdrop-filter: saturate(1.2) blur(8px);
 }
 /* Kai scrolled ↓ */
 .scrolled .site-header {
   background: color-mix(in srgb, var(--bg) 94%, transparent);
+  border-bottom-color: var(--border);
   backdrop-filter: saturate(1.2) blur(8px);
   -webkit-backdrop-filter: saturate(1.2) blur(8px);
 }

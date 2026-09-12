@@ -492,3 +492,179 @@
   flex-wrap: wrap;
   row-gap: 6px;
 }
+
+/* ---- Tracks -------------------------------------------------------
+   A flat grid of cards said "here are three things I wrote". A track
+   says "here is the path" - so the steps are a numbered list with a
+   rail running through them, and unpublished steps stay visible but
+   visibly quieter. The rail is the whole point: it is what makes the
+   page read as a course rather than a pile.
+*/
+
+.resources-intro {
+  max-width: 68ch;
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.track {
+  margin-bottom: clamp(32px, 5vw, 56px);
+  padding: clamp(22px, 3.2vw, 34px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.track__head {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(14px, 2.4vw, 24px);
+  padding-bottom: clamp(18px, 2.6vw, 26px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* The track number is the anchor: it says "this is one of a set, and
+   it has an order". Large and quiet rather than large and loud. */
+.track__num {
+  flex-shrink: 0;
+  font-family: "Clash Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 0.85;
+  color: color-mix(in srgb, var(--accent) 42%, transparent);
+  letter-spacing: -0.02em;
+}
+
+.track__headtext {
+  min-width: 0;
+}
+
+.track__title {
+  margin: 0 0 8px;
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  line-height: 1.15;
+}
+
+.track__blurb {
+  margin: 0 0 12px;
+  max-width: 62ch;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.track__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+/* ---- Steps ---- */
+
+.track-steps {
+  list-style: none;
+  margin: 0;
+  padding: clamp(18px, 2.6vw, 26px) 0 0;
+  counter-reset: step;
+}
+
+.track-step {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-bottom: clamp(18px, 2.6vw, 26px);
+}
+.track-step:last-child {
+  padding-bottom: 0;
+}
+
+/*
+  The rail is drawn from each marker down to the next one, so it stops
+  cleanly at the last step instead of dangling into the padding.
+*/
+.track-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--border);
+}
+
+.track-step__n {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* A published step is the one you can act on right now, so it is the
+   only thing on the rail carrying the accent. */
+.track-step.is-ready .track-step__n {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+
+.track-step__body {
+  min-width: 0;
+  padding-top: 3px;
+}
+
+.track-step__title {
+  margin: 0 0 5px;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--text);
+}
+.track-step:not(.is-ready) .track-step__title {
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+}
+
+.track-step__desc {
+  margin: 0 0 8px;
+  max-width: 64ch;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.track-step__desc code {
+  font-size: 0.86em;
+}
+
+.track-step__soon,
+.track-step__note {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--muted) 82%, transparent);
+}
+.track-step__soon {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px dashed var(--border);
+}
+
+@media (max-width: 560px) {
+  .track__head {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .track__num {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="lt">
+  <head>
+    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Nemokami resursai programuotojams | Gabrielė</title>
+    <meta
+      name="description"
+      content="Nemokami, praktiški resursai programuotojams: guardrails, šablonai ir gidai, kuriuos gali skaityti ir naudoti tiesiog puslapyje — jokio el. pašto nereikia."
+    />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://codeart.lt/lt/resources.html" />
+    <link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources.html" />
+    <link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources.html" />
+    <link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/resources.html" />
+    <!-- Canonical + hreflang -->
+    <!-- Ikonos / tema -->
+    <link rel="icon" href="../img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f2f0e9" />
+
+    <!-- Open Graph / X -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="lt_LT" />
+    <meta property="og:title" content="Gabrielė – Nemokami resursai" />
+    <meta
+      property="og:description"
+      content="Nemokami, praktiški resursai programuotojams — skaityk ir naudok tiesiog puslapyje."
+    />
+    <meta property="og:url" content="https://codeart.lt/lt/resources.html" />
+    <meta property="og:image" content="https://codeart.lt/img/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preload'ai (kelias iš /lt/) -->
+    <link
+      rel="preload"
+      href="../fonts/clash/ClashGrotesk-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <script src="../js/script.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/about.css" />
+    <link rel="stylesheet" href="../css/aside.css" />
+    <link rel="stylesheet" href="../css/contact-me.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/person.css" />
+    <link rel="stylesheet" href="../css/hero.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/card.css" />
+    <link rel="stylesheet" href="../css/projects.css" />
+    <link rel="stylesheet" href="../css/resources.css" />
+
+    <!-- JSON-LD: CollectionPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Nemokami resursai – Gabrielė / Codeart",
+        "inLanguage": "lt",
+        "url": "https://codeart.lt/lt/resources.html"
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- HEADER (be aside) -->
+    <header class="site-header">
+      <div class="container header-in">
+        <a id="brand" class="brand" href="/lt">
+          <span class="icon" aria-hidden="true">GT</span>
+          <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+        </a>
+        <button
+          class="hamburger"
+          id="navToggle"
+          aria-label="Atverti meniu"
+          aria-controls="primaryNav"
+          aria-expanded="false"
+        >
+          <span class="hamburger__bar" aria-hidden="true"></span>
+          <span class="hamburger__bar" aria-hidden="true"></span>
+          <span class="hamburger__bar" aria-hidden="true"></span>
+        </button>
+
+        <nav class="main-nav">
+          <button class="nav-close" id="navClose" aria-label="Uždaryti meniu">
+            ✕
+          </button>
+          <a class="nav-link" href="/">Pagrindinis</a>
+          <a class="nav-link" href="about.html">Apie</a>
+          <a class="nav-link" href="portfolio.html">Portfolio</a>
+          <a class="nav-link" href="services.html">Paslaugos</a>
+          <a class="nav-link active" href="resources.html">Resursai</a>
+          <a class="nav-link" href="contact.html">Kontaktai</a>
+
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Perjungti šviesią ir tamsią temą" title="Perjungti šviesią ir tamsią temą">
+              <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+              <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+          </button>
+          <div class="nav-lang">
+            <a
+              id="langSwitch"
+              class="nav-link"
+              href="/en/resources.html"
+              hreflang="en"
+              aria-label="Switch language"
+              >EN</a
+            >
+          </div>
+        </nav>
+        <div class="nav-overlay" id="navOverlay" hidden></div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="card-hero hero u-stagger">
+      <div class="container hero-grid-mini">
+        <div class="hero-copy">
+          <h1 class="display-l u-reveal">RESURSAI</h1>
+          <p class="lead u-reveal">
+            Nemokami, praktiški dalykai programuotojams. Skaityk tiesiog
+            puslapyje — jokio el. pašto nereikia, kad pamatytum, kas viduje.
+          </p>
+        </div>
+        <figure class="hero-portrait u-reveal">
+          <img
+            src="../img/person/cross-legs-loptop.webp"
+            srcset="../img/person/cross-legs-loptop-450.webp 450w, ../img/person/cross-legs-loptop.webp 900w"
+            sizes="(max-width: 640px) 62vw, 420px"
+            alt="Gabrielė sėdi sukryžiavusi kojas su nešiojamu kompiuteriu"
+            width="900"
+            height="1141"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <main class="content content--single container">
+      <!--
+        Temos yra filtrai viename puslapyje, ne atskiri puslapiai.
+        Kategorija gauna savo puslapį tik kai turinio jai užtenka pilnam
+        puslapiui - tuščias kambarys atrodo blogiau nei jo nebuvimas.
+      -->
+      <!-- TRACKS:START -->
+      <p class="resources-intro u-reveal">Resursai sudėlioti į nuoseklius takelius — eik iš eilės arba šok į tą žingsnį, kurio tau trūksta. Tušti žingsniai palikti matomi specialiai: taip matai visą kelią, ne tik tai, kas jau parašyta.</p>
+
+      <section class="track u-reveal" id="track-claude-code" data-cat="ai-dev">
+        <header class="track__head">
+          <span class="track__num" aria-hidden="true">01</span>
+          <div class="track__headtext">
+            <h2 class="track__title">Claude Code nuo nulio</h2>
+            <p class="track__blurb">Nuo pirmo paleidimo iki to, kad agentas dirbtų tavo projekte saugiai ir su tavo taisyklėmis. Eik iš eilės — kiekvienas žingsnis remiasi ankstesniu.</p>
+            <p class="track__meta">
+              <span class="resource-card__tool tool--claude">Claude Code</span>
+              <span>6 žingsnių · 1 paruošta</span>
+            </p>
+          </div>
+        </header>
+        <ol class="track-steps">
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">1</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Kas yra Claude Code ir kaip jį paleisti</h3>
+              <p class="track-step__desc">Kuo agentas terminale skiriasi nuo pokalbio naršyklėje, ir ką jis gali pasiekti tavo kompiuteryje.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">2</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Projektas, kontekstas ir CLAUDE.md</h3>
+              <p class="track-step__desc">Ką agentas turi žinoti apie tavo kodą, kad nustotų spėlioti — ir kaip tai surašyti vieną kartą.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step is-ready">
+            <span class="track-step__n" aria-hidden="true">3</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Saugikliai: kad agentas nesugriautų projekto</h3>
+              <p class="track-step__desc">Paruoštas <code>.claude/settings.json</code> su penkiais saugikliais ir <code>guard.sh</code> skriptu — su paaiškinimu, ką kiekvienas realiai blokuoja.</p>
+              <a class="link-ghost" href="/en/resources/claude-code-guardrails.html" hreflang="en">Skaityti →</a> <span class="track-step__note">(anglų k.)</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">4</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Hooks giliau: kada „ask“, kaip juos testuoti</h3>
+              <p class="track-step__desc">Kai blokuoti per griežta, o praleisti per rizikinga — trečias kelias ir kaip patikrinti, kad veikia.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">5</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Savos komandos ir skills</h3>
+              <p class="track-step__desc">Kaip pasidaryti, kad pasikartojantis darbas būtų viena komanda, o ne tas pats promptas kas kartą.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">6</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">MCP: kaip prijungti savo įrankius</h3>
+              <p class="track-step__desc">Kad agentas pasiektų tavo duomenų bazę, API ar vidinę sistemą — ir tik tiek, kiek leidi.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="track u-reveal" id="track-start" data-cat="learning">
+        <header class="track__head">
+          <span class="track__num" aria-hidden="true">02</span>
+          <div class="track__headtext">
+            <h2 class="track__title">Kaip pradėti programuoti dabar</h2>
+            <p class="track__blurb">Kelias pradedančiajam tuo metu, kai AI rašo pusę kodo už tave. Ne „išmok sintaksę“, o kaip išmokti taip, kad po metų dar mokėtum pats.</p>
+            <p class="track__meta">
+              <span class="resource-card__tool">Bet koks AI įrankis</span>
+              <span>5 žingsnių · 0 paruošta</span>
+            </p>
+          </div>
+        </header>
+        <ol class="track-steps">
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">1</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Nuo ko pradėti — ir ko negalima praleisti</h3>
+              <p class="track-step__desc">Kas pasikeitė per pastaruosius dvejus metus, o kas liko lygiai toks pat.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">2</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Aplinka: redaktorius, terminalas, Git</h3>
+              <p class="track-step__desc">Minimalus rinkinys, kurio užtenka pirmam pusmečiui, be papildomo triukšmo.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">3</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Pirmas projektas nuo nulio iki gyvo</h3>
+              <p class="track-step__desc">Mažas, bet pilnas: nuo tuščio aplanko iki nuorodos, kurią gali kam nors nusiųsti.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">4</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Vibe coding žemėlapis: kur AI padeda, kur kenkia</h3>
+              <p class="track-step__desc">Kur programavimas su AI tikrai pagreitina darbą, o kur tyliai susikuria netvarka, už kurią sumokėsi vėliau.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+          <li class="track-step">
+            <span class="track-step__n" aria-hidden="true">5</span>
+            <div class="track-step__body">
+              <h3 class="track-step__title">Portfolio, kuris ką nors reiškia</h3>
+              <p class="track-step__desc">Kodėl trys tutorial'ų klonai nieko nesako, ir ką rodyti vietoj jų.</p>
+              <span class="track-step__soon">Netrukus</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+      <!-- TRACKS:END -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <section class="cta-contact">
+        <div class="container footer-card-flex">
+          <figure class="person-figure person-cta" aria-hidden="true">
+            <img src="../img/person/fingers-down-half-body.webp" srcset="../img/person/fingers-down-half-body-450.webp 450w, ../img/person/fingers-down-half-body.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1173" loading="lazy" decoding="async">
+          </figure>
+          <div class="cta-contact__text">
+            <h3>Turi projekto idėją?</h3>
+            <p>Nemokamas 20 min pokalbis — atsakau per 24 val. su preliminariu planu ir kaina.</p>
+          </div>
+          <a class="btn-pill" href="/lt/contact.html">Susisiekti →</a>
+        </div>
+      </section>
+
+      <div class="footer-in container">
+        <div class="footer-top">
+          <section>
+            <a class="brand" href="/lt/index.html"> <span class="icon" aria-hidden="true">GT</span>
+              <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+            </a>
+            <p class="brand-note">Programuotoja ir produkto kūrėja. Dėmesys naudotojo patirčiai ir kokybei.</p>
+            <div class="socials" aria-label="Socialiniai tinklai">
+              <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              </a>
+              <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a class="soc" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 3.2v11.6a4.4 4.4 0 1 1-3.6-4.3"/><path d="M15.2 3.2c.3 2.4 2.2 4.3 4.6 4.6"/></svg>
+              </a>
+              <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="El. paštas" title="El. paštas">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+              </a>
+            </div>
+          </section>
+
+          <nav class="footer-card" aria-labelledby="flinks">
+            <h3 id="flinks" class="footer-title">Nuorodos</h3>
+            <ul class="footer-list">
+              <li><a class="footer-link" href="/lt/index.html">Pagrindinis</a></li>
+              <li><a class="footer-link" href="/lt/about.html">Apie</a></li>
+              <li><a class="footer-link" href="/lt/portfolio.html">Portfolio</a></li>
+              <li><a class="footer-link" href="/lt/services.html">Paslaugos</a></li>
+              <li><a class="footer-link" href="/lt/resources.html">Resursai</a></li>
+              <li><a class="footer-link" href="/lt/contact.html">Kontaktai</a></li>
+            </ul>
+          </nav>
+
+          <section class="footer-card" aria-labelledby="fnews">
+            <h3 id="fnews" class="footer-title">Trumpa žinutė</h3>
+            <form class="newsletter" action="https://formspree.io/f/xeorkyne" method="POST">
+              <input class="input" type="email" name="email" placeholder="El. paštas" aria-label="El. paštas" required>
+              <input class="input" type="text" name="Message" placeholder="Žinutė" aria-label="Žinutė" required>
+              <input type="text" name="_gotcha" style="display:none">
+              <button class="btn-pill" type="submit">Parašyk 👋</button>
+              <p class="form-note" role="status" aria-live="polite"></p>
+              <small class="brand-note">Parašyk man — atsakau per 24 val.</small>
+            </form>
+          </section>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2025 Gabrielė · Codeart</span>
+          <div class="mini-nav">
+            <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
