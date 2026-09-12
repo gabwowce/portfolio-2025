@@ -384,3 +384,208 @@
   object-fit: cover;
   border-bottom: 1px solid var(--border);
 }
+
+/* ==================================================================
+   Split project cards
+   ------------------------------------------------------------------
+   Stacking a wide screenshot on top of a long description makes every
+   card a full screen tall, so the page reads as a queue rather than a
+   portfolio. Side by side, the visual and the writing are taken in
+   together, and alternating which side the visual sits on gives the
+   column a rhythm instead of a rail.
+
+   The split only applies where there is room for it; below 900px the
+   card falls back to the stacked order it already had.
+   ================================================================== */
+
+@media (min-width: 900px) {
+  .project--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    /* Both columns start at the top. Centring left the shorter column
+       floating with dead space above and below it. */
+    align-items: start;
+    gap: clamp(20px, 3vw, 40px);
+    padding: clamp(20px, 2.6vw, 32px);
+  }
+  /*
+    .project.project-xl zeroes padding-left to make room for a vertical
+    share rail these cards do not use - they carry .share--overlay inside
+    .meta instead - and it outranks the shorthand above, so the visual
+    ended up flush against the card edge. Put it back.
+  */
+  .project.project-xl.project--split {
+    padding-left: clamp(20px, 2.6vw, 32px);
+  }
+  /* The visual reads first on the left card, so the eye lands on the
+     product before the prose. Every second card mirrors it. */
+  .project--split:nth-of-type(even) .proj-visual {
+    order: 2;
+  }
+  .project--split .meta {
+    padding: 0;
+  }
+  /* The card's own padding replaces the flush-to-edge treatment the
+     stacked layout relies on. */
+  .project--split .thumb--shot img,
+  .project--split .sysmap {
+    border-radius: 14px;
+    border-bottom: 0;
+  }
+  .project--split .sysmap {
+    border: 1px solid var(--border);
+  }
+}
+
+/* The visual column: frame plus, where there are more screens, the
+   small gallery under it. */
+.proj-visual {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+/* ---- Device frames ----------------------------------------------
+   A raw screenshot floating on a card looks like a file someone
+   dropped in. Inside a frame it reads as a product on a screen - and
+   the frame is drawn in CSS rather than shipped as another image, so
+   it costs nothing and follows the theme.
+*/
+.mock {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 12px 30px color-mix(in srgb, #000 12%, transparent);
+}
+/* Browser chrome: the three dots and an address rail, drawn on one
+   bar so the screenshot below reads as "a page", not "an image". */
+.mock__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--text) 6%, var(--card));
+  border-bottom: 1px solid var(--border);
+}
+.mock__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+}
+.mock__addr {
+  flex: 1;
+  height: 12px;
+  margin-left: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+}
+.project .mock img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Laptop: the chrome bar plus a base below, so the screen sits on
+   something. The notch is the trackpad. */
+.mock--laptop::after {
+  content: "";
+  display: block;
+  height: 10px;
+  background: color-mix(in srgb, var(--text) 10%, var(--card));
+  border-top: 1px solid var(--border);
+}
+
+/* ---- Screen gallery --------------------------------------------- */
+.proj-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.proj-shots li {
+  margin: 0;
+}
+.proj-shots figure {
+  margin: 0;
+}
+.proj-shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.proj-shots figcaption {
+  margin-top: 5px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ---- Sidebar at the end of the portfolio ------------------------
+   The profile card used to take a 340px column beside the projects,
+   which left every project card squeezed into about half the page.
+   On this page it goes to the bottom instead, where it still catches
+   anyone who scrolled the whole list.
+*/
+.content--projects {
+  grid-template-columns: minmax(0, 1fr);
+}
+/*
+  With the sidebar column gone, the projects can use the width it was
+  holding. .container caps at 1024px until 1536px, which would leave the
+  split cards narrower than the layout they were designed for.
+*/
+@media (min-width: 1180px) {
+  .content--projects.container {
+    max-width: min(1320px, 100% - 64px);
+  }
+}
+.content--projects .sidebar {
+  position: static;
+  justify-self: center;
+  width: min(100%, 420px);
+  margin-top: clamp(40px, 7vw, 80px);
+}
+
+/* ---- Split-card entrance ----------------------------------------
+   The two halves arrive from their own sides rather than both rising
+   from below, so the card assembles itself instead of just fading in.
+   It reuses the existing .u-reveal / .is-inview machinery - only the
+   starting transform changes - so there is no second observer and no
+   extra JS.
+
+   Only above 900px, where the card actually is two columns; stacked,
+   a sideways slide would read as a layout glitch. The global
+   prefers-reduced-motion block already neutralises .u-reveal, and the
+   :not() guard below keeps these rules from re-introducing it.
+*/
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .project--split > .proj-visual.u-reveal,
+  .project--split > .thumb.u-reveal,
+  .project--split > .sysmap.u-reveal {
+    transform: translateX(-26px);
+  }
+  .project--split > .meta.u-reveal {
+    transform: translateX(26px);
+  }
+  /* Mirrored cards come from the mirrored side. */
+  .project--split:nth-of-type(even) > .proj-visual.u-reveal,
+  .project--split:nth-of-type(even) > .thumb.u-reveal,
+  .project--split:nth-of-type(even) > .sysmap.u-reveal {
+    transform: translateX(26px);
+  }
+  .project--split:nth-of-type(even) > .meta.u-reveal {
+    transform: translateX(-26px);
+  }
+  .project--split > .u-reveal.is-inview {
+    transform: translateX(0);
+  }
+}
