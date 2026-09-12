@@ -40,6 +40,8 @@
 }
 #card .slides {
   display: flex;
+  align-items: center; /* the slide is 85% tall; without this it pins to the
+                          top and leaves the gap below reading as a bug */
   width: 100%;
   height: 100%;
   transition: transform 0.55s ease;

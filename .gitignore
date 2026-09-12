@@ -1,3 +1,9 @@
 guard.log
 .DS_Store
 **/.DS_Store
+
+# Screenshots of the client's production loyalty system. They show a real
+# cardholder's name, two phone numbers, card numbers, balances and the
+# client's branding, so they must never be committed to a public repo.
+# Kept locally as reference only.
+img/ac/

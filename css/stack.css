@@ -194,3 +194,105 @@
     gap: 10px;
   }
 }
+
+/* ---- Project card with no screenshot ----------------------------- */
+
+/*
+  One project is a client's internal system, so no screen of it can ever
+  be published. A card with an empty image slot reads as unfinished, and
+  a stock photo reads as filler - so the slot carries what the system
+  actually is instead: its eight domains, drawn the same dimmed way as
+  the homepage mockups, with the reason the screens are absent stated
+  rather than hidden. Saying "client system" out loud is itself a signal
+  to the next client.
+*/
+.sysmap {
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 48px);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+  border-bottom: 1px solid var(--border);
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--text) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--text) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 32px 32px;
+}
+.sysmap__inner {
+  width: min(100%, 620px);
+  text-align: center;
+}
+.sysmap__domains {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.sysmap__domains li {
+  padding: 14px 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+/* The first tile is the one she rebuilt end to end; it carries the accent
+   so the block has a focal point instead of reading as a flat table. */
+.sysmap__domains li:first-child {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.sysmap__note {
+  margin: 14px 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .sysmap__domains {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+  Lead-in on a paragraph that answers a specific question ("the hard
+  part", "honestly"), so a card can be skimmed by question rather than
+  read straight through.
+*/
+.proj-aspect {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/*
+  Homepage version of the same block: it sits in a small grid card, so it
+  drops to six domains in three columns and loses the outer padding.
+*/
+.sysmap--mini {
+  /* The card is a flex column and its height is set by its neighbours'
+     380px screenshots, so without this the block sits at the top and
+     leaves a dead white gap above the title. */
+  flex: 1 1 auto;
+  padding: clamp(16px, 3vw, 26px);
+  min-height: 220px;
+}
+.sysmap--mini .sysmap__domains {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.sysmap--mini .sysmap__domains li {
+  padding: 10px 6px;
+  font-size: 0.72rem;
+}

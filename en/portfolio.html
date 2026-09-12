@@ -118,14 +118,30 @@
 
             <!-- <h3 class="heading-section display-m">FEATURED PROJECTS</h3> -->
             <div class="featured-grid ">
-                <article class="project project-xl u-stagger" id="keepmi" data-cat="web">
-                    <div class="thumb u-reveal"><img src="../img/keepmi.png" alt="keepmi — digital invitations and event guest hub" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low">
-                        <div class="meta u-reveal u-stagger">
-                            <h3 class="u-reveal">keepmi — Digital Invitations & Guest Hub</h3>
-                            <p class="sub u-reveal">
-                                Web · 2026 ·
-                                <a class="link-ghost" href="https://keepmi.app/" target="_blank" rel="noopener">Live demo</a>
-                            </p>
+<article
+            class="project project-xl project--sys u-stagger"
+            id="loyalty-backoffice"
+            data-cat="web"
+          >
+            <div class="sysmap u-reveal" role="img" aria-label="Client system — screens not shown">
+              <div class="sysmap__inner">
+                <ul class="sysmap__domains">
+                  <li>Cards</li>
+                  <li>Clients</li>
+                  <li>Loyalty</li>
+                  <li>Transactions</li>
+                  <li>Dashboard</li>
+                  <li>Configuration</li>
+                  <li>Settings</li>
+                  <li>Audit log</li>
+                </ul>
+                <p class="sysmap__note">Client system — screens not shown</p>
+              </div>
+            </div>
+
+            <div class="meta u-reveal u-stagger">
+              <h3 class="u-reveal">Loyalty management system — B2B backoffice</h3>
+              <p class="sub u-reveal">Web · client project · screens not shown</p>
                             <div class="share share--overlay u-reveal" data-share>
                 <a
                   class="share-btn"
@@ -187,188 +203,129 @@
                   </svg>
                 </a>
               </div>
+              <p class="desc u-reveal">An internal system in daily use: loyalty cards, cardholders, organisations and transactions. Its users are the company's own staff, not end customers, so everything turns on permissions, auditability and data accuracy.</p>
+
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">The hard part.</strong>
+                Not the interface — keeping data and logic consistent with a live backend that keeps changing. API types are generated from the backend schema, so every schema change has to be re-synced before a user runs into it. Bulk card actions have two completely different paths that both need equal support. Multi-step forms with dynamic fields produced stale-closure validation bugs. And migrating promotions off the old system, with its priority rules, meant backfilling the data before anything could be switched over.
+              </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">My role.</strong>
+                Not just the frontend. I scope and hand off work to the backend developer, agree the API contracts and steer the project as a whole — and I built the early stage alone, before a backend developer joined.
+              </p>
+              <div class="stack">
+                <span class="stack__label">How it's built</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">React + TS<small>backoffice UI</small></li>
+                  <li class="stack-node">RTK Query<small>types from schema</small></li>
+                  <li class="stack-node">AG Grid<small>large tables</small></li>
+                  <li class="stack-node">REST API<small>live backend</small></li>
+                </ul>
+                <ul class="stack-facts">
+                  <li><strong>~27</strong>routes</li>
+                  <li><strong>8</strong>domains</li>
+                  <li><strong>2 × ~2200</strong>translation keys</li>
+                  <li><strong>Roles</strong>and audit log</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+                <article class="project project-xl u-stagger" id="keepmi" data-cat="web">
+                    <div class="thumb thumb--shot u-reveal"><img
+                src="../img/keepmi/landing-hero-1400.webp"
+                srcset="../img/keepmi/landing-hero-700.webp 700w, ../img/keepmi/landing-hero-1400.webp 1400w"
+                sizes="(max-width: 768px) 100vw, 1100px"
+                alt="keepmi — invitation and guest hub landing page"
+                width="1400"
+                height="840"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="x"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on X"
+                  title="X"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="linkedin"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on LinkedIn"
+                  title="LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="pinterest"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Pinterest"
+                  title="Pinterest"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
+                    />
+                  </svg>
+                </a>
+              </div>
                             <p class="desc u-reveal">
                                 Digital invitations that collect guest wishes ahead of the event, and on the day itself become a full guest hub in one place: a shared photo album, the event schedule, quizzes and bingo, song requests, wish-writing and more. Everything works right in the browser, no separate apps or files needed. Ships with a multilingual (LT/EN/UK) interface, a management dashboard and selectable designs.
                             </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">The hard part.</strong>
+                Not the invitation — everything around it. The organiser's
+                dashboard and the guest's side have to show the same event from
+                two completely different angles, through one link, with no
+                signup and no app. On top of that: three languages via
+                next-intl, plan limits, Stripe billing and Supabase auth.
+              </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Honestly.</strong>
+                This is a working MVP, not a finished product: some form fields
+                and RSVP answers aren't persisted yet, and there are no real
+                users — it's a development environment. I show it as a fully
+                wired system, from auth through to payments, not as a business
+                result.
+              </p>
+              <div class="stack">
+                <span class="stack__label">How it's built</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">Next.js<small>organiser + guest</small></li>
+                  <li class="stack-node">next-intl<small>LT / EN / UK</small></li>
+                  <li class="stack-node">Supabase<small>auth, data</small></li>
+                  <li class="stack-node">Stripe<small>plans, billing</small></li>
+                </ul>
+                <ul class="stack-facts">
+                  <li><strong>3</strong>languages</li>
+                  <li><strong>2</strong>surfaces per event</li>
+                  <li><strong>MVP</strong>working, unfinished</li>
+                </ul>
+              </div>
                         </div>
                     </div>
                 </article>
-
-<article class="project project-xl u-stagger" id="carestudio" data-cat="web">
-                    <div class="thumb u-reveal"><img src="../img/Group 189.webp" alt="CareStudio — WordPress block theme screen" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low">
-                        <div class="meta u-reveal u-stagger">
-                            <h3 class="u-reveal">CareStudio — WordPress Block Theme</h3>
-                            <p class="sub">Web · 2025</p>
-                                          <div class="share share--overlay u-reveal" data-share>
-                <a
-                  class="share-btn"
-                  data-network="facebook"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Facebook"
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="x"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on X"
-                  title="X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on LinkedIn"
-                  title="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="pinterest"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Pinterest"
-                  title="Pinterest"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
-                    />
-                  </svg>
-                </a>
-              </div>
-                            <p class="desc">
-                                A wellness studio website the client can edit themselves — no developer needed for content updates. Fast-loading and search-engine ready, so new clients can find the business on Google.
-                            </p>
-                        </div>
-
-                </article>
-
-<article
-  class="project project-xl u-stagger"
-  id="ltsa"
-  data-cat="web"
->
-  <div class="thumb u-reveal">
-    <img
-      src="../img/LTSA.png"
-      alt="LTSA — Web survey project (HTML, CSS, JavaScript)"
-      width="750"
-      height="590"
-      loading="lazy"
-      decoding="async"
-      fetchpriority="low"
-    />
-  </div>
-
-  <div class="meta u-reveal u-stagger">
-    <h3 class="u-reveal">LTSA — Web survey project</h3>
-
-    <p class="sub u-reveal">
-      Web · 2026 ·
-      <a
-        class="link-ghost"
-        href="https://ltsa.vercel.app/"
-        target="_blank"
-        rel="noopener"
-      >
-        Live demo
-      </a>
-    </p>
-                  <div class="share share--overlay u-reveal" data-share>
-                <a
-                  class="share-btn"
-                  data-network="facebook"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Facebook"
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="x"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on X"
-                  title="X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on LinkedIn"
-                  title="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="pinterest"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Pinterest"
-                  title="Pinterest"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
-                    />
-                  </svg>
-                </a>
-              </div>
-
-    <p class="desc u-reveal">
-      An interactive quiz that collects emails automatically — every
-      response lands in Google Sheets with zero manual data entry. A
-      handy tool for capturing leads or driving social engagement.
-    </p>
-
-  </div>
-</article>
-
 <article
   class="project project-xl u-stagger"
   id="kidcan"
@@ -479,41 +436,16 @@
 
   </div>
 </article>
-
-<article
-  class="project project-xl u-stagger"
-  id="codeart"
-  data-cat="web"
->
-  <div class="thumb u-reveal">
-    <img
-      src="../img/portfolio.png"
-      alt="Codeart — Business portfolio website (HTML, CSS, JavaScript)"
-      width="750"
-      height="590"
-      loading="lazy"
-      decoding="async"
-      fetchpriority="low"
-    />
-  </div>
-
-  <div class="meta u-reveal u-stagger">
-    <h3 class="u-reveal">
-      Codeart — Business portfolio website
-    </h3>
-
-    <p class="sub u-reveal">
-      Web · 2026 ·
-      <a
-        class="link-ghost"
-        href="https://codeart.lt/"
-        target="_blank"
-        rel="noopener"
-      >
-        Live demo
-      </a>
-    </p>
-              <div class="share share--overlay u-reveal" data-share>
+<article class="project project-xl u-stagger" id="kibinai" data-cat="web">
+                    <div class="thumb u-reveal"><img src="../img/kibinai-group.png" alt="Kibinai Vilnius — restaurant website screen" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low"></div>
+                    <div class="meta u-reveal u-stagger">
+                        <h3 class="u-reveal">Kibinai Vilnius — Headless React + WordPress</h3>
+                        <p class="sub u-reveal">
+                            Web · 2025 ·
+                            <a class="link-ghost" href="https://kibinaivilnius.lt/" target="_blank" rel="noopener">Live site</a> ·
+                            <a class="link-ghost" href="https://github.com/gabwowce/Kibinukai" target="_blank" rel="noopener">GitHub</a>
+                        </p>
+                                      <div class="share share--overlay u-reveal" data-share>
                 <a
                   class="share-btn"
                   data-network="facebook"
@@ -574,15 +506,226 @@
                   </svg>
                 </a>
               </div>
+                        <p class="desc u-reveal">
+                            A restaurant website for a real business: menu, content, and news are all editable without a developer, while visitors get a fast-loading, SEO-optimized site that helps them discover the restaurant through Google.
+                        </p>
+                        <div class="stack">
+                          <span class="stack__label">How it's built</span>
+                          <ul class="stack-flow">
+                            <li class="stack-node">React<small>headless client</small></li>
+                            <li class="stack-node">WordPress<small>content API</small></li>
+                          </ul>
+                        </div>
+                    </div>
+                </article>
+<article
+            class="project project-xl u-stagger"
+            id="tikmaker"
+            data-cat="web"
+          >
+            <div class="thumb thumb--shot u-reveal">
+              <img
+                src="../img/TikMaker/main-1400.webp"
+                srcset="../img/TikMaker/main-700.webp 700w, ../img/TikMaker/main-1400.webp 1400w"
+                sizes="(max-width: 768px) 100vw, 1100px"
+                alt="TikMaker — scene timeline, inspector and preview"
+                width="1400"
+                height="812"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </div>
+
+            <div class="meta u-reveal u-stagger">
+              <h3 class="u-reveal">TikMaker — video editor with AI voiceover</h3>
+              <p class="sub u-reveal">
+                Web · internal tool · 2026 · <span class="stack-badge">AI inside</span>
+              </p>
+                            <div class="share share--overlay u-reveal" data-share>
+                <a
+                  class="share-btn"
+                  data-network="facebook"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Facebook"
+                  title="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="x"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on X"
+                  title="X"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="linkedin"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on LinkedIn"
+                  title="LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="pinterest"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Pinterest"
+                  title="Pinterest"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <p class="desc u-reveal">A tool I built for my own TikTok / Reels / Shorts content: a scene storyboard, a timeline with separate text, visual and audio tracks, and a real render to MP4 — not a mockup, projects export as actual files.</p>
+
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Where the AI is.</strong>
+                ElevenLabs text-to-speech (the multilingual model, which handles Lithuanian) is wired in through a server-side endpoint of my own, so the API key stays on the server and never reaches the browser. The decision that mattered: the generated voice track is written into the same audio manifest as every other sound effect. So it automatically gets a timeline row, a waveform, trim/split and volume — there is no separate "voice" pipeline to maintain.
+              </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Honestly.</strong>
+                This is an internal tool I use myself, not a product for sale. I show it because it demonstrates how an AI service gets wired into a real product: key on the server, output folded into the existing data model rather than bolted on the side.
+              </p>
+              <div class="stack">
+                <span class="stack__label">How it's built</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">React + TS<small>editor, timeline</small></li>
+                  <li class="stack-node">Serverio endpoint<small>API key stays here</small></li>
+                  <li class="stack-node stack-node--ai">ElevenLabs<small>text -&gt; speech</small></li>
+                  <li class="stack-node">Garsų manifestas<small>voice = just another track</small></li>
+                  <li class="stack-node">Remotion<small>render to MP4</small></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+<article
+  class="project project-xl u-stagger"
+  id="ltsa"
+  data-cat="web"
+>
+  <div class="thumb u-reveal">
+    <img
+      src="../img/LTSA.png"
+      alt="LTSA — Web survey project (HTML, CSS, JavaScript)"
+      width="750"
+      height="590"
+      loading="lazy"
+      decoding="async"
+      fetchpriority="low"
+    />
+  </div>
+
+  <div class="meta u-reveal u-stagger">
+    <h3 class="u-reveal">LTSA — Web survey project</h3>
+
+    <p class="sub u-reveal">
+      Web · 2026 ·
+      <a
+        class="link-ghost"
+        href="https://ltsa.vercel.app/"
+        target="_blank"
+        rel="noopener"
+      >
+        Live demo
+      </a>
+    </p>
+                  <div class="share share--overlay u-reveal" data-share>
+                <a
+                  class="share-btn"
+                  data-network="facebook"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Facebook"
+                  title="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="x"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on X"
+                  title="X"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="linkedin"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on LinkedIn"
+                  title="LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="pinterest"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Pinterest"
+                  title="Pinterest"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
     <p class="desc u-reveal">
-      A business website bringing services, portfolio, and a contact
-      form together in one place. Built to turn visitors into
-      inquiries — clear structure and mobile-friendly throughout.
+      An interactive quiz that collects emails automatically — every
+      response lands in Google Sheets with zero manual data entry. A
+      handy tool for capturing leads or driving social engagement.
     </p>
 
   </div>
 </article>
-
 <article class="project project-xl u-stagger" id="autorent" data-cat="web">
                     <div class="thumb u-reveal"><img src="../img/Group 200.webp" alt="AutoRent — car rental website screen" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low"></div>
                     <div class="meta u-reveal u-stagger">
@@ -668,7 +811,6 @@
 
                     </div>
                 </article>
-
 <article class="project  project-xl u-stagger" id="travel-app" data-cat="mobile">
                     <div class="thumb u-reveal"><img src="../img/123.webp" alt="Travel App — trip planning app screen" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low"></div>
                     <div class="meta u-reveal u-stagger">
@@ -743,90 +885,6 @@
                         </p>
                     </div>
                 </article>
-
-<article class="project project-xl u-stagger" id="kibinai" data-cat="web">
-                    <div class="thumb u-reveal"><img src="../img/kibinai-group.png" alt="Kibinai Vilnius — restaurant website screen" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low"></div>
-                    <div class="meta u-reveal u-stagger">
-                        <h3 class="u-reveal">Kibinai Vilnius — Headless React + WordPress</h3>
-                        <p class="sub u-reveal">
-                            Web · 2025 ·
-                            <a class="link-ghost" href="https://kibinaivilnius.lt/" target="_blank" rel="noopener">Live site</a> ·
-                            <a class="link-ghost" href="https://github.com/gabwowce/Kibinukai" target="_blank" rel="noopener">GitHub</a>
-                        </p>
-                                      <div class="share share--overlay u-reveal" data-share>
-                <a
-                  class="share-btn"
-                  data-network="facebook"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Facebook"
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="x"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on X"
-                  title="X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on LinkedIn"
-                  title="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="pinterest"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Pinterest"
-                  title="Pinterest"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
-                    />
-                  </svg>
-                </a>
-              </div>
-                        <p class="desc u-reveal">
-                            A restaurant website for a real business: menu, content, and news are all editable without a developer, while visitors get a fast-loading, SEO-optimized site that helps them discover the restaurant through Google.
-                        </p>
-                        <div class="stack">
-                          <span class="stack__label">How it's built</span>
-                          <ul class="stack-flow">
-                            <li class="stack-node">React<small>headless client</small></li>
-                            <li class="stack-node">WordPress<small>content API</small></li>
-                          </ul>
-                        </div>
-                    </div>
-                </article>
-
 <article class="project project-xl u-stagger" id="convertclimb" data-cat="mobile">
                     <div class="thumb u-reveal"><img src="../img/124.webp" alt="ConvertClimb — mobile app screen" width="750" height="590" loading="lazy" decoding="async" fetchpriority="low"></div>
                     <div class="meta u-reveal u-stagger">

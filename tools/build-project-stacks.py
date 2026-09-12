@@ -43,11 +43,45 @@ STACKS = {
         ],
         "facts": [],
     },
-    # --- Fill these in, then re-run. Left empty on purpose. ---
-    # "keepmi":      {"nodes": [], "facts": []},
-    # "kidcan":      {"nodes": [], "facts": []},
-    # "tikmaker":    {"nodes": [("ElevenLabs", "tekstas -> balsas|text -> speech", "ai")],
-    #                 "facts": []},
+    "keepmi": {
+        "nodes": [
+            ("Next.js", "organizatorius + svečias|organiser + guest", ""),
+            ("next-intl", "LT / EN / UK", ""),
+            ("Supabase", "autentifikacija, duomenys|auth, data", ""),
+            ("Stripe", "planai, mokėjimai|plans, billing", ""),
+        ],
+        "facts": [
+            ("3", "kalbos|languages"),
+            ("2", "sąsajos vienam įvykiui|surfaces per event"),
+            ("MVP", "veikiantis, nebaigtas|working, unfinished"),
+        ],
+    },
+    "tikmaker": {
+        "nodes": [
+            ("React + TS", "redaktorius, timeline|editor, timeline", ""),
+            ("Serverio endpoint", "API raktas lieka čia|API key stays here", ""),
+            ("ElevenLabs", "tekstas -> balsas|text -> speech", "ai"),
+            ("Garsų manifestas", "balsas = dar vienas takelis|voice = just another track", ""),
+            ("Remotion", "renderis į MP4|render to MP4", ""),
+        ],
+        "facts": [],
+    },
+    # The client system: named by what it does, never by the client's stack
+    # choices that could identify it.
+    "loyalty-backoffice": {
+        "nodes": [
+            ("React + TS", "backoffice UI", ""),
+            ("RTK Query", "tipai iš schemos|types from schema", ""),
+            ("AG Grid", "didelės lentelės|large tables", ""),
+            ("REST API", "gyvas backend'as|live backend", ""),
+        ],
+        "facts": [
+            ("~27", "maršrutų|routes"),
+            ("8", "sričių|domains"),
+            ("2 × ~2200", "vertimo raktų|translation keys"),
+            ("Rolės|Roles", "ir auditas|and audit log"),
+        ],
+    },
 }
 
 
@@ -99,11 +133,16 @@ def main():
             m = re.search(rf'id="{pid}"', s)
             if not m:
                 continue
-            # place it after the project's description paragraph
-            d = re.search(r'([ \t]*)<p class="desc[^"]*"[^>]*>.*?</p>\n', s[m.end():], re.S)
-            if not d:
+            # place it after the project's LAST description paragraph - a card
+            # may answer several questions in a row, and the strip belongs
+            # under all of them, not wedged between two.
+            end = s.index("</article>", m.end())
+            matches = list(re.finditer(
+                r'([ \t]*)<p class="desc[^"]*"[^>]*>.*?</p>\n', s[m.end():end], re.S))
+            if not matches:
                 print(f"  no description found for {pid} in {lang}")
                 continue
+            d = matches[-1]
             block = strip_html(pid, spec, lang, d.group(1))
             if not block:
                 continue

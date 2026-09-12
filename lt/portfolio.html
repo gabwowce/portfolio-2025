@@ -185,16 +185,130 @@
 
         <div class="featured-grid">
 <article
+            class="project project-xl project--sys u-stagger"
+            id="loyalty-backoffice"
+            data-cat="web"
+          >
+            <div class="sysmap u-reveal" role="img" aria-label="Klientinė sistema — ekranai nerodomi">
+              <div class="sysmap__inner">
+                <ul class="sysmap__domains">
+                  <li>Kortelės</li>
+                  <li>Klientai</li>
+                  <li>Lojalumas</li>
+                  <li>Transakcijos</li>
+                  <li>Dashboard</li>
+                  <li>Konfigūracija</li>
+                  <li>Nustatymai</li>
+                  <li>Audito žurnalas</li>
+                </ul>
+                <p class="sysmap__note">Klientinė sistema — ekranai nerodomi</p>
+              </div>
+            </div>
+
+            <div class="meta u-reveal u-stagger">
+              <h3 class="u-reveal">Lojalumo valdymo sistema — B2B backoffice</h3>
+              <p class="sub u-reveal">Web · klientinis projektas · ekranai nerodomi</p>
+              <div class="share share--overlay u-reveal" data-share>
+                <a
+                  class="share-btn"
+                  data-network="facebook"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Facebook"
+                  title="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="x"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on X"
+                  title="X"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="linkedin"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on LinkedIn"
+                  title="LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="pinterest"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Pinterest"
+                  title="Pinterest"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <p class="desc u-reveal">Kasdien naudojama vidinė sistema: lojalumo kortelės, kortelių turėtojai, organizacijos ir transakcijos. Naudotojai — įmonės darbuotojai, ne galutiniai klientai, todėl viskas sukasi apie teises, auditą ir duomenų tikslumą.</p>
+
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Sunkiausia dalis.</strong>
+                Ne sąsaja, o duomenų ir logikos nuoseklumas su gyvu, nuolat besikeičiančiu backend'u. API tipai generuojami iš backend'o schemos, tad kiekvienas jos pakeitimas turi būti persinchronizuotas prieš tai, kai jį pastebi naudotojas. Masiniai kortelių veiksmai turi du visiškai skirtingus kelius, kuriuos abu reikia palaikyti vienodai. Daugiapakopės formos su dinaminiais laukais atvedė prie „stale closure“ validacijos klaidų. O akcijų migracija iš senos sistemos su prioritetų logika reikalavo duomenų perkėlimo dar prieš perjungiant.
+              </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Mano vaidmuo.</strong>
+                Ne tik frontend'as. Formuluoju užduotis backend'o kolegai, derinu API kontraktus ir prižiūriu projektą kaip visumą — o patį pradžios etapą, kol prisijungė backend'o žmogus, dariau viena.
+              </p>
+              <div class="stack">
+                <span class="stack__label">Sistemos sandara</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">React + TS<small>backoffice UI</small></li>
+                  <li class="stack-node">RTK Query<small>tipai iš schemos</small></li>
+                  <li class="stack-node">AG Grid<small>didelės lentelės</small></li>
+                  <li class="stack-node">REST API<small>gyvas backend'as</small></li>
+                </ul>
+                <ul class="stack-facts">
+                  <li><strong>~27</strong>maršrutų</li>
+                  <li><strong>8</strong>sričių</li>
+                  <li><strong>2 × ~2200</strong>vertimo raktų</li>
+                  <li><strong>Rolės</strong>ir auditas</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+<article
             class="project project-xl u-stagger"
             id="keepmi"
             data-cat="web"
           >
-            <div class="thumb u-reveal">
+            <div class="thumb thumb--shot u-reveal">
               <img
-                src="../img/keepmi.png"
-                alt="keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as"
-                width="750"
-                height="590"
+                src="../img/keepmi/landing-hero-1400.webp"
+                srcset="../img/keepmi/landing-hero-700.webp 700w, ../img/keepmi/landing-hero-1400.webp 1400w"
+                sizes="(max-width: 768px) 100vw, 1100px"
+                alt="keepmi — kvietimų ir svečių hub'o pradinis puslapis"
+                width="1400"
+                height="840"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
@@ -285,197 +399,39 @@
                 atskirų programėlių ar failų. Su daugiakalbe (LT/EN/UK)
                 sąsaja, valdymo skydeliu ir dizainų parinkimu.
               </p>
-            </div>
-          </article>
-
-<article
-            class="project project-xl u-stagger"
-            id="carestudio"
-            data-cat="web"
-          >
-            <div class="thumb u-reveal">
-              <img
-                src="../img/Group 189.webp"
-                alt="CareStudio — WordPress blokinė tema"
-                width="750"
-                height="590"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-              />
-            </div>
-
-            <div class="meta u-reveal u-stagger">
-              <h3 class="u-reveal">CareStudio — WordPress blokinė tema</h3>
-              <p class="sub">Web · 2025</p>
-              <div class="share share--overlay u-reveal" data-share>
-                <a
-                  class="share-btn"
-                  data-network="facebook"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Facebook"
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="x"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on X"
-                  title="X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on LinkedIn"
-                  title="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="pinterest"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Pinterest"
-                  title="Pinterest"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <p class="desc">
-                SPA/wellness studijos svetainė, kurioje klientas pats
-                redaguoja turinį — be programuotojo pagalbos. Greitai
-                įkeliama ir paruošta paieškos sistemoms, kad naujus klientus
-                atrastų per Google.
-              </p>
-            </div>
-          </article>
-
-<article
-            class="project project-xl u-stagger"
-            id="ltsa"
-            data-cat="web"
-          >
-            <div class="thumb u-reveal">
-              <img
-                src="../img/LTSA.png"
-                alt="LTSA — (HTML + CSS + JS)"
-                width="750"
-                height="590"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-              />
-            </div>
-            <div class="meta u-reveal u-stagger">
-              <h3 class="u-reveal">LTSA — (HTML + CSS + JS)</h3>
-              <p class="sub u-reveal">
-                Web · 2026 ·
-                <a
-                  class="link-ghost"
-                  href="https://ltsa.vercel.app/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live demo</a
-                >
-              </p>
-              <div class="share share--overlay u-reveal" data-share>
-                <a
-                  class="share-btn"
-                  data-network="facebook"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Facebook"
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="x"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on X"
-                  title="X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on LinkedIn"
-                  title="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="pinterest"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Pinterest"
-                  title="Pinterest"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
-                    />
-                  </svg>
-                </a>
-              </div>
               <p class="desc u-reveal">
-                Interaktyvi viktorina su el. pašto rinkimu — atsakymai
-                automatiškai suvedami į Google Sheets, be jokio rankinio
-                duomenų tvarkymo. Patogus įrankis kontaktams rinkti ar
-                auditorijai įtraukti.
+                <strong class="proj-aspect">Sunkiausia dalis.</strong>
+                Ne kvietimas, o tai, kas aplink jį: organizatoriaus valdymo
+                skydelis ir svečio pusė turi rodyti tą patį įvykį iš dviejų
+                visiškai skirtingų perspektyvų, per vieną nuorodą, be
+                registracijos ir be programėlės. Prie to prisideda trys kalbos
+                per next-intl, planų ribos, Stripe atsiskaitymai ir Supabase
+                autentifikacija.
               </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Sąžiningai.</strong>
+                Tai veikiantis MVP, ne pabaigtas produktas: dalis formos laukų
+                ir RSVP klausimų dar neišsaugomi, o realių naudotojų kol kas
+                nėra — tai development aplinka. Rodau jį kaip pilnai sujungtą
+                sistemą nuo autentifikacijos iki mokėjimų, ne kaip verslo
+                rezultatą.
+              </p>
+              <div class="stack">
+                <span class="stack__label">Sistemos sandara</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">Next.js<small>organizatorius + svečias</small></li>
+                  <li class="stack-node">next-intl<small>LT / EN / UK</small></li>
+                  <li class="stack-node">Supabase<small>autentifikacija, duomenys</small></li>
+                  <li class="stack-node">Stripe<small>planai, mokėjimai</small></li>
+                </ul>
+                <ul class="stack-facts">
+                  <li><strong>3</strong>kalbos</li>
+                  <li><strong>2</strong>sąsajos vienam įvykiui</li>
+                  <li><strong>MVP</strong>veikiantis, nebaigtas</li>
+                </ul>
+              </div>
             </div>
           </article>
-
 <article
             class="project project-xl u-stagger"
             id="kidcan"
@@ -587,16 +543,15 @@
 
             </div>
           </article>
-
 <article
             class="project project-xl u-stagger"
-            id="codeart"
+            id="kibinai"
             data-cat="web"
           >
             <div class="thumb u-reveal">
               <img
-                src="../img/portfolio.png"
-                alt="Codeart — reprezentacinė svetainė ir projektų portfolio (HTML + CSS + JS)"
+                src="../img/kibinai-group.png"
+                alt="Kibinai Vilnius — Headless React + WordPress"
                 width="750"
                 height="590"
                 loading="lazy"
@@ -604,22 +559,27 @@
                 fetchpriority="low"
               />
             </div>
-
             <div class="meta u-reveal u-stagger">
               <h3 class="u-reveal">
-                Codeart — reprezentacinė svetainė ir projektų portfolio
+                Kibinai Vilnius — Headless React + WordPress
               </h3>
-
               <p class="sub u-reveal">
-                Web · 2026 ·
+                Web · 2025 ·
                 <a
                   class="link-ghost"
-                  href="https://codeart.lt/"
+                  href="https://kibinaivilnius.lt/"
                   target="_blank"
                   rel="noopener"
+                  >Svetainė</a
                 >
-                  Live demo
-                </a>
+                ·
+                <a
+                  class="link-ghost"
+                  href="https://github.com/gabwowce/Kibinukai"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
               </p>
               <div class="share share--overlay u-reveal" data-share>
                 <a
@@ -682,17 +642,225 @@
                   </svg>
                 </a>
               </div>
-
               <p class="desc u-reveal">
-                Reprezentacinė svetainė su paslaugomis, projektų portfolio ir
-                kontaktų forma vienoje vietoje. Sukurta taip, kad lankytojas
-                virstų užklausa — aiški struktūra ir patogus naudojimas
-                telefone.
+                Restorano svetainė realiam verslui: meniu, turinys ir
+                naujienos redaguojami be programuotojo pagalbos, o lankytojai
+                mato greitai kraunamą, SEO-optimizuotą svetainę, padedančią
+                atrasti restoraną per Google paiešką.
               </p>
-
+              <div class="stack">
+                <span class="stack__label">Sistemos sandara</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">React<small>headless klientas</small></li>
+                  <li class="stack-node">WordPress<small>turinio API</small></li>
+                </ul>
+              </div>
             </div>
           </article>
+<article
+            class="project project-xl u-stagger"
+            id="tikmaker"
+            data-cat="web"
+          >
+            <div class="thumb thumb--shot u-reveal">
+              <img
+                src="../img/TikMaker/main-1400.webp"
+                srcset="../img/TikMaker/main-700.webp 700w, ../img/TikMaker/main-1400.webp 1400w"
+                sizes="(max-width: 768px) 100vw, 1100px"
+                alt="TikMaker — scenų timeline, inspektorius ir peržiūra"
+                width="1400"
+                height="812"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </div>
 
+            <div class="meta u-reveal u-stagger">
+              <h3 class="u-reveal">TikMaker — vaizdo redaktorius su AI įgarsinimu</h3>
+              <p class="sub u-reveal">
+                Web · vidinis įrankis · 2026 · <span class="stack-badge">AI viduje</span>
+              </p>
+              <div class="share share--overlay u-reveal" data-share>
+                <a
+                  class="share-btn"
+                  data-network="facebook"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Facebook"
+                  title="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="x"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on X"
+                  title="X"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="linkedin"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on LinkedIn"
+                  title="LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="pinterest"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Pinterest"
+                  title="Pinterest"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <p class="desc u-reveal">Įrankis, kurį pasidariau savo TikTok / Reels / Shorts turiniui: scenų storyboard, timeline su atskirais teksto, vizualų ir garso takeliais, ir tikras renderis į MP4 — ne mockup'as, projektai eksportuojami realiais failais.</p>
+
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Kur čia AI.</strong>
+                ElevenLabs text-to-speech (multilingual modelis, veikia ir lietuviškai) pajungtas per savo serverio pusės endpoint'ą, kad API raktas liktų serveryje ir niekada nepasiektų naršyklės. Svarbiausias sprendimas — sugeneruotas balso takelis įrašomas į tą patį garsų manifestą kaip ir visi kiti efektai. Todėl jis automatiškai gauna timeline eilutę, bangos formą, trim/split ir garsumo valdymą; jokio atskiro „balso“ pipeline'o palaikyti nereikia.
+              </p>
+              <p class="desc u-reveal">
+                <strong class="proj-aspect">Sąžiningai.</strong>
+                Tai vidinis darbo įrankis, kurį naudoju pati — ne parduodamas produktas. Rodau jį todėl, kad jame matosi, kaip AI paslauga pajungiama prie realaus produkto: raktas serveryje, rezultatas integruotas į esamą duomenų modelį, o ne prilipdytas iš šono.
+              </p>
+              <div class="stack">
+                <span class="stack__label">Sistemos sandara</span>
+                <ul class="stack-flow">
+                  <li class="stack-node">React + TS<small>redaktorius, timeline</small></li>
+                  <li class="stack-node">Serverio endpoint<small>API raktas lieka čia</small></li>
+                  <li class="stack-node stack-node--ai">ElevenLabs<small>tekstas -&gt; balsas</small></li>
+                  <li class="stack-node">Garsų manifestas<small>balsas = dar vienas takelis</small></li>
+                  <li class="stack-node">Remotion<small>renderis į MP4</small></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+<article
+            class="project project-xl u-stagger"
+            id="ltsa"
+            data-cat="web"
+          >
+            <div class="thumb u-reveal">
+              <img
+                src="../img/LTSA.png"
+                alt="LTSA — (HTML + CSS + JS)"
+                width="750"
+                height="590"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </div>
+            <div class="meta u-reveal u-stagger">
+              <h3 class="u-reveal">LTSA — (HTML + CSS + JS)</h3>
+              <p class="sub u-reveal">
+                Web · 2026 ·
+                <a
+                  class="link-ghost"
+                  href="https://ltsa.vercel.app/"
+                  target="_blank"
+                  rel="noopener"
+                  >Live demo</a
+                >
+              </p>
+              <div class="share share--overlay u-reveal" data-share>
+                <a
+                  class="share-btn"
+                  data-network="facebook"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Facebook"
+                  title="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="x"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on X"
+                  title="X"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="linkedin"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on LinkedIn"
+                  title="LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  class="share-btn"
+                  data-network="pinterest"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Share on Pinterest"
+                  title="Pinterest"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <p class="desc u-reveal">
+                Interaktyvi viktorina su el. pašto rinkimu — atsakymai
+                automatiškai suvedami į Google Sheets, be jokio rankinio
+                duomenų tvarkymo. Patogus įrankis kontaktams rinkti ar
+                auditorijai įtraukti.
+              </p>
+            </div>
+          </article>
 <article
             class="project project-xl u-stagger"
             id="autorent"
@@ -816,7 +984,6 @@
               </div>
             </div>
           </article>
-
 <article
             class="project project-xl u-stagger"
             id="travel-app"
@@ -914,122 +1081,6 @@
               </p>
             </div>
           </article>
-
-<article
-            class="project project-xl u-stagger"
-            id="kibinai"
-            data-cat="web"
-          >
-            <div class="thumb u-reveal">
-              <img
-                src="../img/kibinai-group.png"
-                alt="Kibinai Vilnius — Headless React + WordPress"
-                width="750"
-                height="590"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-              />
-            </div>
-            <div class="meta u-reveal u-stagger">
-              <h3 class="u-reveal">
-                Kibinai Vilnius — Headless React + WordPress
-              </h3>
-              <p class="sub u-reveal">
-                Web · 2025 ·
-                <a
-                  class="link-ghost"
-                  href="https://kibinaivilnius.lt/"
-                  target="_blank"
-                  rel="noopener"
-                  >Svetainė</a
-                >
-                ·
-                <a
-                  class="link-ghost"
-                  href="https://github.com/gabwowce/Kibinukai"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub</a
-                >
-              </p>
-              <div class="share share--overlay u-reveal" data-share>
-                <a
-                  class="share-btn"
-                  data-network="facebook"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Facebook"
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="x"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on X"
-                  title="X"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="linkedin"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on LinkedIn"
-                  title="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  class="share-btn"
-                  data-network="pinterest"
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Share on Pinterest"
-                  title="Pinterest"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M12 2a10 10 0 0 0-3.64 19.31c-.07-.8-.14-2.03.03-2.9l1.7-7.2s-.42-.84-.42-2.08c0-1.95 1.13-3.41 2.54-3.41 1.2 0 1.78.9 1.78 1.97 0 1.2-.76 2.99-1.16 4.65-.33 1.39.7 2.52 2.06 2.52 2.47 0 4.37-2.61 4.37-6.37 0-3.33-2.4-5.66-5.83-5.66-3.98 0-6.32 2.98-6.32 6.06 0 1.2.46 2.48 1.04 3.18.12.14.14.26.1.4l-.39 1.57c-.06.26-.2.32-.46.2-1.72-.8-2.79-3.3-2.79-5.32 0-4.33 3.14-8.3 9.05-8.3 4.75 0 8.45 3.39 8.45 7.92 0 4.73-2.98 8.54-7.11 8.54-1.39 0-2.7-.72-3.14-1.57l-.85 3.24c-.3 1.16-1.12 2.62-1.67 3.51A10 10 0 1 0 12 2z"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <p class="desc u-reveal">
-                Restorano svetainė realiam verslui: meniu, turinys ir
-                naujienos redaguojami be programuotojo pagalbos, o lankytojai
-                mato greitai kraunamą, SEO-optimizuotą svetainę, padedančią
-                atrasti restoraną per Google paiešką.
-              </p>
-              <div class="stack">
-                <span class="stack__label">Sistemos sandara</span>
-                <ul class="stack-flow">
-                  <li class="stack-node">React<small>headless klientas</small></li>
-                  <li class="stack-node">WordPress<small>turinio API</small></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
 <article
             class="project project-xl u-stagger"
             id="convertclimb"

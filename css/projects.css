@@ -369,3 +369,18 @@
     height: 34px;
   }
 }
+
+/*
+  The older cards hold transparent mockup renders that were drawn with
+  their own margins baked in, so .thumb img deliberately sits at 70-90%
+  width. Real product screenshots have no such margin - shrunk and left
+  aligned they just look like a mistake - so they run the full width of
+  the card and keep their own aspect ratio.
+*/
+.project .thumb--shot img,
+.project .thumb--shot.s img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
