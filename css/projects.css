@@ -5,12 +5,29 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+/*
+  Project cards previously had no boundary at all - no background,
+  border or shadow - so they floated against the page while every
+  other card family (services, resources, about) had one. Same system
+  as .card / .proof-card: the thumb sits flush at the top edge (it
+  already clips to the radius via overflow: hidden) and .meta's own
+  padding below it reads as the card body.
+*/
 .project {
-  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: box-shadow 0.25s ease, transform 0.25s ease,
+    border-color 0.25s ease;
+}
+.project:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
 }
 .project .thumb img {
   width: 80%;
