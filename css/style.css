@@ -385,7 +385,7 @@ html.nav-fade {
 }
 @media (min-width: 768px) {
   .container {
-    max-width: 640px;
+    max-width: 720px;
   }
   .content {
     /* Keeps the generous top gap set above; only the side padding goes,
@@ -395,7 +395,7 @@ html.nav-fade {
 } /* md */
 @media (min-width: 1024px) {
   .container {
-    max-width: 768px;
+    max-width: 980px;
   }
 } /* lg */
 @media (max-width: 1024px) {
@@ -405,12 +405,12 @@ html.nav-fade {
 } /* lg */
 @media (min-width: 1280px) {
   .container {
-    max-width: 1024px;
+    max-width: 1200px;
   }
 } /* xl */
 @media (min-width: 1536px) {
   .container {
-    max-width: 1280px;
+    max-width: 1440px;
   }
   .content {
     grid-template-columns: 1fr 320px;

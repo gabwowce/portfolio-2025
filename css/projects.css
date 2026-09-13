@@ -538,16 +538,6 @@
 .content--projects {
   grid-template-columns: minmax(0, 1fr);
 }
-/*
-  With the sidebar column gone, the projects can use the width it was
-  holding. .container caps at 1024px until 1536px, which would leave the
-  split cards narrower than the layout they were designed for.
-*/
-@media (min-width: 1180px) {
-  .content--projects.container {
-    max-width: min(1320px, 100% - 64px);
-  }
-}
 .content--projects .sidebar {
   position: static;
   justify-self: center;

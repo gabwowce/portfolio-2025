@@ -112,9 +112,8 @@ TRACKS = [
                          "en": "A ready <code>.claude/settings.json</code> with five safety "
                                "hooks plus a <code>guard.sh</code> script — with a plain-language "
                                "explanation of what each one actually blocks."},
-                "href": "/en/resources/claude-code-guardrails.html",
-                "href_lang": "en",
-                "res": {"lt": "Claude Code Guardrails", "en": "Claude Code Guardrails"},
+                "content_from": "en/resources/claude-code-guardrails.html",
+                "content_lang": "en",
             },
             {
                 "title": {"lt": "Hooks giliau: kada „ask“, kaip juos testuoti",
@@ -218,7 +217,7 @@ def e(s):
 
 
 def ready_count(tr):
-    return sum(1 for s in tr["steps"] if s["href"])
+    return sum(1 for s in tr["steps"] if s.get("content_from"))
 
 
 # --------------------------------------------------------------------------
@@ -260,6 +259,30 @@ def shelf(lang):
 # A course page: curriculum on the left, the selected step on the right
 # --------------------------------------------------------------------------
 
+def inline_resource(path):
+    """
+    Lift the body of an existing resource page into a lesson panel.
+
+    The resource pages are real, standalone, indexable pages and stay that
+    way - this reads the finished article out of one rather than keeping a
+    second copy of it here. Asset paths are re-rooted because the article
+    was written two directories deep, and the page's own hero is dropped:
+    the panel already carries the title.
+    """
+    import re as _re
+    src = (ROOT / path).read_text()
+    i = src.index("<main")
+    body = src[src.index(">", i) + 1:src.index("</main>")]
+    body = body.replace('="../../', '="/')
+    # The article's closing sections are page furniture ("Who made this",
+    # "What's next") that make no sense inside one step of a course.
+    body = _re.sub(r'<section class="resource-section[^"]*"[^>]*>\s*<h2>'
+                   r'(?:Who made this|What\'s next)</h2>.*?</section>', "",
+                   body, flags=_re.S)
+    return "\n".join("            " + ln.strip()
+                      for ln in body.strip().splitlines() if ln.strip())
+
+
 def course_main(tr, n, lang):
     u = UI[lang]
     steps = tr["steps"]
@@ -271,7 +294,7 @@ def course_main(tr, n, lang):
     panels = []
     for i, s in enumerate(steps, 1):
         sel = "true" if i == 1 else "false"
-        done = " is-ready" if s["href"] else ""
+        done = " is-ready" if s.get("content_from") else ""
         nav += [
             f'            <li>',
             f'              <button class="lesson-link{done}" role="tab"'
@@ -282,25 +305,20 @@ def course_main(tr, n, lang):
             f'              </button>',
             f'            </li>',
         ]
-        # Resources attached to this step - the right-hand side of the pane.
-        if s["href"]:
-            hl = s.get("href_lang")
-            note = (f' <span class="lesson-res__note">({u["en_note"]})</span>'
-                    if hl and hl != lang else "")
-            attr = f' hreflang="{hl}"' if hl else ""
-            res = [
-                f'                <h3 class="lesson-panel__reshead">{u["res_head"]}</h3>',
-                f'                <a class="lesson-res" href="{s["href"]}"{attr}>',
-                f'                  <span class="lesson-res__name">'
-                f'{e(pick(s.get("res", s["title"]), lang))}</span>{note}',
-                f'                  <span class="lesson-res__cta">{u["read"]} →</span>',
-                f'                </a>',
-            ]
+        # The resource itself goes in the panel. A link out to it would make
+        # the reader leave the curriculum to read one step, then come back -
+        # the whole point of the two-pane layout is that they don't have to.
+        if s.get("content_from"):
+            hl = s.get("content_lang")
+            note = ([f'            <p class="lesson-panel__lang">'
+                     f'({u["en_note"]})</p>']
+                    if hl and hl != lang else [])
+            body = [*note, inline_resource(s["content_from"])]
         else:
-            res = [
-                f'                <p class="lesson-panel__empty">'
+            body = [
+                f'            <p class="lesson-panel__empty">'
                 f'<span class="track-step__soon">{u["soon"]}</span></p>',
-                f'                <p class="lesson-panel__emptynote">{u["no_res"]}</p>',
+                f'            <p class="lesson-panel__emptynote">{u["no_res"]}</p>',
             ]
         panels += [
             f'          <article class="lesson-panel" role="tabpanel" id="panel-{i}"'
@@ -308,9 +326,7 @@ def course_main(tr, n, lang):
             f'            <p class="lesson-panel__kicker">{u["lesson"]} {i} / {total}</p>',
             f'            <h2 class="lesson-panel__title">{e(pick(s["title"], lang))}</h2>',
             f'            <p class="lesson-panel__desc">{pick(s["desc"], lang)}</p>',
-            f'            <div class="lesson-panel__res">',
-            *res,
-            f'            </div>',
+            *body,
             f'          </article>',
         ]
 
@@ -422,6 +438,10 @@ def build_course_page(tr, n, lang, shell):
     hero_start = s.index('<!-- HERO -->')
     main_end = s.index('</main>') + len('</main>')
     s = s[:hero_start] + course_main(tr, n, lang) + s[main_end:]
+    if any(st.get("content_from") for st in tr["steps"]):
+        s = s.replace('<script src="/js/script.js" defer></script>',
+                      '<script src="/js/script.js" defer></script>\n'
+                      '    <script src="/js/resource-page.js" defer></script>')
     s = s.replace('</body>', COURSE_JS + '  </body>')
     return s
 
