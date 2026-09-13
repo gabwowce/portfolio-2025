@@ -857,6 +857,16 @@
   background: color-mix(in srgb, #000 82%, transparent);
   padding: clamp(16px, 4vw, 48px);
 }
+/*
+  Author stylesheets override the UA default [hidden]{display:none}
+  regardless of specificity, so .lightbox{display:flex} above was winning
+  even after JS set the hidden attribute on close - the overlay stayed
+  visually on screen with the close button doing nothing visible. This
+  rule has to exist for the hidden attribute to actually hide anything.
+*/
+.lightbox[hidden] {
+  display: none;
+}
 .lightbox__figure {
   margin: 0;
   max-width: min(1200px, 100%);
