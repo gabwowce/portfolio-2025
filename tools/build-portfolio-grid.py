@@ -97,6 +97,14 @@ FEATURED_IMG = ("img/ac-cards-redacted", 1400, 773,
                 "duomenys uždengti"
                 "|Loyalty backoffice — card list and card record, data redacted")
 
+# Second shot for the featured project's gallery - shown when the thumb is
+# clicked, not on the card itself.
+FEATURED_GALLERY_EXTRA = ("img/ac-loyalty-redacted", 1400,
+                          "Akcijų testavimas su virtualiu krepšeliu, "
+                          "duomenys uždengti"
+                          "|Promotion testing with a virtual basket, "
+                          "data redacted")
+
 
 # --------------------------------------------------------------------------
 # The grid - one short paragraph each, same shape.
@@ -105,7 +113,33 @@ FEATURED_IMG = ("img/ac-cards-redacted", 1400, 773,
 
 GRID = [
     {
-        "id": "keepmi", "cat": "web", "img": "img/keepmi.png",
+        "id": "tikmaker", "cat": "web", "tier": "lg",
+        "img": "img/TikMaker/main-1400.webp",
+        "title": "TikMaker — vaizdo redaktorius su AI įgarsinimu"
+                  "|TikMaker — video editor with AI voiceover",
+        "year": "2026", "badge": "AI viduje|AI inside",
+        "desc": "Vaizdo redaktorius savo TikTok / Reels turiniui: "
+                "ElevenLabs balso takelis integruotas tiesiai į timeline "
+                "kaip bet kuris kitas efektas. Vidinis darbo įrankis, ne "
+                "parduodamas produktas."
+                "|A video editor for my own TikTok / Reels content: an "
+                "ElevenLabs voice track wired directly into the timeline "
+                "like any other effect. An internal tool I use myself, not "
+                "a product for sale.",
+        "chips": ["React + TS", "ElevenLabs", "Remotion"],
+        "links": [],
+    },
+    {
+        "id": "keepmi", "cat": "web", "tier": "lg",
+        "img": "img/keepmi/landing-hero-1400.webp",
+        "gallery": [
+            ("img/keepmi/landing-hero",
+             "keepmi — pradinis puslapis|keepmi — landing page"),
+            ("img/keepmi/dashboard",
+             "keepmi — organizatoriaus skydelis|keepmi — organiser dashboard"),
+            ("img/keepmi/select-design",
+             "keepmi — kvietimo dizaino parinkimas|keepmi — invitation design picker"),
+        ],
         "title": "keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as"
                   "|keepmi — digital invitations and a guest hub",
         "year": "2026",
@@ -150,22 +184,6 @@ GRID = [
         "chips": ["React", "WordPress"],
         "links": [("Svetainė|Live site", "https://kibinaivilnius.lt/"),
                   ("GitHub", "https://github.com/gabwowce/Kibinukai")],
-    },
-    {
-        "id": "tikmaker", "cat": "web", "img": "img/TikMaker/main-1400.webp",
-        "title": "TikMaker — vaizdo redaktorius su AI įgarsinimu"
-                  "|TikMaker — video editor with AI voiceover",
-        "year": "2026", "badge": "AI viduje|AI inside",
-        "desc": "Vaizdo redaktorius savo TikTok / Reels turiniui: "
-                "ElevenLabs balso takelis integruotas tiesiai į timeline "
-                "kaip bet kuris kitas efektas. Vidinis darbo įrankis, ne "
-                "parduodamas produktas."
-                "|A video editor for my own TikTok / Reels content: an "
-                "ElevenLabs voice track wired directly into the timeline "
-                "like any other effect. An internal tool I use myself, not "
-                "a product for sale.",
-        "chips": ["React + TS", "ElevenLabs", "Remotion"],
-        "links": [],
     },
     {
         "id": "ltsa", "cat": "web", "img": "img/LTSA.png",
@@ -247,9 +265,20 @@ SHARE = '''              <div class="share share--overlay u-reveal" data-share>
 '''
 
 
+def gallery_json(shots, lang):
+    """shots: list of (base_path_no_ext, alt) -> JSON for data-gallery."""
+    import json
+    return json.dumps([
+        {"src": f"../{base}-1400.webp", "alt": pick(alt, lang)}
+        for base, alt in shots
+    ])
+
+
 def featured_html(lang):
     d = FEATURED[lang]
     base, w, h, alt = FEATURED_IMG
+    shots = [(base, alt), (FEATURED_GALLERY_EXTRA[0], FEATURED_GALLERY_EXTRA[2])]
+    gallery_attr = esc(gallery_json(shots, lang)).replace("'", "&#39;")
     nodes = "\n".join(
         f'                    <li class="stack-node{" stack-node--ai" if k=="ai" else ""}">'
         f'{esc(label)}{f"<small>{esc(pick(sub, lang))}</small>" if sub else ""}</li>'
@@ -258,7 +287,7 @@ def featured_html(lang):
                       for v, l in d["facts"])
     return f'''<article class="project project-xl project--sys project--split project--featured u-stagger" id="{FEATURED_ID}" data-cat="web">
             <div class="proj-visual u-reveal">
-              <div class="mock">
+              <div class="mock" data-gallery='{gallery_attr}'>
                 <div class="mock__bar" aria-hidden="true">
                   <span class="mock__dot"></span><span class="mock__dot"></span><span class="mock__dot"></span>
                   <span class="mock__addr"></span>
@@ -270,6 +299,7 @@ def featured_html(lang):
                   alt="{esc(pick(alt, lang))}"
                   width="{w}" height="{h}" loading="eager" decoding="async" fetchpriority="high"
                 />
+                <span class="thumb-count">1 / {len(shots)}</span>
               </div>
             </div>
             <div class="meta u-reveal u-stagger">
@@ -299,9 +329,20 @@ def grid_card_html(item, lang):
         f'                <a class="grid-card__link" href="{url}" target="_blank" rel="noopener">{pick(label, lang)} ↗</a>'
         for label, url in links)
     chips = "".join(f'<li>{esc(c)}</li>' for c in item["chips"])
+
+    gallery = item.get("gallery")
+    if gallery:
+        gallery_attr = esc(gallery_json(gallery, lang)).replace("'", "&#39;")
+        thumb_attrs = f" data-gallery='{gallery_attr}'"
+        count_html = (f'\n              <span class="thumb-count">1 / {len(gallery)}</span>'
+                     if len(gallery) > 1 else '')
+    else:
+        thumb_attrs = ""
+        count_html = ""
+
     return f'''<article class="project project--grid u-stagger" id="{item["id"]}" data-cat="{item["cat"]}">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../{item["img"]}" alt="{esc(title)}" loading="lazy" decoding="async" />
+            <div class="grid-card__thumb u-reveal"{thumb_attrs}>
+              <img src="../{item["img"]}" alt="{esc(title)}" loading="lazy" decoding="async" />{count_html}
             </div>
             <div class="grid-card__body u-reveal">
               <div class="grid-card__top">
@@ -328,13 +369,23 @@ def main():
         end = s.rindex("</div>", 0, s.index("</section>", start))
         # walk back to find the matching close of featured-grid (last </div>
         # before </section>, since it is the outermost one in that range)
-        body = featured_html(lang) + '\n          <div class="portfolio-grid">\n'
-        for item in GRID:
+        lg_items = [it for it in GRID if it.get("tier") == "lg"]
+        small_items = [it for it in GRID if it.get("tier") != "lg"]
+
+        body = featured_html(lang)
+        body += '\n          <div class="portfolio-grid--lg">\n'
+        for item in lg_items:
             body += grid_card_html(item, lang)
         body += '          </div>\n'
+        body += '          <div class="portfolio-grid">\n'
+        for item in small_items:
+            body += grid_card_html(item, lang)
+        body += '          </div>\n'
+
         s = s[:start] + "\n" + body + "        " + s[end:]
         path.write_text(s)
-        print(f"{lang}/portfolio.html: 1 featured + {len(GRID)} grid cards")
+        print(f"{lang}/portfolio.html: 1 featured + {len(lg_items)} large "
+              f"+ {len(small_items)} grid cards")
 
 
 if __name__ == "__main__":

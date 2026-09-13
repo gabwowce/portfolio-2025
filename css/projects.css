@@ -740,3 +740,183 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ==================================================================
+   Featured card: stretch alignment
+   ------------------------------------------------------------------
+   The visual column was only as tall as its own image, while the text
+   column ran on with paragraphs, chips and facts - so the image ended
+   with a block of empty space beside it. Stretching the row and letting
+   the mock fill that height (cropping the screenshot rather than
+   floating it in a shorter box) keeps both columns reading as one card.
+   ================================================================== */
+
+.project--featured.project--split {
+  align-items: stretch;
+}
+.project--featured .proj-visual {
+  display: flex;
+}
+.project--featured .mock {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.project--featured .mock img {
+  flex: 1;
+  min-height: 0;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Bigger internal rhythm: the row of chips and the fact list were sitting
+   right on top of the two "hard part / role" paragraphs above them. */
+.project--featured .meta > * + * {
+  margin-top: clamp(14px, 2vw, 20px);
+}
+.project--featured .meta > .desc + .desc {
+  margin-top: clamp(10px, 1.4vw, 14px);
+}
+.project--featured .meta > .share--overlay {
+  margin-top: 4px;
+}
+
+/* ---- Gallery trigger: any thumb with more than one shot ----------- */
+
+[data-gallery] {
+  cursor: pointer;
+  position: relative;
+}
+.thumb-count {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, #000 62%, transparent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+.grid-card__thumb[data-gallery] {
+  position: relative;
+}
+
+/* ==================================================================
+   Large pair row: the two strongest secondary projects
+   ------------------------------------------------------------------
+   TikMaker and keepmi carry more than the plain grid cards do - AI
+   work, a real product with real screens - so they get one row of two
+   instead of sharing the three-up grid with everything else. Same
+   card anatomy as .project--grid, just bigger.
+   ================================================================== */
+
+.portfolio-grid--lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(16px, 2.2vw, 24px);
+  margin-top: clamp(20px, 3vw, 28px);
+}
+.portfolio-grid--lg .grid-card__thumb {
+  aspect-ratio: 16 / 10;
+  padding: 0;
+}
+/* These thumbs hold real screenshots, not transparent device mockups,
+   so they run flush to the card edge like the featured image does. */
+.portfolio-grid--lg .grid-card__thumb img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: top;
+}
+.portfolio-grid--lg .grid-card__body {
+  padding: 22px 24px 24px;
+  gap: 10px;
+}
+.portfolio-grid--lg .grid-card__title {
+  font-size: 1.2rem;
+}
+.portfolio-grid--lg .grid-card__desc {
+  font-size: 0.94rem;
+  -webkit-line-clamp: 4;
+}
+
+/* ---- Lightbox ------------------------------------------------------ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, #000 82%, transparent);
+  padding: clamp(16px, 4vw, 48px);
+}
+.lightbox__figure {
+  margin: 0;
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.lightbox__img {
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px color-mix(in srgb, #000 40%, transparent);
+}
+.lightbox__counter {
+  color: #f2f0e9;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+.lightbox__close {
+  position: absolute;
+  top: clamp(12px, 3vw, 24px);
+  right: clamp(12px, 3vw, 24px);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, #fff 30%, transparent);
+  background: color-mix(in srgb, #fff 10%, transparent);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, #fff 30%, transparent);
+  background: color-mix(in srgb, #fff 10%, transparent);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.lightbox__nav--prev {
+  left: clamp(8px, 3vw, 24px);
+}
+.lightbox__nav--next {
+  right: clamp(8px, 3vw, 24px);
+}
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: color-mix(in srgb, #fff 22%, transparent);
+}
+
+@media (max-width: 640px) {
+  .portfolio-grid--lg .grid-card__thumb {
+    aspect-ratio: 3 / 2;
+  }
+}
