@@ -284,3 +284,71 @@
   margin: 18px 0;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
+
+/* ----- Values as icon cards, not chips -----
+   A wall of pill-shaped chips with full sentences inside read as a tag
+   cloud, not a set of values - and each one took a full sentence to say
+   something that fits in three or four words. This is the same
+   about-ico square used elsewhere on the site, in a small grid: one
+   short label, one short line under it.
+*/
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.value-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+.value-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  transform: translateY(-1px);
+}
+.value-card .about-ico {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+}
+.value-card .about-ico svg {
+  width: 18px;
+  height: 18px;
+}
+.value-card h3 {
+  margin: 0 0 2px;
+  font-size: 0.95rem;
+}
+.value-card p {
+  margin: 0;
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 460px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A short description under a timeline entry that earns more than one
+   line - the ownership on the current role, say - without changing the
+   rhythm of the entries that don't need it. */
+.t-row .t-desc {
+  margin: 6px 0 0;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.55;
+  max-width: 62ch;
+}
