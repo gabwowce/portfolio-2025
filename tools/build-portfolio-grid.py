@@ -182,7 +182,7 @@ GRID = [
                 "and news are all editable without a developer, while "
                 "visitors get a fast-loading, SEO-optimised site.",
         "chips": ["React", "WordPress"],
-        "links": [("Svetainė|Live site", "https://kibinaivilnius.lt/"),
+        "links": [("Live demo", "https://kibinaivilnius.lt/"),
                   ("GitHub", "https://github.com/gabwowce/Kibinukai")],
     },
     {
