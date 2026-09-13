@@ -40,7 +40,7 @@ FEATURED = {
         "title": "Lojalumo valdymo sistema — B2B backoffice",
         "sub": "Web · klientinis projektas · ekranai su uždengtais duomenimis",
         "desc": "Kasdien naudojama vidinė sistema: lojalumo kortelės, kortelių "
-                "turėtojai, organizacijos ir transakcijos. Naudotojai — įmonės "
+                "turėtojai, organizacijos ir transakcijos. Naudotojai yra įmonės "
                 "darbuotojai, ne galutiniai klientai, todėl viskas sukasi apie "
                 "teises, auditą ir duomenų tikslumą.",
         "hard_label": "Sunkiausia dalis",
@@ -52,9 +52,9 @@ FEATURED = {
                 "kelius, kuriuos abu reikia palaikyti vienodai.",
         "role_label": "Mano vaidmuo",
         "role": "Ne tik frontend'as. Formuluoju užduotis backend'o kolegai, "
-                "derinu API kontraktus ir prižiūriu projektą kaip visumą — o "
-                "patį pradžios etapą, kol prisijungė backend'o žmogus, "
-                "dariau viena.",
+                "derinu API kontraktus ir prižiūriu projektą kaip visumą. "
+                "Pradžios etapą, kol prisijungė backend'o žmogus, dariau "
+                "viena.",
         "cta": "Peržiūrėti projekto detales",
         "facts": [("~27", "maršrutų"), ("8", "sričių"),
                   ("2 × ~2200", "vertimo raktų"), ("Rolės", "ir auditas")],
@@ -65,10 +65,11 @@ FEATURED = {
         "sub": "Web · client project · screens with data redacted",
         "desc": "An internal system in daily use: loyalty cards, "
                 "cardholders, organisations and transactions. Its users are "
-                "the company's own staff, not end customers, so everything "
-                "turns on permissions, auditability and data accuracy.",
+                "the company's own staff rather than end customers, so "
+                "everything turns on permissions, auditability and data "
+                "accuracy.",
         "hard_label": "The hard part",
-        "hard": "Not the interface — keeping data and logic consistent with "
+        "hard": "Not the interface. Keeping data and logic consistent with "
                 "a live backend that keeps changing. API types are "
                 "generated from the backend schema, so every schema change "
                 "has to be re-synced before a user runs into it. Bulk card "
@@ -77,8 +78,8 @@ FEATURED = {
         "role_label": "My role",
         "role": "Not just the frontend. I scope and hand off work to the "
                 "backend developer, agree the API contracts and steer the "
-                "project as a whole — and I built the early stage alone, "
-                "before a backend developer joined.",
+                "project as a whole. I built the early stage alone, before "
+                "a backend developer joined.",
         "cta": "View project details",
         "facts": [("~27", "routes"), ("8", "domains"),
                   ("2 × ~2200", "translation keys"), ("Roles", "and audit")],
@@ -144,14 +145,14 @@ GRID = [
                   "|keepmi — digital invitations and a guest hub",
         "year": "2026",
         "desc": "Skaitmeniniai kvietimai su svečių palinkėjimų rinkimu iki "
-                "šventės, o pačią dieną — visas svečių hub'as vienoje "
+                "šventės. Pačią dieną visas svečių hub'as vienoje "
                 "vietoje: albumas, programa, viktorinos. Trys kalbos, "
-                "Stripe apmokėjimai. Veikiantis MVP — realių naudotojų kol "
+                "Stripe apmokėjimai. Veikiantis MVP, realių naudotojų kol "
                 "kas nėra."
                 "|Digital invitations that collect video wishes before the "
                 "event, then become a full guest hub on the day: photo "
                 "album, program, quizzes. Three languages, Stripe billing. "
-                "A working MVP — no real users yet.",
+                "A working MVP, no real users yet.",
         "chips": ["Next.js", "next-intl", "Supabase", "Stripe"],
         "links": [("Live demo", "https://keepmi.app/")],
     },
@@ -161,11 +162,11 @@ GRID = [
         "year": "2025",
         "desc": "Šeimų saugumo sprendimas: tėvai realiu laiku mato vaiko "
                 "buvimo vietą per atskirą tėvų ir vaikų aplikacijų porą. "
-                "Sukurta nuo nulio — dizainas, dvi mobilios aplikacijos ir "
+                "Sukurta nuo nulio: dizainas, dvi mobilios aplikacijos ir "
                 "bendras serveris."
                 "|A family-safety solution: parents see their child's "
                 "location in real time through a matched pair of parent "
-                "and child apps. Built from scratch — design, two mobile "
+                "and child apps. Built from scratch: design, two mobile "
                 "apps, a shared backend.",
         "chips": ["React Native", "Expo", "Kotlin", "Supabase"],
         "links": [("Parents App", "https://github.com/gabwowce/KidcanParentsExpo"),
@@ -189,10 +190,10 @@ GRID = [
         "id": "ltsa", "cat": "web", "img": "img/LTSA.png",
         "title": "LTSA — (HTML + CSS + JS)",
         "year": "2026",
-        "desc": "Interaktyvi viktorina su el. pašto rinkimu — atsakymai "
+        "desc": "Interaktyvi viktorina su el. pašto rinkimu: atsakymai "
                 "automatiškai suvedami į Google Sheets, be jokio rankinio "
                 "duomenų tvarkymo."
-                "|An interactive quiz that collects emails automatically — "
+                "|An interactive quiz that collects emails automatically, "
                 "every response lands in Google Sheets with zero manual "
                 "data entry.",
         "chips": ["HTML", "CSS", "JS"],
@@ -217,7 +218,7 @@ GRID = [
         "id": "travel-app", "cat": "mobile", "img": "img/123.webp",
         "title": "Travel App — React Native (Expo)",
         "year": "2025",
-        "desc": "Kelionių planavimo aplikacijos pagrindas — veikia tiek "
+        "desc": "Kelionių planavimo aplikacijos pagrindas, veikiantis tiek "
                 "Android, tiek iOS iš vieno kodo. Paruošta struktūra "
                 "registracijai, žemėlapiams ir maršrutams."
                 "|A foundation for a travel-planning app, running on both "
@@ -274,11 +275,12 @@ def gallery_json(shots, lang):
     ])
 
 
-def featured_html(lang):
+def featured_html(lang, cta_href=None):
     d = FEATURED[lang]
     base, w, h, alt = FEATURED_IMG
     shots = [(base, alt), (FEATURED_GALLERY_EXTRA[0], FEATURED_GALLERY_EXTRA[2])]
     gallery_attr = esc(gallery_json(shots, lang)).replace("'", "&#39;")
+    cta_href = cta_href or f"#{FEATURED_ID}"
     nodes = "\n".join(
         f'                    <li class="stack-node{" stack-node--ai" if k=="ai" else ""}">'
         f'{esc(label)}{f"<small>{esc(pick(sub, lang))}</small>" if sub else ""}</li>'
@@ -314,7 +316,7 @@ def featured_html(lang):
               <ul class="stack-facts u-reveal">
 {facts}
               </ul>
-              <a class="btn-pill project-cta u-reveal" href="#{FEATURED_ID}">{d["cta"]} →</a>
+              <a class="btn-pill project-cta u-reveal" href="{cta_href}">{d["cta"]} →</a>
             </div>
           </article>
 '''
@@ -386,6 +388,69 @@ def main():
         path.write_text(s)
         print(f"{lang}/portfolio.html: 1 featured + {len(lg_items)} large "
               f"+ {len(small_items)} grid cards")
+
+    build_homepage_teaser()
+
+
+HOMEPAGE_HEAD = {
+    "lt": ("IŠSKIRTINIAI PROJEKTAI",
+           "Keletas sistemų, kurias kūriau nuo pradžios iki galo.",
+           "Visi projektai"),
+    "en": ("FEATURED PROJECTS",
+           "A few of the systems I've built end to end.",
+           "All projects"),
+}
+
+
+def homepage_html(lang):
+    """
+    The homepage teaser reuses the exact same cards as the portfolio page -
+    same screenshots, same markup, same CSS - rather than the older
+    carousel-and-plain-thumbnail cards that used to live here. Showing a
+    different, lesser version of the work on the page most visitors land
+    on first was the actual problem; this way there is one visual
+    language for "here is a project", not two.
+    """
+    title, blurb, cta = HOMEPAGE_HEAD[lang]
+    lg_items = [it for it in GRID if it.get("tier") == "lg"]
+    body = [
+        '      <section class="articles">',
+        '        <section class="container u-stagger">',
+        f'          <h2 class="heading-section display-l u-reveal">{title}</h2>',
+        f'          <p class="muted u-reveal" style="max-width: 60ch; margin: -8px 0 8px">{blurb}</p>',
+        '',
+        '          <div class="featured-grid">',
+        featured_html(lang, cta_href=f"portfolio.html#{FEATURED_ID}").rstrip("\n"),
+        '          <div class="portfolio-grid--lg">',
+    ]
+    for item in lg_items:
+        body.append(grid_card_html(item, lang).rstrip("\n"))
+    body += [
+        '          </div>',
+        '          </div>',
+        '',
+        f'          <p class="u-reveal" style="text-align:center; margin-top: clamp(24px, 4vw, 40px)">'
+        f'<a class="btn-outline" href="portfolio.html">{cta} →</a></p>',
+        '        </section>',
+        '      </section>',
+    ]
+    return "\n".join(body) + "\n"
+
+
+def build_homepage_teaser():
+    for lang in ("lt", "en"):
+        path = ROOT / lang / "index.html"
+        s = path.read_text()
+        start = s.index('<section class="articles"')
+        start = s.rindex("\n", 0, start) + 1
+        # the matching close is the second </section> after this point
+        first_close = s.index("</section>", start)
+        end = s.index("</section>", first_close + len("</section>"))
+        end = s.index("\n", end) + 1
+        s = s[:start] + homepage_html(lang) + s[end:]
+        path.write_text(s)
+        print(f"{lang}/index.html: homepage teaser rebuilt "
+              f"(featured + {sum(1 for it in GRID if it.get('tier')=='lg')} large)")
 
 
 if __name__ == "__main__":

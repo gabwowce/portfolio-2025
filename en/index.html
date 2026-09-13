@@ -37,6 +37,7 @@
 
     <!-- CSS/JS (from /en/ go one level up) -->
     <script src="../js/script.js" defer></script>
+    <script src="../js/gallery-lightbox.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/about.css" />
     <link rel="stylesheet" href="../css/aside.css" />
@@ -155,8 +156,8 @@
                 </div>
 
                 <dl class="hero-stats u-reveal">
-                    <div class="hero-stat"><dt>4+</dt><dd>Years experience</dd></div>
-                    <div class="hero-stat"><dt>20+</dt><dd>Projects shipped</dd></div>
+                    <div class="hero-stat"><dt>3+</dt><dd>Years experience</dd></div>
+                    <div class="hero-stat"><dt>Full-stack</dt><dd>Idea to launch</dd></div>
                     <div class="hero-stat"><dt>Happy</dt><dd>Clients &amp; collaborators</dd></div>
                 </dl>
 
@@ -263,7 +264,7 @@
                             <div>
                                 <p class="proof-card__stage">Step 01 · days</p>
                                 <h3>From a brief to something you can click</h3>
-                                <p class="muted">Your brief becomes working screens in days. We change our minds there, where changing them is cheap — not after the build.</p>
+                                <p class="muted">Your brief becomes working screens in days. We change our minds while it is still cheap to, not after the build.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">01</span>
                         </div>
@@ -321,8 +322,8 @@
                             </span>
                             <div>
                                 <p class="proof-card__stage">Step 02 · weeks</p>
-                                <h3>From screens to a system that holds</h3>
-                                <p class="muted">Then the part a mockup never shows: the data model, the API, roles and permissions, a table that stays fast at ten thousand rows. This is where a prototype becomes a product.</p>
+                                <h3>From screens to a working system</h3>
+                                <p class="muted">Then comes the part a mockup never shows: the data model, the API, roles and permissions, a table that stays fast under real load. This is where a prototype becomes a product.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">02</span>
                         </div>
@@ -414,8 +415,8 @@
                             </span>
                             <div>
                                 <p class="proof-card__stage">Step 03 · and for as long as you need it</p>
-                                <h3>From a system to live — and yours</h3>
-                                <p class="muted">It reaches real users, and it keeps going. Repository, documentation, accounts and deployment are handed over — and a change six months later is still two files, not a rewrite.</p>
+                                <h3>From a system to a live product that's yours</h3>
+                                <p class="muted">It reaches real users and keeps going. Code, documentation, accounts and deployment are handed over to you, so a change six months later is a small job, not a rebuild.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">03</span>
                         </div>
@@ -569,329 +570,103 @@
 </section>
 
 
-        <section class="articles">
-            <!-- FEATURED PROJECTS -->
-            <section class="container u-stagger">
-                <h2 class="heading-section display-l u-reveal">FEATURED PROJECTS</h2>
-                <div class="segmented u-reveal" role="tablist" aria-label="Project filter">
-                    <span class="seg-thumb u-reveal" aria-hidden="true"></span>
-                    <button class="seg-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
-                    <button class="seg-btn" data-filter="web" role="tab" aria-selected="false">Web</button>
-                    <button class="seg-btn" data-filter="mobile" role="tab" aria-selected="false">Mobile</button>
+      <section class="articles">
+        <section class="container u-stagger">
+          <h2 class="heading-section display-l u-reveal">FEATURED PROJECTS</h2>
+          <p class="muted u-reveal" style="max-width: 60ch; margin: -8px 0 8px">A few of the systems I've built end to end.</p>
+
+          <div class="featured-grid">
+<article class="project project-xl project--sys project--split project--featured u-stagger" id="loyalty-backoffice" data-cat="web">
+            <div class="proj-visual u-reveal">
+              <div class="mock" data-gallery='[{"src": "../img/ac-cards-redacted-1400.webp", "alt": "Loyalty backoffice \u2014 card list and card record, data redacted"}, {"src": "../img/ac-loyalty-redacted-1400.webp", "alt": "Promotion testing with a virtual basket, data redacted"}]'>
+                <div class="mock__bar" aria-hidden="true">
+                  <span class="mock__dot"></span><span class="mock__dot"></span><span class="mock__dot"></span>
+                  <span class="mock__addr"></span>
                 </div>
-
-                <div class="featured-grid">
-<article class="project project-xl" data-cat="web">
-                        <div class="container-canva noselect">
-                            <div class="canvas">
-                                <div class="tracker tr-1"></div>
-                                <div class="tracker tr-2"></div>
-                                <div class="tracker tr-3"></div>
-                                <div class="tracker tr-4"></div>
-                                <div class="tracker tr-5"></div>
-                                <div class="tracker tr-6"></div>
-                                <div class="tracker tr-7"></div>
-                                <div class="tracker tr-8"></div>
-                                <div class="tracker tr-9"></div>
-                                <div class="tracker tr-10"></div>
-                                <div class="tracker tr-11"></div>
-                                <div class="tracker tr-12"></div>
-                                <div class="tracker tr-13"></div>
-                                <div class="tracker tr-14"></div>
-                                <div class="tracker tr-15"></div>
-                                <div class="tracker tr-16"></div>
-                                <div class="tracker tr-17"></div>
-                                <div class="tracker tr-18"></div>
-                                <div class="tracker tr-19"></div>
-                                <div class="tracker tr-20"></div>
-                                <div class="tracker tr-21"></div>
-                                <div class="tracker tr-22"></div>
-                                <div class="tracker tr-23"></div>
-                                <div class="tracker tr-24"></div>
-                                <div class="tracker tr-25"></div>
-                                <div id="card">
-                                    <div class="carousel" data-auto="3000">
-                                        <div class="slides u-stagger">
-                        <img
-                          class="u-reveal"
-                          src="../img/keepmi/landing-hero-1400.webp"
-                          srcset="../img/keepmi/landing-hero-700.webp 700w, ../img/keepmi/landing-hero-1400.webp 1400w"
-                          sizes="(max-width: 768px) 100vw, 900px"
-                          alt="keepmi — landing page"
-                          width="1400"
-                          height="840"
-                          loading="eager"
-                          decoding="sync"
-                          fetchpriority="high"
-                        />
-                        <img
-                          class="u-reveal"
-                          src="../img/keepmi/dashboard-1400.webp"
-                          srcset="../img/keepmi/dashboard-700.webp 700w, ../img/keepmi/dashboard-1400.webp 1400w"
-                          sizes="(max-width: 768px) 100vw, 900px"
-                          alt="keepmi — dashboard"
-                          width="1400"
-                          height="840"
-                          loading="lazy"
-                          decoding="async"
-                          fetchpriority="low"
-                        />
-                        <img
-                          class="u-reveal"
-                          src="../img/keepmi/select-design-1400.webp"
-                          srcset="../img/keepmi/select-design-700.webp 700w, ../img/keepmi/select-design-1400.webp 1400w"
-                          sizes="(max-width: 768px) 100vw, 900px"
-                          alt="keepmi — design picker"
-                          width="1400"
-                          height="840"
-                          loading="lazy"
-                          decoding="async"
-                          fetchpriority="low"
-                        />
-                      </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="carousel-ui u-stagger">
-                                <div class="dots u-reveal" aria-label="Slides"></div>
-                            </div>
-                        </div>
-
-                        <div class="meta u-stagger">
-                            <h3 class="meta-title u-reveal">
-                                <a class="meta-title-link" href="portfolio.html#keepmi"
-                    aria-label="Open keepmi details"
-                  >
-                    keepmi — digital invitations and a guest hub
-                    <svg class="meta-title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-      <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-                            </h3>
-                            <p class="sub u-reveal">Web · 2026</p>
-
-
-                        </div>
-
-
-                    </article>
-
-<article class="project u-stagger" data-cat="web">
-  <div class="sysmap sysmap--mini u-reveal" role="img" aria-label="Client system — screens not shown">
-                <div class="sysmap__inner">
-                  <ul class="sysmap__domains">
-                    <li>Cards</li>
-                    <li>Clients</li>
-                    <li>Loyalty</li>
-                    <li>Transactions</li>
-                    <li>Dashboard</li>
-                    <li>Audit log</li>
-                  </ul>
-                  <p class="sysmap__note">Client system</p>
-                </div>
-              </div>
-  <div class="meta u-stagger">
-    <h3 class="meta-title u-reveal">
-      <a class="meta-title-link" href="portfolio.html#loyalty-backoffice">
-                    Loyalty management system — B2B backoffice
-                    <svg
-          class="meta-title-ico"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            d="M7 17L17 7M9 7h8v8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
-    </h3>
-    <p class="sub u-reveal">Web · client project</p>
-  </div>
-</article>
-
-<article class="project u-stagger" data-cat="web">
-  <div class="thumb u-reveal">
-    <img
-      src="../img/LTSA.png"
-      alt="LTSA Web Project (HTML + CSS + JS)"
-      width="490"
-      height="385"
-      loading="lazy"
-      decoding="async"
-      fetchpriority="low"
-    />
-  </div>
-  <div class="meta u-stagger">
-    <h3 class="meta-title u-reveal">
-      <a class="meta-title-link" href="portfolio.html#ltsa">
-        LTSA — Web project (HTML + CSS + JS)
-        <svg
-          class="meta-title-ico"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            d="M7 17L17 7M9 7h8v8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
-    </h3>
-    <p class="sub u-reveal">Web · 2026</p>
-  </div>
-</article>
-
-<article class="project u-stagger" data-cat="mobile">
-  <div class="thumb u-reveal">
-    <img
-      src="../img/kidcan.png"
-      alt="Kidcan Mobile Apps (React Native, Expo, Kotlin, Supabase)"
-      width="490"
-      height="385"
-      loading="lazy"
-      decoding="async"
-      fetchpriority="low"
-    />
-  </div>
-  <div class="meta u-stagger">
-    <h3 class="meta-title u-reveal">
-      <a class="meta-title-link" href="portfolio.html#kidcan">
-        Kidcan — Mobile apps (React Native, Expo, Kotlin, Supabase)
-        <svg
-          class="meta-title-ico"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            d="M7 17L17 7M9 7h8v8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
-    </h3>
-    <p class="sub u-reveal">Mobile · 2025</p>
-  </div>
-</article>
-
-<article class="project u-stagger" data-cat="web">
-  <div class="thumb thumb--shot u-reveal">
-    <img
-                  src="../img/TikMaker/main-1400.webp"
-                  srcset="../img/TikMaker/main-700.webp 700w, ../img/TikMaker/main-1400.webp 1400w"
-                  sizes="(max-width: 768px) 100vw, 490px"
-                  alt="TikMaker — scene timeline and preview"
-                  width="1400"
-                  height="812"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
+                <img
+                  src="../img/ac-cards-redacted-1400.webp"
+                  srcset="../img/ac-cards-redacted-700.webp 700w, ../img/ac-cards-redacted-1400.webp 1400w"
+                  sizes="(max-width: 899px) 100vw, 560px"
+                  alt="Loyalty backoffice — card list and card record, data redacted"
+                  width="1400" height="773" loading="eager" decoding="async" fetchpriority="high"
                 />
-  </div>
-  <div class="meta u-stagger">
-    <h3 class="meta-title u-reveal">
-      <a class="meta-title-link" href="portfolio.html#tikmaker">
-                    TikMaker — video editor with AI voiceover
-                    <svg
-          class="meta-title-ico"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            d="M7 17L17 7M9 7h8v8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
-    </h3>
-    <p class="sub u-reveal">Web · internal tool · 2026 · <span class="stack-badge">AI inside</span></p>
-  </div>
-</article>
+                <span class="thumb-count">1 / 2</span>
+              </div>
+            </div>
+            <div class="meta u-reveal u-stagger">
+              <span class="project-eyebrow">Featured project</span>
+              <h3 class="u-reveal">Loyalty management system — B2B backoffice</h3>
+              <p class="sub u-reveal">Web · client project · screens with data redacted</p>
+              <div class="share share--overlay u-reveal" data-share>
+                <a class="share-btn" data-network="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook" title="Facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"/></svg>
+                </a>
+                <a class="share-btn" data-network="x" target="_blank" rel="noopener" aria-label="Share on X" title="X">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"/></svg>
+                </a>
+                <a class="share-btn" data-network="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"/></svg>
+                </a>
+              </div>
+              <p class="desc u-reveal"><strong class="proj-aspect">The hard part.</strong> Not the interface. Keeping data and logic consistent with a live backend that keeps changing. API types are generated from the backend schema, so every schema change has to be re-synced before a user runs into it. Bulk card actions have two completely different paths that both need equal support.</p>
+              <p class="desc u-reveal"><strong class="proj-aspect">My role.</strong> Not just the frontend. I scope and hand off work to the backend developer, agree the API contracts and steer the project as a whole. I built the early stage alone, before a backend developer joined.</p>
+              <ul class="stack-flow u-reveal">
+                    <li class="stack-node">React + TS<small>backoffice UI</small></li>
+                    <li class="stack-node">RTK Query<small>types from schema</small></li>
+                    <li class="stack-node">AG Grid<small>large tables</small></li>
+                    <li class="stack-node">REST API<small>live backend</small></li>
+              </ul>
+              <ul class="stack-facts u-reveal">
+                <li><strong>~27</strong> routes</li>
+                <li><strong>8</strong> domains</li>
+                <li><strong>2 × ~2200</strong> translation keys</li>
+                <li><strong>Roles</strong> and audit</li>
+              </ul>
+              <a class="btn-pill project-cta u-reveal" href="portfolio.html#loyalty-backoffice">View project details →</a>
+            </div>
+          </article>
+          <div class="portfolio-grid--lg">
+<article class="project project--grid u-stagger" id="tikmaker" data-cat="web">
+            <div class="grid-card__thumb u-reveal">
+              <img src="../img/TikMaker/main-1400.webp" alt="TikMaker — video editor with AI voiceover" loading="lazy" decoding="async" />
+            </div>
+            <div class="grid-card__body u-reveal">
+              <div class="grid-card__top">
+                <h3 class="grid-card__title">TikMaker — video editor with AI voiceover</h3>
+                <span class="grid-card__year">2026</span>
+              </div>
+              <span class="stack-badge">AI inside</span>
+              <p class="grid-card__desc">A video editor for my own TikTok / Reels content: an ElevenLabs voice track wired directly into the timeline like any other effect. An internal tool I use myself, not a product for sale.</p>
+              <ul class="tags grid-card__tags"><li>React + TS</li><li>ElevenLabs</li><li>Remotion</li></ul>
+              <div class="grid-card__links">
 
-<article class="project u-stagger" data-cat="web">
-                        <div class="thumb u-reveal"><img src="../img/Group 200.webp" alt="AutoRent — car rental website" width="490" height="385" loading="lazy" decoding="async" fetchpriority="low"></div>
-                        <div class="meta u-stagger">
-                            <h3 class="meta-title u-reveal">
-                                <a class="meta-title-link" href="portfolio.html#autorent">
-    AutoRent — (React + Python, FastAPI) Car Rental 
-    <svg class="meta-title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-                            </h3>
-                            <p class="sub u-reveal">
-                                Web · 2025
+              </div>
+            </div>
+          </article>
+<article class="project project--grid u-stagger" id="keepmi" data-cat="web">
+            <div class="grid-card__thumb u-reveal" data-gallery='[{"src": "../img/keepmi/landing-hero-1400.webp", "alt": "keepmi \u2014 landing page"}, {"src": "../img/keepmi/dashboard-1400.webp", "alt": "keepmi \u2014 organiser dashboard"}, {"src": "../img/keepmi/select-design-1400.webp", "alt": "keepmi \u2014 invitation design picker"}]'>
+              <img src="../img/keepmi/landing-hero-1400.webp" alt="keepmi — digital invitations and a guest hub" loading="lazy" decoding="async" />
+              <span class="thumb-count">1 / 3</span>
+            </div>
+            <div class="grid-card__body u-reveal">
+              <div class="grid-card__top">
+                <h3 class="grid-card__title">keepmi — digital invitations and a guest hub</h3>
+                <span class="grid-card__year">2026</span>
+              </div>
+              
+              <p class="grid-card__desc">Digital invitations that collect video wishes before the event, then become a full guest hub on the day: photo album, program, quizzes. Three languages, Stripe billing. A working MVP, no real users yet.</p>
+              <ul class="tags grid-card__tags"><li>Next.js</li><li>next-intl</li><li>Supabase</li><li>Stripe</li></ul>
+              <div class="grid-card__links">
+                <a class="grid-card__link" href="https://keepmi.app/" target="_blank" rel="noopener">Live demo ↗</a>
+              </div>
+            </div>
+          </article>
+          </div>
+          </div>
 
-                            </p>
-
-                        </div>
-
-
-                    </article>
-
-<article class="project u-stagger" data-cat="mobile">
-                        <div class="thumb u-reveal"><img src="../img/123.webp" alt="Travel App — trip planning app" width="490" height="385" loading="lazy" decoding="async" fetchpriority="low"></div>
-                        <div class="meta u-stagger">
-                            <h3 class="meta-title u-reveal">
-                                <a class="meta-title-link" href="portfolio.html#travel-app">
-    Travel App — React Native (Expo)
-    <svg class="meta-title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-                            </h3>
-
-                            <p class="sub u-reveal">
-                                Mobile · 2025
-                            </p>
-
-                        </div>
-
-                    </article>
-
-<article class="project u-stagger" data-cat="web">
-                        <div class="thumb u-reveal"><img src="../img/kibinai-group.png" alt="Kibinai Vilnius — restaurant website" width="490" height="385" loading="lazy" decoding="async" fetchpriority="low"></div>
-                        <div class="meta u-stagger">
-                            <h3 class="meta-title u-reveal">
-                                <a class="meta-title-link" href="portfolio.html#kibinai">
-    Kibinai Vilnius — Headless React + WordPress
-    <svg class="meta-title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-                            </h3>
-
-                            <p class="sub u-reveal">
-                                Web · 2025
-                            </p>
-
-                        </div>
-
-                    </article>
-
-<article class="project u-stagger" data-cat="mobile">
-                        <div class="thumb u-reveal"><img src="../img/124.webp" alt="ConvertClimb — mobile app" width="490" height="385" loading="lazy" decoding="async" fetchpriority="low"></div>
-                        <div class="meta u-stagger">
-                            <h3 class="meta-title u-reveal">
-                                <a class="meta-title-link" href="portfolio.html#convertclimb">
-    ConvertClimb — React Native (Expo)
-    <svg class="meta-title-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
-                            </h3>
-
-                            <p class="sub u-reveal">
-                                Mobile · 2025
-                            </p>
-
-                        </div>
-
-                    </article>
-                </div>
-            </section>
+          <p class="u-reveal" style="text-align:center; margin-top: clamp(24px, 4vw, 40px)"><a class="btn-outline" href="portfolio.html">All projects →</a></p>
         </section>
+      </section>
         
 
 

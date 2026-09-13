@@ -53,6 +53,7 @@
 
     <!-- CSS/JS (iš LT katalogo kylam vienu lygiu) -->
     <script src="../js/script.js" defer></script>
+    <script src="../js/gallery-lightbox.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/about.css" />
     <link rel="stylesheet" href="../css/aside.css" />
@@ -172,8 +173,8 @@
                 </div>
 
                 <dl class="hero-stats u-reveal">
-                    <div class="hero-stat"><dt>4+</dt><dd>Metai patirties</dd></div>
-                    <div class="hero-stat"><dt>20+</dt><dd>Įgyvendinti projektai</dd></div>
+                    <div class="hero-stat"><dt>3+</dt><dd>Metai patirties</dd></div>
+                    <div class="hero-stat"><dt>Full-stack</dt><dd>Nuo idėjos iki paleidimo</dd></div>
                     <div class="hero-stat"><dt>Patenkinti</dt><dd>Klientai ir partneriai</dd></div>
                 </dl>
 
@@ -280,7 +281,7 @@
                             <div>
                                 <p class="proof-card__stage">1 žingsnis · dienos</p>
                                 <h3>Nuo užduoties iki to, ką galima paspausti</h3>
-                                <p class="muted">Jūsų užduotis per kelias dienas virsta veikiančiais ekranais. Persigalvojame ten, kur tai pigu — o ne jau sukūrus.</p>
+                                <p class="muted">Jūsų užduotis per kelias dienas virsta veikiančiais ekranais. Persigalvojame ten, kur tai pigu, o ne po to, kai jau sukurta.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">01</span>
                         </div>
@@ -338,8 +339,8 @@
                             </span>
                             <div>
                                 <p class="proof-card__stage">2 žingsnis · savaitės</p>
-                                <h3>Nuo ekranų iki sistemos, kuri laiko</h3>
-                                <p class="muted">Toliau ta dalis, kurios maketas niekada neparodo: duomenų modelis, API, rolės ir teisės, lentelė, kuri lieka greita ir su dešimt tūkstančių įrašų. Čia prototipas tampa produktu.</p>
+                                <h3>Nuo ekranų iki veikiančios sistemos</h3>
+                                <p class="muted">Toliau eina tai, ko maketas neparodo: duomenų struktūra, API, rolės ir teisės, lentelė, kuri išlieka greita ir su dideliu duomenų kiekiu. Čia prototipas tampa produktu.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">02</span>
                         </div>
@@ -431,8 +432,8 @@
                             </span>
                             <div>
                                 <p class="proof-card__stage">3 žingsnis · ir tiek, kiek jums reikės</p>
-                                <h3>Nuo sistemos iki gyvo produkto — jūsų</h3>
-                                <p class="muted">Jis pasiekia tikrus vartotojus ir gyvena toliau. Repozitorija, dokumentacija, paskyros ir diegimas perduodami jums — o pakeitimas po pusmečio vis dar yra du failai, o ne perrašymas.</p>
+                                <h3>Nuo sistemos iki gyvo produkto, kuris jūsų</h3>
+                                <p class="muted">Sistema pasiekia tikrus žmones ir veikia toliau. Kodas, dokumentacija, prieigos ir diegimas atiduodami jums, todėl pakeitimas po pusmečio yra nedidelis darbas, ne perdarymas iš naujo.</p>
                             </div>
                             <span class="proof-card__step" aria-hidden="true">03</span>
                         </div>
@@ -587,423 +588,100 @@
       </section>
 
       <section class="articles">
-        <!-- FEATURED PROJECTS -->
         <section class="container u-stagger">
-          <h2 class="heading-section display-l u-reveal">
-            IŠSKIRTINIAI PROJEKTAI
-          </h2>
-          <div
-            class="segmented u-reveal"
-            role="tablist"
-            aria-label="Projektų filtras"
-          >
-            <span class="seg-thumb u-reveal" aria-hidden="true"></span>
-            <button
-              class="seg-btn is-active"
-              data-filter="all"
-              role="tab"
-              aria-selected="true"
-            >
-              Visi
-            </button>
-            <button
-              class="seg-btn"
-              data-filter="web"
-              role="tab"
-              aria-selected="false"
-            >
-              Web
-            </button>
-            <button
-              class="seg-btn"
-              data-filter="mobile"
-              role="tab"
-              aria-selected="false"
-            >
-              Mobile
-            </button>
-          </div>
+          <h2 class="heading-section display-l u-reveal">IŠSKIRTINIAI PROJEKTAI</h2>
+          <p class="muted u-reveal" style="max-width: 60ch; margin: -8px 0 8px">Keletas sistemų, kurias kūriau nuo pradžios iki galo.</p>
 
           <div class="featured-grid">
-<article class="project project-xl" data-cat="web">
-              <div class="container-canva noselect">
-                <div class="canvas">
-                  <div class="tracker tr-1"></div>
-                  <div class="tracker tr-2"></div>
-                  <div class="tracker tr-3"></div>
-                  <div class="tracker tr-4"></div>
-                  <div class="tracker tr-5"></div>
-                  <div class="tracker tr-6"></div>
-                  <div class="tracker tr-7"></div>
-                  <div class="tracker tr-8"></div>
-                  <div class="tracker tr-9"></div>
-                  <div class="tracker tr-10"></div>
-                  <div class="tracker tr-11"></div>
-                  <div class="tracker tr-12"></div>
-                  <div class="tracker tr-13"></div>
-                  <div class="tracker tr-14"></div>
-                  <div class="tracker tr-15"></div>
-                  <div class="tracker tr-16"></div>
-                  <div class="tracker tr-17"></div>
-                  <div class="tracker tr-18"></div>
-                  <div class="tracker tr-19"></div>
-                  <div class="tracker tr-20"></div>
-                  <div class="tracker tr-21"></div>
-                  <div class="tracker tr-22"></div>
-                  <div class="tracker tr-23"></div>
-                  <div class="tracker tr-24"></div>
-                  <div class="tracker tr-25"></div>
-                  <div id="card">
-                    <div class="carousel" data-auto="3000">
-                      <div class="slides u-stagger">
-                        <img
-                          class="u-reveal"
-                          src="../img/keepmi/landing-hero-1400.webp"
-                          srcset="../img/keepmi/landing-hero-700.webp 700w, ../img/keepmi/landing-hero-1400.webp 1400w"
-                          sizes="(max-width: 768px) 100vw, 900px"
-                          alt="keepmi — pradinis puslapis"
-                          width="1400"
-                          height="840"
-                          loading="eager"
-                          decoding="sync"
-                          fetchpriority="high"
-                        />
-                        <img
-                          class="u-reveal"
-                          src="../img/keepmi/dashboard-1400.webp"
-                          srcset="../img/keepmi/dashboard-700.webp 700w, ../img/keepmi/dashboard-1400.webp 1400w"
-                          sizes="(max-width: 768px) 100vw, 900px"
-                          alt="keepmi — valdymo skydelis"
-                          width="1400"
-                          height="840"
-                          loading="lazy"
-                          decoding="async"
-                          fetchpriority="low"
-                        />
-                        <img
-                          class="u-reveal"
-                          src="../img/keepmi/select-design-1400.webp"
-                          srcset="../img/keepmi/select-design-700.webp 700w, ../img/keepmi/select-design-1400.webp 1400w"
-                          sizes="(max-width: 768px) 100vw, 900px"
-                          alt="keepmi — dizaino parinkimas"
-                          width="1400"
-                          height="840"
-                          loading="lazy"
-                          decoding="async"
-                          fetchpriority="low"
-                        />
-                      </div>
-                    </div>
-                  </div>
+<article class="project project-xl project--sys project--split project--featured u-stagger" id="loyalty-backoffice" data-cat="web">
+            <div class="proj-visual u-reveal">
+              <div class="mock" data-gallery='[{"src": "../img/ac-cards-redacted-1400.webp", "alt": "Lojalumo backoffice \u2014 korteli\u0173 s\u0105ra\u0161as ir kortel\u0117s \u012fra\u0161as, duomenys u\u017edengti"}, {"src": "../img/ac-loyalty-redacted-1400.webp", "alt": "Akcij\u0173 testavimas su virtualiu krep\u0161eliu, duomenys u\u017edengti"}]'>
+                <div class="mock__bar" aria-hidden="true">
+                  <span class="mock__dot"></span><span class="mock__dot"></span><span class="mock__dot"></span>
+                  <span class="mock__addr"></span>
                 </div>
-                <div class="carousel-ui u-stagger">
-                  <div class="dots u-reveal" aria-label="Skaidrės"></div>
-                </div>
-              </div>
-
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a
-                    class="meta-title-link"
-                    href="portfolio.html#keepmi"
-                    aria-label="Atverti „keepmi“ detales"
-                  >
-                    keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Web · 2026</p>
-              </div>
-            </article>
-
-<article class="project u-stagger" data-cat="web">
-              <div class="sysmap sysmap--mini u-reveal" role="img" aria-label="Klientinė sistema — ekranai nerodomi">
-                <div class="sysmap__inner">
-                  <ul class="sysmap__domains">
-                    <li>Kortelės</li>
-                    <li>Klientai</li>
-                    <li>Lojalumas</li>
-                    <li>Transakcijos</li>
-                    <li>Dashboard</li>
-                    <li>Auditas</li>
-                  </ul>
-                  <p class="sysmap__note">Klientinė sistema</p>
-                </div>
-              </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#loyalty-backoffice">
-                    Lojalumo valdymo sistema — B2B backoffice
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Web · klientinis projektas</p>
-              </div>
-            </article>
-
-<article class="project u-stagger" data-cat="web">
-              <div class="thumb u-reveal">
                 <img
-                  src="../img/LTSA.png"
-                  alt="LTSA — informacinė svetainė"
-                  width="490"
-                  height="385"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
+                  src="../img/ac-cards-redacted-1400.webp"
+                  srcset="../img/ac-cards-redacted-700.webp 700w, ../img/ac-cards-redacted-1400.webp 1400w"
+                  sizes="(max-width: 899px) 100vw, 560px"
+                  alt="Lojalumo backoffice — kortelių sąrašas ir kortelės įrašas, duomenys uždengti"
+                  width="1400" height="773" loading="eager" decoding="async" fetchpriority="high"
                 />
+                <span class="thumb-count">1 / 2</span>
               </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#ltsa">
-                    LTSA — (HTML + CSS + JS)
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Mobile · 2026</p>
+            </div>
+            <div class="meta u-reveal u-stagger">
+              <span class="project-eyebrow">Iškirtinis projektas</span>
+              <h3 class="u-reveal">Lojalumo valdymo sistema — B2B backoffice</h3>
+              <p class="sub u-reveal">Web · klientinis projektas · ekranai su uždengtais duomenimis</p>
+              <div class="share share--overlay u-reveal" data-share>
+                <a class="share-btn" data-network="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook" title="Facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"/></svg>
+                </a>
+                <a class="share-btn" data-network="x" target="_blank" rel="noopener" aria-label="Share on X" title="X">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"/></svg>
+                </a>
+                <a class="share-btn" data-network="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"/></svg>
+                </a>
               </div>
-            </article>
+              <p class="desc u-reveal"><strong class="proj-aspect">Sunkiausia dalis.</strong> Ne sąsaja, o duomenų ir logikos nuoseklumas su gyvu, nuolat besikeičiančiu backend'u. API tipai generuojami iš backend'o schemos, tad kiekvienas jos pakeitimas turi būti persinchronizuotas prieš tai, kai jį pastebi naudotojas. Masiniai kortelių veiksmai turi du visiškai skirtingus kelius, kuriuos abu reikia palaikyti vienodai.</p>
+              <p class="desc u-reveal"><strong class="proj-aspect">Mano vaidmuo.</strong> Ne tik frontend'as. Formuluoju užduotis backend'o kolegai, derinu API kontraktus ir prižiūriu projektą kaip visumą. Pradžios etapą, kol prisijungė backend'o žmogus, dariau viena.</p>
+              <ul class="stack-flow u-reveal">
+                    <li class="stack-node">React + TS<small>backoffice UI</small></li>
+                    <li class="stack-node">RTK Query<small>tipai iš schemos</small></li>
+                    <li class="stack-node">AG Grid<small>didelės lentelės</small></li>
+                    <li class="stack-node">REST API<small>gyvas backend'as</small></li>
+              </ul>
+              <ul class="stack-facts u-reveal">
+                <li><strong>~27</strong> maršrutų</li>
+                <li><strong>8</strong> sričių</li>
+                <li><strong>2 × ~2200</strong> vertimo raktų</li>
+                <li><strong>Rolės</strong> ir auditas</li>
+              </ul>
+              <a class="btn-pill project-cta u-reveal" href="portfolio.html#loyalty-backoffice">Peržiūrėti projekto detales →</a>
+            </div>
+          </article>
+          <div class="portfolio-grid--lg">
+<article class="project project--grid u-stagger" id="tikmaker" data-cat="web">
+            <div class="grid-card__thumb u-reveal">
+              <img src="../img/TikMaker/main-1400.webp" alt="TikMaker — vaizdo redaktorius su AI įgarsinimu" loading="lazy" decoding="async" />
+            </div>
+            <div class="grid-card__body u-reveal">
+              <div class="grid-card__top">
+                <h3 class="grid-card__title">TikMaker — vaizdo redaktorius su AI įgarsinimu</h3>
+                <span class="grid-card__year">2026</span>
+              </div>
+              <span class="stack-badge">AI viduje</span>
+              <p class="grid-card__desc">Vaizdo redaktorius savo TikTok / Reels turiniui: ElevenLabs balso takelis integruotas tiesiai į timeline kaip bet kuris kitas efektas. Vidinis darbo įrankis, ne parduodamas produktas.</p>
+              <ul class="tags grid-card__tags"><li>React + TS</li><li>ElevenLabs</li><li>Remotion</li></ul>
+              <div class="grid-card__links">
 
-<article class="project u-stagger" data-cat="mobile">
-              <div class="thumb u-reveal">
-                <img
-                  src="../img/kidcan.png"
-                  alt="Kidcan — tėvų ir vaikų mobili programėlė"
-                  width="490"
-                  height="385"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                />
               </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#kidcan">
-                    Kidcan — Mobile app (React native + Expo, Kotlin, Supabase)
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Mobile · 2025</p>
+            </div>
+          </article>
+<article class="project project--grid u-stagger" id="keepmi" data-cat="web">
+            <div class="grid-card__thumb u-reveal" data-gallery='[{"src": "../img/keepmi/landing-hero-1400.webp", "alt": "keepmi \u2014 pradinis puslapis"}, {"src": "../img/keepmi/dashboard-1400.webp", "alt": "keepmi \u2014 organizatoriaus skydelis"}, {"src": "../img/keepmi/select-design-1400.webp", "alt": "keepmi \u2014 kvietimo dizaino parinkimas"}]'>
+              <img src="../img/keepmi/landing-hero-1400.webp" alt="keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as" loading="lazy" decoding="async" />
+              <span class="thumb-count">1 / 3</span>
+            </div>
+            <div class="grid-card__body u-reveal">
+              <div class="grid-card__top">
+                <h3 class="grid-card__title">keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as</h3>
+                <span class="grid-card__year">2026</span>
               </div>
-            </article>
-
-<article class="project u-stagger" data-cat="web">
-              <div class="thumb thumb--shot u-reveal">
-                <img
-                  src="../img/TikMaker/main-1400.webp"
-                  srcset="../img/TikMaker/main-700.webp 700w, ../img/TikMaker/main-1400.webp 1400w"
-                  sizes="(max-width: 768px) 100vw, 490px"
-                  alt="TikMaker — scenų timeline ir peržiūra"
-                  width="1400"
-                  height="812"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                />
+              
+              <p class="grid-card__desc">Skaitmeniniai kvietimai su svečių palinkėjimų rinkimu iki šventės. Pačią dieną visas svečių hub'as vienoje vietoje: albumas, programa, viktorinos. Trys kalbos, Stripe apmokėjimai. Veikiantis MVP, realių naudotojų kol kas nėra.</p>
+              <ul class="tags grid-card__tags"><li>Next.js</li><li>next-intl</li><li>Supabase</li><li>Stripe</li></ul>
+              <div class="grid-card__links">
+                <a class="grid-card__link" href="https://keepmi.app/" target="_blank" rel="noopener">Live demo ↗</a>
               </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#tikmaker">
-                    TikMaker — vaizdo redaktorius su AI įgarsinimu
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Web · vidinis įrankis · 2026 · <span class="stack-badge">AI viduje</span></p>
-              </div>
-            </article>
-
-<article class="project u-stagger" data-cat="web">
-              <div class="thumb u-reveal">
-                <img
-                  src="../img/Group 200.webp"
-                  alt="AutoRent — automobilių nuomos svetainė"
-                  width="490"
-                  height="385"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                />
-              </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#autorent">
-                    AutoRent — automobilių nuoma (React + Python, FastAPI)
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Web · 2025</p>
-              </div>
-            </article>
-
-<article class="project u-stagger" data-cat="mobile">
-              <div class="thumb u-reveal">
-                <img
-                  src="../img/123.webp"
-                  alt="Travel App — kelionių planavimo programėlė"
-                  width="490"
-                  height="385"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                />
-              </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#travel-app">
-                    Travel App — React Native (Expo)
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Mobile · 2025</p>
-              </div>
-            </article>
-
-<article class="project u-stagger" data-cat="web">
-              <div class="thumb u-reveal">
-                <img
-                  src="../img/kibinai-group.png"
-                  alt="Kibinai Vilnius — restorano svetainė"
-                  width="490"
-                  height="385"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                />
-              </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#kibinai">
-                    Kibinai Vilnius — Headless React + WordPress
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Web · 2025</p>
-              </div>
-            </article>
-
-<article class="project u-stagger" data-cat="mobile">
-              <div class="thumb u-reveal">
-                <img
-                  src="../img/124.webp"
-                  alt="ConvertClimb — programėlė"
-                  width="490"
-                  height="385"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                />
-              </div>
-              <div class="meta u-stagger">
-                <h3 class="meta-title u-reveal">
-                  <a class="meta-title-link" href="portfolio.html#convertclimb">
-                    ConvertClimb — React Native (Expo)
-                    <svg
-                      class="meta-title-ico"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                    >
-                      <path
-                        d="M7 17L17 7M9 7h8v8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </h3>
-                <p class="sub u-reveal">Mobile · 2025</p>
-              </div>
-            </article>
+            </div>
+          </article>
           </div>
+          </div>
+
+          <p class="u-reveal" style="text-align:center; margin-top: clamp(24px, 4vw, 40px)"><a class="btn-outline" href="portfolio.html">Visi projektai →</a></p>
         </section>
       </section>
 
@@ -1071,7 +749,7 @@
               <li>Bug'ų paieška ir taisymas</li>
               <li>UX problemos</li>
               <li>API optimizavimas</li>
-              <li>Architektūros gerinimas</li>
+              <li>AI integracijos</li>
             </ul>
 
             <a href="services.html#contact-project" class="btn-pill u-reveal"
@@ -1110,60 +788,6 @@
             >
           </article>
         </div>
-
-        <!--
-          AI is not a fourth service card - on its own it read as a toy
-          bolted onto the side of "real" work. It is the same competence
-          shown inside the three cards above (every chip list ends with
-          an AI line), collected here as one concrete picture of what
-          "AI inside the product" actually means: an agent with access
-          to the system's own context and tools, not a chatbot glued on
-          next to it.
-        -->
-        <article class="card ai-strip u-reveal">
-          <div class="ai-strip__head">
-            <span class="about-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="fill:none">
-                <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
-                <path d="m5.6 5.6 2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
-                <circle cx="12" cy="12" r="3.4" />
-              </svg>
-            </span>
-            <div>
-              <h3 class="svc-title">AI kaip produkto dalis</h3>
-              <p class="svc-sub muted">
-                AI man nėra atskiras žaislas ar chatbotas šalia sistemos.
-                Integruoju jį ten, kur jis tampa realia produkto funkcija —
-                analizuoja sistemos duomenis, naudojasi API, padeda
-                vartotojui atlikti užduotis ar veikia kaip agentas produkto
-                viduje.
-              </p>
-            </div>
-          </div>
-
-          <ul class="stack-flow">
-            <li class="stack-node stack-node--ai">AI agentas</li>
-            <li class="stack-node">
-              gauna kontekstą<small>sistemos duomenys</small>
-            </li>
-            <li class="stack-node">
-              naudoja įrankius<small>API / tools</small>
-            </li>
-            <li class="stack-node">atlieka veiksmą</li>
-            <li class="stack-node stack-node--ai">
-              grąžina rezultatą<small>vartotojui</small>
-            </li>
-          </ul>
-
-          <ul class="tags tags--pill">
-            <li>LLM integrations</li>
-            <li>AI agents</li>
-            <li>Tool calling</li>
-            <li>Structured outputs</li>
-            <li>MCP</li>
-            <li>Context-aware AI</li>
-          </ul>
-        </article>
 
         <div class="pricing-note u-reveal">
           <h3 class="svc-title">Kaip pradedame</h3>

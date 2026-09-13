@@ -470,7 +470,12 @@
 /* ---- Right rail ---- */
 
 .hero-avail {
-  margin-top: clamp(1.2rem, 2.4vw, 1.9rem);
+  /*
+    This rule set margin-top twice - clamp(...) then 0.4rem right after,
+    so the later declaration silently won and the stats row sat almost
+    flush against the availability pill instead of the intended gap.
+  */
+  margin-top: clamp(1.4rem, 2.8vw, 2.2rem);
   max-width: 300px;
   display: flex;
   align-items: center;
@@ -479,7 +484,6 @@
   border-radius: 14px;
   border: 1px solid var(--border);
   background: var(--card);
-  margin-top: 0.4rem;
 }
 .hero-avail__dot {
   width: 8px;
