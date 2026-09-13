@@ -107,6 +107,15 @@
 
     <main class="content content--single container">
 
+        <!-- Files, up top. Someone who already knows what this is should
+             not have to scroll the whole article to get the download. -->
+        <div class="resource-getbar u-reveal">
+          <a class="getbar__main" href="/docs/resources/claude-code-guardrails/guard.sh" download data-price="0" data-currency="EUR">Download guard.sh</a>
+          <a class="getbar__file" href="/docs/resources/claude-code-guardrails/settings.json" download>settings.json</a>
+          <a class="getbar__file" href="/docs/resources/claude-code-guardrails.pdf" download>PDF</a>
+          <span class="getbar__note">Free — no email required</span>
+        </div>
+
         <!-- 1. Problem -->
         <section class="resource-section u-reveal">
             <h2>The problem</h2>
@@ -507,11 +516,11 @@ exit 0</code></pre><!-- /sync -->
         <!-- 4. Download -->
         <section class="resource-section u-reveal">
             <h2>Get it</h2>
-            <div class="resource-download">
-                <a class="btn-pill" href="../../docs/resources/claude-code-guardrails/guard.sh" download data-price="0" data-currency="EUR">Download guard.sh →</a>
-                <a class="btn-outline" href="../../docs/resources/claude-code-guardrails/settings.json" download>settings.json</a>
-                <a class="btn-outline" href="../../docs/resources/claude-code-guardrails.pdf" download>PDF guide</a>
-                <span class="price">Free — no email required</span>
+            <div class="resource-getbar">
+                <a class="getbar__main" href="/docs/resources/claude-code-guardrails/guard.sh" download data-price="0" data-currency="EUR">Download guard.sh</a>
+                <a class="getbar__file" href="/docs/resources/claude-code-guardrails/settings.json" download>settings.json</a>
+                <a class="getbar__file" href="/docs/resources/claude-code-guardrails.pdf" download>PDF guide</a>
+                <span class="getbar__note">Free — no email required</span>
             </div>
             <p class="muted" style="margin-top:10px">These are the actual files, not a copy — the code blocks on this page are generated from them, so what you read above is byte-for-byte what you download.</p>
         </section>

@@ -412,7 +412,14 @@ def build_course_page(tr, n, lang, shell):
     # This page lives one directory deeper, so every ../ asset path and every
     # bare relative nav link has to be re-rooted. Absolute paths are used
     # rather than ../../ so the depth stops mattering.
-    s = s.replace('="../', '="/')
+    #
+    # Every ../ inside an attribute, not just the one after the opening
+    # quote: a srcset holds several URLs, and rewriting only the first left
+    # the wide-viewport candidate pointing at /lt/img/... - which 404s, so
+    # the image broke on exactly the screens it was meant for.
+    s = re.sub(r'(src|srcset|href)="([^"]*)"',
+               lambda m: '%s="%s"' % (m.group(1), m.group(2).replace('../', '/')),
+               s)
     s = re.sub(r'href="(?!https?:|/|#|mailto:)([\w-]+\.html)"',
                rf'href="/{lang}/\1"', s)
 
