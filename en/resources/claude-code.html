@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Claude Code from scratch | Resources — Gabrielė</title>
+    <meta name="description" content="From the first launch to an agent working inside your project safely and on your rules. Each step builds on the one before it." />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://codeart.lt/en/resources/claude-code.html" />
+    <link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources/claude-code.html" />
+    <link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources/claude-code.html" />
+    <link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/resources/claude-code.html" />
+    <!-- Canonical + hreflang -->
+    <!-- Icons / theme -->
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#313030" />
+
+    <!-- Open Graph / X -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Gabrielė – Free Resources" />
+    <meta property="og:description" content="Free, practical developer resources — read and use directly on the page." />
+    <meta property="og:url" content="https://codeart.lt/en/resources/claude-code.html" />
+    <meta property="og:image" content="https://codeart.lt/img/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preload -->
+    <link rel="preload" href="/fonts/clash/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="/js/script.js" defer></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/about.css" />
+    <link rel="stylesheet" href="/css/aside.css" />
+    <link rel="stylesheet" href="/css/contact-me.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/person.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/projects.css" />
+    <link rel="stylesheet" href="/css/resources.css" />
+
+    <!-- JSON-LD: CollectionPage -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Free Resources – Gabrielė / Codeart",
+            "inLanguage": "en",
+            "url": "https://codeart.lt/en/resources.html"
+        }
+    </script>
+</head>
+
+<body>
+    <!-- HEADER (no aside) -->
+    <header class="site-header">
+        <div class="container header-in">
+            <a id="brand" class="brand" href="/en"> <span class="icon" aria-hidden="true">GT</span>
+                <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+            </a>
+            <button class="hamburger" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+    </button>
+            <nav class="main-nav">
+                <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/en/about.html">About</a>
+                <a class="nav-link" href="/en/portfolio.html">Portfolio</a>
+                <a class="nav-link active" href="/en/resources.html">Resources</a>
+                <a class="nav-link" href="/en/contact.html">Contact</a>
+
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark" title="Switch between light and dark">
+                    <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+                    <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                </button>
+                <div class="nav-lang">
+                    <a id="langSwitch" class="nav-link" href="/lt/resources/claude-code.html" hreflang="en" aria-label="Switch language">EN</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+        <main class="content content--single content--course container">
+      <a class="course-back" href="/en/resources.html">← All courses</a>
+
+      <header class="course-head u-reveal">
+        <span class="course-head__num" aria-hidden="true">01</span>
+        <div>
+          <h1 class="course-head__title">Claude Code from scratch</h1>
+          <p class="course-head__blurb">From the first launch to an agent working inside your project safely and on your rules. Each step builds on the one before it.</p>
+          <p class="track__meta">
+            <span class="resource-card__tool tool--claude">Claude Code</span>
+            <span>6 steps · 1 ready</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="course-layout u-reveal" data-course>
+        <nav class="course-curriculum" aria-label="Curriculum">
+          <h2 class="course-curriculum__head">Curriculum</h2>
+          <ol class="lesson-list" role="tablist" aria-label="Curriculum">
+            <li>
+              <button class="lesson-link" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" data-step="1">
+                <span class="lesson-link__n" aria-hidden="true">1</span>
+                <span class="lesson-link__t">What Claude Code is, and getting it running</span>
+              </button>
+            </li>
+            <li>
+              <button class="lesson-link" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" data-step="2">
+                <span class="lesson-link__n" aria-hidden="true">2</span>
+                <span class="lesson-link__t">Project, context and CLAUDE.md</span>
+              </button>
+            </li>
+            <li>
+              <button class="lesson-link is-ready" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" data-step="3">
+                <span class="lesson-link__n" aria-hidden="true">3</span>
+                <span class="lesson-link__t">Guardrails: stopping the agent before it breaks things</span>
+              </button>
+            </li>
+            <li>
+              <button class="lesson-link" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" data-step="4">
+                <span class="lesson-link__n" aria-hidden="true">4</span>
+                <span class="lesson-link__t">Hooks in depth: when to ask, how to test them</span>
+              </button>
+            </li>
+            <li>
+              <button class="lesson-link" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" data-step="5">
+                <span class="lesson-link__n" aria-hidden="true">5</span>
+                <span class="lesson-link__t">Your own commands and skills</span>
+              </button>
+            </li>
+            <li>
+              <button class="lesson-link" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false" data-step="6">
+                <span class="lesson-link__n" aria-hidden="true">6</span>
+                <span class="lesson-link__t">MCP: wiring in your own tools</span>
+              </button>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="course-detail">
+          <article class="lesson-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+            <p class="lesson-panel__kicker">Step 1 / 6</p>
+            <h2 class="lesson-panel__title">What Claude Code is, and getting it running</h2>
+            <p class="lesson-panel__desc">How an agent in your terminal differs from a chat in a browser, and what it can reach on your machine.</p>
+            <div class="lesson-panel__res">
+                <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
+                <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            </div>
+          </article>
+          <article class="lesson-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+            <p class="lesson-panel__kicker">Step 2 / 6</p>
+            <h2 class="lesson-panel__title">Project, context and CLAUDE.md</h2>
+            <p class="lesson-panel__desc">What the agent needs to know about your codebase to stop guessing — and how to write it down once.</p>
+            <div class="lesson-panel__res">
+                <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
+                <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            </div>
+          </article>
+          <article class="lesson-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+            <p class="lesson-panel__kicker">Step 3 / 6</p>
+            <h2 class="lesson-panel__title">Guardrails: stopping the agent before it breaks things</h2>
+            <p class="lesson-panel__desc">A ready <code>.claude/settings.json</code> with five safety hooks plus a <code>guard.sh</code> script — with a plain-language explanation of what each one actually blocks.</p>
+            <div class="lesson-panel__res">
+                <h3 class="lesson-panel__reshead">Resources</h3>
+                <a class="lesson-res" href="/en/resources/claude-code-guardrails.html" hreflang="en">
+                  <span class="lesson-res__name">Claude Code Guardrails</span>
+                  <span class="lesson-res__cta">Open the resource →</span>
+                </a>
+            </div>
+          </article>
+          <article class="lesson-panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+            <p class="lesson-panel__kicker">Step 4 / 6</p>
+            <h2 class="lesson-panel__title">Hooks in depth: when to ask, how to test them</h2>
+            <p class="lesson-panel__desc">When blocking is too strict and allowing is too risky — the third option, and how to prove it works.</p>
+            <div class="lesson-panel__res">
+                <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
+                <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            </div>
+          </article>
+          <article class="lesson-panel" role="tabpanel" id="panel-5" aria-labelledby="tab-5" hidden>
+            <p class="lesson-panel__kicker">Step 5 / 6</p>
+            <h2 class="lesson-panel__title">Your own commands and skills</h2>
+            <p class="lesson-panel__desc">Turning repeated work into one command instead of retyping the same prompt every time.</p>
+            <div class="lesson-panel__res">
+                <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
+                <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            </div>
+          </article>
+          <article class="lesson-panel" role="tabpanel" id="panel-6" aria-labelledby="tab-6" hidden>
+            <p class="lesson-panel__kicker">Step 6 / 6</p>
+            <h2 class="lesson-panel__title">MCP: wiring in your own tools</h2>
+            <p class="lesson-panel__desc">Letting the agent reach your database, API or internal system — and only as far as you allow.</p>
+            <div class="lesson-panel__res">
+                <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
+                <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <section class="cta-contact">
+            <div class="container footer-card-flex">
+                <figure class="person-figure person-cta" aria-hidden="true">
+                    <img src="/img/person/fingers-down-half-body.webp" srcset="/img/person/fingers-down-half-body-450.webp 450w, ../img/person/fingers-down-half-body.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1173" loading="lazy" decoding="async">
+                </figure>
+                <div class="cta-contact__text">
+                    <h3>Have a project in mind?</h3>
+                    <p>A free 20-min chat — I reply within 24 hours with an initial plan and price.</p>
+                </div>
+                <a class="btn-pill" href="/en/contact.html">Contact me →</a>
+            </div>
+        </section>
+
+        <div class="footer-in container">
+            <div class="footer-top">
+                <section>
+                    <a class="brand" href="/en/index.html"> <span class="icon" aria-hidden="true">GT</span>
+                        <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+                    </a>
+                    <p class="brand-note">Developer & product builder. Focused on user experience and quality.</p>
+                    <div class="socials" aria-label="Social links">
+                        <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 3.2v11.6a4.4 4.4 0 1 1-3.6-4.3"/><path d="M15.2 3.2c.3 2.4 2.2 4.3 4.6 4.6"/></svg>
+                        </a>
+                        <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="Email" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="footer-card" aria-labelledby="flinks">
+                    <h3 id="flinks" class="footer-title">Quick links</h3>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="/en/index.html">Home</a></li>
+                        <li><a class="footer-link" href="/en/about.html">About</a></li>
+                        <li><a class="footer-link" href="/en/portfolio.html">Portfolio</a></li>
+                        <li><a class="footer-link" href="/en/resources.html">Resources</a></li>
+                        <li><a class="footer-link" href="/en/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <section class="footer-card" aria-labelledby="fnews">
+                    <h3 id="fnews" class="footer-title">Quick message</h3>
+                    <form class="newsletter" action="https://formspree.io/f/xeorkyne" method="POST">
+                        <input class="input" type="email" name="email" placeholder="Email" aria-label="Email" required>
+                        <input class="input" type="text" name="Message" placeholder="Message" aria-label="Message" required>
+                        <input type="text" name="_gotcha" style="display:none">
+                        <button class="btn-pill" type="submit">Say hi 👋</button>
+                        <p class="form-note" role="status" aria-live="polite"></p>
+                        <small class="brand-note">Message me — I reply within 24 h.</small>
+                    </form>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 Gabrielė · Codeart</span>
+                <div class="mini-nav">
+                    <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+      /*
+        Curriculum -> detail. Progressive enhancement: without JS every panel
+        is visible and the page is still a readable curriculum, so the script
+        only ever hides things once it is running.
+      */
+      (function () {
+        var root = document.querySelector("[data-course]");
+        if (!root) return;
+        root.classList.add("is-enhanced");
+        var tabs = root.querySelectorAll(".lesson-link");
+        var panels = root.querySelectorAll(".lesson-panel");
+        function show(n) {
+          tabs.forEach(function (t) {
+            t.setAttribute("aria-selected", t.dataset.step === n);
+          });
+          panels.forEach(function (p) {
+            p.hidden = p.id !== "panel-" + n;
+          });
+        }
+        tabs.forEach(function (t) {
+          t.addEventListener("click", function () { show(t.dataset.step); });
+          t.addEventListener("keydown", function (ev) {
+            var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
+            if (!d) return;
+            ev.preventDefault();
+            var list = Array.prototype.slice.call(tabs);
+            var next = list[(list.indexOf(t) + d + list.length) % list.length];
+            next.focus();
+            show(next.dataset.step);
+          });
+        });
+      })();
+    </script>
+  </body>
+
+</html>

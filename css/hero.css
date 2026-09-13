@@ -12,7 +12,16 @@
       transparent 100%
     );
 
-  padding: calc(var(--header-h) + 3.5rem) 0.9rem 0;
+  /*
+    The bottom padding was 0. On pages with a portrait the figure's own
+    height hid that, but on a page without one - a resource article - the
+    lead paragraph ran straight into the first heading of <main> with only
+    .content's 1.4rem between them, so the hero and the article read as one
+    undifferentiated block. The hero now ends properly, and the hairline
+    marks where it stops.
+  */
+  padding: calc(var(--header-h) + 3.5rem) 0.9rem clamp(36px, 5vw, 68px);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 7%, transparent);
 }
 
 .hero {
@@ -146,7 +155,7 @@
     order: -1;
   }
   .card-hero {
-    padding: calc(var(--header-h) + 1rem) 0.9rem 0;
+    padding: calc(var(--header-h) + 1rem) 0.9rem clamp(28px, 6vw, 40px);
   }
   .card-hero2 {
     padding: calc(var(--header-h) + 1rem) 0.9rem;

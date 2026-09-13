@@ -39,6 +39,25 @@ VISUALS = {
              "Kvietimo dizainas|Invitation design"),
         ],
     },
+    # The client system. These are the redacted renders from
+    # tools/redact-client-shots.py - every name, number, balance, brand and
+    # catalogue entry has been resampled out of existence. The masters in
+    # img/ac/ are gitignored and never published.
+    "loyalty-backoffice": {
+        "frame": "browser",
+        "hero": ("img/ac-cards-redacted", 1400, 773,
+                 "Lojalumo backoffice — kortelių sąrašas ir kortelės įrašas, "
+                 "duomenys uždengti"
+                 "|Loyalty backoffice — card list and card record, data redacted",
+                 None),
+        "shots": [
+            ("img/ac-loyalty-redacted", 1400, 774,
+             "Lojalumo akcijų testavimas su virtualiu krepšeliu, duomenys uždengti"
+             "|Promotion testing with a virtual basket, data redacted",
+             "Akcijų testavimas · duomenys uždengti"
+             "|Promotion testing · data redacted"),
+        ],
+    },
     "tikmaker": {
         "frame": "laptop",
         "hero": ("img/TikMaker/main", 1400, 812,
@@ -115,9 +134,19 @@ def main():
             end = s.index("</article>", i) + len("</article>")
             card = s[start:end]
 
-            # replace whatever visual the card currently has
-            card = re.sub(r'<div class="(?:thumb[^"]*|proj-visual[^"]*)">.*?</div>\n(?:\s*<ul class="proj-shots">.*?</ul>\n)?',
-                          visual_html(spec, lang) + "\n", card, count=1, flags=re.S)
+            # Replace whatever visual the card currently has. If the card has
+            # none - it was a screenshot-less card until now - insert one.
+            # re.sub silently does nothing when it does not match, which is
+            # how a card ended up with an empty visual column once already,
+            # so the count is checked rather than assumed.
+            block = visual_html(spec, lang) + "\n"
+            card, n = re.subn(
+                r'<div class="(?:thumb[^"]*|proj-visual[^"]*|sysmap[^"]*)"[^>]*>.*?\n(\s*)</div>\n'
+                r'(?:\s*<ul class="proj-shots">.*?</ul>\n)?',
+                lambda _: block, card, count=1, flags=re.S)
+            if n == 0:
+                at = card.index(">", card.index("<article")) + 1
+                card = card[:at] + "\n            " + block + card[at:]
             s = s[:start] + card + s[end:]
             done += 1
 

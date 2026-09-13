@@ -1,70 +1,88 @@
 #!/usr/bin/env python3
 """
-Write the resources page body - tracks and their steps - in both locales.
+Build the resources section: an index of courses, and a page per course.
 
-A flat grid of resource cards reads as "here are three things I happened to
-write". A track reads as "here is the path, and here is where you are on
-it": someone landing on step 3 can see what comes before and after, and
-someone landing on an empty step can see the shape of what is coming.
+A long numbered list on one page stops working as soon as a track has more
+than a handful of steps - and these tracks will. So the shape is the one
+every course site converged on for good reason: the index is a shelf of
+course cards, and opening one gives you the curriculum on the left and the
+selected lesson on the right, with its resources attached to it.
 
-So the page is a small number of ordered tracks, each a numbered list of
-steps. A step is either published (links out) or not yet (says so plainly).
-Unpublished steps stay listed on purpose - the sequence is the point, and
-hiding the gaps would make the track look shorter than it is.
+That split matters. The curriculum answers "what is this course and how far
+does it go" at a glance, without scrolling through prose. The right pane
+answers "what is in this particular lesson" only when asked. A step that
+isn't written yet still appears in the curriculum - the sequence is the
+product, and hiding the gaps would make each course look shorter than it is.
 
-Edit TRACKS below and run:  python3 tools/build-resources.py
+Run:  python3 tools/build-resources.py
 
-Both files carry <!-- TRACKS:START --> / <!-- TRACKS:END --> markers; only
-what is between them is rewritten.
+Writes, for each locale:
+  <lang>/resources.html                  - the shelf (between TRACKS markers)
+  <lang>/resources/<track-id>.html       - one course page per track
+
+Course pages are built from that locale's resources.html as a shell, so the
+header, footer and theme script stay in sync with the rest of the site
+automatically - there is no second copy of the chrome to keep updated.
 """
 from pathlib import Path
+import html
 import re
 
 ROOT = Path(__file__).resolve().parent.parent
 
 UI = {
     "lt": {
-        "steps": "žingsnių",
+        "steps": "žingsniai",
         "ready": "paruošta",
-        "read": "Skaityti",
+        "read": "Atidaryti resursą",
         "soon": "Netrukus",
-        "available": "Paruošta",
+        "open": "Peržiūrėti kursą",
+        "curriculum": "Turinys",
+        "back": "Visi kursai",
+        "lesson": "Žingsnis",
         "en_note": "anglų k.",
-        "intro": "Resursai sudėlioti į nuoseklius takelius — eik iš eilės arba "
-                 "šok į tą žingsnį, kurio tau trūksta. Tušti žingsniai palikti "
-                 "matomi specialiai: taip matai visą kelią, ne tik tai, kas jau "
-                 "parašyta.",
+        "no_res": "Šiam žingsniui resurso dar nėra. Kai parašysiu, jis atsiras "
+                  "čia — o žingsnis lieka sąraše, kad matytum visą kelią.",
+        "res_head": "Resursai",
+        "intro": "Ne atsitiktinės kortelės, o kursai. Kiekvienas eina iš eilės "
+                 "nuo pradžios iki galo — atsidaryk ir pamatysi visą turinį, "
+                 "net tas dalis, kurių dar neparašiau.",
+        "title": "Resursai",
     },
     "en": {
         "steps": "steps",
         "ready": "ready",
-        "read": "Read it",
+        "read": "Open the resource",
         "soon": "Coming soon",
-        "available": "Available",
+        "open": "View the course",
+        "curriculum": "Curriculum",
+        "back": "All courses",
+        "lesson": "Step",
         "en_note": "in English",
-        "intro": "The resources are laid out as ordered tracks — follow one "
-                 "through, or jump to the step you're missing. Empty steps are "
-                 "listed on purpose: you see the whole path, not just the part "
-                 "that's written.",
+        "no_res": "There is no resource for this step yet. When I write it, it "
+                  "appears here — the step stays listed so you can see the "
+                  "whole path.",
+        "res_head": "Resources",
+        "intro": "Not a pile of cards — courses. Each one runs in order from "
+                 "start to finish. Open one and you see the whole curriculum, "
+                 "including the parts I haven't written yet.",
+        "title": "Resources",
     },
 }
 
-# Each track: number, title, blurb, and its steps in order.
-# A step's "href" being None means it is not published yet.
 TRACKS = [
     {
         "id": "claude-code",
-        "cat": "ai-dev",
         "tool": "Claude Code",
         "title": {"lt": "Claude Code nuo nulio",
                   "en": "Claude Code from scratch"},
         "blurb": {
             "lt": "Nuo pirmo paleidimo iki to, kad agentas dirbtų tavo "
-                  "projekte saugiai ir su tavo taisyklėmis. Eik iš eilės — "
-                  "kiekvienas žingsnis remiasi ankstesniu.",
+                  "projekte saugiai ir su tavo taisyklėmis. Kiekvienas "
+                  "žingsnis remiasi ankstesniu.",
             "en": "From the first launch to an agent working inside your "
-                  "project safely and on your rules. Go in order — each step "
-                  "builds on the one before it.",
+                  "project safely and on your rules. Each step builds on the "
+                  "one before it.",
         },
         "steps": [
             {
@@ -96,6 +114,7 @@ TRACKS = [
                                "explanation of what each one actually blocks."},
                 "href": "/en/resources/claude-code-guardrails.html",
                 "href_lang": "en",
+                "res": {"lt": "Claude Code Guardrails", "en": "Claude Code Guardrails"},
             },
             {
                 "title": {"lt": "Hooks giliau: kada „ask“, kaip juos testuoti",
@@ -127,15 +146,14 @@ TRACKS = [
         ],
     },
     {
-        "id": "start",
-        "cat": "learning",
+        "id": "start-coding",
         "tool": {"lt": "Bet koks AI įrankis", "en": "Any AI tool"},
         "title": {"lt": "Kaip pradėti programuoti dabar",
                   "en": "How to start coding now"},
         "blurb": {
-            "lt": "Kelias pradedančiajam tuo metu, kai AI rašo pusę kodo už tave. "
-                  "Ne „išmok sintaksę“, o kaip išmokti taip, kad po metų dar "
-                  "mokėtum pats.",
+            "lt": "Kelias pradedančiajam tuo metu, kai AI rašo pusę kodo už "
+                  "tave. Ne „išmok sintaksę“, o kaip mokytis taip, kad po metų "
+                  "dar mokėtum pats.",
             "en": "A beginner's path at a time when AI writes half the code for "
                   "you. Not \"learn the syntax\", but how to learn so that you "
                   "still know it yourself a year from now.",
@@ -195,66 +213,237 @@ def pick(v, lang):
     return v[lang] if isinstance(v, dict) else v
 
 
-def esc(s):
-    return s.replace("&", "&amp;")
+def e(s):
+    return html.escape(s, quote=False)
 
 
-def render(lang):
+def ready_count(tr):
+    return sum(1 for s in tr["steps"] if s["href"])
+
+
+# --------------------------------------------------------------------------
+# The shelf: one card per course, on <lang>/resources.html
+# --------------------------------------------------------------------------
+
+def shelf(lang):
     u = UI[lang]
-    out = [f'      <p class="resources-intro u-reveal">{u["intro"]}</p>', ""]
+    out = [f'      <p class="resources-intro u-reveal">{u["intro"]}</p>', "",
+           '      <div class="course-grid u-stagger">']
     for n, tr in enumerate(TRACKS, 1):
-        steps = tr["steps"]
-        ready = sum(1 for s in steps if s["href"])
+        total, ready = len(tr["steps"]), ready_count(tr)
+        pct = round(ready / total * 100)
+        tool = pick(tr["tool"], lang)
+        tool_cls = " tool--claude" if tr["tool"] == "Claude Code" else ""
+        href = f'/{lang}/resources/{tr["id"]}.html'
         out += [
-            f'      <section class="track u-reveal" id="track-{tr["id"]}" data-cat="{tr["cat"]}">',
-            f'        <header class="track__head">',
-            f'          <span class="track__num" aria-hidden="true">{n:02d}</span>',
-            f'          <div class="track__headtext">',
-            f'            <h2 class="track__title">{esc(pick(tr["title"], lang))}</h2>',
-            f'            <p class="track__blurb">{esc(pick(tr["blurb"], lang))}</p>',
-            f'            <p class="track__meta">',
-            f'              <span class="resource-card__tool{" tool--claude" if tr["tool"] == "Claude Code" else ""}">{esc(pick(tr["tool"], lang))}</span>',
-            f'              <span>{len(steps)} {u["steps"]} · {ready} {u["ready"]}</span>',
-            f'            </p>',
+            f'        <a class="course-card u-reveal" href="{href}">',
+            f'          <span class="course-card__num" aria-hidden="true">{n:02d}</span>',
+            f'          <h2 class="course-card__title">{e(pick(tr["title"], lang))}</h2>',
+            f'          <p class="course-card__blurb">{e(pick(tr["blurb"], lang))}</p>',
+            f'          <span class="resource-card__tool{tool_cls}">{e(tool)}</span>',
+            f'          <div class="course-card__foot">',
+            f'            <div class="course-bar" role="img"'
+            f' aria-label="{ready}/{total} {u["ready"]}">',
+            f'              <span style="width:{pct}%"></span>',
+            f'            </div>',
+            f'            <span class="course-card__meta">{total} {u["steps"]}'
+            f' · {ready} {u["ready"]}</span>',
             f'          </div>',
-            f'        </header>',
-            f'        <ol class="track-steps">',
+            f'          <span class="course-card__cta">{u["open"]} →</span>',
+            f'        </a>',
         ]
-        for i, s in enumerate(steps, 1):
-            done = " is-ready" if s["href"] else ""
-            out += [
-                f'          <li class="track-step{done}">',
-                f'            <span class="track-step__n" aria-hidden="true">{i}</span>',
-                f'            <div class="track-step__body">',
-                f'              <h3 class="track-step__title">{esc(pick(s["title"], lang))}</h3>',
-                f'              <p class="track-step__desc">{pick(s["desc"], lang)}</p>',
-            ]
-            if s["href"]:
-                hl = s.get("href_lang")
-                note = f' <span class="track-step__note">({u["en_note"]})</span>' if hl and hl != lang else ""
-                attr = f' hreflang="{hl}"' if hl else ""
-                out.append(
-                    f'              <a class="link-ghost" href="{s["href"]}"{attr}>{u["read"]} →</a>{note}')
-            else:
-                out.append(
-                    f'              <span class="track-step__soon">{u["soon"]}</span>')
-            out += ['            </div>', '          </li>']
-        out += ['        </ol>', '      </section>', '']
+    out += ['      </div>']
     return "\n".join(out)
+
+
+# --------------------------------------------------------------------------
+# A course page: curriculum on the left, the selected step on the right
+# --------------------------------------------------------------------------
+
+def course_main(tr, n, lang):
+    u = UI[lang]
+    steps = tr["steps"]
+    total, ready = len(steps), ready_count(steps and tr)
+    tool = pick(tr["tool"], lang)
+    tool_cls = " tool--claude" if tr["tool"] == "Claude Code" else ""
+
+    nav = []
+    panels = []
+    for i, s in enumerate(steps, 1):
+        sel = "true" if i == 1 else "false"
+        done = " is-ready" if s["href"] else ""
+        nav += [
+            f'            <li>',
+            f'              <button class="lesson-link{done}" role="tab"'
+            f' id="tab-{i}" aria-controls="panel-{i}" aria-selected="{sel}"'
+            f' data-step="{i}">',
+            f'                <span class="lesson-link__n" aria-hidden="true">{i}</span>',
+            f'                <span class="lesson-link__t">{e(pick(s["title"], lang))}</span>',
+            f'              </button>',
+            f'            </li>',
+        ]
+        # Resources attached to this step - the right-hand side of the pane.
+        if s["href"]:
+            hl = s.get("href_lang")
+            note = (f' <span class="lesson-res__note">({u["en_note"]})</span>'
+                    if hl and hl != lang else "")
+            attr = f' hreflang="{hl}"' if hl else ""
+            res = [
+                f'                <h3 class="lesson-panel__reshead">{u["res_head"]}</h3>',
+                f'                <a class="lesson-res" href="{s["href"]}"{attr}>',
+                f'                  <span class="lesson-res__name">'
+                f'{e(pick(s.get("res", s["title"]), lang))}</span>{note}',
+                f'                  <span class="lesson-res__cta">{u["read"]} →</span>',
+                f'                </a>',
+            ]
+        else:
+            res = [
+                f'                <p class="lesson-panel__empty">'
+                f'<span class="track-step__soon">{u["soon"]}</span></p>',
+                f'                <p class="lesson-panel__emptynote">{u["no_res"]}</p>',
+            ]
+        panels += [
+            f'          <article class="lesson-panel" role="tabpanel" id="panel-{i}"'
+            f' aria-labelledby="tab-{i}"{"" if i == 1 else " hidden"}>',
+            f'            <p class="lesson-panel__kicker">{u["lesson"]} {i} / {total}</p>',
+            f'            <h2 class="lesson-panel__title">{e(pick(s["title"], lang))}</h2>',
+            f'            <p class="lesson-panel__desc">{pick(s["desc"], lang)}</p>',
+            f'            <div class="lesson-panel__res">',
+            *res,
+            f'            </div>',
+            f'          </article>',
+        ]
+
+    return "\n".join([
+        '    <main class="content content--single content--course container">',
+        f'      <a class="course-back" href="/{lang}/resources.html">← {u["back"]}</a>',
+        '',
+        '      <header class="course-head u-reveal">',
+        f'        <span class="course-head__num" aria-hidden="true">{n:02d}</span>',
+        '        <div>',
+        f'          <h1 class="course-head__title">{e(pick(tr["title"], lang))}</h1>',
+        f'          <p class="course-head__blurb">{e(pick(tr["blurb"], lang))}</p>',
+        '          <p class="track__meta">',
+        f'            <span class="resource-card__tool{tool_cls}">{e(tool)}</span>',
+        f'            <span>{total} {u["steps"]} · {ready} {u["ready"]}</span>',
+        '          </p>',
+        '        </div>',
+        '      </header>',
+        '',
+        '      <div class="course-layout u-reveal" data-course>',
+        '        <nav class="course-curriculum" aria-label="'
+        + u["curriculum"] + '">',
+        f'          <h2 class="course-curriculum__head">{u["curriculum"]}</h2>',
+        '          <ol class="lesson-list" role="tablist"'
+        f' aria-label="{u["curriculum"]}">',
+        *nav,
+        '          </ol>',
+        '        </nav>',
+        '',
+        '        <div class="course-detail">',
+        *panels,
+        '        </div>',
+        '      </div>',
+        '    </main>',
+    ])
+
+
+COURSE_JS = """
+    <script>
+      /*
+        Curriculum -> detail. Progressive enhancement: without JS every panel
+        is visible and the page is still a readable curriculum, so the script
+        only ever hides things once it is running.
+      */
+      (function () {
+        var root = document.querySelector("[data-course]");
+        if (!root) return;
+        root.classList.add("is-enhanced");
+        var tabs = root.querySelectorAll(".lesson-link");
+        var panels = root.querySelectorAll(".lesson-panel");
+        function show(n) {
+          tabs.forEach(function (t) {
+            t.setAttribute("aria-selected", t.dataset.step === n);
+          });
+          panels.forEach(function (p) {
+            p.hidden = p.id !== "panel-" + n;
+          });
+        }
+        tabs.forEach(function (t) {
+          t.addEventListener("click", function () { show(t.dataset.step); });
+          t.addEventListener("keydown", function (ev) {
+            var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
+            if (!d) return;
+            ev.preventDefault();
+            var list = Array.prototype.slice.call(tabs);
+            var next = list[(list.indexOf(t) + d + list.length) % list.length];
+            next.focus();
+            show(next.dataset.step);
+          });
+        });
+      })();
+    </script>
+"""
+
+
+def build_course_page(tr, n, lang, shell):
+    """Reuse the locale's resources.html for header, footer and head."""
+    u = UI[lang]
+    title = pick(tr["title"], lang)
+    url = f"https://codeart.lt/{lang}/resources/{tr['id']}.html"
+    s = shell
+
+    # This page lives one directory deeper, so every ../ asset path and every
+    # bare relative nav link has to be re-rooted. Absolute paths are used
+    # rather than ../../ so the depth stops mattering.
+    s = s.replace('="../', '="/')
+    s = re.sub(r'href="(?!https?:|/|#|mailto:)([\w-]+\.html)"',
+               rf'href="/{lang}/\1"', s)
+
+    s = re.sub(r'<title>.*?</title>',
+               f'<title>{e(title)} | {u["title"]} — Gabrielė</title>', s,
+               flags=re.S)
+    s = re.sub(r'<link rel="canonical" href="[^"]*"',
+               f'<link rel="canonical" href="{url}"', s)
+    s = re.sub(r'<meta property="og:url" content="[^"]*"',
+               f'<meta property="og:url" content="{url}"', s)
+    s = re.sub(r'(<meta name="description"\s+content=")[^"]*',
+               rf'\1{e(pick(tr["blurb"], lang))}', s, flags=re.S)
+    # hreflang pairs point at this course, not at the index
+    s = re.sub(r'<link rel="alternate" hreflang="(lt|en|x-default)" href="[^"]*" />',
+               lambda m: '<link rel="alternate" hreflang="%s" href="https://codeart.lt/%s/resources/%s.html" />'
+               % (m.group(1),
+                  "en" if m.group(1) in ("en", "x-default") else "lt",
+                  tr["id"]), s)
+    s = re.sub(r'(<a\s+id="langSwitch"[^>]*href=")[^"]*',
+               rf'\1/{"en" if lang == "lt" else "lt"}/resources/{tr["id"]}.html', s)
+
+    # swap hero + main for the course body
+    hero_start = s.index('<!-- HERO -->')
+    main_end = s.index('</main>') + len('</main>')
+    s = s[:hero_start] + course_main(tr, n, lang) + s[main_end:]
+    s = s.replace('</body>', COURSE_JS + '  </body>')
+    return s
 
 
 def main():
     for lang in ("lt", "en"):
-        path = ROOT / lang / "resources.html"
-        s = path.read_text()
-        block = f"<!-- TRACKS:START -->\n{render(lang)}      <!-- TRACKS:END -->"
-        new, n = re.subn(r'<!-- TRACKS:START -->.*?<!-- TRACKS:END -->',
-                         lambda _: block, s, flags=re.S)
+        index = ROOT / lang / "resources.html"
+        s = index.read_text()
+        block = f"<!-- TRACKS:START -->\n{shelf(lang)}\n      <!-- TRACKS:END -->"
+        s, n = re.subn(r'<!-- TRACKS:START -->.*?<!-- TRACKS:END -->',
+                       lambda _: block, s, flags=re.S)
         if not n:
-            raise SystemExit(f"{lang}/resources.html: no TRACKS markers found")
-        path.write_text(new)
-        print(f"{lang}/resources.html: {len(TRACKS)} tracks, "
-              f"{sum(len(t['steps']) for t in TRACKS)} steps")
+            raise SystemExit(f"{lang}/resources.html: no TRACKS markers")
+        index.write_text(s)
+
+        outdir = ROOT / lang / "resources"
+        outdir.mkdir(exist_ok=True)
+        for i, tr in enumerate(TRACKS, 1):
+            page = build_course_page(tr, i, lang, s)
+            (outdir / f"{tr['id']}.html").write_text(page)
+        print(f"{lang}: shelf + {len(TRACKS)} course pages "
+              f"({', '.join(t['id'] for t in TRACKS)})")
 
 
 if __name__ == "__main__":

@@ -151,127 +151,36 @@
         puslapiui - tuščias kambarys atrodo blogiau nei jo nebuvimas.
       -->
       <!-- TRACKS:START -->
-      <p class="resources-intro u-reveal">Resursai sudėlioti į nuoseklius takelius — eik iš eilės arba šok į tą žingsnį, kurio tau trūksta. Tušti žingsniai palikti matomi specialiai: taip matai visą kelią, ne tik tai, kas jau parašyta.</p>
+      <p class="resources-intro u-reveal">Ne atsitiktinės kortelės, o kursai. Kiekvienas eina iš eilės nuo pradžios iki galo — atsidaryk ir pamatysi visą turinį, net tas dalis, kurių dar neparašiau.</p>
 
-      <section class="track u-reveal" id="track-claude-code" data-cat="ai-dev">
-        <header class="track__head">
-          <span class="track__num" aria-hidden="true">01</span>
-          <div class="track__headtext">
-            <h2 class="track__title">Claude Code nuo nulio</h2>
-            <p class="track__blurb">Nuo pirmo paleidimo iki to, kad agentas dirbtų tavo projekte saugiai ir su tavo taisyklėmis. Eik iš eilės — kiekvienas žingsnis remiasi ankstesniu.</p>
-            <p class="track__meta">
-              <span class="resource-card__tool tool--claude">Claude Code</span>
-              <span>6 žingsnių · 1 paruošta</span>
-            </p>
+      <div class="course-grid u-stagger">
+        <a class="course-card u-reveal" href="/lt/resources/claude-code.html">
+          <span class="course-card__num" aria-hidden="true">01</span>
+          <h2 class="course-card__title">Claude Code nuo nulio</h2>
+          <p class="course-card__blurb">Nuo pirmo paleidimo iki to, kad agentas dirbtų tavo projekte saugiai ir su tavo taisyklėmis. Kiekvienas žingsnis remiasi ankstesniu.</p>
+          <span class="resource-card__tool tool--claude">Claude Code</span>
+          <div class="course-card__foot">
+            <div class="course-bar" role="img" aria-label="1/6 paruošta">
+              <span style="width:17%"></span>
+            </div>
+            <span class="course-card__meta">6 žingsniai · 1 paruošta</span>
           </div>
-        </header>
-        <ol class="track-steps">
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">1</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Kas yra Claude Code ir kaip jį paleisti</h3>
-              <p class="track-step__desc">Kuo agentas terminale skiriasi nuo pokalbio naršyklėje, ir ką jis gali pasiekti tavo kompiuteryje.</p>
-              <span class="track-step__soon">Netrukus</span>
+          <span class="course-card__cta">Peržiūrėti kursą →</span>
+        </a>
+        <a class="course-card u-reveal" href="/lt/resources/start-coding.html">
+          <span class="course-card__num" aria-hidden="true">02</span>
+          <h2 class="course-card__title">Kaip pradėti programuoti dabar</h2>
+          <p class="course-card__blurb">Kelias pradedančiajam tuo metu, kai AI rašo pusę kodo už tave. Ne „išmok sintaksę“, o kaip mokytis taip, kad po metų dar mokėtum pats.</p>
+          <span class="resource-card__tool">Bet koks AI įrankis</span>
+          <div class="course-card__foot">
+            <div class="course-bar" role="img" aria-label="0/5 paruošta">
+              <span style="width:0%"></span>
             </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">2</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Projektas, kontekstas ir CLAUDE.md</h3>
-              <p class="track-step__desc">Ką agentas turi žinoti apie tavo kodą, kad nustotų spėlioti — ir kaip tai surašyti vieną kartą.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step is-ready">
-            <span class="track-step__n" aria-hidden="true">3</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Saugikliai: kad agentas nesugriautų projekto</h3>
-              <p class="track-step__desc">Paruoštas <code>.claude/settings.json</code> su penkiais saugikliais ir <code>guard.sh</code> skriptu — su paaiškinimu, ką kiekvienas realiai blokuoja.</p>
-              <a class="link-ghost" href="/en/resources/claude-code-guardrails.html" hreflang="en">Skaityti →</a> <span class="track-step__note">(anglų k.)</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">4</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Hooks giliau: kada „ask“, kaip juos testuoti</h3>
-              <p class="track-step__desc">Kai blokuoti per griežta, o praleisti per rizikinga — trečias kelias ir kaip patikrinti, kad veikia.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">5</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Savos komandos ir skills</h3>
-              <p class="track-step__desc">Kaip pasidaryti, kad pasikartojantis darbas būtų viena komanda, o ne tas pats promptas kas kartą.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">6</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">MCP: kaip prijungti savo įrankius</h3>
-              <p class="track-step__desc">Kad agentas pasiektų tavo duomenų bazę, API ar vidinę sistemą — ir tik tiek, kiek leidi.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <section class="track u-reveal" id="track-start" data-cat="learning">
-        <header class="track__head">
-          <span class="track__num" aria-hidden="true">02</span>
-          <div class="track__headtext">
-            <h2 class="track__title">Kaip pradėti programuoti dabar</h2>
-            <p class="track__blurb">Kelias pradedančiajam tuo metu, kai AI rašo pusę kodo už tave. Ne „išmok sintaksę“, o kaip išmokti taip, kad po metų dar mokėtum pats.</p>
-            <p class="track__meta">
-              <span class="resource-card__tool">Bet koks AI įrankis</span>
-              <span>5 žingsnių · 0 paruošta</span>
-            </p>
+            <span class="course-card__meta">5 žingsniai · 0 paruošta</span>
           </div>
-        </header>
-        <ol class="track-steps">
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">1</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Nuo ko pradėti — ir ko negalima praleisti</h3>
-              <p class="track-step__desc">Kas pasikeitė per pastaruosius dvejus metus, o kas liko lygiai toks pat.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">2</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Aplinka: redaktorius, terminalas, Git</h3>
-              <p class="track-step__desc">Minimalus rinkinys, kurio užtenka pirmam pusmečiui, be papildomo triukšmo.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">3</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Pirmas projektas nuo nulio iki gyvo</h3>
-              <p class="track-step__desc">Mažas, bet pilnas: nuo tuščio aplanko iki nuorodos, kurią gali kam nors nusiųsti.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">4</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Vibe coding žemėlapis: kur AI padeda, kur kenkia</h3>
-              <p class="track-step__desc">Kur programavimas su AI tikrai pagreitina darbą, o kur tyliai susikuria netvarka, už kurią sumokėsi vėliau.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-          <li class="track-step">
-            <span class="track-step__n" aria-hidden="true">5</span>
-            <div class="track-step__body">
-              <h3 class="track-step__title">Portfolio, kuris ką nors reiškia</h3>
-              <p class="track-step__desc">Kodėl trys tutorial'ų klonai nieko nesako, ir ką rodyti vietoj jų.</p>
-              <span class="track-step__soon">Netrukus</span>
-            </div>
-          </li>
-        </ol>
-      </section>
+          <span class="course-card__cta">Peržiūrėti kursą →</span>
+        </a>
+      </div>
       <!-- TRACKS:END -->
     </main>
 

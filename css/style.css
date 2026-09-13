@@ -246,7 +246,9 @@ html.nav-fade {
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 1.2rem;
-  padding: 1.4rem 0.9rem;
+  /* Top padding carries the gap between the hero and the first block of
+     content; 1.4rem was not enough for that job on its own. */
+  padding: clamp(2rem, 4vw, 3.5rem) 0.9rem 1.4rem;
 }
 .articles {
   display: grid;
@@ -386,9 +388,10 @@ html.nav-fade {
     max-width: 640px;
   }
   .content {
-
-  padding: 1.4rem 0;
-}
+    /* Keeps the generous top gap set above; only the side padding goes,
+       because .container already provides it at this width. */
+    padding: clamp(2rem, 4vw, 3.5rem) 0 1.4rem;
+  }
 } /* md */
 @media (min-width: 1024px) {
   .container {
