@@ -909,3 +909,465 @@
     margin-left: 0;
   }
 }
+
+/* ==================================================================
+   Claude Code Hooks resource
+   ------------------------------------------------------------------
+   This page is also inlined into a course lesson panel, which is
+   already a two-column layout. So the sticky split below is scoped to
+   .content--single (the standalone page) - inside a lesson panel the
+   class is gone and everything falls back to one column.
+   ================================================================== */
+
+/* ---- The flow diagram under the hero ---- */
+
+.flowline {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 6px;
+}
+.flowline__step {
+  flex: 1 1 130px;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+.flowline__step b {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.flowline__step span {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+.flowline__step code {
+  font-size: 0.84em;
+}
+.flowline__step--hook {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+.flowline__step--deny {
+  border-color: color-mix(in srgb, #e5484d 50%, var(--border));
+  background: color-mix(in srgb, #e5484d 10%, transparent);
+}
+.flowline__arrow {
+  align-self: center;
+  color: color-mix(in srgb, var(--accent) 75%, transparent);
+  font-size: 1.1rem;
+  flex: 0 0 auto;
+}
+@media (max-width: 720px) {
+  .flowline {
+    flex-direction: column;
+  }
+  .flowline__arrow {
+    transform: rotate(90deg);
+    align-self: flex-start;
+    margin-left: 18px;
+  }
+}
+
+/* ---- Prose left / sticky diagram right (standalone page only) ---- */
+
+.content--single .hooks-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+}
+.content--single .hooks-split__aside {
+  position: sticky;
+  top: calc(var(--header-h) + 18px);
+}
+.hooks-split__step {
+  padding: 18px 0 22px;
+  border-top: 1px solid var(--border);
+}
+.hooks-split__step:first-child {
+  border-top: 0;
+}
+.hooks-split__step h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+.hooks-split__step p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+@media (max-width: 900px) {
+  .content--single .hooks-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .content--single .hooks-split__aside {
+    position: static;
+  }
+}
+
+/* The stack the sticky panel shows: one row per stage, lit as you scroll */
+.anatomy {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  overflow: hidden;
+}
+.anatomy__row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  opacity: 0.4;
+  transition: opacity 0.25s ease, background-color 0.25s ease;
+}
+.anatomy__row:first-child {
+  border-top: 0;
+}
+.anatomy__row.is-on {
+  opacity: 1;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.anatomy__k {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.anatomy__v {
+  min-width: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text);
+  word-break: break-word;
+}
+.anatomy__v small {
+  display: block;
+  margin-top: 4px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---- Lifecycle timeline ---- */
+
+.life {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+}
+.life__node {
+  flex: 0 0 auto;
+  min-width: 118px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+.life__node small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+.life__node--evt {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+}
+.life__node--end {
+  border-style: dashed;
+}
+
+/* ---- The "Claude wants to" simulator ---- */
+
+.sim {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  padding: clamp(14px, 2.4vw, 22px);
+}
+.sim__legend {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+.sim__opts {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.sim__opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.84rem;
+  color: var(--text);
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.sim__opt:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+.sim__opt input {
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.sim__opt:has(input:checked) {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.sim__tape {
+  margin-top: 16px;
+  display: grid;
+  gap: 8px;
+}
+.sim__line {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: simIn 0.32s ease forwards;
+}
+@keyframes simIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim__line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+.sim__who {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.sim__what {
+  min-width: 0;
+  color: var(--text);
+  word-break: break-word;
+}
+.sim__what code {
+  font-size: 0.86em;
+}
+.sim__line--deny {
+  border-color: color-mix(in srgb, #e5484d 50%, var(--border));
+  background: color-mix(in srgb, #e5484d 10%, transparent);
+}
+.sim__line--deny .sim__who {
+  color: #e5484d;
+}
+.sim__line--allow {
+  border-color: color-mix(in srgb, var(--ok, #30a46c) 45%, var(--border));
+  background: color-mix(in srgb, var(--ok, #30a46c) 10%, transparent);
+}
+@media (max-width: 560px) {
+  .sim__line {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}
+
+/* ---- Category grid ---- */
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+.cat {
+  padding: 14px 16px;
+  border-radius: 13px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+.cat b {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.cat p {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.cat span {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+/* ---- Two-up comparison ---- */
+
+.vs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+.vs__col {
+  padding: 16px;
+  border-radius: 13px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+.vs__col h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+.vs__col > p {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.vs__col ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ---- Callout ---- */
+
+.callout {
+  margin: 16px 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.callout p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.callout p + p {
+  margin-top: 8px;
+}
+
+/* ---- Event reference table ---- */
+
+.evt-wrap {
+  overflow-x: auto;
+}
+.evt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.evt th,
+.evt td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.evt th {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.evt td:first-child {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.evt td:last-child {
+  color: var(--muted);
+}
+
+.verified {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+details.more {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+details.more > summary {
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+}
+details.more[open] > summary {
+  margin-bottom: 10px;
+}
+details.more p {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.evt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.evt-chips code {
+  font-size: 0.76rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+  color: var(--text);
+}
+
+/* The anatomy walkthrough is two columns, so it needs more than the
+   760px measure the prose sections use. Only on the standalone page -
+   inside a lesson panel it is single-column anyway. */
+.content--single .resource-section--wide {
+  max-width: 1040px;
+}

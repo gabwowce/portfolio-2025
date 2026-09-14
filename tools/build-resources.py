@@ -116,13 +116,16 @@ TRACKS = [
                 "content_lang": "en",
             },
             {
-                "title": {"lt": "Hooks giliau: kada „ask“, kaip juos testuoti",
-                          "en": "Hooks in depth: when to ask, how to test them"},
-                "desc": {"lt": "Kai blokuoti per griežta, o praleisti per rizikinga — "
-                               "trečias kelias ir kaip patikrinti, kad veikia.",
-                         "en": "When blocking is too strict and allowing is too risky — "
-                               "the third option, and how to prove it works."},
-                "href": None,
+                "title": {"lt": "Hooks giliau: gyvenimo ciklas ir anatomija",
+                          "en": "Hooks in depth: the lifecycle and the anatomy"},
+                "desc": {"lt": "Kaip hooks realiai veikia: kur jie įsiterpia į agento "
+                               "ciklą, iš ko sudarytas vienas hook, ir kaip atrodo tas, "
+                               "kuris pasako „ne“ — su interaktyviu pavyzdžiu.",
+                         "en": "How hooks actually work: where they sit in the agent's "
+                               "loop, what one hook is made of, and what the one that "
+                               "says no looks like — with a live example."},
+                "content_from": "en/resources/claude-code-hooks.html",
+                "content_lang": "en",
             },
             {
                 "title": {"lt": "Savos komandos ir skills",

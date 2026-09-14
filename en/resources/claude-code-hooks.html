@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Claude Code Hooks – A Visual Guide | Free Resource</title>
+    <meta name="description" content="How Claude Code hooks actually work: the lifecycle, the anatomy of a hook, blocking a tool call, and where hooks turn an AI assistant into a controlled workflow. Free, read on the page." />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://codeart.lt/en/resources/claude-code-hooks.html" />
+    <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#313030" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Claude Code Hooks – A Visual Guide" />
+    <meta property="og:description" content="Events, guardrails, automation and feedback loops in Claude Code, explained with live diagrams. Free, read on the page." />
+    <meta property="og:url" content="https://codeart.lt/en/resources/claude-code-hooks.html" />
+    <meta property="og:image" content="https://codeart.lt/img/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" href="../../fonts/clash/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="../../js/script.js" defer></script>
+    <script src="../../js/resource-page.js" defer></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/about.css" />
+    <link rel="stylesheet" href="../../css/aside.css" />
+    <link rel="stylesheet" href="../../css/contact-me.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <link rel="stylesheet" href="../../css/person.css" />
+    <link rel="stylesheet" href="../../css/hero.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/projects.css" />
+    <link rel="stylesheet" href="../../css/resources.css" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Claude Code Hooks: from AI assistant to controlled engineering workflow",
+            "description": "A visual guide to events, guardrails, automation and feedback loops in Claude Code hooks.",
+            "url": "https://codeart.lt/en/resources/claude-code-hooks.html",
+            "inLanguage": "en",
+            "author": { "@type": "Person", "name": "Gabrielė Tamaševičiūtė" },
+            "publisher": { "@type": "Organization", "name": "Codeart" },
+            "about": "Claude Code hooks",
+            "isAccessibleForFree": true
+        }
+    </script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-in">
+            <a id="brand" class="brand" href="/en"> <span class="icon" aria-hidden="true">GT</span>
+                <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+            </a>
+            <button class="hamburger" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+    </button>
+            <nav class="main-nav">
+                <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="../about.html">About</a>
+                <a class="nav-link" href="../portfolio.html">Portfolio</a>
+                <a class="nav-link active" href="../resources.html">Resources</a>
+                <a class="nav-link" href="../contact.html">Contact</a>
+
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark" title="Switch between light and dark">
+                    <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+                    <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                </button>
+                <div class="nav-lang">
+                    <a id="langSwitch" class="nav-link" href="/en/" hreflang="en" aria-label="Switch language">EN</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="card-hero hero u-stagger">
+        <div class="container">
+            <div class="resource-hero hero-copy">
+                <div class="resource-meta u-reveal">
+                    <span class="pill pill--free">Free</span>
+                    <span class="resource-card__type">Guide · Claude Code hooks</span>
+                </div>
+                <h1 class="display-l u-reveal">Claude Code Hooks</h1>
+                <p class="lead u-reveal">Claude decides what it wants to do. Hooks decide what is allowed to happen around it.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="content content--single container">
+
+        <!-- The whole idea, in one diagram, before any prose. -->
+        <section class="resource-section u-reveal">
+            <div class="flowline">
+                <div class="flowline__step">
+                    <b>You</b>
+                    <span>“Fix the login bug”</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">→</div>
+                <div class="flowline__step">
+                    <b>Claude</b>
+                    <span>decides to edit <code>.env</code></span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">→</div>
+                <div class="flowline__step flowline__step--hook">
+                    <b>PreToolUse hook</b>
+                    <span>“Is this allowed?”</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">→</div>
+                <div class="flowline__step flowline__step--deny">
+                    <b>Denied</b>
+                    <span>Claude is told <code>.env</code> is protected, and works around it</span>
+                </div>
+            </div>
+            <p class="muted">That is the entire concept. Everything below is detail on how each box works.</p>
+        </section>
+
+        <!-- 01 -->
+        <section class="resource-section u-reveal">
+            <h2>01 · The moment you need them</h2>
+            <p>You ask Claude to fix a login bug. It reads the code, forms a theory, and decides the fastest fix is to change a value in <code>.env</code>. That is a reasonable engineering instinct. It is also the one file you never want an agent to touch, because it holds production credentials and it is not in version control, so a bad edit is not recoverable with <code>git checkout</code>.</p>
+            <p>You could write “never edit .env” in <code>CLAUDE.md</code>. That usually works. But it is an instruction competing with every other instruction in context, and it is advisory: nothing enforces it.</p>
+            <div class="callout">
+                <p><strong>Instructions tell Claude what it should do. Hooks let your system react to what Claude actually does.</strong></p>
+                <p>One is a request. The other is your code, running on your machine, at a fixed point in the agent's loop — with the power to say no.</p>
+            </div>
+        </section>
+
+        <!-- 02 -->
+        <section class="resource-section u-reveal">
+            <h2>02 · The analogy that makes it click</h2>
+            <p>Think of Claude as a competent new employee in your office building, and hooks as the building's security system.</p>
+            <div class="cat-grid">
+                <div class="cat">
+                    <b>Claude</b>
+                    <p>The employee. Capable, well-intentioned, allowed to move around and get work done.</p>
+                    <span>the agent</span>
+                </div>
+                <div class="cat">
+                    <b>Tools</b>
+                    <p>The doors. Reading a file, writing a file, running a command — each one is a door into a room.</p>
+                    <span>Read · Edit · Write · Bash</span>
+                </div>
+                <div class="cat">
+                    <b>Hooks</b>
+                    <p>Security and sensors. They sit at the doors, not inside the employee's head.</p>
+                    <span>your scripts</span>
+                </div>
+            </div>
+            <p style="margin-top:16px">From there the three hooks you will use most explain themselves:</p>
+            <ul>
+                <li><strong>PreToolUse</strong> is the badge reader outside the room. It checks before you go in, and it can refuse.</li>
+                <li><strong>PostToolUse</strong> is the quality inspector who walks in afterwards. It cannot un-open the door, but it can tidy up, log what happened, or flag a problem.</li>
+                <li><strong>Stop</strong> is the person at the exit asking “did you actually run the tests?” before you go home — and who can send you back in.</li>
+            </ul>
+        </section>
+
+        <!-- 03 -->
+        <section class="resource-section u-reveal">
+            <h2>03 · Where hooks sit in a run</h2>
+            <p>A Claude Code session is a loop, and hook events are named points along it. Here is the path a single tool call takes:</p>
+            <div class="life" role="img" aria-label="Session start, then UserPromptSubmit, Claude thinks and requests a tool, PreToolUse can deny or continue, PermissionRequest, the tool runs, then PostToolUse or PostToolUseFailure, the loop repeats, then Stop and session end.">
+                <div class="life__node"><strong>Session starts</strong><small>project opens</small></div>
+                <div class="life__node life__node--evt">SessionStart</div>
+                <div class="life__node"><strong>You type</strong><small>a prompt</small></div>
+                <div class="life__node life__node--evt">UserPromptSubmit</div>
+                <div class="life__node"><strong>Claude thinks</strong><small>picks a tool</small></div>
+                <div class="life__node life__node--evt">PreToolUse<small>can deny</small></div>
+                <div class="life__node life__node--evt">PermissionRequest</div>
+                <div class="life__node"><strong>Tool runs</strong><small>file written</small></div>
+                <div class="life__node life__node--evt">PostToolUse<small>or …Failure</small></div>
+                <div class="life__node"><strong>Loop</strong><small>back to thinking</small></div>
+                <div class="life__node life__node--evt">Stop<small>can send it back</small></div>
+                <div class="life__node life__node--end"><strong>Session ends</strong><small>SessionEnd</small></div>
+            </div>
+            <p class="muted">Scroll the row sideways if it is cut off. The important shape: <strong>PreToolUse is the only point that can stop an action before it happens.</strong> Everything after it is reacting to something that already ran.</p>
+
+            <details class="more">
+                <summary>Show the full lifecycle (33 events)</summary>
+                <p>You do not need these to start, and memorising them is not the point. They exist so that almost anything the agent does can be observed or gated — subagents, tasks, compaction, model switches, config changes and worktrees all have their own events.</p>
+                <div class="evt-chips">
+                    <code>SessionStart</code><code>Setup</code><code>UserPromptSubmit</code><code>UserPromptExpansion</code><code>PreToolUse</code><code>PermissionRequest</code><code>PermissionDenied</code><code>PostToolUse</code><code>PostToolUseFailure</code><code>PostToolBatch</code><code>Notification</code><code>MessageDisplay</code><code>SubagentStart</code><code>SubagentStop</code><code>TaskCreated</code><code>TaskCompleted</code><code>Stop</code><code>StopFailure</code><code>TeammateIdle</code><code>InstructionsLoaded</code><code>ConfigChange</code><code>CwdChanged</code><code>DirectoryAdded</code><code>FileChanged</code><code>WorktreeCreate</code><code>WorktreeRemove</code><code>PreCompact</code><code>PostCompact</code><code>PreModelSwitch</code><code>PostModelSwitch</code><code>Elicitation</code><code>ElicitationResult</code><code>SessionEnd</code>
+                </div>
+            </details>
+        </section>
+
+        <!-- 04 -->
+        <section class="resource-section resource-section--wide u-reveal">
+            <h2>04 · The anatomy of a hook</h2>
+            <p>Every hook is the same three decisions, no matter how complex it gets:</p>
+            <div class="callout">
+                <p><strong>HOOK = EVENT + MATCHER + ACTION</strong></p>
+                <p><em>When</em> should this fire · <em>which</em> calls do I care about · <em>what</em> do I run.</p>
+            </div>
+
+            <div class="hooks-split" data-anatomy>
+                <div>
+                    <div class="hooks-split__step" data-step="0">
+                        <h3>The event</h3>
+                        <p>The point in the loop where your code runs. <code>PreToolUse</code> means “before the tool executes”, which is the only place a decision can still change the outcome.</p>
+                    </div>
+                    <div class="hooks-split__step" data-step="1">
+                        <h3>The matcher</h3>
+                        <p>A regular expression against the tool name, so the hook only wakes for calls it cares about. <code>Edit|Write</code> means file-writing tools and nothing else — a <code>Read</code> or a <code>Bash</code> call never reaches this script.</p>
+                    </div>
+                    <div class="hooks-split__step" data-step="2">
+                        <h3>The handler</h3>
+                        <p>A command you own. Claude Code runs it and writes a JSON payload to its stdin, describing the call: <code>tool_name</code>, <code>tool_input</code>, <code>cwd</code>, <code>session_id</code> and more.</p>
+                    </div>
+                    <div class="hooks-split__step" data-step="3">
+                        <h3>The result</h3>
+                        <p>Your script answers on stdout. Returning <code>permissionDecision: "deny"</code> blocks the call and hands your reason back to Claude as feedback. Printing nothing means “no opinion” and the normal permission flow continues.</p>
+                    </div>
+                </div>
+
+                <aside class="hooks-split__aside" aria-hidden="true">
+                    <div class="anatomy">
+                        <div class="anatomy__row is-on" data-row="0">
+                            <div class="anatomy__k">Event</div>
+                            <div class="anatomy__v">"PreToolUse"<small>before the tool runs</small></div>
+                        </div>
+                        <div class="anatomy__row" data-row="1">
+                            <div class="anatomy__k">Matcher</div>
+                            <div class="anatomy__v">"matcher": "Edit|Write"<small>file writes only</small></div>
+                        </div>
+                        <div class="anatomy__row" data-row="2">
+                            <div class="anatomy__k">Handler</div>
+                            <div class="anatomy__v">"type": "command",<br>"command": "node .claude/hooks/protect-files.mjs"<small>your code, your machine</small></div>
+                        </div>
+                        <div class="anatomy__row" data-row="3">
+                            <div class="anatomy__k">Result</div>
+                            <div class="anatomy__v">"permissionDecision": "deny"<small>Claude is told why</small></div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <p>Written out, that is this — and this shape is every hook you will ever write:</p>
+            <div class="code-block">
+                <span class="code-block__label">.claude/settings.json</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PROJECT_DIR}/.claude/hooks/protect-files.mjs"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- 05 -->
+        <section class="resource-section u-reveal">
+            <h2>05 · Your first hook: format on every edit</h2>
+            <p>The smallest useful hook does not block anything. It runs Prettier over whatever file Claude just wrote, so formatting stops being something either of you thinks about.</p>
+            <div class="code-block">
+                <span class="code-block__label">.claude/settings.json</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | xargs -r npx prettier --write"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+            </div>
+            <p>The command reads the same JSON payload on stdin, pulls one field out of it with <code>jq</code>, and passes it to Prettier.</p>
+            <div class="callout">
+                <p><strong>Why <code>PostToolUse</code> and not <code>PreToolUse</code>?</strong></p>
+                <p>Because formatting is something you do <em>to</em> a file that exists. Before the tool runs, the change has not happened yet — there is nothing on disk to format. Pick the event by asking whether you need to <em>influence</em> the action or <em>react</em> to it.</p>
+            </div>
+        </section>
+
+        <!-- 06 -->
+        <section class="resource-section u-reveal">
+            <h2>06 · The one that says no</h2>
+            <p>Now the <code>.env</code> problem from the top. This is a real hook, not pseudocode: it reads the payload on stdin, compares the target path against a protected list, and answers.</p>
+            <div class="code-block">
+                <span class="code-block__label">.claude/hooks/protect-files.mjs</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>#!/usr/bin/env node
+import { readFileSync } from "node:fs";
+import path from "node:path";
+
+const PROTECTED = [
+  /(^|\/)\.env(\..+)?$/,   // .env, .env.local, .env.production
+  /(^|\/)\.git\//,         // anything inside .git
+  /(^|\/)\.ssh\//,         // keys
+  /(^|\/)credentials\.json$/,
+];
+
+// Claude Code writes the call description to stdin as JSON.
+const payload = JSON.parse(readFileSync(0, "utf8"));
+const target = payload.tool_input?.file_path ?? "";
+const rel = path.relative(payload.cwd ?? process.cwd(), target) || target;
+
+if (PROTECTED.some((re) => re.test(rel))) {
+  process.stdout.write(JSON.stringify({
+    hookSpecificOutput: {
+      hookEventName: "PreToolUse",
+      permissionDecision: "deny",
+      permissionDecisionReason:
+        `${rel} is protected. Change it by hand, or ask a human.`,
+    },
+  }));
+}
+
+// Print nothing = no opinion. The normal permission flow continues.
+process.exit(0);</code></pre>
+            </div>
+            <p class="muted">Two things worth noticing. It says <em>why</em>, not just no — that reason goes back to Claude, which is the difference between it getting stuck and it finding another route. And silence is a valid answer: a hook that has no opinion should print nothing rather than approving everything.</p>
+
+            <h3 style="margin-top:28px">Run something through it</h3>
+            <p>Pick what Claude tries to do and watch the hook decide. The rules below are the ones in the script above.</p>
+
+            <div class="sim" data-sim>
+                <p class="sim__legend">Claude wants to:</p>
+                <div class="sim__opts">
+                    <label class="sim__opt"><input type="radio" name="simAction" value="read-app"> Read <code>src/App.tsx</code></label>
+                    <label class="sim__opt"><input type="radio" name="simAction" value="edit-button"> Edit <code>src/Button.tsx</code></label>
+                    <label class="sim__opt"><input type="radio" name="simAction" value="edit-env" checked> Edit <code>.env</code></label>
+                    <label class="sim__opt"><input type="radio" name="simAction" value="npm-test"> Run <code>npm test</code></label>
+                    <label class="sim__opt"><input type="radio" name="simAction" value="rm-rf"> Run <code>rm -rf .</code></label>
+                </div>
+                <button class="btn-pill" type="button" data-sim-run>Run through hooks →</button>
+                <div class="sim__tape" data-sim-tape aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- 07 -->
+        <section class="resource-section u-reveal">
+            <h2>07 · Hooks are not only about blocking</h2>
+            <p>Blocking is the loudest use, not the most common one. Six things people actually wire up:</p>
+            <div class="cat-grid">
+                <div class="cat">
+                    <b>Observe</b>
+                    <p>Write every tool call to a log so you can see afterwards what the agent actually did.</p>
+                    <span>PostToolUse → append to a file</span>
+                </div>
+                <div class="cat">
+                    <b>Automate</b>
+                    <p>Run the formatter, regenerate types, restart a dev server after a file changes.</p>
+                    <span>PostToolUse → prettier</span>
+                </div>
+                <div class="cat">
+                    <b>Protect</b>
+                    <p>Refuse edits to credentials, migrations, or anything with no undo.</p>
+                    <span>PreToolUse → deny</span>
+                </div>
+                <div class="cat">
+                    <b>Enrich</b>
+                    <p>Inject context at the start of a session: the current branch, the ticket, today's deploy state.</p>
+                    <span>SessionStart → stdout becomes context</span>
+                </div>
+                <div class="cat">
+                    <b>Notify</b>
+                    <p>Ping you when a long run finishes or the agent is waiting on a decision.</p>
+                    <span>Notification · Stop</span>
+                </div>
+                <div class="cat">
+                    <b>Verify</b>
+                    <p>Refuse to let the session end while the tests are red, and say so.</p>
+                    <span>Stop → continue: true</span>
+                </div>
+            </div>
+            <p class="muted" style="margin-top:14px">The Enrich row is worth a second look: on a few events — <code>SessionStart</code>, <code>UserPromptSubmit</code> among them — whatever your script prints on stdout is added to the context Claude can see. A three-line shell script can tell it which branch you are on.</p>
+        </section>
+
+        <!-- 08 -->
+        <section class="resource-section u-reveal">
+            <h2>08 · Rules versus judgement</h2>
+            <p>A hook does not have to be a script. Alongside <code>command</code>, a hook can be a <code>prompt</code> or an <code>agent</code> — Claude evaluating the situation instead of your regex.</p>
+            <div class="vs">
+                <div class="vs__col">
+                    <h3>Deterministic</h3>
+                    <p><code>type: "command"</code> — your code, same answer every time.</p>
+                    <ul>
+                        <li>Fast and free</li>
+                        <li>Testable like any other script</li>
+                        <li>Cannot be talked out of a decision</li>
+                        <li>Only as good as the pattern you wrote</li>
+                    </ul>
+                </div>
+                <div class="vs__col">
+                    <h3>Judgement</h3>
+                    <p><code>type: "prompt"</code> or <code>"agent"</code> — a model weighs it up.</p>
+                    <ul>
+                        <li>Handles cases you did not enumerate</li>
+                        <li>Reads intent, not just strings</li>
+                        <li>Costs tokens and time on every call</li>
+                        <li>Not perfectly repeatable; agent hooks are experimental</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="callout">
+                <p><strong>Rule of thumb:</strong> if you can express the rule with an <code>if</code>, write the <code>if</code>. Reach for a prompt or agent hook only when the decision genuinely needs understanding — “is this commit message describing what actually changed?” is judgement; “is this file <code>.env</code>?” is not.</p>
+            </div>
+        </section>
+
+        <!-- 09 -->
+        <section class="resource-section u-reveal">
+            <h2>09 · What it looks like assembled</h2>
+            <p>Put four small hooks together and the loop stops being a chat and starts being a workflow with checks in it:</p>
+            <div class="flowline">
+                <div class="flowline__step flowline__step--hook">
+                    <b>SessionStart</b>
+                    <span>injects the branch and ticket into context</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">→</div>
+                <div class="flowline__step flowline__step--hook">
+                    <b>PreToolUse</b>
+                    <span>protected paths denied, everything else passes</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">→</div>
+                <div class="flowline__step flowline__step--hook">
+                    <b>PostToolUse</b>
+                    <span>Prettier runs, the call is logged</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">→</div>
+                <div class="flowline__step flowline__step--hook">
+                    <b>Stop</b>
+                    <span>tests red? sends Claude back instead of finishing</span>
+                </div>
+            </div>
+            <p>None of those four is clever on its own. Together they mean the agent cannot touch your secrets, cannot leave the codebase badly formatted, cannot quietly finish on a broken build, and cannot claim it did not know which branch it was on. That is the whole pitch: <strong>same model, bounded system.</strong></p>
+        </section>
+
+        <!-- 10 -->
+        <section class="resource-section u-reveal">
+            <h2>10 · A hook is code. Treat it like code.</h2>
+            <p>A command hook runs as a shell command with your permissions. Not Claude's permissions, not a sandbox — yours. It can modify or delete anything your user account can reach, and it runs automatically, without asking, on every matching call.</p>
+            <ul>
+                <li><strong>Validate the input.</strong> The payload describes something the agent proposed; treat the strings in it as untrusted.</li>
+                <li><strong>Quote your variables.</strong> An unquoted <code>$VAR</code> in a shell hook is a command-injection hole, and the value came from a model.</li>
+                <li><strong>Guard against path traversal.</strong> Resolve to an absolute path before comparing, so <code>../../.env</code> does not sail past a check that only looked at the basename.</li>
+                <li><strong>Use absolute paths</strong> for the script itself, so behaviour does not depend on the working directory.</li>
+                <li><strong>Do not read secrets in a hook</strong> just because it is convenient.</li>
+            </ul>
+            <div class="callout">
+                <p>The failure mode to avoid is copying a <code>.claude/settings.json</code> from a random repository and letting it run. You would not <code>curl | bash</code> a stranger's script. A hook config is the same thing with extra steps: read it before it runs.</p>
+            </div>
+        </section>
+
+        <!-- 11 -->
+        <section class="resource-section u-reveal">
+            <h2>Hook event reference</h2>
+            <p class="muted">The ones worth knowing by name, and what each is for.</p>
+            <div class="evt-wrap">
+                <table class="evt">
+                    <thead>
+                        <tr><th>Event</th><th>Fires</th><th>Use it to</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>SessionStart</td><td>session opens</td><td>inject context — stdout is added to what Claude sees</td></tr>
+                        <tr><td>UserPromptSubmit</td><td>you send a prompt</td><td>add context, or reject the prompt</td></tr>
+                        <tr><td>PreToolUse</td><td>before a tool runs</td><td>allow, deny, or rewrite the tool input</td></tr>
+                        <tr><td>PermissionRequest</td><td>a call needs approval</td><td>auto-approve known-safe calls</td></tr>
+                        <tr><td>PostToolUse</td><td>after a tool succeeds</td><td>format, log, regenerate</td></tr>
+                        <tr><td>PostToolUseFailure</td><td>after a tool errors</td><td>react to failures, add a hint</td></tr>
+                        <tr><td>Stop</td><td>Claude is about to finish</td><td>send it back if the work is not verified</td></tr>
+                        <tr><td>SubagentStop</td><td>a subagent finishes</td><td>check a delegated result</td></tr>
+                        <tr><td>Notification</td><td>Claude needs you</td><td>send yourself a desktop or phone ping</td></tr>
+                        <tr><td>PreCompact</td><td>before context compaction</td><td>persist anything you do not want summarised away</td></tr>
+                        <tr><td>SessionEnd</td><td>session closes</td><td>clean up, write a summary</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="verified">Behaviour and event names verified against the official Claude Code hooks reference, September 2026. Hooks are evolving quickly — check the <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">official reference</a> before relying on a detail here.</p>
+        </section>
+
+        <!-- Page furniture: stripped when this article is inlined into the course. -->
+        <section class="resource-section u-reveal">
+            <h2>What's next</h2>
+            <div class="resource-next">
+                <a class="card resource-card" href="claude-code-guardrails.html">
+                    <span class="pill pill--free">Free</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">Claude Code Guardrails</h3>
+                    <p class="muted">A ready settings.json with five safety hooks and a guard.sh script.</p>
+                </a>
+                <a class="card resource-card" href="../resources.html">
+                    <span class="resource-card__type">All resources</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">Browse the rest</h3>
+                </a>
+            </div>
+        </section>
+
+        <script>
+        /*
+          Two small behaviours, kept inside <main> on purpose: this article
+          is also lifted into a course lesson panel, and the build copies
+          the inner HTML of <main> verbatim — so shipping the script here
+          keeps the page interactive in both places.
+        */
+        (function () {
+          // ---- 04: light the matching row of the sticky panel on scroll ----
+          var split = document.querySelector("[data-anatomy]");
+          if (split && "IntersectionObserver" in window) {
+            var steps = split.querySelectorAll(".hooks-split__step");
+            var rows = split.querySelectorAll(".anatomy__row");
+            var io = new IntersectionObserver(function (entries) {
+              entries.forEach(function (en) {
+                if (!en.isIntersecting) return;
+                var i = en.target.getAttribute("data-step");
+                rows.forEach(function (r) {
+                  r.classList.toggle("is-on", r.getAttribute("data-row") === i);
+                });
+              });
+            }, { rootMargin: "-45% 0px -45% 0px" });
+            steps.forEach(function (s) { io.observe(s); });
+          }
+
+          // ---- 06: the simulator ----
+          var sim = document.querySelector("[data-sim]");
+          if (!sim) return;
+          var tape = sim.querySelector("[data-sim-tape]");
+          var runBtn = sim.querySelector("[data-sim-run]");
+
+          // Each case mirrors what the script on this page would really do.
+          var CASES = {
+            "read-app": [
+              ["Claude", "Read <code>src/App.tsx</code>"],
+              ["Matcher", "tool is <code>Read</code>, matcher is <code>Edit|Write</code> — no match"],
+              ["Hook", "never runs"],
+              ["Result", "Allowed. The hook only guards writes.", "allow"]
+            ],
+            "edit-button": [
+              ["Claude", "Edit <code>src/Button.tsx</code>"],
+              ["Matcher", "<code>Edit</code> matches <code>Edit|Write</code>"],
+              ["Hook", "protect-files.mjs reads the payload, checks the path"],
+              ["Check", "<code>src/Button.tsx</code> is not on the protected list"],
+              ["Result", "Prints nothing — no opinion. Normal permission flow continues.", "allow"]
+            ],
+            "edit-env": [
+              ["Claude", "Edit <code>.env</code>"],
+              ["Matcher", "<code>Edit</code> matches <code>Edit|Write</code>"],
+              ["Hook", "protect-files.mjs reads the payload, checks the path"],
+              ["Check", "<code>.env</code> matches <code>/(^|\\/)\\.env(\\..+)?$/</code>"],
+              ["Result", "<code>permissionDecision: \"deny\"</code> — blocked", "deny"],
+              ["Claude", "receives the reason and works around it instead of retrying"]
+            ],
+            "npm-test": [
+              ["Claude", "Run <code>npm test</code>"],
+              ["Matcher", "tool is <code>Bash</code>, matcher is <code>Edit|Write</code> — no match"],
+              ["Hook", "never runs"],
+              ["Result", "Allowed by this hook, which has no view on Bash at all.", "allow"]
+            ],
+            "rm-rf": [
+              ["Claude", "Run <code>rm -rf .</code>"],
+              ["Matcher", "tool is <code>Bash</code>, matcher is <code>Edit|Write</code> — no match"],
+              ["Hook", "never runs"],
+              ["Result", "Not blocked — and that is the lesson.", "deny"],
+              ["Takeaway", "A hook only sees what its matcher lets through. Guarding files does nothing about shell commands; that needs a second hook on <code>Bash</code>."]
+            ]
+          };
+
+          function render(steps) {
+            tape.innerHTML = "";
+            steps.forEach(function (s, i) {
+              var line = document.createElement("div");
+              line.className = "sim__line" + (s[2] ? " sim__line--" + s[2] : "");
+              line.style.animationDelay = (i * 260) + "ms";
+              var who = document.createElement("div");
+              who.className = "sim__who";
+              who.textContent = s[0];
+              var what = document.createElement("div");
+              what.className = "sim__what";
+              what.innerHTML = s[1];
+              line.appendChild(who);
+              line.appendChild(what);
+              tape.appendChild(line);
+            });
+          }
+
+          runBtn.addEventListener("click", function () {
+            var picked = sim.querySelector('input[name="simAction"]:checked');
+            if (picked && CASES[picked.value]) render(CASES[picked.value]);
+          });
+        })();
+        </script>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <section class="cta-contact">
+            <div class="container footer-card-flex">
+                <figure class="person-figure person-cta" aria-hidden="true">
+                    <img src="../../img/person/fingers-down-half-body.webp" srcset="../../img/person/fingers-down-half-body-450.webp 450w, ../../img/person/fingers-down-half-body.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1173" loading="lazy" decoding="async">
+                </figure>
+                <div class="cta-contact__text">
+                    <h3>Have a project in mind?</h3>
+                    <p>A free 20-min chat — I reply within 24 hours with an initial plan and price.</p>
+                </div>
+                <a class="btn-pill" href="/en/contact.html">Contact me →</a>
+            </div>
+        </section>
+
+        <div class="footer-in container">
+            <div class="footer-top">
+                <section>
+                    <a class="brand" href="/en/index.html"> <span class="icon" aria-hidden="true">GT</span>
+                        <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+                    </a>
+                    <p class="brand-note">Developer &amp; product builder. Focused on user experience and quality.</p>
+                    <div class="socials" aria-label="Social links">
+                        <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 3.2v11.6a4.4 4.4 0 1 1-3.6-4.3"/><path d="M15.2 3.2c.3 2.4 2.2 4.3 4.6 4.6"/></svg>
+                        </a>
+                        <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="Email" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="footer-card" aria-labelledby="flinks">
+                    <h3 id="flinks" class="footer-title">Quick links</h3>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="/en/index.html">Home</a></li>
+                        <li><a class="footer-link" href="/en/about.html">About</a></li>
+                        <li><a class="footer-link" href="/en/portfolio.html">Portfolio</a></li>
+                        <li><a class="footer-link" href="/en/resources.html">Resources</a></li>
+                        <li><a class="footer-link" href="/en/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <section class="footer-card" aria-labelledby="fnews">
+                    <h3 id="fnews" class="footer-title">Quick message</h3>
+                    <form class="newsletter" action="https://formspree.io/f/xeorkyne" method="POST">
+                        <input class="input" type="email" name="email" placeholder="Email" aria-label="Email" required>
+                        <input class="input" type="text" name="Message" placeholder="Message" aria-label="Message" required>
+                        <input type="text" name="_gotcha" style="display:none">
+                        <button class="btn-pill" type="submit">Say hi 👋</button>
+                        <p class="form-note" role="status" aria-live="polite"></p>
+                        <small class="brand-note">Message me — I reply within 24 h.</small>
+                    </form>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 Gabrielė · Codeart</span>
+                <div class="mini-nav">
+                    <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
