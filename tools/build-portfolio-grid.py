@@ -43,18 +43,22 @@ FEATURED = {
                 "turėtojai, organizacijos ir transakcijos. Naudotojai yra įmonės "
                 "darbuotojai, ne galutiniai klientai, todėl viskas sukasi apie "
                 "teises, auditą ir duomenų tikslumą.",
-        "hard_label": "Sunkiausia dalis",
-        "hard": "Ne sąsaja, o duomenų ir logikos nuoseklumas su gyvu, "
-                "nuolat besikeičiančiu backend'u. API tipai generuojami iš "
-                "backend'o schemos, tad kiekvienas jos pakeitimas turi būti "
-                "persinchronizuotas prieš tai, kai jį pastebi naudotojas. "
-                "Masiniai kortelių veiksmai turi du visiškai skirtingus "
-                "kelius, kuriuos abu reikia palaikyti vienodai.",
         "role_label": "Mano vaidmuo",
-        "role": "Ne tik frontend'as. Formuluoju užduotis backend'o kolegai, "
-                "derinu API kontraktus ir prižiūriu projektą kaip visumą. "
-                "Pradžios etapą, kol prisijungė backend'o žmogus, dariau "
-                "viena.",
+        "role": "Ne tik frontend'as. Rašau technines užduotis backend'o "
+                "kolegai, derinu API kontraktus prieš įgyvendinimą ir "
+                "prižiūriu projektą kaip visumą. Pradiniame etape, kol dar "
+                "nebuvo prisijungęs backend'o žmogus, dariau viena: nuo "
+                "duomenų modelio iki UI.",
+        "how_label": "Kaip dirbame",
+        "how": "Backend'as keičiasi kartu su frontend'u: kiekvieną naują "
+               "lauką ar endpoint'ą aptariame iš anksto, API tipus "
+               "generuojame tiesiai iš backend'o schemos, todėl "
+               "neatitikimai išryškėja dar prieš kodą pasiekiant naudotoją. "
+               "Sistema apima ~27 maršrutus 8 skirtingose srityse "
+               "(kortelės, kuponai, akcijos, segmentai, užduotys ir kt.), "
+               "o kiekvienas naujas funkcionalumas turi atsispindėti "
+               "dviejose vietose vienodai: masiniame sąrašo veiksme ir "
+               "detalės dialoge.",
         "cta": "Peržiūrėti projekto detales",
         "facts": [("~27", "maršrutų"), ("8", "sričių"),
                   ("2 × ~2200", "vertimo raktų"), ("Rolės", "ir auditas")],
@@ -68,18 +72,21 @@ FEATURED = {
                 "the company's own staff rather than end customers, so "
                 "everything turns on permissions, auditability and data "
                 "accuracy.",
-        "hard_label": "The hard part",
-        "hard": "Not the interface. Keeping data and logic consistent with "
-                "a live backend that keeps changing. API types are "
-                "generated from the backend schema, so every schema change "
-                "has to be re-synced before a user runs into it. Bulk card "
-                "actions have two completely different paths that both "
-                "need equal support.",
         "role_label": "My role",
-        "role": "Not just the frontend. I scope and hand off work to the "
-                "backend developer, agree the API contracts and steer the "
-                "project as a whole. I built the early stage alone, before "
-                "a backend developer joined.",
+        "role": "Not just the frontend. I write technical tasks for the "
+                "backend developer, agree API contracts before "
+                "implementation, and steer the project as a whole. In the "
+                "early stage, before a backend developer had joined, I "
+                "built it alone: from the data model to the UI.",
+        "how_label": "How we work",
+        "how": "The backend changes together with the frontend: we agree "
+               "on every new field or endpoint beforehand, and API types "
+               "are generated directly from the backend schema, so "
+               "mismatches surface before the code reaches a user. The "
+               "system covers roughly 27 routes across 8 areas (cards, "
+               "coupons, promotions, segments, tasks and more), and every "
+               "new feature has to show up the same way in two places: the "
+               "bulk list action and the detail dialog.",
         "cta": "View project details",
         "facts": [("~27", "routes"), ("8", "domains"),
                   ("2 × ~2200", "translation keys"), ("Roles", "and audit")],
@@ -308,8 +315,8 @@ def featured_html(lang, cta_href=None):
               <span class="project-eyebrow">{d["eyebrow"]}</span>
               <h3 class="u-reveal">{d["title"]}</h3>
               <p class="sub u-reveal">{d["sub"]}</p>
-{SHARE}              <p class="desc u-reveal"><strong class="proj-aspect">{d["hard_label"]}.</strong> {d["hard"]}</p>
-              <p class="desc u-reveal"><strong class="proj-aspect">{d["role_label"]}.</strong> {d["role"]}</p>
+{SHARE}              <p class="desc u-reveal"><strong class="proj-aspect">{d["role_label"]}.</strong> {d["role"]}</p>
+              <p class="desc u-reveal"><strong class="proj-aspect">{d["how_label"]}.</strong> {d["how"]}</p>
               <ul class="stack-flow u-reveal">
 {nodes}
               </ul>

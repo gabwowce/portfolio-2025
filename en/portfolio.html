@@ -151,8 +151,8 @@
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"/></svg>
                 </a>
               </div>
-              <p class="desc u-reveal"><strong class="proj-aspect">The hard part.</strong> Not the interface. Keeping data and logic consistent with a live backend that keeps changing. API types are generated from the backend schema, so every schema change has to be re-synced before a user runs into it. Bulk card actions have two completely different paths that both need equal support.</p>
-              <p class="desc u-reveal"><strong class="proj-aspect">My role.</strong> Not just the frontend. I scope and hand off work to the backend developer, agree the API contracts and steer the project as a whole. I built the early stage alone, before a backend developer joined.</p>
+              <p class="desc u-reveal"><strong class="proj-aspect">My role.</strong> Not just the frontend. I write technical tasks for the backend developer, agree API contracts before implementation, and steer the project as a whole. In the early stage, before a backend developer had joined, I built it alone: from the data model to the UI.</p>
+              <p class="desc u-reveal"><strong class="proj-aspect">How we work.</strong> The backend changes together with the frontend: we agree on every new field or endpoint beforehand, and API types are generated directly from the backend schema, so mismatches surface before the code reaches a user. The system covers roughly 27 routes across 8 areas (cards, coupons, promotions, segments, tasks and more), and every new feature has to show up the same way in two places: the bulk list action and the detail dialog.</p>
               <ul class="stack-flow u-reveal">
                     <li class="stack-node">React + TS<small>backoffice UI</small></li>
                     <li class="stack-node">RTK Query<small>types from schema</small></li>

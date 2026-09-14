@@ -147,6 +147,13 @@
   height: auto;
 }
 
+/* One line under the mockup naming the flow it just showed in words. */
+.proof-card__flow {
+  margin: 10px 2px 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 @media (max-width: 640px) {
   .proof-card__head {
     grid-template-columns: auto minmax(0, 1fr);

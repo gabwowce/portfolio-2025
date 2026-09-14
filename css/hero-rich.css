@@ -97,6 +97,17 @@
   letter-spacing: -0.02em;
   margin: 0 0 1rem;
 }
+/*
+  cqw sizing tracks the column width, but "Programuotoja" is one
+  unbreakable word - on a narrow phone the column shrinks faster than a
+  single long word can, so the word overflowed its own line instead of
+  shrinking with it. A lower ceiling here keeps it inside the column.
+*/
+@media (max-width: 480px) {
+  .hero-rich__title {
+    font-size: clamp(34px, 15cqw, 46px);
+  }
+}
 .hero-rich__slash {
   color: var(--accent);
 }
@@ -244,7 +255,6 @@
   font-weight: 700;
   line-height: 1.1;
   color: var(--text);
-  white-space: nowrap;
 }
 .hero-stat dd {
   margin: 2px 0 0;
@@ -351,7 +361,7 @@
   z-index: 1;
   /* Width comes from the inset; height follows the drawing's own ratio. */
   inset: 5% 1% auto 51%;
-  aspect-ratio: 240 / 404;
+  aspect-ratio: 240 / 438;
   border-radius: 10px;
   border: 3px solid color-mix(in srgb, var(--text) 20%, transparent);
   background: linear-gradient(
@@ -422,7 +432,7 @@
   font-family: "Caveat", "Segoe Script", cursive;
 }
 .bd-title {
-  font-size: 21px;
+  font-size: 15px;
   font-weight: 600;
   fill: var(--text);
 }
