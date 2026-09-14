@@ -91,22 +91,19 @@
 .hero-rich__copy {
   container-type: inline-size;
 }
+/*
+  Sized so the longest line of the headline ("ir web aplikacijų </>")
+  fits the copy column on one line. The headline is three deliberate
+  <br> lines, so the type has to shrink with the column rather than let
+  a line wrap into a fourth - at the old 20cqw it was sized for the much
+  shorter "Programuotoja" and wrapped to five or six lines here.
+*/
 .hero-rich__title {
-  font-size: clamp(40px, 20cqw, 82px);
-  line-height: 0.95;
+  font-size: clamp(27px, 9cqw, 54px);
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0 0 1rem;
-}
-/*
-  cqw sizing tracks the column width, but "Programuotoja" is one
-  unbreakable word - on a narrow phone the column shrinks faster than a
-  single long word can, so the word overflowed its own line instead of
-  shrinking with it. A lower ceiling here keeps it inside the column.
-*/
-@media (max-width: 480px) {
-  .hero-rich__title {
-    font-size: clamp(34px, 15cqw, 46px);
-  }
+  text-wrap: balance;
 }
 .hero-rich__slash {
   color: var(--accent);

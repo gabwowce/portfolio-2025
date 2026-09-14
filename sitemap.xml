@@ -133,4 +133,94 @@
     <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources/start-coding.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources/start-coding.html"/>
   </url>
+  <url>
+    <loc>https://codeart.lt/lt/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/en/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/lt/blog/typography.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog/typography.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog/typography.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog/typography.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/en/blog/typography.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog/typography.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog/typography.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog/typography.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/lt/blog/color-system.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog/color-system.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog/color-system.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog/color-system.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/en/blog/color-system.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog/color-system.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog/color-system.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog/color-system.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/lt/blog/type-scale.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog/type-scale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog/type-scale.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog/type-scale.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/en/blog/type-scale.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/blog/type-scale.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/blog/type-scale.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/blog/type-scale.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/lt/game.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/game.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/game.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/game.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://codeart.lt/en/game.html</loc>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/game.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/game.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/game.html"/>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
