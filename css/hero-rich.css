@@ -110,69 +110,68 @@
 }
 
 /*
-  The </> mark: treated as a glowing object rather than text — layered
-  glow behind it, a lit inner edge, and a slow breathing pulse. This is
-  the one element in the hero that is deliberately "lit".
+  The </> mark. It used to sit inline at the end of a line, mid-phrase,
+  which read as a stray glyph someone forgot to delete. It now divides
+  the two things the headline offers — business systems on one side, web
+  apps on the other — and is drawn as a tilted stamp rather than a
+  character in the sentence: enclosed, slightly rotated, and sized down
+  so it punctuates the headline instead of competing with it.
 */
 .code-mark {
   position: relative;
-  display: inline-block;
-  vertical-align: baseline;
+  display: inline-grid;
+  place-items: center;
   isolation: isolate;
-  padding: 0 0.06em;
-  font-size: 0.72em;
+  /* Keeps the box square-ish regardless of the glyph's own metrics. */
+  padding: 0.16em 0.26em 0.2em;
+  margin-inline-start: 0.22em;
+  font-size: 0.5em;
   letter-spacing: -0.04em;
+  line-height: 1;
+  vertical-align: 0.24em;
+  border: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: 0.34em;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  transform: rotate(-9deg);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 .code-mark__glyph {
   position: relative;
   z-index: 2;
-  color: #ffb595;
-  background: linear-gradient(180deg, #ffd0b8 0%, var(--accent) 55%, #b4553a 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 85%, transparent))
-    drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 55%, transparent))
-    drop-shadow(0 0 38px color-mix(in srgb, var(--accent) 32%, transparent));
+  color: var(--accent);
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--accent) 55%, transparent));
 }
-/* soft halo behind the glyph */
+/* A slow breath on the enclosure, so it reads as lit rather than static. */
 .code-mark::before {
   content: "";
   position: absolute;
   z-index: 1;
-  inset: -35% -18%;
+  inset: -22%;
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
-    color-mix(in srgb, var(--accent) 40%, transparent),
-    transparent 75%
+    color-mix(in srgb, var(--accent) 34%, transparent),
+    transparent 72%
   );
-  filter: blur(10px);
+  filter: blur(9px);
   pointer-events: none;
   animation: codeMarkPulse 4.5s ease-in-out infinite;
 }
 @keyframes codeMarkPulse {
   0%,
   100% {
-    opacity: 0.65;
+    opacity: 0.55;
     transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .code-mark::before {
     animation: none;
   }
-}
-/* On the light /lt theme the neon needs a darker core to stay readable */
-:root:not([data-theme="dark"]) .code-mark__glyph {
-  background: linear-gradient(180deg, var(--accent) 0%, #b4553a 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 45%, transparent));
 }
 
 .hero-rich__copy .lead {
@@ -426,7 +425,7 @@
 /* ---- What is drawn on the board ---- */
 
 .hero-board__sketch text {
-  font-family: "Caveat", "Segoe Script", cursive;
+  font-family: "Caveat", "Bradley Hand", "Segoe Script", "Comic Sans MS", system-ui, sans-serif;
 }
 .bd-title {
   font-size: 15px;
@@ -463,9 +462,15 @@
   font-weight: 600;
   fill: var(--text);
 }
+/*
+  This asked for system-ui, but `.hero-board__sketch text` (class + type)
+  outranks a bare class, so the caption has always rendered in Caveat
+  like the rest of the board. That is the right look for a whiteboard -
+  so the rule now says so, and the size is nudged up because handwriting
+  reads smaller than a sans at the same px.
+*/
 .bd-cap {
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 10.5px;
+  font-size: 12px;
   fill: var(--muted);
 }
 .bd-goal {
@@ -519,7 +524,7 @@
 
 .hero-note {
   position: absolute;
-  font-family: "Caveat", "Segoe Script", cursive;
+  font-family: "Caveat", "Bradley Hand", "Segoe Script", "Comic Sans MS", system-ui, sans-serif;
   font-size: clamp(15px, 1.25vw, 20px);
   line-height: 1.25;
   color: var(--muted);

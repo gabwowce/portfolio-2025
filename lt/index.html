@@ -51,6 +51,24 @@
       crossorigin
     />
 
+    <!-- Caveat: the handwritten lettering on the hero board (self-hosted).
+         Without this the board's SVG text can paint in the fallback and
+         never repaint once the font arrives. -->
+    <link
+      rel="preload"
+      href="../fonts/caveat/caveat-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="../fonts/caveat/caveat-latin-ext.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <!-- CSS/JS (iš LT katalogo kylam vienu lygiu) -->
     <script src="../js/script.js" defer></script>
     <script src="../js/gallery-lightbox.js" defer></script>
@@ -204,7 +222,7 @@
             <!-- Left: copy -->
             <div class="hero-rich__copy u-stagger">
                 <p class="hero-eyebrow u-reveal"><span class="hero-eyebrow__dot"></span>Kuriu · Tobulinu · Diegiu</p>
-                <h1 class="hero-rich__title u-reveal">Verslo sistemų<br>ir web aplikacijų <span class="code-mark" aria-hidden="true"><span class="code-mark__glyph">&lt;/&gt;</span></span><br>kūrimas</h1>
+                <h1 class="hero-rich__title u-reveal">Verslo sistemų <span class="code-mark" aria-hidden="true"><span class="code-mark__glyph">&lt;/&gt;</span></span><br>ir web aplikacijų<br>kūrimas</h1>
                 <p class="lead u-reveal">Individualios verslo sistemos, vidiniai įrankiai ir web aplikacijos nuo idėjos iki veikiančio produkto. Programuotoja Vilniuje: frontendas, backendas, API ir AI funkcijos.</p>
 
                 <div class="hero-rich__ctas u-reveal">

@@ -54,7 +54,7 @@
 .person-note {
   position: absolute;
   z-index: 3;
-  font-family: "Caveat", "Segoe Script", cursive;
+  font-family: "Caveat", "Bradley Hand", "Segoe Script", "Comic Sans MS", system-ui, sans-serif;
   font-size: clamp(16px, 1.4vw, 22px);
   line-height: 1.2;
   color: var(--accent);
