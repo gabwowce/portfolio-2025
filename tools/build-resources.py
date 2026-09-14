@@ -229,8 +229,6 @@ def shelf(lang):
     out = [f'      <p class="resources-intro u-reveal">{u["intro"]}</p>', "",
            '      <div class="course-grid u-stagger">']
     for n, tr in enumerate(TRACKS, 1):
-        total, ready = len(tr["steps"]), ready_count(tr)
-        pct = round(ready / total * 100)
         tool = pick(tr["tool"], lang)
         tool_cls = " tool--claude" if tr["tool"] == "Claude Code" else ""
         href = f'/{lang}/resources/{tr["id"]}.html'
@@ -241,14 +239,8 @@ def shelf(lang):
             f'          <p class="course-card__blurb">{e(pick(tr["blurb"], lang))}</p>',
             f'          <span class="resource-card__tool{tool_cls}">{e(tool)}</span>',
             f'          <div class="course-card__foot">',
-            f'            <div class="course-bar" role="img"'
-            f' aria-label="{ready}/{total} {u["ready"]}">',
-            f'              <span style="width:{pct}%"></span>',
-            f'            </div>',
-            f'            <span class="course-card__meta">{total} {u["steps"]}'
-            f' · {ready} {u["ready"]}</span>',
+            f'            <span class="course-card__cta">{u["open"]} →</span>',
             f'          </div>',
-            f'          <span class="course-card__cta">{u["open"]} →</span>',
             f'        </a>',
         ]
     out += ['      </div>']

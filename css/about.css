@@ -309,7 +309,6 @@
 }
 .value-card:hover {
   border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
-  transform: translateY(-1px);
 }
 .value-card .about-ico {
   flex-shrink: 0;

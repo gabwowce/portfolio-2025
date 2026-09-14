@@ -714,6 +714,11 @@
 }
 .lesson-panel {
   min-width: 0;
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: var(--radius, 18px);
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow);
 }
 /*
   Without JS every panel stays visible, so the page is still the full
