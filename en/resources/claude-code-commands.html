@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Claude Code skills and custom slash commands – a practical guide | Free Resource</title>
+    <meta name="description" content="How to turn a repeated prompt into a reusable skill: where SKILL.md lives, the frontmatter that matters, arguments, injecting live command output, and pre-approving tools. Free, read on the page." />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://codeart.lt/en/resources/claude-code-commands.html" />
+    <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#313030" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Your own commands and skills" />
+    <meta property="og:description" content="How to turn a repeated prompt into a reusable skill: where SKILL.md lives, the frontmatter that matters, arguments, injecting live command output, and pre-approving tools. Free, read on the page." />
+    <meta property="og:url" content="https://codeart.lt/en/resources/claude-code-commands.html" />
+    <meta property="og:image" content="https://codeart.lt/img/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" href="../../fonts/clash/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="../../js/script.js" defer></script>
+    <script src="../../js/resource-page.js" defer></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/about.css" />
+    <link rel="stylesheet" href="../../css/aside.css" />
+    <link rel="stylesheet" href="../../css/contact-me.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <link rel="stylesheet" href="../../css/person.css" />
+    <link rel="stylesheet" href="../../css/hero.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/projects.css" />
+    <link rel="stylesheet" href="../../css/resources.css" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Your own commands and skills",
+            "description": "How to turn a repeated prompt into a reusable skill: where SKILL.md lives, the frontmatter that matters, arguments, injecting live command output, and pre-approving tools. Free, read on the page.",
+            "url": "https://codeart.lt/en/resources/claude-code-commands.html",
+            "inLanguage": "en",
+            "author": { "@type": "Person", "name": "Gabrielė Tamaševičiūtė" },
+            "publisher": { "@type": "Organization", "name": "Codeart" },
+            "about": "Claude Code hooks",
+            "isAccessibleForFree": true
+        }
+    </script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-in">
+            <a id="brand" class="brand" href="/en"> <span class="icon" aria-hidden="true">GT</span>
+                <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+            </a>
+            <button class="hamburger" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+    </button>
+            <nav class="main-nav">
+                <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="../about.html">About</a>
+                <a class="nav-link" href="../portfolio.html">Portfolio</a>
+                <a class="nav-link active" href="../resources.html">Guides</a>
+                <a class="nav-link" href="../contact.html">Contact</a>
+
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark" title="Switch between light and dark">
+                    <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+                    <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                </button>
+                <div class="nav-lang">
+                    <a id="langSwitch" class="nav-link" href="/en/" hreflang="en" aria-label="Switch language">EN</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="card-hero hero u-stagger">
+        <div class="container">
+            <div class="resource-hero hero-copy">
+                <div class="resource-meta u-reveal">
+                    <span class="pill pill--free">Free</span>
+                    <span class="resource-card__type">Guide · Skills and commands</span>
+                </div>
+                <h1 class="display-l u-reveal">Your own commands and skills</h1>
+                <p class="lead u-reveal">If you are typing the same prompt a third time, it is not a prompt any more. It is a command you have not written down yet.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="content content--single container">
+
+        <section class="resource-section u-reveal">
+            <h2>The moment to write one</h2>
+            <div class="flowline">
+                <div class="flowline__step">
+                    <b>Once</b>
+                    <span>you type the prompt</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">&#8594;</div>
+                <div class="flowline__step">
+                    <b>Twice</b>
+                    <span>you retype it, slightly differently</span>
+                </div>
+                <div class="flowline__arrow" aria-hidden="true">&#8594;</div>
+                <div class="flowline__step flowline__step--hook">
+                    <b>Third time</b>
+                    <span>write the skill</span>
+                </div>
+            </div>
+            <p>The cost of a skill is about five minutes. The cost of not writing it is retyping a paragraph forever, slightly differently each time, and getting slightly different results because of it.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>01 · Where they live</h2>
+            <p>A skill is a folder with a <code>SKILL.md</code> inside. The folder name becomes the command name.</p>
+            <div class="evt-wrap">
+                <table class="evt">
+                    <thead>
+                        <tr><th>Location</th><th>Scope</th><th>Invoked as</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>you, every project</td><td><code>/&lt;name&gt;</code></td></tr>
+                        <tr><td><code>.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>this project, committed to git</td><td><code>/&lt;name&gt;</code></td></tr>
+                        <tr><td><code>.claude/commands/&lt;name&gt;.md</code></td><td>legacy command file, still works</td><td><code>/&lt;name&gt;</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="muted">Legacy command files namespace by subdirectory: <code>.claude/commands/frontend/component.md</code> becomes <code>/frontend:component</code>.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>02 · What a SKILL.md looks like</h2>
+            <p>YAML frontmatter, then plain markdown instructions. That is the whole format.</p>
+            <div class="code-block">
+                <span class="code-block__label">.claude/skills/review/SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>---
+name: review
+description: Review the current diff for bugs before I open a PR
+argument-hint: [branch]
+---
+
+## Review the diff against $ARGUMENTS
+
+1. Read the full diff, not just the changed lines
+2. Flag anything that would fail CI
+3. Check the tests actually cover the new branch of logic
+4. Report findings worst-first, and stop</code></pre>
+            </div>
+            <p>The fields worth knowing:</p>
+            <div class="evt-wrap">
+                <table class="evt">
+                    <thead>
+                        <tr><th>Field</th><th>What it does</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>description</code></td><td>when Claude should reach for this by itself &mdash; the one field you should always write</td></tr>
+                        <tr><td><code>argument-hint</code></td><td>what shows in autocomplete after you type the command</td></tr>
+                        <tr><td><code>allowed-tools</code></td><td>tools pre-approved for this turn, so it does not stop to ask</td></tr>
+                        <tr><td><code>disable-model-invocation</code></td><td>only you can run it; Claude will not trigger it on its own</td></tr>
+                        <tr><td><code>user-invocable</code></td><td>set false to hide it from the <code>/</code> menu and let only Claude use it</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>03 · Arguments</h2>
+            <p>Everything typed after the command lands in <code>$ARGUMENTS</code>:</p>
+            <div class="code-block">
+                <span class="code-block__label">SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>Summarise these changes: $ARGUMENTS</code></pre>
+            </div>
+            <p class="muted"><code>/summarise add search to the header</code> &rarr; Claude sees the whole sentence.</p>
+            <p>For more than one, use positions:</p>
+            <div class="code-block">
+                <span class="code-block__label">SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>---
+arguments: [component, fromLang, toLang]
+---
+
+Migrate the $component component from $fromLang to $toLang.
+Preserve behaviour and tests.</code></pre>
+            </div>
+            <p class="muted"><code>/migrate Button JavaScript TypeScript</code>.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>04 · The part that makes skills actually useful</h2>
+            <p>A skill does not have to be static text. It can run commands and paste the real output into the prompt before Claude ever reads it.</p>
+            <div class="code-block">
+                <span class="code-block__label">SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>## Current state
+!`git status --short`
+!`git diff --stat`
+
+## Instructions
+Review only the files listed above.</code></pre>
+            </div>
+            <p>And it can pull whole files in with <code>@</code>:</p>
+            <div class="code-block">
+                <span class="code-block__label">SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>## Conventions to follow
+@./.eslintrc.json
+
+## Code under review
+@./src/main.js</code></pre>
+            </div>
+            <div class="callout">
+                <p><strong>This is the difference between a snippet and a tool.</strong></p>
+                <p>A skill with <code>!`git diff`</code> in it is never stale. It describes <em>how to look</em>, and the looking happens fresh every time you run it.</p>
+            </div>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>05 · Pre-approving the tools it needs</h2>
+            <p>A skill that stops four times to ask permission is not saving you anything. <code>allowed-tools</code> grants exactly what this command needs, for this turn only:</p>
+            <div class="code-block">
+                <span class="code-block__label">.claude/skills/commit/SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>---
+name: commit
+description: Stage and commit the current changes
+disable-model-invocation: true
+allowed-tools: Bash(git add *) Bash(git commit *) Bash(git status *)
+---
+
+Stage the changes, write a message describing why rather than what,
+and commit. Do not push.</code></pre>
+            </div>
+            <p class="muted">Note <code>disable-model-invocation: true</code>. Anything that writes, deploys or publishes should be something you trigger deliberately, not something the model can decide to run.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>06 · A full one, end to end</h2>
+            <div class="code-block">
+                <span class="code-block__label">~/.claude/skills/fix-issue/SKILL.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>---
+name: fix-issue
+description: Fix a GitHub issue by number. Use when asked to fix an issue.
+argument-hint: [issue-number]
+arguments: [issue]
+allowed-tools: Bash(gh issue view *)
+disable-model-invocation: true
+---
+
+## Fix issue #$issue
+
+### The issue
+!`gh issue view $issue --json title,body,comments`
+
+### Steps
+1. Understand what is actually being reported above
+2. Find the relevant files yourself
+3. Implement the fix in the smallest change that works
+4. Run `npm test`
+5. Commit as `fix(#$issue): &lt;what changed&gt;`</code></pre>
+            </div>
+            <p>Run <code>/fix-issue 123</code> and Claude starts with the real issue text already in front of it, rather than asking you to paste it.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>Rules of thumb</h2>
+            <ul>
+                <li>Write the <code>description</code> for Claude, not for yourself &mdash; it is what decides whether the skill gets picked up automatically.</li>
+                <li>Keep <code>SKILL.md</code> short. It loads when invoked, so a long one costs context every time.</li>
+                <li>Ground it in live data with <code>!</code> instead of describing the state in prose.</li>
+                <li>Anything destructive gets <code>disable-model-invocation: true</code>.</li>
+            </ul>
+            <p class="verified">Verified against the official Claude Code documentation, September 2026. Claude Code moves quickly, so check the <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">official documentation</a> before relying on a detail here.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>What's next</h2>
+            <div class="resource-next">
+                <a class="card resource-card" href="claude-code-mcp.html">
+                    <span class="resource-card__type">Next step</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">MCP: wiring in your own tools</h3>
+                </a>
+                <a class="card resource-card" href="../resources.html">
+                    <span class="resource-card__type">All guides</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">Browse the rest</h3>
+                </a>
+            </div>
+        </section>
+
+</main>
+
+    <footer class="site-footer" role="contentinfo">
+        <section class="cta-contact">
+            <div class="container footer-card-flex">
+                <figure class="person-figure person-cta" aria-hidden="true">
+                    <img src="../../img/person/fingers-down-half-body.webp" srcset="../../img/person/fingers-down-half-body-450.webp 450w, ../../img/person/fingers-down-half-body.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1173" loading="lazy" decoding="async">
+                </figure>
+                <div class="cta-contact__text">
+                    <h3>Have a project in mind?</h3>
+                    <p>Tell me briefly about the project. I reply within 24 hours with a plan and a price.</p>
+                </div>
+                <a class="btn-pill" href="/en/contact.html">Contact me →</a>
+            </div>
+        </section>
+
+        <div class="footer-in container">
+            <div class="footer-top">
+                <section>
+                    <a class="brand" href="/en/index.html"> <span class="icon" aria-hidden="true">GT</span>
+                        <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+                    </a>
+                    <p class="brand-note">Developer &amp; product builder. Focused on user experience and quality.</p>
+                    <div class="socials" aria-label="Social links">
+                        <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 3.2v11.6a4.4 4.4 0 1 1-3.6-4.3"/><path d="M15.2 3.2c.3 2.4 2.2 4.3 4.6 4.6"/></svg>
+                        </a>
+                        <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="Email" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="footer-card" aria-labelledby="flinks">
+                    <h3 id="flinks" class="footer-title">Quick links</h3>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="/en/index.html">Home</a></li>
+                        <li><a class="footer-link" href="/en/about.html">About</a></li>
+                        <li><a class="footer-link" href="/en/portfolio.html">Portfolio</a></li>
+                        <li><a class="footer-link" href="/en/resources.html">Guides</a></li>
+                        <li><a class="footer-link" href="/en/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <section class="footer-card" aria-labelledby="fnews">
+                    <h3 id="fnews" class="footer-title">Quick message</h3>
+                    <form class="newsletter" action="https://formspree.io/f/xeorkyne" method="POST">
+                        <input class="input" type="email" name="email" placeholder="Email" aria-label="Email" required>
+                        <input class="input" type="text" name="Message" placeholder="Message" aria-label="Message" required>
+                        <input type="text" name="_gotcha" style="display:none">
+                        <button class="btn-pill" type="submit">Say hi 👋</button>
+                        <p class="form-note" role="status" aria-live="polite"></p>
+                        <small class="brand-note">Message me — I reply within 24 h.</small>
+                    </form>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 Gabrielė · Codeart</span>
+                <div class="mini-nav">
+                    <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

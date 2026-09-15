@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>CLAUDE.md explained – project context, rules and auto memory | Free Resource</title>
+    <meta name="description" content="Where CLAUDE.md lives, what belongs in it, how imports and path-scoped rules work, and how auto memory differs from the instructions you write yourself. Free, read on the page." />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://codeart.lt/en/resources/claude-code-context.html" />
+    <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#313030" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Project, context and CLAUDE.md" />
+    <meta property="og:description" content="Where CLAUDE.md lives, what belongs in it, how imports and path-scoped rules work, and how auto memory differs from the instructions you write yourself. Free, read on the page." />
+    <meta property="og:url" content="https://codeart.lt/en/resources/claude-code-context.html" />
+    <meta property="og:image" content="https://codeart.lt/img/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" href="../../fonts/clash/ClashGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script src="../../js/script.js" defer></script>
+    <script src="../../js/resource-page.js" defer></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/about.css" />
+    <link rel="stylesheet" href="../../css/aside.css" />
+    <link rel="stylesheet" href="../../css/contact-me.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <link rel="stylesheet" href="../../css/person.css" />
+    <link rel="stylesheet" href="../../css/hero.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/projects.css" />
+    <link rel="stylesheet" href="../../css/resources.css" />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Project, context and CLAUDE.md",
+            "description": "Where CLAUDE.md lives, what belongs in it, how imports and path-scoped rules work, and how auto memory differs from the instructions you write yourself. Free, read on the page.",
+            "url": "https://codeart.lt/en/resources/claude-code-context.html",
+            "inLanguage": "en",
+            "author": { "@type": "Person", "name": "Gabrielė Tamaševičiūtė" },
+            "publisher": { "@type": "Organization", "name": "Codeart" },
+            "about": "Claude Code hooks",
+            "isAccessibleForFree": true
+        }
+    </script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-in">
+            <a id="brand" class="brand" href="/en"> <span class="icon" aria-hidden="true">GT</span>
+                <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+            </a>
+            <button class="hamburger" id="navToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+      <span class="hamburger__bar" aria-hidden="true"></span>
+    </button>
+            <nav class="main-nav">
+                <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="../about.html">About</a>
+                <a class="nav-link" href="../portfolio.html">Portfolio</a>
+                <a class="nav-link active" href="../resources.html">Guides</a>
+                <a class="nav-link" href="../contact.html">Contact</a>
+
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark" title="Switch between light and dark">
+                    <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+                    <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                </button>
+                <div class="nav-lang">
+                    <a id="langSwitch" class="nav-link" href="/en/" hreflang="en" aria-label="Switch language">EN</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="card-hero hero u-stagger">
+        <div class="container">
+            <div class="resource-hero hero-copy">
+                <div class="resource-meta u-reveal">
+                    <span class="pill pill--free">Free</span>
+                    <span class="resource-card__type">Guide · Context</span>
+                </div>
+                <h1 class="display-l u-reveal">Project, context and CLAUDE.md</h1>
+                <p class="lead u-reveal">Every session starts with an empty head. CLAUDE.md is where you write down, once, the things you would otherwise re-explain every single time.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="content content--single container">
+
+        <section class="resource-section u-reveal">
+            <h2>The tell that you need one</h2>
+            <p>You correct the same thing twice. You explain the folder layout again. You say &ldquo;we use pnpm, not npm&rdquo; for the third session running.</p>
+            <p>Every Claude Code session begins with a fresh context window. Nothing carries over on its own. <code>CLAUDE.md</code> is the file it reads at the start of every session, so anything in there is something you never have to type again.</p>
+            <div class="callout">
+                <p><strong>Write it down the second time, not the fifth.</strong></p>
+                <p>Good triggers: Claude makes the same mistake twice, a code review catches something it should have known, or a new teammate would have needed the same explanation.</p>
+            </div>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>01 · Let it write the first draft</h2>
+            <p>Do not start from a blank file. Inside your project, run:</p>
+            <div class="code-block">
+                <span class="code-block__label">in the session</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>/init</code></pre>
+            </div>
+            <p>It reads the codebase and writes a starting <code>CLAUDE.md</code> with the build commands, test commands and conventions it can find. If one already exists, <code>/init</code> suggests improvements instead of overwriting it.</p>
+            <p class="muted">Then refine by hand. The useful half is what it could not discover on its own: why things are the way they are, and the rules that differ from the tool defaults.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>02 · Where the file goes</h2>
+            <p>There are four places, and they all load &mdash; broadest first, so the most specific instruction is the last thing read.</p>
+            <div class="evt-wrap">
+                <table class="evt">
+                    <thead>
+                        <tr><th>Scope</th><th>Location</th><th>For</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Managed policy</td><td><code>/Library/Application Support/ClaudeCode/CLAUDE.md</code> (macOS)<br><code>/etc/claude-code/CLAUDE.md</code> (Linux, WSL)</td><td>org-wide rules pushed by IT</td></tr>
+                        <tr><td>User</td><td><code>~/.claude/CLAUDE.md</code></td><td>your preferences, every project</td></tr>
+                        <tr><td>Project</td><td><code>./CLAUDE.md</code> or <code>./.claude/CLAUDE.md</code></td><td>the team's rules, committed to git</td></tr>
+                        <tr><td>Local</td><td><code>./CLAUDE.local.md</code></td><td>your own notes for this project &mdash; gitignore it</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Files in directories above your working directory load at launch too, root-down. Files in subdirectories load on demand, when Claude reads something in that folder. To see what actually loaded in this session, run <code>/context</code> and look under <strong>Memory files</strong>.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>03 · What to write in it</h2>
+            <p>Facts that should hold in every session: build and test commands, project layout, naming conventions, the &ldquo;always do X&rdquo; rules.</p>
+            <p>Specific beats tidy. Instructions you can verify get followed; vague ones get ignored.</p>
+            <div class="cat-grid">
+                <div class="cat">
+                    <b>Works</b>
+                    <p>&ldquo;Use 2-space indentation&rdquo;<br>&ldquo;Run <code>npm test</code> before committing&rdquo;<br>&ldquo;API handlers live in <code>src/api/handlers/</code>&rdquo;</p>
+                    <span>concrete, checkable</span>
+                </div>
+                <div class="cat">
+                    <b>Doesn't</b>
+                    <p>&ldquo;Format code properly&rdquo;<br>&ldquo;Test your changes&rdquo;<br>&ldquo;Keep files organised&rdquo;</p>
+                    <span>nothing to check against</span>
+                </div>
+            </div>
+            <ul>
+                <li><strong>Keep it under about 200 lines.</strong> It loads into context every session, so a long file costs tokens and, counter-intuitively, gets followed less closely.</li>
+                <li><strong>Use headers and bullets.</strong> Claude scans structure the way you do.</li>
+                <li><strong>Remove contradictions.</strong> If two rules disagree, it may pick either one.</li>
+                <li><strong>Multi-step procedures do not belong here</strong> &mdash; those are <a href="claude-code-commands.html">skills</a>.</li>
+            </ul>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>04 · Splitting it up</h2>
+            <p>Two mechanisms, for two different problems.</p>
+            <p><strong>Imports</strong> pull another file in with <code>@path</code>. Good for organisation; it does not save context, because imported files load at launch as well.</p>
+            <div class="code-block">
+                <span class="code-block__label">CLAUDE.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>See @README for the project overview and @package.json for the npm scripts.
+
+# Additional instructions
+- git workflow @docs/git-instructions.md</code></pre>
+            </div>
+            <p class="muted">To mention a path without importing it, wrap it in backticks. <code>@README</code> imports; <code>`@README`</code> stays literal.</p>
+            <p><strong>Path-scoped rules</strong> in <code>.claude/rules/</code> only enter context when Claude touches a matching file, so they genuinely reduce noise:</p>
+            <div class="code-block">
+                <span class="code-block__label">.claude/rules/api.md</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>---
+paths:
+  - "src/api/**/*.ts"
+---
+
+# API rules
+
+- Every endpoint validates its input
+- Use the standard error response shape</code></pre>
+            </div>
+            <p>A rule with no <code>paths</code> field loads every session, same as <code>.claude/CLAUDE.md</code>. Personal rules that apply everywhere go in <code>~/.claude/rules/</code>.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>05 · The memory you don't write</h2>
+            <p>Alongside the file you maintain, Claude keeps notes of its own. Auto memory is on by default, stored per repository on your machine.</p>
+            <div class="cat-grid">
+                <div class="cat">
+                    <b>user</b>
+                    <p>your role, expertise, how you like to work</p>
+                    <span>who you are</span>
+                </div>
+                <div class="cat">
+                    <b>feedback</b>
+                    <p>corrections you gave, approaches you confirmed</p>
+                    <span>what you told it</span>
+                </div>
+                <div class="cat">
+                    <b>project</b>
+                    <p>decisions and ongoing work it cannot read from the code</p>
+                    <span>what's going on</span>
+                </div>
+                <div class="cat">
+                    <b>reference</b>
+                    <p>where things live outside the repo &mdash; tracker, dashboard</p>
+                    <span>where to look</span>
+                </div>
+            </div>
+            <p>It deliberately skips anything it could work out from the codebase, and anything your CLAUDE.md already says. Run <code>/memory</code> to browse, edit or delete what it saved &mdash; it is all plain markdown &mdash; and to toggle the feature off.</p>
+            <div class="code-block">
+                <span class="code-block__label">~/.claude/settings.json</span>
+                <button class="code-block__copy" data-copy>Copy</button>
+<pre><code>{
+  "autoMemoryEnabled": false
+}</code></pre>
+            </div>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>06 · When CLAUDE.md is the wrong tool</h2>
+            <p>This is the part people learn the hard way. CLAUDE.md is <em>context</em>, not configuration. Claude reads it and tries to follow it. Nothing enforces it.</p>
+            <div class="callout">
+                <p><strong>If it absolutely must happen, it is not an instruction &mdash; it is a hook.</strong></p>
+                <p>&ldquo;Never edit <code>.env</code>&rdquo; in CLAUDE.md is a request. The same rule as a <a href="claude-code-hooks.html">PreToolUse hook</a> is enforced by your machine, whatever the model decides.</p>
+            </div>
+            <p>Same for anything that must run at a fixed moment &mdash; before every commit, after every edit. That is a lifecycle event, not a note.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>Troubleshooting</h2>
+            <ul>
+                <li><strong>It is ignoring the file.</strong> Run <code>/context</code> first &mdash; if it is not listed under Memory files, it never loaded, and the problem is the location, not the wording.</li>
+                <li><strong>It is too big.</strong> Over ~200 lines adherence drops. Move sections into path-scoped rules so they load only when relevant.</li>
+                <li><strong>Instructions vanished after <code>/compact</code>.</strong> The project-root CLAUDE.md is re-read from disk after compaction. Anything you only said in conversation is not &mdash; which is the argument for writing it down.</li>
+                <li><strong>Rules contradict each other.</strong> Review the whole chain: user, project, nested, and <code>.claude/rules/</code>.</li>
+            </ul>
+            <p class="verified">Verified against the official Claude Code documentation, September 2026. Claude Code moves quickly, so check the <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">official documentation</a> before relying on a detail here.</p>
+        </section>
+
+        <section class="resource-section u-reveal">
+            <h2>What's next</h2>
+            <div class="resource-next">
+                <a class="card resource-card" href="claude-code-guardrails.html">
+                    <span class="resource-card__type">Next step</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">Guardrails: stopping the agent before it breaks things</h3>
+                </a>
+                <a class="card resource-card" href="../resources.html">
+                    <span class="resource-card__type">All guides</span>
+                    <h3 class="resource-card__title" style="margin-top:8px">Browse the rest</h3>
+                </a>
+            </div>
+        </section>
+
+</main>
+
+    <footer class="site-footer" role="contentinfo">
+        <section class="cta-contact">
+            <div class="container footer-card-flex">
+                <figure class="person-figure person-cta" aria-hidden="true">
+                    <img src="../../img/person/fingers-down-half-body.webp" srcset="../../img/person/fingers-down-half-body-450.webp 450w, ../../img/person/fingers-down-half-body.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1173" loading="lazy" decoding="async">
+                </figure>
+                <div class="cta-contact__text">
+                    <h3>Have a project in mind?</h3>
+                    <p>Tell me briefly about the project. I reply within 24 hours with a plan and a price.</p>
+                </div>
+                <a class="btn-pill" href="/en/contact.html">Contact me →</a>
+            </div>
+        </section>
+
+        <div class="footer-in container">
+            <div class="footer-top">
+                <section>
+                    <a class="brand" href="/en/index.html"> <span class="icon" aria-hidden="true">GT</span>
+                        <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
+                    </a>
+                    <p class="brand-note">Developer &amp; product builder. Focused on user experience and quality.</p>
+                    <div class="socials" aria-label="Social links">
+                        <a class="soc" href="https://github.com/gabwowce" aria-label="GitHub" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" aria-label="LinkedIn" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a class="soc" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 3.2v11.6a4.4 4.4 0 1 1-3.6-4.3"/><path d="M15.2 3.2c.3 2.4 2.2 4.3 4.6 4.6"/></svg>
+                        </a>
+                        <a class="soc" href="mailto:gt1230112301@gmail.com" aria-label="Email" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M22 6L12 13 2 6"/></svg>
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="footer-card" aria-labelledby="flinks">
+                    <h3 id="flinks" class="footer-title">Quick links</h3>
+                    <ul class="footer-list">
+                        <li><a class="footer-link" href="/en/index.html">Home</a></li>
+                        <li><a class="footer-link" href="/en/about.html">About</a></li>
+                        <li><a class="footer-link" href="/en/portfolio.html">Portfolio</a></li>
+                        <li><a class="footer-link" href="/en/resources.html">Guides</a></li>
+                        <li><a class="footer-link" href="/en/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <section class="footer-card" aria-labelledby="fnews">
+                    <h3 id="fnews" class="footer-title">Quick message</h3>
+                    <form class="newsletter" action="https://formspree.io/f/xeorkyne" method="POST">
+                        <input class="input" type="email" name="email" placeholder="Email" aria-label="Email" required>
+                        <input class="input" type="text" name="Message" placeholder="Message" aria-label="Message" required>
+                        <input type="text" name="_gotcha" style="display:none">
+                        <button class="btn-pill" type="submit">Say hi 👋</button>
+                        <p class="form-note" role="status" aria-live="polite"></p>
+                        <small class="brand-note">Message me — I reply within 24 h.</small>
+                    </form>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2025 Gabrielė · Codeart</span>
+                <div class="mini-nav">
+                    <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

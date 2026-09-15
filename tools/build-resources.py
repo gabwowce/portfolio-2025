@@ -98,7 +98,8 @@ TRACKS = [
                                "it reads your files, runs commands and edits code itself. "
                                "From install to the first real task, and what it can "
                                "actually reach on your machine."},
-                "href": None,
+                "content_from": "en/resources/claude-code-intro.html",
+                "content_lang": "en",
             },
             {
                 "title": {"lt": "Projektas, kontekstas ir CLAUDE.md",
@@ -111,7 +112,8 @@ TRACKS = [
                                "CLAUDE.md is where you write your structure, your rules "
                                "and your habits down once, and stop repeating yourself "
                                "in every prompt."},
-                "href": None,
+                "content_from": "en/resources/claude-code-context.html",
+                "content_lang": "en",
             },
             {
                 "title": {"lt": "Saugikliai: kad agentas nesugriautų projekto",
@@ -153,7 +155,8 @@ TRACKS = [
                                "a prompt any more, it is a command. How to turn repeated "
                                "work into one shortcut that the agent and your teammates "
                                "read the same way."},
-                "href": None,
+                "content_from": "en/resources/claude-code-commands.html",
+                "content_lang": "en",
             },
             {
                 "title": {"lt": "MCP: kaip prijungti savo įrankius",
@@ -164,7 +167,8 @@ TRACKS = [
                          "en": "By default the agent only sees files. MCP is how you hand "
                                "it your database, your API or an internal system, and "
                                "exactly as far as you allow, no further."},
-                "href": None,
+                "content_from": "en/resources/claude-code-mcp.html",
+                "content_lang": "en",
             },
         ],
     },
@@ -296,6 +300,11 @@ def inline_resource(path):
     i = src.index("<main")
     body = src[src.index(">", i) + 1:src.index("</main>")]
     body = body.replace('="../../', '="/')
+    # Cross-links between articles are relative to en/resources/, where the
+    # source lives. Inlined into lt/resources/<track>.html they would point
+    # at Lithuanian files that do not exist, so anchor them to the source.
+    body = _re.sub(r'href="(?!https?:|/|#|mailto:|\.\./)([\w-]+\.html)"',
+                   r'href="/en/resources/\1"', body)
     # The article's closing sections are page furniture ("Who made this",
     # "What's next") that make no sense inside one step of a course.
     body = _re.sub(r'<section class="resource-section[^"]*"[^>]*>\s*<h2>'
@@ -399,16 +408,31 @@ COURSE_JS = """
         root.classList.add("is-enhanced");
         var tabs = root.querySelectorAll(".lesson-link");
         var panels = root.querySelectorAll(".lesson-panel");
-        function show(n) {
+        function show(n, scroll) {
           tabs.forEach(function (t) {
             t.setAttribute("aria-selected", t.dataset.step === n);
           });
           panels.forEach(function (p) {
             p.hidden = p.id !== "panel-" + n;
           });
+          /*
+            Switching lessons kept the scroll position, so picking one from
+            the sidebar halfway down a long article dropped you into the
+            middle of the next one. Start every lesson at its own top.
+          */
+          if (scroll) {
+            var shown = root.querySelector("#panel-" + n);
+            if (shown) {
+              var top = shown.getBoundingClientRect().top + window.pageYOffset;
+              var header = parseInt(
+                getComputedStyle(document.documentElement)
+                  .getPropertyValue("--header-h"), 10) || 64;
+              window.scrollTo({ top: top - header - 20, behavior: "smooth" });
+            }
+          }
         }
         tabs.forEach(function (t) {
-          t.addEventListener("click", function () { show(t.dataset.step); });
+          t.addEventListener("click", function () { show(t.dataset.step, true); });
           t.addEventListener("keydown", function (ev) {
             var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
             if (!d) return;
@@ -416,7 +440,7 @@ COURSE_JS = """
             var list = Array.prototype.slice.call(tabs);
             var next = list[(list.indexOf(t) + d + list.length) % list.length];
             next.focus();
-            show(next.dataset.step);
+            show(next.dataset.step, true);
           });
         });
       })();

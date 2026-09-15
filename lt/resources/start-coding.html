@@ -294,16 +294,31 @@
         root.classList.add("is-enhanced");
         var tabs = root.querySelectorAll(".lesson-link");
         var panels = root.querySelectorAll(".lesson-panel");
-        function show(n) {
+        function show(n, scroll) {
           tabs.forEach(function (t) {
             t.setAttribute("aria-selected", t.dataset.step === n);
           });
           panels.forEach(function (p) {
             p.hidden = p.id !== "panel-" + n;
           });
+          /*
+            Switching lessons kept the scroll position, so picking one from
+            the sidebar halfway down a long article dropped you into the
+            middle of the next one. Start every lesson at its own top.
+          */
+          if (scroll) {
+            var shown = root.querySelector("#panel-" + n);
+            if (shown) {
+              var top = shown.getBoundingClientRect().top + window.pageYOffset;
+              var header = parseInt(
+                getComputedStyle(document.documentElement)
+                  .getPropertyValue("--header-h"), 10) || 64;
+              window.scrollTo({ top: top - header - 20, behavior: "smooth" });
+            }
+          }
         }
         tabs.forEach(function (t) {
-          t.addEventListener("click", function () { show(t.dataset.step); });
+          t.addEventListener("click", function () { show(t.dataset.step, true); });
           t.addEventListener("keydown", function (ev) {
             var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
             if (!d) return;
@@ -311,7 +326,7 @@
             var list = Array.prototype.slice.call(tabs);
             var next = list[(list.indexOf(t) + d + list.length) % list.length];
             next.focus();
-            show(next.dataset.step);
+            show(next.dataset.step, true);
           });
         });
       })();

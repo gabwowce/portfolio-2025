@@ -1371,3 +1371,19 @@ details.more p {
 .content--single .resource-section--wide {
   max-width: 1040px;
 }
+
+/*
+  A long unbroken path in inline code (".claude/commands/frontend/component.md")
+  has nowhere to break, so on a phone it pushed the whole page sideways.
+  Block code is exempt: it lives in a scrollable .code-block and should keep
+  its formatting rather than reflow.
+*/
+.resource-section code,
+.lesson-panel code,
+.evt code,
+.cat span code {
+  overflow-wrap: anywhere;
+}
+.code-block code {
+  overflow-wrap: normal;
+}

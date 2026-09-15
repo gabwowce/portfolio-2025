@@ -99,7 +99,7 @@
           <p class="course-head__blurb">Learn Claude Code from zero: install, setting up a project, CLAUDE.md, permissions, hooks, and working safely with AI on real code.</p>
           <p class="track__meta">
             <span class="resource-card__tool tool--claude">Claude Code • AI coding</span>
-            <span>6 steps · 2 ready</span>
+            <span>6 steps · 6 ready</span>
           </p>
         </div>
       </header>
@@ -109,13 +109,13 @@
           <h2 class="course-curriculum__head">Curriculum</h2>
           <ol class="lesson-list" role="tablist" aria-label="Curriculum">
             <li>
-              <button class="lesson-link" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" data-step="1">
+              <button class="lesson-link is-ready" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" data-step="1">
                 <span class="lesson-link__n" aria-hidden="true">1</span>
                 <span class="lesson-link__t">What Claude Code is, and getting it running</span>
               </button>
             </li>
             <li>
-              <button class="lesson-link" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" data-step="2">
+              <button class="lesson-link is-ready" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" data-step="2">
                 <span class="lesson-link__n" aria-hidden="true">2</span>
                 <span class="lesson-link__t">Project, context and CLAUDE.md</span>
               </button>
@@ -133,13 +133,13 @@
               </button>
             </li>
             <li>
-              <button class="lesson-link" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" data-step="5">
+              <button class="lesson-link is-ready" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" data-step="5">
                 <span class="lesson-link__n" aria-hidden="true">5</span>
                 <span class="lesson-link__t">Your own commands and skills</span>
               </button>
             </li>
             <li>
-              <button class="lesson-link" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false" data-step="6">
+              <button class="lesson-link is-ready" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false" data-step="6">
                 <span class="lesson-link__n" aria-hidden="true">6</span>
                 <span class="lesson-link__t">MCP: wiring in your own tools</span>
               </button>
@@ -152,15 +152,294 @@
             <p class="lesson-panel__kicker">Step 1 / 6</p>
             <h2 class="lesson-panel__title">What Claude Code is, and getting it running</h2>
             <p class="lesson-panel__desc">Not a chat in a browser but an agent in your terminal: it reads your files, runs commands and edits code itself. From install to the first real task, and what it can actually reach on your machine.</p>
-            <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
-            <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            <section class="resource-section u-reveal">
+            <h2>The difference that matters</h2>
+            <div class="flowline">
+            <div class="flowline__step">
+            <b>Browser chat</b>
+            <span>you paste code in, it answers, you paste the answer back</span>
+            </div>
+            <div class="flowline__arrow" aria-hidden="true">&#8594;</div>
+            <div class="flowline__step flowline__step--hook">
+            <b>Claude Code</b>
+            <span>it opens the files itself, runs the tests, and edits the code in place</span>
+            </div>
+            </div>
+            <p>A chat assistant is a very good autocomplete that cannot see your project. Claude Code is the same model wired into your machine: it can list a directory, read a file, run <code>npm test</code>, and write changes to disk.</p>
+            <p>That is the whole appeal, and also the whole risk. Everything else in this guide is about the second half of that sentence.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>01 · Install it</h2>
+            <p>Pick one. The native installer keeps itself up to date in the background; the package managers do not.</p>
+            <div class="code-block">
+            <span class="code-block__label">macOS, Linux, WSL</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+            </div>
+            <div class="code-block">
+            <span class="code-block__label">Windows PowerShell</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+            </div>
+            <p>Or through a package manager, if you would rather:</p>
+            <div class="code-block">
+            <span class="code-block__label">Homebrew / WinGet</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>brew install --cask claude-code
+            winget install Anthropic.ClaudeCode</code></pre>
+            </div>
+            <p>Check it landed:</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude --version</code></pre>
+            </div>
+            <p class="muted">That prints a version number followed by <code>(Claude Code)</code>. Homebrew and WinGet installs do not auto-update &mdash; run <code>brew upgrade claude-code</code> or <code>winget upgrade Anthropic.ClaudeCode</code> yourself now and then.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>02 · Log in</h2>
+            <p>Start it once and it walks you through authentication in the browser:</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude</code></pre>
+            </div>
+            <p>You can sign in with a Claude subscription (Pro, Max, Team or Enterprise), a Claude Console account with pre-paid credits, or an enterprise cloud provider. Credentials are stored, so this is a one-time step. To switch accounts later, type <code>/login</code> inside a running session.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>03 · Your first session</h2>
+            <p>Claude Code works inside a directory. Go to a project and start it there &mdash; that directory is what it can see.</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>cd /path/to/your/project
+            claude</code></pre>
+            </div>
+            <p>Do not start by asking it to build something. Start by asking it to explain something, because that tells you how much it actually understands:</p>
+            <div class="code-block">
+            <span class="code-block__label">in the session</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>what does this project do?
+            where is the main entry point?
+            explain the folder structure</code></pre>
+            </div>
+            <p class="muted">You do not have to paste files in or add them to context by hand. It reads what it needs as it goes.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>04 · Your first change</h2>
+            <p>Now give it something to do:</p>
+            <div class="code-block">
+            <span class="code-block__label">in the session</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>add a hello world function to the main file</code></pre>
+            </div>
+            <p>It finds the file, shows you the change, and depending on the permission mode either asks first or just does it.</p>
+            <div class="callout">
+            <p><strong>Permission modes decide how often you are asked.</strong></p>
+            <p>On Pro, Max and Team plans, interactive sessions start in <strong>Auto</strong> mode: a classifier reviews actions instead of you, and most edits and commands run without a prompt. On other plans they start in <strong>Manual</strong> mode, where you approve things yourself.</p>
+            <p>Press <kbd>Shift+Tab</kbd> at any time to cycle modes. If you are pointing it at something you care about, start stricter than you think you need to.</p>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>05 · The commands worth memorising</h2>
+            <p>Two kinds: shell commands that start a session, and slash commands you type inside one.</p>
+            <div class="evt-wrap">
+            <table class="evt">
+            <thead>
+            <tr><th>Command</th><th>What it does</th></tr>
+            </thead>
+            <tbody>
+            <tr><td>claude</td><td>start an interactive session</td></tr>
+            <tr><td>claude "task"</td><td>start with the first prompt already typed</td></tr>
+            <tr><td>claude -p "query"</td><td>run one query, print the answer, exit &mdash; good in scripts</td></tr>
+            <tr><td>claude -c</td><td>continue the most recent conversation in this directory</td></tr>
+            <tr><td>claude -r</td><td>pick a previous conversation to resume</td></tr>
+            <tr><td>/help</td><td>list the commands available to you</td></tr>
+            <tr><td>/clear</td><td>clear the conversation and start fresh</td></tr>
+            <tr><td>/context</td><td>show what is actually loaded into context right now</td></tr>
+            <tr><td>/exit</td><td>leave (or Ctrl+D twice)</td></tr>
+            </tbody>
+            </table>
+            </div>
+            <p class="muted">Type <code>/</code> on its own to see every command and skill available in this project.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>06 · What it can reach</h2>
+            <p>The working directory you launched it in, and what your user account can touch from a shell. That is a bigger surface than most people picture the first time.</p>
+            <div class="cat-grid">
+            <div class="cat">
+            <b>Reads</b>
+            <p>Any file under the directory you started it in, without asking you to attach anything.</p>
+            <span>the project</span>
+            </div>
+            <div class="cat">
+            <b>Runs</b>
+            <p>Shell commands, with your permissions. Tests, builds, git, package installs.</p>
+            <span>your account</span>
+            </div>
+            <div class="cat">
+            <b>Writes</b>
+            <p>Edits files in place and creates new ones.</p>
+            <span>on disk</span>
+            </div>
+            </div>
+            <p>Which is why the next three steps of this guide exist: <a href="/en/resources/claude-code-context.html">telling it about your project</a> so it stops guessing, and <a href="/en/resources/claude-code-guardrails.html">putting guardrails on</a> so the things you never want touched stay untouched.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>Getting unstuck</h2>
+            <ul>
+            <li>Be specific. &ldquo;Fix the login bug where users see a blank screen after wrong credentials&rdquo; beats &ldquo;fix the bug&rdquo;.</li>
+            <li>Let it look before it leaps &mdash; ask it to analyse the schema before asking it to change anything.</li>
+            <li>Break big asks into numbered steps; it follows a list well.</li>
+            <li><kbd>&uarr;</kbd> for history, <kbd>Tab</kbd> to complete a command, <code>/help</code> when lost.</li>
+            </ul>
+            <p class="verified">Verified against the official Claude Code documentation, September 2026. Claude Code moves quickly, so check the <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">official documentation</a> before relying on a detail here.</p>
+            </section>
           </article>
           <article class="lesson-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
             <p class="lesson-panel__kicker">Step 2 / 6</p>
             <h2 class="lesson-panel__title">Project, context and CLAUDE.md</h2>
             <p class="lesson-panel__desc">The agent guesses until you tell it otherwise. CLAUDE.md is where you write your structure, your rules and your habits down once, and stop repeating yourself in every prompt.</p>
-            <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
-            <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            <section class="resource-section u-reveal">
+            <h2>The tell that you need one</h2>
+            <p>You correct the same thing twice. You explain the folder layout again. You say &ldquo;we use pnpm, not npm&rdquo; for the third session running.</p>
+            <p>Every Claude Code session begins with a fresh context window. Nothing carries over on its own. <code>CLAUDE.md</code> is the file it reads at the start of every session, so anything in there is something you never have to type again.</p>
+            <div class="callout">
+            <p><strong>Write it down the second time, not the fifth.</strong></p>
+            <p>Good triggers: Claude makes the same mistake twice, a code review catches something it should have known, or a new teammate would have needed the same explanation.</p>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>01 · Let it write the first draft</h2>
+            <p>Do not start from a blank file. Inside your project, run:</p>
+            <div class="code-block">
+            <span class="code-block__label">in the session</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>/init</code></pre>
+            </div>
+            <p>It reads the codebase and writes a starting <code>CLAUDE.md</code> with the build commands, test commands and conventions it can find. If one already exists, <code>/init</code> suggests improvements instead of overwriting it.</p>
+            <p class="muted">Then refine by hand. The useful half is what it could not discover on its own: why things are the way they are, and the rules that differ from the tool defaults.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>02 · Where the file goes</h2>
+            <p>There are four places, and they all load &mdash; broadest first, so the most specific instruction is the last thing read.</p>
+            <div class="evt-wrap">
+            <table class="evt">
+            <thead>
+            <tr><th>Scope</th><th>Location</th><th>For</th></tr>
+            </thead>
+            <tbody>
+            <tr><td>Managed policy</td><td><code>/Library/Application Support/ClaudeCode/CLAUDE.md</code> (macOS)<br><code>/etc/claude-code/CLAUDE.md</code> (Linux, WSL)</td><td>org-wide rules pushed by IT</td></tr>
+            <tr><td>User</td><td><code>~/.claude/CLAUDE.md</code></td><td>your preferences, every project</td></tr>
+            <tr><td>Project</td><td><code>./CLAUDE.md</code> or <code>./.claude/CLAUDE.md</code></td><td>the team's rules, committed to git</td></tr>
+            <tr><td>Local</td><td><code>./CLAUDE.local.md</code></td><td>your own notes for this project &mdash; gitignore it</td></tr>
+            </tbody>
+            </table>
+            </div>
+            <p>Files in directories above your working directory load at launch too, root-down. Files in subdirectories load on demand, when Claude reads something in that folder. To see what actually loaded in this session, run <code>/context</code> and look under <strong>Memory files</strong>.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>03 · What to write in it</h2>
+            <p>Facts that should hold in every session: build and test commands, project layout, naming conventions, the &ldquo;always do X&rdquo; rules.</p>
+            <p>Specific beats tidy. Instructions you can verify get followed; vague ones get ignored.</p>
+            <div class="cat-grid">
+            <div class="cat">
+            <b>Works</b>
+            <p>&ldquo;Use 2-space indentation&rdquo;<br>&ldquo;Run <code>npm test</code> before committing&rdquo;<br>&ldquo;API handlers live in <code>src/api/handlers/</code>&rdquo;</p>
+            <span>concrete, checkable</span>
+            </div>
+            <div class="cat">
+            <b>Doesn't</b>
+            <p>&ldquo;Format code properly&rdquo;<br>&ldquo;Test your changes&rdquo;<br>&ldquo;Keep files organised&rdquo;</p>
+            <span>nothing to check against</span>
+            </div>
+            </div>
+            <ul>
+            <li><strong>Keep it under about 200 lines.</strong> It loads into context every session, so a long file costs tokens and, counter-intuitively, gets followed less closely.</li>
+            <li><strong>Use headers and bullets.</strong> Claude scans structure the way you do.</li>
+            <li><strong>Remove contradictions.</strong> If two rules disagree, it may pick either one.</li>
+            <li><strong>Multi-step procedures do not belong here</strong> &mdash; those are <a href="/en/resources/claude-code-commands.html">skills</a>.</li>
+            </ul>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>04 · Splitting it up</h2>
+            <p>Two mechanisms, for two different problems.</p>
+            <p><strong>Imports</strong> pull another file in with <code>@path</code>. Good for organisation; it does not save context, because imported files load at launch as well.</p>
+            <div class="code-block">
+            <span class="code-block__label">CLAUDE.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>See @README for the project overview and @package.json for the npm scripts.
+            # Additional instructions
+            - git workflow @docs/git-instructions.md</code></pre>
+            </div>
+            <p class="muted">To mention a path without importing it, wrap it in backticks. <code>@README</code> imports; <code>`@README`</code> stays literal.</p>
+            <p><strong>Path-scoped rules</strong> in <code>.claude/rules/</code> only enter context when Claude touches a matching file, so they genuinely reduce noise:</p>
+            <div class="code-block">
+            <span class="code-block__label">.claude/rules/api.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>---
+            paths:
+            - "src/api/**/*.ts"
+            ---
+            # API rules
+            - Every endpoint validates its input
+            - Use the standard error response shape</code></pre>
+            </div>
+            <p>A rule with no <code>paths</code> field loads every session, same as <code>.claude/CLAUDE.md</code>. Personal rules that apply everywhere go in <code>~/.claude/rules/</code>.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>05 · The memory you don't write</h2>
+            <p>Alongside the file you maintain, Claude keeps notes of its own. Auto memory is on by default, stored per repository on your machine.</p>
+            <div class="cat-grid">
+            <div class="cat">
+            <b>user</b>
+            <p>your role, expertise, how you like to work</p>
+            <span>who you are</span>
+            </div>
+            <div class="cat">
+            <b>feedback</b>
+            <p>corrections you gave, approaches you confirmed</p>
+            <span>what you told it</span>
+            </div>
+            <div class="cat">
+            <b>project</b>
+            <p>decisions and ongoing work it cannot read from the code</p>
+            <span>what's going on</span>
+            </div>
+            <div class="cat">
+            <b>reference</b>
+            <p>where things live outside the repo &mdash; tracker, dashboard</p>
+            <span>where to look</span>
+            </div>
+            </div>
+            <p>It deliberately skips anything it could work out from the codebase, and anything your CLAUDE.md already says. Run <code>/memory</code> to browse, edit or delete what it saved &mdash; it is all plain markdown &mdash; and to toggle the feature off.</p>
+            <div class="code-block">
+            <span class="code-block__label">~/.claude/settings.json</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>{
+            "autoMemoryEnabled": false
+            }</code></pre>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>06 · When CLAUDE.md is the wrong tool</h2>
+            <p>This is the part people learn the hard way. CLAUDE.md is <em>context</em>, not configuration. Claude reads it and tries to follow it. Nothing enforces it.</p>
+            <div class="callout">
+            <p><strong>If it absolutely must happen, it is not an instruction &mdash; it is a hook.</strong></p>
+            <p>&ldquo;Never edit <code>.env</code>&rdquo; in CLAUDE.md is a request. The same rule as a <a href="/en/resources/claude-code-hooks.html">PreToolUse hook</a> is enforced by your machine, whatever the model decides.</p>
+            </div>
+            <p>Same for anything that must run at a fixed moment &mdash; before every commit, after every edit. That is a lifecycle event, not a note.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>Troubleshooting</h2>
+            <ul>
+            <li><strong>It is ignoring the file.</strong> Run <code>/context</code> first &mdash; if it is not listed under Memory files, it never loaded, and the problem is the location, not the wording.</li>
+            <li><strong>It is too big.</strong> Over ~200 lines adherence drops. Move sections into path-scoped rules so they load only when relevant.</li>
+            <li><strong>Instructions vanished after <code>/compact</code>.</strong> The project-root CLAUDE.md is re-read from disk after compaction. Anything you only said in conversation is not &mdash; which is the argument for writing it down.</li>
+            <li><strong>Rules contradict each other.</strong> Review the whole chain: user, project, nested, and <code>.claude/rules/</code>.</li>
+            </ul>
+            <p class="verified">Verified against the official Claude Code documentation, September 2026. Claude Code moves quickly, so check the <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">official documentation</a> before relying on a detail here.</p>
+            </section>
           </article>
           <article class="lesson-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
             <p class="lesson-panel__kicker">Step 3 / 6</p>
@@ -1016,15 +1295,342 @@
             <p class="lesson-panel__kicker">Step 5 / 6</p>
             <h2 class="lesson-panel__title">Your own commands and skills</h2>
             <p class="lesson-panel__desc">If you are typing the same prompt a third time, it is not a prompt any more, it is a command. How to turn repeated work into one shortcut that the agent and your teammates read the same way.</p>
-            <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
-            <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            <section class="resource-section u-reveal">
+            <h2>The moment to write one</h2>
+            <div class="flowline">
+            <div class="flowline__step">
+            <b>Once</b>
+            <span>you type the prompt</span>
+            </div>
+            <div class="flowline__arrow" aria-hidden="true">&#8594;</div>
+            <div class="flowline__step">
+            <b>Twice</b>
+            <span>you retype it, slightly differently</span>
+            </div>
+            <div class="flowline__arrow" aria-hidden="true">&#8594;</div>
+            <div class="flowline__step flowline__step--hook">
+            <b>Third time</b>
+            <span>write the skill</span>
+            </div>
+            </div>
+            <p>The cost of a skill is about five minutes. The cost of not writing it is retyping a paragraph forever, slightly differently each time, and getting slightly different results because of it.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>01 · Where they live</h2>
+            <p>A skill is a folder with a <code>SKILL.md</code> inside. The folder name becomes the command name.</p>
+            <div class="evt-wrap">
+            <table class="evt">
+            <thead>
+            <tr><th>Location</th><th>Scope</th><th>Invoked as</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><code>~/.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>you, every project</td><td><code>/&lt;name&gt;</code></td></tr>
+            <tr><td><code>.claude/skills/&lt;name&gt;/SKILL.md</code></td><td>this project, committed to git</td><td><code>/&lt;name&gt;</code></td></tr>
+            <tr><td><code>.claude/commands/&lt;name&gt;.md</code></td><td>legacy command file, still works</td><td><code>/&lt;name&gt;</code></td></tr>
+            </tbody>
+            </table>
+            </div>
+            <p class="muted">Legacy command files namespace by subdirectory: <code>.claude/commands/frontend/component.md</code> becomes <code>/frontend:component</code>.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>02 · What a SKILL.md looks like</h2>
+            <p>YAML frontmatter, then plain markdown instructions. That is the whole format.</p>
+            <div class="code-block">
+            <span class="code-block__label">.claude/skills/review/SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>---
+            name: review
+            description: Review the current diff for bugs before I open a PR
+            argument-hint: [branch]
+            ---
+            ## Review the diff against $ARGUMENTS
+            1. Read the full diff, not just the changed lines
+            2. Flag anything that would fail CI
+            3. Check the tests actually cover the new branch of logic
+            4. Report findings worst-first, and stop</code></pre>
+            </div>
+            <p>The fields worth knowing:</p>
+            <div class="evt-wrap">
+            <table class="evt">
+            <thead>
+            <tr><th>Field</th><th>What it does</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><code>description</code></td><td>when Claude should reach for this by itself &mdash; the one field you should always write</td></tr>
+            <tr><td><code>argument-hint</code></td><td>what shows in autocomplete after you type the command</td></tr>
+            <tr><td><code>allowed-tools</code></td><td>tools pre-approved for this turn, so it does not stop to ask</td></tr>
+            <tr><td><code>disable-model-invocation</code></td><td>only you can run it; Claude will not trigger it on its own</td></tr>
+            <tr><td><code>user-invocable</code></td><td>set false to hide it from the <code>/</code> menu and let only Claude use it</td></tr>
+            </tbody>
+            </table>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>03 · Arguments</h2>
+            <p>Everything typed after the command lands in <code>$ARGUMENTS</code>:</p>
+            <div class="code-block">
+            <span class="code-block__label">SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>Summarise these changes: $ARGUMENTS</code></pre>
+            </div>
+            <p class="muted"><code>/summarise add search to the header</code> &rarr; Claude sees the whole sentence.</p>
+            <p>For more than one, use positions:</p>
+            <div class="code-block">
+            <span class="code-block__label">SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>---
+            arguments: [component, fromLang, toLang]
+            ---
+            Migrate the $component component from $fromLang to $toLang.
+            Preserve behaviour and tests.</code></pre>
+            </div>
+            <p class="muted"><code>/migrate Button JavaScript TypeScript</code>.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>04 · The part that makes skills actually useful</h2>
+            <p>A skill does not have to be static text. It can run commands and paste the real output into the prompt before Claude ever reads it.</p>
+            <div class="code-block">
+            <span class="code-block__label">SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>## Current state
+            !`git status --short`
+            !`git diff --stat`
+            ## Instructions
+            Review only the files listed above.</code></pre>
+            </div>
+            <p>And it can pull whole files in with <code>@</code>:</p>
+            <div class="code-block">
+            <span class="code-block__label">SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>## Conventions to follow
+            @./.eslintrc.json
+            ## Code under review
+            @./src/main.js</code></pre>
+            </div>
+            <div class="callout">
+            <p><strong>This is the difference between a snippet and a tool.</strong></p>
+            <p>A skill with <code>!`git diff`</code> in it is never stale. It describes <em>how to look</em>, and the looking happens fresh every time you run it.</p>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>05 · Pre-approving the tools it needs</h2>
+            <p>A skill that stops four times to ask permission is not saving you anything. <code>allowed-tools</code> grants exactly what this command needs, for this turn only:</p>
+            <div class="code-block">
+            <span class="code-block__label">.claude/skills/commit/SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>---
+            name: commit
+            description: Stage and commit the current changes
+            disable-model-invocation: true
+            allowed-tools: Bash(git add *) Bash(git commit *) Bash(git status *)
+            ---
+            Stage the changes, write a message describing why rather than what,
+            and commit. Do not push.</code></pre>
+            </div>
+            <p class="muted">Note <code>disable-model-invocation: true</code>. Anything that writes, deploys or publishes should be something you trigger deliberately, not something the model can decide to run.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>06 · A full one, end to end</h2>
+            <div class="code-block">
+            <span class="code-block__label">~/.claude/skills/fix-issue/SKILL.md</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>---
+            name: fix-issue
+            description: Fix a GitHub issue by number. Use when asked to fix an issue.
+            argument-hint: [issue-number]
+            arguments: [issue]
+            allowed-tools: Bash(gh issue view *)
+            disable-model-invocation: true
+            ---
+            ## Fix issue #$issue
+            ### The issue
+            !`gh issue view $issue --json title,body,comments`
+            ### Steps
+            1. Understand what is actually being reported above
+            2. Find the relevant files yourself
+            3. Implement the fix in the smallest change that works
+            4. Run `npm test`
+            5. Commit as `fix(#$issue): &lt;what changed&gt;`</code></pre>
+            </div>
+            <p>Run <code>/fix-issue 123</code> and Claude starts with the real issue text already in front of it, rather than asking you to paste it.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>Rules of thumb</h2>
+            <ul>
+            <li>Write the <code>description</code> for Claude, not for yourself &mdash; it is what decides whether the skill gets picked up automatically.</li>
+            <li>Keep <code>SKILL.md</code> short. It loads when invoked, so a long one costs context every time.</li>
+            <li>Ground it in live data with <code>!</code> instead of describing the state in prose.</li>
+            <li>Anything destructive gets <code>disable-model-invocation: true</code>.</li>
+            </ul>
+            <p class="verified">Verified against the official Claude Code documentation, September 2026. Claude Code moves quickly, so check the <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">official documentation</a> before relying on a detail here.</p>
+            </section>
           </article>
           <article class="lesson-panel" role="tabpanel" id="panel-6" aria-labelledby="tab-6" hidden>
             <p class="lesson-panel__kicker">Step 6 / 6</p>
             <h2 class="lesson-panel__title">MCP: wiring in your own tools</h2>
             <p class="lesson-panel__desc">By default the agent only sees files. MCP is how you hand it your database, your API or an internal system, and exactly as far as you allow, no further.</p>
-            <p class="lesson-panel__empty"><span class="track-step__soon">Coming soon</span></p>
-            <p class="lesson-panel__emptynote">There is no resource for this step yet. When I write it, it appears here — the step stays listed so you can see the whole path.</p>
+            <section class="resource-section u-reveal">
+            <h2>The signal that you need it</h2>
+            <p>You keep copying things into the chat. A stack trace out of Sentry. A ticket out of Jira. A row out of the database. Every paste is context you had to fetch by hand, and it is stale the moment you paste it.</p>
+            <div class="flowline">
+            <div class="flowline__step">
+            <b>Without MCP</b>
+            <span>you look it up, copy it, paste it, and it is a snapshot</span>
+            </div>
+            <div class="flowline__arrow" aria-hidden="true">&#8594;</div>
+            <div class="flowline__step flowline__step--hook">
+            <b>With MCP</b>
+            <span>Claude queries the source itself, when it needs it</span>
+            </div>
+            </div>
+            <p>MCP (Model Context Protocol) is an open standard for connecting an agent to external tools and data. Claude Code speaks it, so anything with an MCP server &mdash; and most of the tools you already use have one &mdash; becomes something Claude can read and act on directly.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>01 · Three kinds of server</h2>
+            <div class="cat-grid">
+            <div class="cat">
+            <b>stdio</b>
+            <p>Runs as a process on your machine. Good for local things: a database, a filesystem tool, something you wrote yourself.</p>
+            <span>--transport stdio</span>
+            </div>
+            <div class="cat">
+            <b>http</b>
+            <p>A remote service over HTTP. This is what most hosted tools give you.</p>
+            <span>--transport http</span>
+            </div>
+            <div class="cat">
+            <b>sse</b>
+            <p>The older remote transport. Deprecated, still supported.</p>
+            <span>--transport sse</span>
+            </div>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>02 · Adding one</h2>
+            <p>A local server runs a command. Everything after <code>--</code> is passed to that command untouched:</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable \
+            -- npx -y airtable-mcp-server</code></pre>
+            </div>
+            <p>A remote one just takes a URL:</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude mcp add --transport http notion https://mcp.notion.com/mcp</code></pre>
+            </div>
+            <p>With a token, if the service uses one rather than OAuth:</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude mcp add --transport http secure-api https://api.example.com/mcp \
+            --header "Authorization: Bearer your-token"</code></pre>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>03 · Scope: who gets this server</h2>
+            <p>The flag that decides whether this is yours, this project's, or the team's.</p>
+            <div class="evt-wrap">
+            <table class="evt">
+            <thead>
+            <tr><th>Scope</th><th>Loads in</th><th>Shared</th><th>Stored in</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><code>local</code> (default)</td><td>this project only</td><td>no</td><td><code>~/.claude.json</code></td></tr>
+            <tr><td><code>project</code></td><td>this project only</td><td>yes, via git</td><td><code>.mcp.json</code> in the repo</td></tr>
+            <tr><td><code>user</code></td><td>all your projects</td><td>no</td><td><code>~/.claude.json</code></td></tr>
+            </tbody>
+            </table>
+            </div>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude mcp add --transport http shared-server --scope project https://example.com/mcp</code></pre>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>04 · The committed file</h2>
+            <p>Project-scoped servers land in <code>.mcp.json</code> at the repo root, so a teammate who clones the project gets the same tooling:</p>
+            <div class="code-block">
+            <span class="code-block__label">.mcp.json</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>{
+            "mcpServers": {
+            "notion": {
+            "type": "http",
+            "url": "https://mcp.notion.com/mcp"
+            },
+            "database-tools": {
+            "type": "stdio",
+            "command": "npx",
+            "args": ["-y", "@example/mcp-server"],
+            "env": {
+            "DB_URL": "postgresql://localhost/mydb"
+            }
+            }
+            }
+            }</code></pre>
+            </div>
+            <div class="callout">
+            <p><strong>Do not commit secrets into it.</strong></p>
+            <p>Expand them from the environment instead: <code>${API_KEY}</code>, or <code>${API_BASE_URL:-https://api.example.com}</code> to supply a default.</p>
+            </div>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>05 · Logging in</h2>
+            <p>Most hosted servers use OAuth. Add the server, then authenticate from inside a session:</p>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude mcp add --transport http sentry https://mcp.sentry.dev/mcp</code></pre>
+            </div>
+            <div class="code-block">
+            <span class="code-block__label">in the session</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>/mcp</code></pre>
+            </div>
+            <p>That opens the browser login flow. From the shell, <code>claude mcp login sentry</code> does the same, and <code>claude mcp logout sentry</code> clears the credentials again.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>06 · How the tools show up</h2>
+            <p>Once connected, the server's tools appear under a predictable name:</p>
+            <div class="code-block">
+            <span class="code-block__label">naming</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>mcp__&lt;server-name&gt;__&lt;tool-name&gt;
+            # a `query` tool from a server named `database`
+            mcp__database__query</code></pre>
+            </div>
+            <p>Which matters, because that name is what you write in permission rules, in a skill's <code>allowed-tools</code>, in a subagent's tool list, and in <a href="/en/resources/claude-code-hooks.html">hook matchers</a>. A matcher of <code>mcp__database__.*</code> catches everything that server exposes.</p>
+            <p class="muted">So the guardrails you already know apply here unchanged: an MCP tool is just another tool call, and a PreToolUse hook can deny it like any other.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>07 · Managing them</h2>
+            <div class="code-block">
+            <span class="code-block__label">terminal</span>
+            <button class="code-block__copy" data-copy>Copy</button>
+            <pre><code>claude mcp list              # everything configured
+            claude mcp get notion        # details for one
+            claude mcp remove notion     # disconnect it
+            claude mcp add-from-claude-desktop   # import what you already set up</code></pre>
+            </div>
+            <p class="muted"><code>/mcp</code> inside a session shows live connection status, which is the first thing to check when a tool silently is not there.</p>
+            </section>
+            <section class="resource-section u-reveal">
+            <h2>08 · The part to be careful about</h2>
+            <p>An MCP server decides what content enters Claude's context. That makes a server you do not control a genuine attack surface, not a theoretical one.</p>
+            <ul>
+            <li><strong>Trust the server before you connect it.</strong> A server that fetches external content can feed instructions into your session &mdash; this is prompt injection, and the agent has your permissions.</li>
+            <li><strong>Project-scoped servers ask for approval before first use</strong>, because they arrive in a file someone else can commit.</li>
+            <li><strong><code>headersHelper</code> runs a shell command on your machine</strong> to produce auth headers. Read it before you approve it.</li>
+            <li><strong>Scope narrowly.</strong> A read-only database server is a very different risk from one that can write.</li>
+            </ul>
+            <div class="callout">
+            <p>The useful instinct: connecting an MCP server is closer to installing a dependency than to changing a setting. Apply the same suspicion you would to an unfamiliar npm package.</p>
+            </div>
+            <p class="verified">Verified against the official Claude Code documentation, September 2026. Claude Code moves quickly, so check the <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">official documentation</a> before relying on a detail here.</p>
+            </section>
           </article>
         </div>
       </div>
@@ -1113,16 +1719,31 @@
         root.classList.add("is-enhanced");
         var tabs = root.querySelectorAll(".lesson-link");
         var panels = root.querySelectorAll(".lesson-panel");
-        function show(n) {
+        function show(n, scroll) {
           tabs.forEach(function (t) {
             t.setAttribute("aria-selected", t.dataset.step === n);
           });
           panels.forEach(function (p) {
             p.hidden = p.id !== "panel-" + n;
           });
+          /*
+            Switching lessons kept the scroll position, so picking one from
+            the sidebar halfway down a long article dropped you into the
+            middle of the next one. Start every lesson at its own top.
+          */
+          if (scroll) {
+            var shown = root.querySelector("#panel-" + n);
+            if (shown) {
+              var top = shown.getBoundingClientRect().top + window.pageYOffset;
+              var header = parseInt(
+                getComputedStyle(document.documentElement)
+                  .getPropertyValue("--header-h"), 10) || 64;
+              window.scrollTo({ top: top - header - 20, behavior: "smooth" });
+            }
+          }
         }
         tabs.forEach(function (t) {
-          t.addEventListener("click", function () { show(t.dataset.step); });
+          t.addEventListener("click", function () { show(t.dataset.step, true); });
           t.addEventListener("keydown", function (ev) {
             var d = ev.key === "ArrowDown" ? 1 : ev.key === "ArrowUp" ? -1 : 0;
             if (!d) return;
@@ -1130,7 +1751,7 @@
             var list = Array.prototype.slice.call(tabs);
             var next = list[(list.indexOf(t) + d + list.length) % list.length];
             next.focus();
-            show(next.dataset.step);
+            show(next.dataset.step, true);
           });
         });
       })();
