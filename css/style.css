@@ -646,7 +646,15 @@ html.nav-fade {
   border-radius: var(--radius);
   background: var(--card);
   padding: clamp(20px, 3vw, 32px);
+  /* The guarantee note was ending up flush against the card's bottom edge. */
+  padding-bottom: clamp(28px, 4vw, 44px);
   margin-top: clamp(24px, 3.5vw, 40px);
+  /* ...and the service cards below started with no gap at all. */
+  margin-bottom: clamp(24px, 3.5vw, 40px);
+}
+/* Padding, not a trailing margin, sets the distance to the card edge. */
+.pricing-note > :last-child {
+  margin-bottom: 0;
 }
 .pricing-note > .svc-title {
   margin: 0 0 clamp(14px, 2vw, 20px);

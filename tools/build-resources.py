@@ -36,37 +36,37 @@ UI = {
         "ready": "paruošta",
         "read": "Atidaryti resursą",
         "soon": "Netrukus",
-        "open": "Peržiūrėti kursą",
+        "open": "Skaityti gidą",
         "curriculum": "Turinys",
-        "back": "Visi kursai",
+        "back": "Visi gidai",
         "lesson": "Žingsnis",
         "en_note": "anglų k.",
         "no_res": "Šiam žingsniui resurso dar nėra. Kai parašysiu, jis atsiras "
                   "čia — o žingsnis lieka sąraše, kad matytum visą kelią.",
         "res_head": "Resursai",
-        "intro": "Ne atsitiktinės kortelės, o kursai. Kiekvienas eina iš eilės "
-                 "nuo pradžios iki galo — atsidaryk ir pamatysi visą turinį, "
-                 "net tas dalis, kurių dar neparašiau.",
-        "title": "Resursai",
+        "intro": "Kiekvienas gidas eina iš eilės nuo pradžios iki galo. "
+                 "Atsidaryk ir pamatysi visą turinį, net tas dalis, kurių dar "
+                 "neparašiau.",
+        "title": "Gidai",
     },
     "en": {
         "steps": "steps",
         "ready": "ready",
         "read": "Open the resource",
         "soon": "Coming soon",
-        "open": "View the course",
+        "open": "Read the guide",
         "curriculum": "Curriculum",
-        "back": "All courses",
+        "back": "All guides",
         "lesson": "Step",
         "en_note": "in English",
         "no_res": "There is no resource for this step yet. When I write it, it "
                   "appears here — the step stays listed so you can see the "
                   "whole path.",
         "res_head": "Resources",
-        "intro": "Not a pile of cards — courses. Each one runs in order from "
-                 "start to finish. Open one and you see the whole curriculum, "
-                 "including the parts I haven't written yet.",
-        "title": "Resources",
+        "intro": "Each guide runs in order from start to finish. Open one and "
+                 "you see the whole thing, including the parts I haven't "
+                 "written yet.",
+        "title": "Guides",
     },
 }
 
@@ -74,75 +74,96 @@ TRACKS = [
     {
         "id": "claude-code",
         "tool": "Claude Code",
-        "title": {"lt": "Claude Code nuo nulio",
-                  "en": "Claude Code from scratch"},
+        "tag": {"lt": "Claude Code • AI programavimas",
+                "en": "Claude Code • AI coding"},
+        "title": {"lt": "Claude Code gidas pradedantiesiems",
+                  "en": "Claude Code: a beginner's guide"},
         "blurb": {
-            "lt": "Nuo pirmo paleidimo iki to, kad agentas dirbtų tavo "
-                  "projekte saugiai ir su tavo taisyklėmis. Kiekvienas "
-                  "žingsnis remiasi ankstesniu.",
-            "en": "From the first launch to an agent working inside your "
-                  "project safely and on your rules. Each step builds on the "
-                  "one before it.",
+            "lt": "Išmok naudoti Claude Code nuo nulio: diegimas, projekto "
+                  "paruošimas, CLAUDE.md, permissions, hooks ir saugus AI "
+                  "darbas su realiu kodu.",
+            "en": "Learn Claude Code from zero: install, setting up a project, "
+                  "CLAUDE.md, permissions, hooks, and working safely with AI "
+                  "on real code.",
         },
         "steps": [
             {
                 "title": {"lt": "Kas yra Claude Code ir kaip jį paleisti",
                           "en": "What Claude Code is, and getting it running"},
-                "desc": {"lt": "Kuo agentas terminale skiriasi nuo pokalbio "
-                               "naršyklėje, ir ką jis gali pasiekti tavo kompiuteryje.",
-                         "en": "How an agent in your terminal differs from a chat "
-                               "in a browser, and what it can reach on your machine."},
+                "desc": {"lt": "Ne pokalbis naršyklėje, o agentas tavo terminale: "
+                               "jis pats mato failus, paleidžia komandas ir keičia kodą. "
+                               "Nuo įdiegimo iki pirmos užduoties, ir ką jis realiai "
+                               "pasiekia tavo kompiuteryje.",
+                         "en": "Not a chat in a browser but an agent in your terminal: "
+                               "it reads your files, runs commands and edits code itself. "
+                               "From install to the first real task, and what it can "
+                               "actually reach on your machine."},
                 "href": None,
             },
             {
                 "title": {"lt": "Projektas, kontekstas ir CLAUDE.md",
                           "en": "Project, context and CLAUDE.md"},
-                "desc": {"lt": "Ką agentas turi žinoti apie tavo kodą, kad "
-                               "nustotų spėlioti — ir kaip tai surašyti vieną kartą.",
-                         "en": "What the agent needs to know about your codebase to "
-                               "stop guessing — and how to write it down once."},
+                "desc": {"lt": "Agentas spėlioja tol, kol jam nepasakai. CLAUDE.md "
+                               "yra ta vieta, kur vieną kartą surašai savo struktūrą, "
+                               "taisykles ir įpročius, ir nustoji kartoti tą patį "
+                               "kiekviename prompte.",
+                         "en": "The agent guesses until you tell it otherwise. "
+                               "CLAUDE.md is where you write your structure, your rules "
+                               "and your habits down once, and stop repeating yourself "
+                               "in every prompt."},
                 "href": None,
             },
             {
                 "title": {"lt": "Saugikliai: kad agentas nesugriautų projekto",
                           "en": "Guardrails: stopping the agent before it breaks things"},
-                "desc": {"lt": "Paruoštas <code>.claude/settings.json</code> su penkiais "
-                               "saugikliais ir <code>guard.sh</code> skriptu — su paaiškinimu, "
-                               "ką kiekvienas realiai blokuoja.",
-                         "en": "A ready <code>.claude/settings.json</code> with five safety "
-                               "hooks plus a <code>guard.sh</code> script — with a plain-language "
-                               "explanation of what each one actually blocks."},
+                "desc": {"lt": "Agentas, galintis paleisti bet kokią komandą, anksčiau "
+                               "ar vėliau paleis tą, kurios nenorėjai. Paruoštas "
+                               "<code>.claude/settings.json</code> su penkiais saugikliais ir "
+                               "<code>guard.sh</code> skriptu, su paaiškinimu, ką kiekvienas "
+                               "realiai blokuoja.",
+                         "en": "An agent that can run any command will, sooner or later, run "
+                               "the one you did not want. A ready <code>.claude/settings.json</code> "
+                               "with five safeguards and a <code>guard.sh</code> script, with a "
+                               "plain explanation of what each one actually blocks."},
                 "content_from": "en/resources/claude-code-guardrails.html",
                 "content_lang": "en",
             },
             {
                 "title": {"lt": "Hooks giliau: gyvenimo ciklas ir anatomija",
                           "en": "Hooks in depth: the lifecycle and the anatomy"},
-                "desc": {"lt": "Kaip hooks realiai veikia: kur jie įsiterpia į agento "
-                               "ciklą, iš ko sudarytas vienas hook, ir kaip atrodo tas, "
-                               "kuris pasako „ne“ — su interaktyviu pavyzdžiu.",
-                         "en": "How hooks actually work: where they sit in the agent's "
-                               "loop, what one hook is made of, and what the one that "
-                               "says no looks like — with a live example."},
+                "desc": {"lt": "Instrukcijos sako, ką agentas turėtų daryti. Hooks "
+                               "leidžia tavo sistemai reaguoti į tai, ką jis iš tikrųjų daro. "
+                               "Kur jie įsiterpia, iš ko sudarytas vienas hook ir kaip atrodo "
+                               "tas, kuris pasako „ne“, su interaktyviu pavyzdžiu.",
+                         "en": "Instructions tell the agent what it should do. Hooks let "
+                               "your system react to what it actually does. Where they sit in "
+                               "the loop, what one hook is made of, and what the one that says "
+                               "no looks like, with a live example."},
                 "content_from": "en/resources/claude-code-hooks.html",
                 "content_lang": "en",
             },
             {
                 "title": {"lt": "Savos komandos ir skills",
                           "en": "Your own commands and skills"},
-                "desc": {"lt": "Kaip pasidaryti, kad pasikartojantis darbas būtų "
-                               "viena komanda, o ne tas pats promptas kas kartą.",
-                         "en": "Turning repeated work into one command instead of "
-                               "retyping the same prompt every time."},
+                "desc": {"lt": "Jei tą patį promptą rašai trečią kartą, tai jau ne "
+                               "promptas, o komanda. Kaip pasikartojantį darbą paversti "
+                               "vienu trumpiniu, kurį vienodai supranta ir agentas, ir "
+                               "tavo komanda.",
+                         "en": "If you are typing the same prompt a third time, it is not "
+                               "a prompt any more, it is a command. How to turn repeated "
+                               "work into one shortcut that the agent and your teammates "
+                               "read the same way."},
                 "href": None,
             },
             {
                 "title": {"lt": "MCP: kaip prijungti savo įrankius",
                           "en": "MCP: wiring in your own tools"},
-                "desc": {"lt": "Kad agentas pasiektų tavo duomenų bazę, API ar "
-                               "vidinę sistemą — ir tik tiek, kiek leidi.",
-                         "en": "Letting the agent reach your database, API or internal "
-                               "system — and only as far as you allow."},
+                "desc": {"lt": "Pagal nutylėjimą agentas mato tik failus. MCP yra "
+                               "būdas duoti jam tavo duomenų bazę, API ar vidinę sistemą, "
+                               "ir tiksliai tiek, kiek leidi, ne daugiau.",
+                         "en": "By default the agent only sees files. MCP is how you hand "
+                               "it your database, your API or an internal system, and "
+                               "exactly as far as you allow, no further."},
                 "href": None,
             },
         ],
@@ -150,15 +171,21 @@ TRACKS = [
     {
         "id": "start-coding",
         "tool": {"lt": "Bet koks AI įrankis", "en": "Any AI tool"},
-        "title": {"lt": "Kaip pradėti programuoti dabar",
-                  "en": "How to start coding now"},
+        "tag": {"lt": "Programavimas su AI • Pradedantiesiems",
+                "en": "Coding with AI • Beginners"},
+        "title": {"lt": "Kaip išmokti programuoti AI eroje",
+                  "en": "How to learn to code in the AI era"},
+        # The card title is written to catch a person, the <title> to catch
+        # the search. Deliberately not the same sentence.
+        "seo_title": {"lt": "Kaip pradėti programuoti su AI 2026 – gidas pradedantiesiems",
+                      "en": "How to start coding with AI in 2026 – a beginner's guide"},
         "blurb": {
-            "lt": "Kelias pradedančiajam tuo metu, kai AI rašo pusę kodo už "
-                  "tave. Ne „išmok sintaksę“, o kaip mokytis taip, kad po metų "
-                  "dar mokėtum pats.",
-            "en": "A beginner's path at a time when AI writes half the code for "
-                  "you. Not \"learn the syntax\", but how to learn so that you "
-                  "still know it yourself a year from now.",
+            "lt": "AI gali parašyti kodą už tave. Šis gidas parodys, ką vis "
+                  "tiek turi išmokti pats, kaip naudoti AI kaip mokytoją ir "
+                  "kaip tapti savarankišku programuotoju.",
+            "en": "AI can write the code for you. This guide shows what you "
+                  "still have to learn yourself, how to use AI as a teacher, "
+                  "and how to become a developer who can work on their own.",
         },
         "steps": [
             {
@@ -232,8 +259,8 @@ def shelf(lang):
     out = [f'      <p class="resources-intro u-reveal">{u["intro"]}</p>', "",
            '      <div class="course-grid u-stagger">']
     for n, tr in enumerate(TRACKS, 1):
-        tool = pick(tr["tool"], lang)
-        tool_cls = " tool--claude" if tr["tool"] == "Claude Code" else ""
+        tool = pick(tr.get("tag", tr["tool"]), lang)
+        tool_cls = " tool--claude" if tr["id"] == "claude-code" else ""
         href = f'/{lang}/resources/{tr["id"]}.html'
         out += [
             f'        <a class="course-card u-reveal" href="{href}">',
@@ -282,8 +309,8 @@ def course_main(tr, n, lang):
     u = UI[lang]
     steps = tr["steps"]
     total, ready = len(steps), ready_count(steps and tr)
-    tool = pick(tr["tool"], lang)
-    tool_cls = " tool--claude" if tr["tool"] == "Claude Code" else ""
+    tool = pick(tr.get("tag", tr["tool"]), lang)
+    tool_cls = " tool--claude" if tr["id"] == "claude-code" else ""
 
     nav = []
     panels = []
@@ -418,8 +445,9 @@ def build_course_page(tr, n, lang, shell):
     s = re.sub(r'href="(?!https?:|/|#|mailto:)([\w-]+\.html)"',
                rf'href="/{lang}/\1"', s)
 
+    seo = pick(tr.get("seo_title", tr["title"]), lang)
     s = re.sub(r'<title>.*?</title>',
-               f'<title>{e(title)} | {u["title"]} — Gabrielė</title>', s,
+               f'<title>{e(seo)} | {u["title"]} — Gabrielė</title>', s,
                flags=re.S)
     s = re.sub(r'<link rel="canonical" href="[^"]*"',
                f'<link rel="canonical" href="{url}"', s)
