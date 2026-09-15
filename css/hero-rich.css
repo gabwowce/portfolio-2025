@@ -22,15 +22,29 @@
   min-width: 300px;
   min-height: 300px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 34% 30%,
-    color-mix(in srgb, var(--accent) 62%, transparent) 0%,
-    color-mix(in srgb, var(--accent) 34%, transparent) 34%,
-    color-mix(in srgb, var(--accent) 10%, transparent) 62%,
-    transparent 76%
-  );
+  /*
+    Two stacked gradients rather than one flat wash of the accent: a warm
+    lit core up at the light source, and a cooler shadow side opposite
+    it. The hue actually travels across the sphere, so it reads as a lit
+    object instead of one more orange shape among the orange ones.
+  */
+  background:
+    radial-gradient(
+      circle at 72% 78%,
+      color-mix(in srgb, var(--ok) 52%, transparent) 0%,
+      color-mix(in srgb, var(--ok) 26%, transparent) 34%,
+      color-mix(in srgb, var(--ok) 8%, transparent) 56%,
+      transparent 74%
+    ),
+    radial-gradient(
+      circle at 32% 26%,
+      color-mix(in srgb, var(--brand-ink) 58%, transparent) 0%,
+      color-mix(in srgb, var(--accent) 42%, transparent) 32%,
+      color-mix(in srgb, var(--accent) 12%, transparent) 60%,
+      transparent 78%
+    );
   filter: blur(2px);
-  opacity: 0.75;
+  opacity: 0.78;
   z-index: -1;
   pointer-events: none;
 }
@@ -520,55 +534,6 @@
   flex-shrink: 0;
 }
 
-/* ---- Handwritten annotations ---- */
-
-.hero-note {
-  position: absolute;
-  font-family: "Caveat", "Bradley Hand", "Segoe Script", "Comic Sans MS", system-ui, sans-serif;
-  font-size: clamp(15px, 1.25vw, 20px);
-  line-height: 1.25;
-  color: var(--muted);
-  pointer-events: none;
-  z-index: 4;
-}
-/*
-  Sits in the empty gutter below the stats row. Kept low enough that a
-  wider hero container - which pushes the stats left - cannot collide
-  with it.
-*/
-.hero-note--orb {
-  left: 1.5vw;
-  bottom: 2%;
-  max-width: 150px;
-  rotate: -6deg;
-}
-/*
-  The gutter it sits in is only as wide as the page margin, and the
-  translations are not the same length. Below this width there is no
-  room for it beside the copy column.
-*/
-@media (max-width: 1560px) {
-  .hero-note--orb {
-    display: none;
-  }
-}
-/* Inside the panel, in the clear area above her shoulder. */
-.hero-note--board {
-  top: 9%;
-  right: 4%;
-  max-width: 165px;
-  rotate: -4deg;
-  color: var(--text);
-}
-.hero-note--rail {
-  position: static;
-  display: block;
-  margin-top: 0.7rem;
-  margin-top: 0.6rem;
-  rotate: -3deg;
-  color: var(--muted);
-}
-
 .hero-scroll {
   position: absolute;
   right: 1.6rem;
@@ -602,16 +567,11 @@
   transform: translate3d(calc(var(--px) * -12px), calc(var(--py) * -7px), 0);
   transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.hero-rich .hero-note {
-  transform: translate3d(calc(var(--px) * -5px), calc(var(--py) * -4px), 0);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
 @media (prefers-reduced-motion: reduce), (hover: none) {
   .hero-rich .hero-rich__orb,
   .hero-rich .hero-stage__board,
   .hero-rich .hero-stage picture,
-  .hero-rich .hero-stage img,
-  .hero-rich .hero-note {
+  .hero-rich .hero-stage img {
     transform: none !important;
     transition: none;
   }
@@ -674,7 +634,6 @@
   .hero-stage__board::after {
     display: none;
   }
-  .hero-note--orb,
   .hero-scroll {
     display: none;
   }
