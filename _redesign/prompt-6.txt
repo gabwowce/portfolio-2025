@@ -1,0 +1,49 @@
+Projekto pakeitimas: keepmi išimame visur (pagrindiniame puslapyje, /portfolio ir A4). Vietoj jo – kalbų mokymosi platforma. Pridedu dvi tikras ekrano kopijas: mokinio pusę ir administravimo pusę.
+
+Projektų tvarka visur: 1) Lojalumo valdymo sistema, 2) Kalbų mokymosi platforma, 3) TikMaker.
+
+KALBŲ MOKYMOSI PLATFORMA
+
+Pavadinimas: Kalbų mokymosi platforma – [KLIENTO PAVADINIMAS arba palik be jo]
+Trumpai (1 eilutė): Internetinė kalbų mokymosi sistema su mokinio aplinka ir turinio valdymu.
+Žymos: [STACKAS, pvz. React, TypeScript, ...]
+Rolė: [ROLĖ, pvz. viena, nuo dizaino iki paleidimo]
+Būsena: [pvz. veikia / naudoja realūs mokiniai]
+
+Pagrindiniame puslapyje (užsakovui) – 1 sakinys:
+„Mokiniai mokosi temomis ir pamokomis, o administratorius visą turinį tvarko pats: nuo žodžių iki užduočių.“
+
+/portfolio kortelėje:
+• Rolė: [ROLĖ]
+• Faktas: dvi aplikacijos – mokinio aplinka ir turinio valdymas
+• Žymos: [STACKAS]
+• „Skaityti plačiau →“
+
+Ekrano kopijos:
+• Pagrindiniame puslapyje ir /portfolio kortelėje rodyk mokinio pusę (pradžios ekranas su kurso žemėlapiu).
+• Organinė dėmė už šio projekto – švelni rožinė / persikinė (dera su platformos raudonu akcentu, bet prigesinta, kad nekonkuruotų su mūsų terakotiniu).
+
+Atskiras projekto puslapis (ta pati struktūra kaip lojalumo sistemos: viršuje trumpai užsakovui, žemiau techninė dalis). Turinys:
+
+Kas tai: kalbų mokymosi platforma, kurią sudaro dvi dalys.
+
+Mokinio aplinka (1-a ekrano kopija):
+• kurso žemėlapis: temos ir pamokos su progresu;
+• „Tęsti pamoką“ – grįžimas ten, kur sustota;
+• kartojimas: žodžiai, kuriuos laikas pakartoti, surenkami automatiškai;
+• progresas: atliktos pamokos, išmokti žodžiai, mokymosi dienos, atliktos užduotys;
+• lygiai, sertifikatai, žodynas, šviesi ir tamsi tema.
+
+Turinio valdymas (2-a ekrano kopija):
+• turinio medis: kalba → lygis → tema → pamoka;
+• kiekviena pamoka turi žodžius ir užduotis; užduočių tipai: žodžio kortelė, žodis sakinyje, vertimas, praleistas žodis;
+• užduotis galima sudėlioti automatiškai iš pamokos žodžių arba tvarkyti rankiniu būdu;
+• turinio importas iš Excel;
+• būsenos: paskelbta, juodraštis, nerodoma;
+• taip pat užsakymai, užklausos, naudotojai ir medija.
+
+Techninė dalis: [ROLĖ], [STACKAS], [2–3 TECHNINIAI SPRENDIMAI – įrašysiu pati], [MASTAS, jei turiu skaičių].
+
+Ekrano kopijose matosi tikras vardas ir logotipas: [PALIK / uždenk logotipą ir vardą, kaip lojalumo sistemoje].
+
+Parodyk atnaujintus: pagrindinio puslapio darbų sekciją (desktop + mobile), /portfolio darbų korteles ir naują kalbų platformos projekto puslapį (desktop + mobile).
