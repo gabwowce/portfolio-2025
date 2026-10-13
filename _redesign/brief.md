@@ -360,3 +360,16 @@ svetaines.
 telefonu, prie lango) labiau kelia pasitikėjimą klientams, kurie perka
 paslaugą iš žmogaus. Jei personažas tau svarbus kaip prekės ženklas, palik jį
 vienoje vietoje (pvz. „Apie mane“), ne visur.
+
+---
+
+## 4c. Trečia žinutė Claude Design: išskirtinė detalė + pilni puslapiai
+
+Pagrindinė detalė: „Specifikacijų“ režimas (kaip Figma Dev Mode). Jis parodo
+tai, ką frontend programuotoja mato kurdama: tarpus, šriftų dydžius ir
+tinklelį. Užsakovui tai tylus kokybės ženklas, o darbdaviui tiesioginis
+kompetencijos įrodymas. Antra detalė: poraštėje sąžininga eilutė apie
+paties puslapio kodą (skaičiai įrašomi tik išmatavus galutinę versiją).
+
+Tekstas žinutei yra pokalbyje ir kartojamas čia nebus. Jei jo prireiks, jis
+kartu su šiuo failu išsaugotas `_redesign/prompt-3.txt`.

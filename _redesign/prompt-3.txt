@@ -1,0 +1,59 @@
+Desktop kryptis tinka, ją ir laikome. Dabar trys dalykai: viena išskirtinė detalė, mobile navigacija ir pilni puslapiai.
+
+1. IŠSKIRTINĖ DETALĖ
+
+Dizainas dabar švarus, bet per daug neutralus: atrodo kaip gera šablonas, ne kaip frontend programuotojos darbas. Reikia vienos subtilios detalės, kuri parodo kompetenciją, o ne puošia.
+
+Pagrindinė detalė – „Specifikacijų“ režimas (kaip Figma Dev Mode):
+- Apatiniame kairiajame kampe mažas monospace jungiklis „Specifikacijos“ (ir klavišas S). Pagal nutylėjimą išjungtas.
+- Įjungus, ant puslapio plonomis akcento spalvos linijomis (1 px, ~60 % permatomumo) atsiranda redline anotacijos: tarpai tarp blokų px, antraščių ir teksto šrifto dydis / eilutės aukštis, 12 kolonų tinklelis ir turinio plotis. Etiketės mažos, monospace, kaip Figma.
+- Užvedus pelę ant elemento, kai režimas įjungtas, rodomas jo dydis ir komponento pavadinimas (pvz. „ProjectRow · 1120 × 360“).
+- Anotacijos turi būti tikros: skaičiai atitinka tavo dizaino sistemą (tarpų skalė, tipografijos skalė), ne atsitiktiniai.
+- Svarbiausia: režimas neturi trukdyti skaityti. Įjungus tekstas lieka toks pat, tik ant viršaus atsiranda plonas sluoksnis.
+- Mobile šio režimo nėra.
+Parodyk pagrindinio puslapio hero ir darbų sekciją abiem būsenomis: išjungta ir įjungta.
+
+Smulkesnės detalės, kurios palaiko tą patį charakterį (be naujų dekoracijų):
+- Sekcijų antraštės su monospace numeriu kairėje: „01 — Atlikti darbai“, „02 — Su kuo galiu padėti“ ir t. t.
+- Navigacijoje aktyvi sekcija pažymėta plona akcento linija apačioje, kuri slenkant pereina prie kitos nuorodos.
+- Poraštėje viena monospace eilutė apie patį puslapį: „Šis puslapis: rašytas ranka, be framework'ų · [X] KB · Lighthouse [X] · atnaujinta [data]“. Skaičius paliksiu laukeliais, juos įrašysiu išmatavusi galutinę versiją.
+- Projekto ekrano kopija naršyklės rėmelyje: užvedus pelę ekranas lėtai pasislenka aukštyn ir parodo daugiau vaizdo (kaip jau padarei).
+Daugiau jokių efektų.
+
+2. MOBILE NAVIGACIJA
+
+Mobile dabar netinka: nuorodos ir mygtukas sukrauti po vardu. Turi būti:
+- kompaktiška viršutinė juosta: kairėje „Gabrielė Tamaševičiūtė“, dešinėje hamburger mygtukas (min. 44 × 44 px);
+- paspaudus atsidaro viso ekrano meniu: didelės nuorodos (Darbai, Paslaugos, Apie, DUK), apačioje LT / EN ir pilno pločio mygtukas „Aptarti projektą“;
+- uždarymo mygtukas toje pačioje vietoje kaip hamburger.
+Parodyk abi būsenas: uždarytą ir atidarytą.
+
+3. PILNI PUSLAPIAI
+
+Noriu matyti viską iki galo, ne tik hero ir darbus. Naudok tikrus vaizdus vietoj laukelių. Hero dalyje rodyk kitą lojalumo sistemos ekraną (ac-loyalty-redacted-1400.webp), o darbų sąraše – ac-cards-redacted-1400.webp, kad tas pats vaizdas nesikartotų.
+
+A) Pagrindinis puslapis (užsakovams) – desktop 1440 ir mobile 390, visos sekcijos:
+Hero → 01 Atlikti darbai → 02 Su kuo galiu padėti → 03 Kaip vyksta darbas → 04 Apie mane → 05 Dažni klausimai → 06 Kontaktas → poraštė.
+Tekstai tokie, kokie buvo pirmame prompte. Kontakte: gt1230112301@gmail.com, LinkedIn, GitHub (github.com/gabwowce). Poraštėje nuoroda „CV ir portfolio“ į /portfolio.
+
+B) /portfolio (darbdaviams) – desktop 1440, mobile 390 ir A4 spausdinimui. Struktūra tokia, kokią aprašiau anksčiau. Užpildyk TikMaker ir keepmi vietoj […]:
+
+TikMaker – vaizdo redaktorius su AI įgarsinimu.
+  Problema: savo TikTok / Reels turiniui įgarsinimą tekdavo kurti atskirame įrankyje ir derinti rankomis.
+  Rolė: viena kūriau visą įrankį.
+  Sprendimai: ElevenLabs balso takelis yra laiko juostos elementas kaip bet kuris kitas efektas; vaizdo generavimas su Remotion.
+  Stackas: React, TypeScript, Remotion, ElevenLabs.
+  Rezultatas: vidinis darbo įrankis, kurį naudoju savo turiniui. Ne parduodamas produktas.
+
+keepmi – skaitmeniniai kvietimai ir svečių centras šventės dienai.
+  Problema: kvietimai, svečių palinkėjimai, nuotraukos ir šventės programa išsibarstę skirtingose vietose.
+  Rolė: viena sukūriau produktą nuo idėjos iki veikiančio MVP.
+  Sprendimai: kvietimai su palinkėjimų rinkimu iki šventės; šventės dieną vienas svečių centras (albumas, programa, viktorinos); trys kalbos (next-intl); Stripe mokėjimai.
+  Stackas: Next.js, next-intl, Supabase, Stripe.
+  Rezultatas: veikiantis MVP su live demo. Realių naudotojų kol kas nėra.
+
+C) Vieno projekto puslapis (šablonas) – lojalumo valdymo sistema, desktop ir mobile. Į jį veda „Skaityti plačiau“ iš abiejų puslapių. Viršuje trumpai užsakovui (kas tai, kokią problemą sprendžia, rezultatas), žemiau techninė dalis darbdaviui (rolė, sprendimai, mastas, stackas), tarp jų 3–4 ekrano kopijos.
+
+Laukeliai, kuriuos užpildysiu pati, palik [ ] pavidalu: būsena portfolio puslapyje, DUK kaina ir terminas, „Atsakau per X darbo dienas“, poraštės skaičiai.
+
+Pabaigoje pateik trumpą dizaino sistemos lapą: spalvos (hex), tipografijos skalė, tarpų skalė, komponentai (mygtukai, nuorodos, projekto eilutė, DUK punktas, forma, Specifikacijų sluoksnis).
