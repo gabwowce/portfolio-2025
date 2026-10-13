@@ -96,7 +96,7 @@ IMAGES = {
     "tik": ("tikmaker-editor", 1400, 812, 760),
     "loy_cards": ("loyalty-cards", 1400, 773, 760),
     "loy_promo": ("loyalty-promotions", 1400, 774, 760),
-    "about": ("about-illustration", 900, 1173, 600),
+    "about": ("about-photo", 1122, 1402, 600),
     "kalbos_import": ("kalbos-import", 1100, 600, 760),
     "tik_library": ("tikmaker-library", 1000, 525, 760),
     "tik_voice": ("tikmaker-voice", 840, 530, 760),
@@ -262,7 +262,7 @@ T = {
             ("Paleidimas", "Įdiegiu sistemą. Mano darbui taikoma 3 mėn. garantija."),
         ],
         "about_h": "Apie mane",
-        "about_alt": "Gabrielės iliustracija",
+        "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "Esu Gabrielė, programuotoja iš Vilniaus. Kuriu sistemas, kuriomis žmonės naudojasi kasdien: nuo duomenų modelio iki sąsajos. Prieš keisdama kodą pirmiausia suprantu problemą.",
         "facts": ["2+ metai kuriant sistemas", "Frontend, backend ir API", "Dirbu su esamu kodu"],
         "about_more": "Daugiau apie mane →",
@@ -287,8 +287,6 @@ T = {
         "f_fail": "Nepavyko išsiųsti. Parašykite tiesiai el. paštu: " + EMAIL,
         "f_invalid": "Užpildykite visus laukus ir patikrinkite el. pašto adresą.",
         "footer_cv": "CV ir portfolio",
-        "footer_guides": "Gidai",
-        "guides_url": "/lt/resources.html",
         "menu_nums": {"work": "01", "services": "02", "about": "04", "faq": "05"},
     },
     "en": {
@@ -341,7 +339,7 @@ T = {
             ("Launch", "I deploy the system. My work comes with a 3-month warranty."),
         ],
         "about_h": "About me",
-        "about_alt": "Illustration of Gabrielė",
+        "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "I'm Gabrielė, a developer from Vilnius. I build systems people use every day, from the data model to the interface. Before changing code, I first understand the problem.",
         "facts": ["2+ years building systems", "Frontend, backend and APIs", "I work with existing code"],
         "about_more": "More about me →",
@@ -366,8 +364,6 @@ T = {
         "f_fail": "Sending failed. Please email me directly: " + EMAIL,
         "f_invalid": "Please fill in all fields and check the email address.",
         "footer_cv": "CV and portfolio",
-        "footer_guides": "Guides",
-        "guides_url": "/en/resources.html",
         "menu_nums": {"work": "01", "services": "02", "about": "04", "faq": "05"},
     },
 }
@@ -429,7 +425,7 @@ PHONE_HREF = "tel:+37067270403"
 C = {
     "lt": {
         "nav": [("portfolio", "Portfolio"), ("services", "Paslaugos"), ("about", "Apie"),
-                ("guides", "Gidai"), ("contact", "Kontaktai")],
+                ("contact", "Kontaktai")],
         "home": "Pagrindinis",
         "tagline": "Programuotoja ir produkto kūrėja. Dėmesys vartotojo patirčiai ir kokybei.",
         "links_h": "Nuorodos",
@@ -529,7 +525,7 @@ C = {
     },
     "en": {
         "nav": [("portfolio", "Portfolio"), ("services", "Services"), ("about", "About"),
-                ("guides", "Guides"), ("contact", "Contact")],
+                ("contact", "Contact")],
         "home": "Home",
         "tagline": "Developer and product builder. Focused on user experience and quality.",
         "links_h": "Links",
@@ -663,8 +659,6 @@ SERVICES = {
 # --------------------------------------------------------------------------
 
 def nav_href(key, lang):
-    if key == "guides":
-        return f"/{lang}/resources.html"
     return url(key, lang)
 
 
@@ -1857,7 +1851,7 @@ def sitemap():
     keep = []
     old = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     for loc in re.findall(r"<loc>([^<]+)</loc>", old):
-        if "/resources" in loc or "/game.html" in loc:
+        if "/game.html" in loc:
             keep.append(loc)
     new = []
     for key in ("home", "portfolio", "services", "about", "contact", "p_lang", "p_tik", "p_loy"):
@@ -1884,6 +1878,19 @@ def main():
             project(key, lang)
 
     redirect("portfolio/index.html", "/lt/portfolio.html", "lt")
+    # The guides were removed; their old addresses land on the home page.
+    redirect("en/resources.html", "/en/", "en")
+    redirect("en/resources/claude-code-commands.html", "/en/", "en")
+    redirect("en/resources/claude-code-context.html", "/en/", "en")
+    redirect("en/resources/claude-code-guardrails.html", "/en/", "en")
+    redirect("en/resources/claude-code-hooks.html", "/en/", "en")
+    redirect("en/resources/claude-code-intro.html", "/en/", "en")
+    redirect("en/resources/claude-code-mcp.html", "/en/", "en")
+    redirect("en/resources/claude-code.html", "/en/", "en")
+    redirect("en/resources/start-coding.html", "/en/", "en")
+    redirect("lt/resources.html", "/lt/", "lt")
+    redirect("lt/resources/claude-code.html", "/lt/", "lt")
+    redirect("lt/resources/start-coding.html", "/lt/", "lt")
     sitemap()
 
 

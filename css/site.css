@@ -1030,20 +1030,31 @@ textarea {
 .about__media {
   grid-column: 1 / span 4;
   position: relative;
-  padding: 40px;
+  padding: 24px 28px 32px 20px;
 }
 
-.about__media .blob {
-  inset: 0;
-}
 
+
+/* The photo is cut to the same organic shape as the blobs, so it is never
+   a plain rectangle; the apricot blob behind it shows around the edges. */
 .about__media img {
   position: relative;
   z-index: 1;
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M46 3C58 0 71 4 82 6C93 8 99 17 98 30C97 42 92 50 95 62C98 75 96 88 85 94C74 100 62 96 50 98C37 100 22 101 12 94C2 87 4 74 3 62C2 50 7 41 4 29C1 17 6 6 18 4C28 2 36 5 46 3Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M46 3C58 0 71 4 82 6C93 8 99 17 98 30C97 42 92 50 95 62C98 75 96 88 85 94C74 100 62 96 50 98C37 100 22 101 12 94C2 87 4 74 3 62C2 50 7 41 4 29C1 17 6 6 18 4C28 2 36 5 46 3Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.about__media .blob {
+  inset: 10% -2% -2% 14%;
+  transform: rotate(-6deg);
 }
 
 .about__text {
@@ -3037,7 +3048,9 @@ textarea {
   color: #f6f0e6;
 }
 
-.footer__grid {
+/* Two classes on purpose: page rules such as .page-cv .container reset
+   container padding and must not win over the footer's own spacing. */
+.footer .footer__grid {
   padding-top: 72px;
   padding-bottom: 48px;
   display: grid;
@@ -3223,7 +3236,7 @@ textarea {
 }
 
 @media (max-width: 640px) {
-  .footer__grid {
+  .footer .footer__grid {
     grid-template-columns: minmax(0, 1fr);
     padding-top: 56px;
   }

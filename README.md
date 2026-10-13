@@ -13,7 +13,6 @@ Portfolio and services site of Gabrielė Tamaševičiūtė. Static HTML and CSS 
 | `/lt/contact.html`, `/en/contact.html` | Contact details and form |
 | `/lt/projektai/*.html`, `/en/projects/*.html` | Project pages |
 | `/lt/cv.pdf`, `/en/cv.pdf` | One-page CV, printed from `lt/cv.html` and `en/cv.html` |
-| `/lt/resources.html`, `/en/resources.html` | Guides (older design, built by `tools/build-resources.py`) |
 
 The redesigned pages use only `css/site.css` and `js/site.js`. Fonts are self-hosted in `fonts/`.
 
