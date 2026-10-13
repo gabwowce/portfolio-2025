@@ -1,0 +1,155 @@
+Galutiniai projektų tekstai. Ši žinutė pakeičia visus ankstesnius projektų aprašymus. Tekstus naudok tokius, kokie yra: netrumpink faktų ir nepridėk naujų.
+
+BENDRI PAKEITIMAI
+
+1. Projektų tvarka visur (pagrindinis, /portfolio, A4): 1) Kalbų mokymosi platforma, 2) TikMaker, 3) Lojalumo valdymo sistema.
+
+2. Hero: nešiojamo kompiuterio makete vietoj lojalumo sistemos dabar rodomas kalbų platformos mokinio pradžios ekranas.
+
+3. Lojalumo valdymo sistema yra konfidenciali. Jai:
+   • jokių ekrano kopijų, net uždengtų, visur (hero, kortelės, A4). Vietoj ekrano kopijos – abstrakti, neatpažįstama iliustracija ant smėlio dėmės: keli pilki blokai, primenantys šoninį meniu ir lentelę, BE jokių tekstų, ikonų ir skaičių;
+   • jokio atskiro projekto puslapio ir jokios „Skaityti plačiau“ nuorodos. Vietoj jos maža žyma „Konfidencialus projektas“;
+   • jokių funkcijų sąrašų, kliento, įmonės ar vidinių pavadinimų.
+
+═════════════════════════════
+1. KALBŲ MOKYMOSI PLATFORMA
+═════════════════════════════
+
+Kortelė pagrindiniame puslapyje (užsakovui):
+Kalbų mokymosi platforma – Vieša svetainė, mokinio platforma ir turinio valdymas vienoje sistemoje. Administratorius kursus kuria pats, o užduotys sudaromos automatiškai iš žodyno. Žymos: Next.js, Supabase.
+
+Kortelė /portfolio:
+• Kas tai: kalbų mokymosi platforma su turinio valdymo sistema
+• Rolė: viena, visa sistema
+• Faktas: 9 užduočių tipai iš vieno žodyno · 433 testai
+• Žymos: Next.js, TypeScript, Supabase, PostgreSQL
+• „Skaityti plačiau →“
+
+Projekto puslapis
+
+Meta: web platforma · [KLIENTINIS PROJEKTAS / KLIENTO PAVADINIMAS] · 2026
+Kas tai: Internetinė kalbų mokymosi sistema iš trijų dalių: vieša mokymų svetainė, mokinio mokymosi platforma ir turinio valdymo sistema. Kursus administratorius kuria pats, be programuotojo: sistema iš įvesto žodyno sudaro interaktyvias užduotis, valdo prieigą prie kursų per aktyvavimo kodus, seka mokinių progresą ir baigus lygį išduoda sertifikatą.
+Būsena: [BŪSENA]
+Dėmė: švelni rožinė / persikinė.
+
+01 — Užduotys iš žodyno automatiškai
+[Ekrano kopija: turinio valdymas su atidaryta aprėpties lentele – kairėje turinio medis, dešinėje žodžiai ir užduočių tipų stulpeliai]
+Įžanga: Administratorius žodį įveda vieną kartą, o sistema iš jo pati sudaro iki aštuonių tipų užduočių.
+• užduočių tipai: kortelė, žodis su sakiniu, klausyk ir pasirink, porų sujungimas, praleistas žodis, sakinio dėliojimas, vertimas abiem kryptimis, paveikslėlio parinkimas ir rankinis klausimas;
+• prieš kuriant matosi, kiek užduočių atsiras ir kurioms trūksta duomenų (pvz. garso);
+• klaidingi atsakymų variantai parenkami iš tos pačios temos žodžių;
+• pakartotinai sudėliojus užduotys nesidubliuoja, o rankinės išlieka;
+• „Išmaišyti“ sumaišo užduotis taip, kad žodžio kortelė visada eitų prieš to žodžio tikrinimą.
+
+02 — Mokymosi kelias mokiniui
+[Ekrano kopija: vykstanti pamoka su progreso juosta, sakinio dėliojimo užduotimi ir teisingo atsakymo grįžtamuoju ryšiu]
+Įžanga: Mokinys eina aiškiu keliu: pamokos, testai, kartojimas ir sertifikatas. Progresas saugomas serveryje ir nedingsta pakeitus įrenginį.
+• atsakymas patikrinamas iš karto; raidžių dydis ir skyryba nesvarbūs, o praleistos lietuviškos raidės ar viena rašybos klaida įskaitomos su pastaba;
+• temos ir testai atsirakina nuosekliai, pagal progresą;
+• testai vertinami serveryje pagal praėjimo ribą;
+• žodžiai kartojami intervalais 1 → 3 → 7 → 21 diena;
+• baigus lygį išduodamas PDF sertifikatas su unikaliu numeriu.
+
+03 — Visas kursas iš vieno Excel failo
+[Ekrano kopija: importo dialogo analizės žingsnis su santrauka, įspėjimais apie dublikatus ir laukiamais medijos failais]
+Įžanga: Visą kursą galima įkelti vienu Excel failu, o sistema prieš įrašydama parodo, kas bus sukurta.
+• tuščias ir pavyzdinis šablonas atsisiunčiami iš sistemos;
+• prieš importą tikrinami stulpeliai, ieškoma dublikatų ir parodoma, kur turinys bus įdėtas;
+• trūkstamas garsas ar paveikslėlis susiejamas automatiškai, kai vėliau įkeliamas tokiu pačiu pavadinimu;
+• importuotos pamokos gali būti iškart paskelbtos.
+
+Techninė dalis:
+
+• Rolė: viena kūriau visą sistemą: duomenų bazę, serverio logiką, mokinio platformą, turinio valdymą ir testus.
+
+• Sprendimai:
+  – Užduočių variklis iš grynų funkcijų: kiekvienas užduoties tipas yra viena taisyklė registre, todėl naujas tipas nereikalauja keisti variklio. Atsitiktinumas perduodamas kaip parametras, todėl logika testuojama deterministiškai. Tas pats variklis veikia pamokose, testuose ir kartojime.
+  – Saugumas trijuose sluoksniuose: sąsajoje, serverio veiksmuose ir duomenų bazėje (Row Level Security kiekvienai lentelei). RLS taisyklės patikrintos atskirais integraciniais testais, nes sąsajos apsaugą galima apeiti kreipiantis tiesiai į API.
+  – Atomiški veiksmai duomenų bazėje: kodo aktyvavimas ir kitos kelių žingsnių operacijos vyksta vienoje transakcijoje su eilutės užraktu, todėl tą patį kodą aktyvuoti gali tik vienas žmogus.
+  – Griežtas duomenų sluoksnis: komponentas → hook'as → servisas → duomenų bazė. Kai du administratoriai redaguoja tą patį įrašą, konfliktas aptinkamas ir svetimi pakeitimai tyliai neperrašomi.
+  – Kokybės automatika: patikros prieš kiekvieną commit'ą, ESLint taisyklė, saugojanti dizaino sistemą, kontaktų formos apsauga nuo šlamšto, o IP saugomas tik kaip maiša ir ištrinamas po paros.
+
+• Mastas: 33 ekranai · 25 DB lentelės ir 64 RLS taisyklės · 9 užduočių tipai · 433 testai (iš jų 110 RLS ir 16 E2E) · 2105 vertimo raktai.
+
+• Stackas: Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, TanStack Query, React Hook Form + Zod, next-intl · Supabase (PostgreSQL, RLS, Auth, Storage), pg_cron · @react-pdf/renderer, xlsx · Vitest, Playwright.
+
+═════════════════════════════
+2. TIKMAKER
+═════════════════════════════
+
+Kortelė pagrindiniame puslapyje (užsakovui):
+TikMaker – Trumpų vertikalių vaizdo įrašų redaktorius: video surenkamas iš paruoštų scenų, o balsas ir subtitrai sukuriami iš teksto. Žymos: React, Remotion, ElevenLabs.
+
+Kortelė /portfolio:
+• Kas tai: vaizdo redaktorius ir dizaino sistema TikTok / Reels įrašams
+• Rolė: viena, visas įrankis
+• Faktas: laiko juosta su keyframe'ais · AI balsas su žodžių subtitrais
+• Žymos: React, TypeScript, Remotion, tRPC, ElevenLabs
+• „Skaityti plačiau →“
+
+Projekto puslapis
+
+Meta: vaizdo redaktorius · asmeninis projektas · 2026
+Kas tai: Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau.
+Būsena: darbo įrankis, kurį naudoju savo turiniui.
+Dėmė: švelni levandų / rausva. Redaktorius tamsus, todėl dėmė šviesi, kad tamsus ekranas ant jos išsiskirtų.
+
+01 — Laiko juosta kaip montavimo programoje
+[Ekrano kopija: Scenes režimas, išskleista laiko juosta su keliomis eilėmis, pažymėtas klipas ir keyframe deimantėliai]
+Įžanga: Profesionalios montavimo programos patirtis, pritaikyta šiai sistemai: kiekvieną elementą galima tiksliai sudėlioti laike be papildomų programų.
+• klipai tempiami laike ir tarp eilučių, prisitraukia prie scenos kraštų, žymeklio ir kitų klipų;
+• keyframe'ai poziciją ir mastelį keičia laike, juos galima tempti;
+• kopijuoti, įklijuoti, dubliuoti (Ctrl+C / V / D), pakeisti elemento failą išlaikant animacijas;
+• garso bangų formos laiko juostoje;
+• bet kurį veiksmą galima atšaukti ir pakartoti.
+
+02 — Dizaino sistema, kuri neleidžia suklysti
+[Ekrano kopija: Visuals biblioteka su miniatiūromis ir peržiūra su saugios zonos perdanga]
+Įžanga: Video ne piešiamas nuo nulio, o surenkamas iš patikrintų dalių. Tekstas neišlenda už kadro, scenos nenukerpamos per anksti, o stilius visada vienodas.
+• 7 scenų tipai, 25 vizualų tipai (terminalas, kodo pakeitimai, naršyklės ir telefono maketai, diagramos, statistika) ir 7 fonai;
+• scenos trukmė apskaičiuojama automatiškai iš balso teksto ir ekrane rodomo teksto skaitymo laiko;
+• išdėstymo šablonai vizualą pritaiko saugiai zonai, kurios neuždengia TikTok sąsaja;
+• elementas gali sklandžiai „keliauti“ iš scenos į sceną;
+• redaktorius įspėja apie per trumpą sceną, perpildytą kadrą ar per ilgas kodo eilutes.
+
+03 — Iš teksto į balsą, subtitrus ir MP4
+[Ekrano kopija: peržiūra su subtitrais ir paryškintu žodžiu, garso klipas laiko juostoje, Render MP4 eigos būsenoje]
+Įžanga: Iš parašyto teksto sistema pati sukuria įgarsinimą ir TikTok stiliaus subtitrus, o galutinį video atvaizduoja vienu mygtuku.
+• įgarsinimas generuojamas su ElevenLabs, balso nustatymai išsaugomi;
+• subtitrai kuriami iš kiekvieno žodžio laiko: 2–3 žodžių grupės, tariamas žodis paryškintas;
+• perkėlus ar apkarpius garso klipą, subtitrai pasislenka kartu;
+• MP4 atvaizduojamas fone, matosi eigos procentai.
+
+Techninė dalis:
+
+• Rolė: viena kūriau visą įrankį: redaktorių, video variklį, serverį ir testus.
+
+• Sprendimai:
+  – Video kaip duomenys: visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami, ne atmetami. AI agentas gali sugeneruoti projekto scenarijų, ir jis patikrinamas iš karto.
+  – Tipų saugus API: tRPC tarp serverio ir kliento, todėl pakeitus API klaida matoma kompiliuojant. Serverio duomenys – TanStack Query, redaguojama būsena – Zustand su atšaukimo istorija. Automatinis išsaugojimas tik tada, kai projektas pasikeitė.
+  – Išdėstymas, kurio negalima perpildyti: kiekvienas vizualas žino savo natūralų dydį, o šablonai pritaiko mastelį saugiai zonai.
+  – Viena animacijų sistema: įėjimai, išėjimai, keyframe'ai ir perėjimai turi po vieną įgyvendinimą, o scenų laikas skaičiuojamas vienoje vietoje.
+  – Automatika: įmesti failai iškart atsiranda redaktoriuje, įkelti ekrano įrašai perkoduojami tiksliam slinkimui per kadrus, API padengtas testais.
+
+• Mastas: 113 komponentų · 7 scenų ir 25 vizualų tipai · 44 vizualų šablonai · 109 testai · 27 API procedūros.
+
+• Stackas: React, TypeScript, Vite, Mantine, Tailwind CSS, Zustand, TanStack Query · Remotion · Node.js, Express, tRPC, Zod · Vitest, supertest · ffmpeg · ElevenLabs.
+
+═════════════════════════════
+3. LOJALUMO VALDYMO SISTEMA (konfidenciali)
+═════════════════════════════
+
+Tik kortelė, be projekto puslapio. Vizualas – abstrakti iliustracija (žr. viršuje).
+
+Kortelė pagrindiniame puslapyje (užsakovui):
+Lojalumo valdymo sistema – Administravimo sistema verslo lojalumo programoms. Žyma: „Konfidencialus projektas“.
+
+Kortelė /portfolio:
+• Kas tai: B2B administravimo sistema lojalumo programoms
+• Rolė: pagrindinė frontend programuotoja komandoje
+• Pastaba: konfidencialus projektas – detales galiu aptarti pokalbio metu
+• Žymos: React, TypeScript, .NET
+
+═════════════════════════════
+
+Parodyk: atnaujintą pagrindinį puslapį (hero + darbai), /portfolio darbų korteles, A4 ir kalbų platformos bei TikMaker projektų puslapius (desktop 1440 + mobile 390).
