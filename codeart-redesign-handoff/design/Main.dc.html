@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<title>codeart.lt: pagrindinis</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; overflow-x: clip; background: #F6F0E6; color: #1C1A17; font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-size: 18px; line-height: 28px">
+
+<header style="position: relative; z-index: 10; background: #F6F0E6; border-bottom: 1px solid #DDD2C1">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box; min-height: {{L.navH}}; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.01em; color: #1C1A17; text-decoration: none">Gabrielė Tamaševičiūtė</a>
+<sc-if value="{{wide}}" hint-placeholder-val="{{true}}">
+<nav aria-label="Pagrindinė navigacija" style="display: flex; align-items: center; gap: 24px; font-size: 16px; line-height: 24px; font-weight: 500">
+<div style="position: relative; display: flex; align-items: center; gap: 24px">
+<a href="#darbai" data-nav="darbai" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; text-decoration: none">Darbai</a>
+<a href="#paslaugos" data-nav="paslaugos" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; text-decoration: none">Paslaugos</a>
+<a href="#apie" data-nav="apie" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; text-decoration: none">Apie</a>
+<a href="#duk" data-nav="duk" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; text-decoration: none">DUK</a>
+<span aria-hidden="true" style="position: absolute; left: 0; bottom: 6px; height: 1.5px; width: {{ind.w}}px; transform: translateX({{ind.x}}px); opacity: {{ind.op}}; background: {{accent}}; transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1), width 320ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 200ms ease"></span>
+</div>
+<a href="#" aria-label="Kalba: lietuvių. Perjungti į anglų" style="display: inline-flex; align-items: center; min-height: 44px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #5B544C; text-decoration: none">LT / EN</a>
+<a href="#kontaktai" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 6px; background: {{accent}}; color: #FFFFFF; text-decoration: none">Aptarti projektą</a>
+</nav>
+</sc-if>
+<sc-if value="{{n}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{openMenu}}" aria-label="Atidaryti meniu" aria-expanded="{{menuShow}}" style="width: 44px; height: 44px; margin-right: -10px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: #1C1A17; cursor: pointer"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h16M3 15h16"></path></svg></button>
+</sc-if>
+</div>
+</header>
+
+<sc-if value="{{menuShow}}" hint-placeholder-val="{{false}}">
+<div role="dialog" aria-modal="true" aria-label="Meniu" style="position: fixed; inset: 0; z-index: 60; background: #F6F0E6; display: flex; flex-direction: column">
+<div style="padding: 0 20px; min-height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #DDD2C1">
+<a href="#" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.01em; color: #1C1A17; text-decoration: none">Gabrielė Tamaševičiūtė</a>
+<button type="button" onClick="{{closeMenu}}" aria-label="Uždaryti meniu" style="width: 44px; height: 44px; margin-right: -10px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: #1C1A17; cursor: pointer"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l12 12M17 5L5 17"></path></svg></button>
+</div>
+<nav aria-label="Pagrindinė navigacija" style="flex: 1; padding: 24px 20px; display: flex; flex-direction: column">
+<a href="#darbai" onClick="{{closeMenu}}" style="display: flex; align-items: center; gap: 16px; min-height: 64px; border-bottom: 1px solid #DDD2C1; font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.025em; color: #1C1A17; text-decoration: none"><span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; font-weight: 400; letter-spacing: 0; color: #6A635A">01</span>Darbai</a>
+<a href="#paslaugos" onClick="{{closeMenu}}" style="display: flex; align-items: center; gap: 16px; min-height: 64px; border-bottom: 1px solid #DDD2C1; font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.025em; color: #1C1A17; text-decoration: none"><span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; font-weight: 400; letter-spacing: 0; color: #6A635A">02</span>Paslaugos</a>
+<a href="#apie" onClick="{{closeMenu}}" style="display: flex; align-items: center; gap: 16px; min-height: 64px; border-bottom: 1px solid #DDD2C1; font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.025em; color: #1C1A17; text-decoration: none"><span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; font-weight: 400; letter-spacing: 0; color: #6A635A">04</span>Apie</a>
+<a href="#duk" onClick="{{closeMenu}}" style="display: flex; align-items: center; gap: 16px; min-height: 64px; border-bottom: 1px solid #DDD2C1; font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.025em; color: #1C1A17; text-decoration: none"><span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; font-weight: 400; letter-spacing: 0; color: #6A635A">05</span>DUK</a>
+</nav>
+<div style="padding: 16px 20px 32px; display: flex; flex-direction: column; gap: 12px">
+<a href="#" aria-label="Kalba: lietuvių. Perjungti į anglų" style="display: inline-flex; align-items: center; min-height: 44px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #5B544C; text-decoration: none">LT / EN</a>
+<a href="#kontaktai" onClick="{{closeMenu}}" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 6px; background: {{accent}}; color: #FFFFFF; font-size: 18px; line-height: 24px; font-weight: 500; text-decoration: none">Aptarti projektą</a>
+</div>
+</div>
+</sc-if>
+
+<section style="background: #F6F0E6; padding: {{L.heroPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 56px; align-items: center">
+<div style="grid-column: {{L.heroText}}; min-width: 0; position: relative; z-index: 3">
+<h1 data-reveal="hero" style="margin: 0; font-weight: 600; font-size: {{L.h1}}; line-height: {{L.h1lh}}; letter-spacing: -0.03em; text-wrap: balance; opacity: {{rv.hero.o}}; transform: {{rv.hero.t}}; transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 0ms">Verslo sistemų ir web aplikacijų kūrimas</h1>
+<p style="margin: 24px 0 0; max-width: 30em; font-size: 20px; line-height: 32px; color: #36322D; opacity: {{rv.hero.o}}; transform: {{rv.hero.t}}; transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 100ms">Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant.</p>
+<div style="margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; opacity: {{rv.hero.o}}; transform: {{rv.hero.t}}; transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 200ms">
+<a href="#kontaktai" style="display: inline-flex; align-items: center; min-height: 52px; box-sizing: border-box; padding: 0 26px; border-radius: 6px; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 500; line-height: 24px">Aptarti projektą</a>
+<a href="#darbai" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; font-weight: 500; line-height: 24px; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px">Peržiūrėti darbus</a>
+</div>
+<p style="margin: 40px 0 0; font-size: 15px; line-height: 22px; color: #5B544C; opacity: {{rv.hero.o}}; transition: opacity 800ms ease; transition-delay: 300ms">Programuotoja Vilniuje · React, TypeScript, API ir AI funkcijos · Priimu naujus projektus</p>
+</div>
+
+<div style="grid-column: {{L.heroStage}}; min-width: 0; position: relative; padding: {{L.stagePad}}; opacity: {{rv.hero.o}}; transform: {{rv.hero.tl}}; transition: opacity 1000ms ease, transform 1000ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 150ms">
+<div aria-hidden="true" style="position: absolute; z-index: 0; left: {{L.hb.l}}; right: {{L.hb.r}}; top: {{L.hb.t}}; bottom: {{L.hb.b}}"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%"><path d="M93.8 48.3C93.1 52.9 93.6 58.0 91.9 63.3C90.2 68.5 87.2 76.0 83.7 79.9C80.2 83.8 75.2 84.7 71.0 86.6C66.7 88.5 63.3 90.9 58.4 91.5C53.4 92.0 45.5 91.4 41.2 90.2C37.0 88.9 36.8 85.8 32.9 84.0C29.1 82.1 23.4 82.0 18.4 78.9C13.3 75.8 5.7 70.4 2.8 65.2C-0.2 60.1 0.3 53.8 0.6 48.1C0.8 42.3 2.2 35.0 4.3 30.5C6.4 26.0 8.9 23.3 13.3 21.0C17.7 18.7 25.6 18.1 30.7 16.6C35.7 15.2 39.3 13.6 43.7 12.3C48.0 11.0 52.1 8.8 56.6 8.9C61.0 9.0 65.0 11.0 70.3 12.9C75.6 14.9 83.9 16.5 88.2 20.4C92.4 24.3 95.0 31.6 95.9 36.3C96.9 40.9 94.5 43.8 93.8 48.3Z" fill="#ECDDC4"></path></svg></div>
+<sc-if value="{{wide}}" hint-placeholder-val="{{true}}">
+<img src="../assets/plant.webp" alt="" aria-hidden="true" style="position: absolute; z-index: 1; left: -88px; bottom: 34px; height: 400px; width: auto">
+</sc-if>
+<div style="position: relative; z-index: 2; margin-right: {{L.stageMr}}">
+<div style="border: 1.5px solid #CFC8BC; border-radius: 16px 16px 4px 4px; background: #232220; padding: 10px 10px 12px; box-shadow: 0 2px 0 #E4DFD6 inset">
+<img src="../assets/hero-dashboard.webp" alt="Pavyzdinė transporto valdymo sistema: transporto priemonių sąrašas, maršrutas žemėlapyje ir paskutinės lokacijos" style="display: block; width: 100%; height: auto; border-radius: 3px">
+</div>
+<div aria-hidden="true" style="position: relative; height: 14px; margin: 0 -7%; border-radius: 2px 2px 14px 14px / 2px 2px 10px 10px; background: linear-gradient(180deg, #EEEBE6 0%, #D8D3CB 60%, #C6C0B6 100%); box-shadow: 0 34px 44px -22px rgba(80, 58, 34, 0.38), 0 2px 3px rgba(80, 58, 34, 0.12)">
+<div style="position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 15%; height: 6px; border-radius: 0 0 8px 8px; background: #CBC5BB"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="darbai" style="background: #FBF7F0; border-top: 1px solid #DDD2C1; padding: {{L.secPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box">
+<div data-reveal="h1" style="display: flex; align-items: baseline; gap: 16px; margin: 0 0 {{L.headGap}}; opacity: {{rv.h1.o}}; transform: {{rv.h1.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A; white-space: nowrap">01 —</span>
+<h2 style="margin: 0; font-weight: 600; font-size: {{L.h2}}; line-height: {{L.h2lh}}; letter-spacing: -0.025em">Atlikti darbai</h2>
+</div>
+
+<article onMouseEnter="{{ac.enter}}" onMouseLeave="{{ac.leave}}" style="border-top: 1px solid #1C1A17; padding: {{L.rowPad}}; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 48px; align-items: center">
+<div data-reveal="ac" style="grid-column: {{L.rowText}}; min-width: 0; position: relative; z-index: 2; opacity: {{rv.ac.o}}; transform: {{rv.ac.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<h3 style="margin: 0; font-weight: 600; font-size: {{L.h3f}}; line-height: {{L.h3flh}}; letter-spacing: -0.02em">Kalbų mokymosi platforma</h3>
+<p style="margin: 20px 0 0; color: #36322D">Vieša svetainė, mokinio platforma ir turinio valdymas vienoje sistemoje. Administratorius kursus kuria pats, o užduotys sudaromos automatiškai iš žodyno.</p>
+<p style="margin: 20px 0 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">Next.js · Supabase</p>
+<a href="Projektas-Kalbos.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; color: {{accent}}; font-weight: 500; line-height: 24px; text-decoration: none">Skaityti plačiau →</a>
+</div>
+<div data-reveal="ac" style="grid-column: {{L.rowMedia}}; min-width: 0; position: relative; opacity: {{rv.ac.o}}; transform: {{rv.ac.tl}}; transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 120ms">
+<div aria-hidden="true" style="position: absolute; z-index: 0; left: {{L.b1.l}}; right: {{L.b1.r}}; top: {{L.b1.t}}; bottom: {{L.b1.b}}; transform: {{ac.blob}}; transform-origin: 50% 50%; transition: transform 400ms ease"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%"><path d="M88.0 51.1C87.3 55.3 88.4 56.6 87.3 61.2C86.2 65.9 84.1 74.6 81.2 79.2C78.4 83.8 73.8 86.0 70.0 88.9C66.2 91.9 63.2 95.6 58.4 96.8C53.7 98.0 46.3 97.5 41.6 96.1C37.0 94.7 35.1 91.1 30.6 88.6C26.2 86.1 18.8 85.1 15.0 81.0C11.2 76.8 9.1 69.2 8.0 63.8C6.9 58.4 8.0 53.3 8.5 48.5C9.0 43.7 9.6 39.0 11.0 35.2C12.3 31.3 13.6 28.2 16.7 25.3C19.9 22.4 25.3 21.6 29.9 17.9C34.6 14.2 39.9 6.0 44.5 3.1C49.1 0.2 52.4 -0.2 57.4 0.5C62.5 1.2 69.9 4.7 74.9 7.3C79.9 10.0 84.5 11.7 87.2 16.5C89.9 21.3 90.9 30.3 91.1 36.1C91.2 41.9 88.6 46.9 88.0 51.1Z" fill="#F2D9D3"></path></svg></div>
+<div style="position: relative; z-index: 1; border: 1px solid #D3C8B6; border-radius: 12px; background: #FFFFFF; overflow: hidden; box-shadow: 0 24px 48px -30px rgba(80, 58, 34, 0.35)">
+<div aria-hidden="true" style="height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid #EAE3D8; background: #FAF7F2">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+</div>
+<div style="aspect-ratio: 19 / 10; overflow: hidden">
+<img src="../assets/kalbos-mokinys.webp" alt="Kalbų platformos mokinio pradžios ekranas: kurso žemėlapis, tęsiama pamoka, kartojimas ir progresas" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ac.pos}}; transition: object-position 1400ms cubic-bezier(0.4, 0, 0.2, 1)">
+</div>
+</div>
+</div>
+</article>
+
+<article onMouseEnter="{{tm.enter}}" onMouseLeave="{{tm.leave}}" style="border-top: 1px solid #DDD2C1; padding: {{L.rowPad}}; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 48px; align-items: center">
+<div data-reveal="tm" style="grid-column: {{L.rowText}}; min-width: 0; position: relative; z-index: 2; opacity: {{rv.tm.o}}; transform: {{rv.tm.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<h3 style="margin: 0; font-weight: 600; font-size: {{L.h3f}}; line-height: {{L.h3flh}}; letter-spacing: -0.02em">TikMaker</h3>
+<p style="margin: 20px 0 0; color: #36322D">Trumpų vertikalių vaizdo įrašų redaktorius: video surenkamas iš paruoštų scenų, o balsas ir subtitrai sukuriami iš teksto.</p>
+<p style="margin: 20px 0 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">React · Remotion · ElevenLabs</p>
+<a href="Projektas-TikMaker.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; color: {{accent}}; font-weight: 500; line-height: 24px; text-decoration: none">Skaityti plačiau →</a>
+</div>
+<div data-reveal="tm" style="grid-column: {{L.rowMedia}}; min-width: 0; position: relative; opacity: {{rv.tm.o}}; transform: {{rv.tm.tl}}; transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 120ms">
+<div aria-hidden="true" style="position: absolute; z-index: 0; left: {{L.b2.l}}; right: {{L.b2.r}}; top: {{L.b2.t}}; bottom: {{L.b2.b}}; transform: {{tm.blob}}; transform-origin: 50% 50%; transition: transform 400ms ease"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%"><path d="M94.6 48.5C94.5 53.7 94.0 61.9 92.6 67.3C91.3 72.7 89.5 77.3 86.6 80.8C83.7 84.2 80.1 86.4 75.2 88.2C70.2 90.0 62.5 91.5 56.9 91.7C51.3 91.9 45.6 90.9 41.6 89.3C37.6 87.6 37.2 84.2 32.9 81.9C28.7 79.5 21.0 78.0 16.2 75.1C11.4 72.2 6.7 68.1 4.3 64.3C1.9 60.6 1.8 57.9 1.8 52.7C1.8 47.5 1.7 39.0 4.1 33.3C6.5 27.6 12.2 21.4 16.1 18.3C20.0 15.2 23.4 15.8 27.6 14.6C31.8 13.4 36.4 12.2 41.3 11.2C46.3 10.2 52.3 8.2 57.1 8.6C61.9 8.9 66.1 11.3 70.2 13.4C74.3 15.5 77.9 17.4 81.8 21.2C85.7 25.0 91.4 31.7 93.5 36.3C95.6 40.8 94.8 43.3 94.6 48.5Z" fill="#EBDCE1"></path></svg></div>
+<div style="position: relative; z-index: 1; border: 1px solid #D3C8B6; border-radius: 12px; background: #FFFFFF; overflow: hidden; box-shadow: 0 24px 48px -30px rgba(80, 58, 34, 0.35)">
+<div aria-hidden="true" style="height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid #EAE3D8; background: #FAF7F2">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+</div>
+<div style="aspect-ratio: 19 / 10; overflow: hidden; background: #1C1A17">
+<img src="../assets/tikmaker-editor.webp" alt="TikMaker redaktorius: scenos, peržiūra ir laiko juosta su keliomis eilėmis" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{tm.pos}}; transition: object-position 1400ms cubic-bezier(0.4, 0, 0.2, 1)">
+</div>
+</div>
+</div>
+</article>
+
+<article onMouseEnter="{{km.enter}}" onMouseLeave="{{km.leave}}" style="border-top: 1px solid #DDD2C1; border-bottom: 1px solid #DDD2C1; padding: {{L.rowPad}}; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 48px; align-items: center">
+<div data-reveal="km" style="grid-column: {{L.rowText}}; min-width: 0; position: relative; z-index: 2; opacity: {{rv.km.o}}; transform: {{rv.km.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<h3 style="margin: 0; font-weight: 600; font-size: {{L.h3f}}; line-height: {{L.h3flh}}; letter-spacing: -0.02em">Lojalumo valdymo sistema</h3>
+<p style="margin: 20px 0 0; color: #36322D">Kortelės, klientai, akcijos ir kuponai vienoje administravimo sistemoje.</p>
+<p style="margin: 20px 0 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">React · TypeScript · .NET</p>
+<a href="Projektas-AC.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; color: {{accent}}; font-weight: 500; line-height: 24px; text-decoration: none">Skaityti plačiau →</a>
+</div>
+<div data-reveal="km" style="grid-column: {{L.rowMedia}}; min-width: 0; position: relative; opacity: {{rv.km.o}}; transform: {{rv.km.tl}}; transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 120ms">
+<div aria-hidden="true" style="position: absolute; z-index: 0; left: {{L.b3.l}}; right: {{L.b3.r}}; top: {{L.b3.t}}; bottom: {{L.b3.b}}; transform: {{km.blob}}; transform-origin: 50% 50%; transition: transform 400ms ease"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%"><path d="M89.9 51.8C88.7 57.3 88.0 61.8 86.3 65.5C84.6 69.1 82.2 70.4 79.5 73.6C76.8 76.9 73.5 81.2 70.1 84.9C66.8 88.7 64.4 94.4 59.5 96.3C54.5 98.2 45.2 97.6 40.2 96.4C35.3 95.2 34.0 91.9 29.9 89.3C25.7 86.7 19.0 85.2 15.3 80.9C11.5 76.7 8.7 69.2 7.2 63.6C5.7 58.1 6.0 52.6 6.2 47.7C6.5 42.8 6.5 38.0 8.5 34.1C10.4 30.2 14.3 27.3 18.0 24.4C21.8 21.4 26.7 19.1 30.8 16.5C35.0 13.9 38.7 10.3 43.1 8.6C47.5 7.0 51.8 6.5 57.2 6.6C62.7 6.6 70.2 7.1 75.8 8.9C81.5 10.7 88.2 13.5 91.1 17.5C94.1 21.5 93.8 27.1 93.6 32.8C93.4 38.5 91.2 46.4 89.9 51.8Z" fill="#EEDFC6"></path></svg></div>
+<div style="position: relative; z-index: 1; border: 1px solid #D3C8B6; border-radius: 12px; background: #FFFFFF; overflow: hidden; box-shadow: 0 24px 48px -30px rgba(80, 58, 34, 0.35)">
+<div aria-hidden="true" style="height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border-bottom: 1px solid #EAE3D8; background: #FAF7F2">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #DDD2C1"></span>
+</div>
+<div style="aspect-ratio: 19 / 10; overflow: hidden">
+<img src="../assets/ac-cards-redacted-1400.webp" alt="Lojalumo sistema: kortelių sąrašas ir pasirinktos kortelės detalės, duomenys uždengti" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{km.pos}}; transition: object-position 1400ms cubic-bezier(0.4, 0, 0.2, 1)">
+</div>
+</div>
+</div>
+</article>
+
+<div style="margin-top: 32px">
+<a href="Portfolio.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: {{accent}}; font-weight: 500; line-height: 24px; text-decoration: none">Visi projektai →</a>
+</div>
+</div>
+</section>
+
+<section id="paslaugos" style="background: #F6F0E6; border-top: 1px solid #DDD2C1; padding: {{L.secPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box">
+<div data-reveal="h2" style="display: flex; align-items: baseline; gap: 16px; margin: 0 0 {{L.headGap}}; opacity: {{rv.h2.o}}; transform: {{rv.h2.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A; white-space: nowrap">02 —</span>
+<h2 style="margin: 0; font-weight: 600; font-size: {{L.h2}}; line-height: {{L.h2lh}}; letter-spacing: -0.025em">Su kuo galiu padėti</h2>
+</div>
+<div style="display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 40px">
+<div data-reveal="svc" style="grid-column: {{L.span4}}; min-width: 0; border-top: 1px solid #1C1A17; padding-top: 24px; padding-right: {{L.colPadR}}; opacity: {{rv.svc.o}}; transform: {{rv.svc.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 0ms">
+<h3 style="margin: 0; font-weight: 600; font-size: 24px; line-height: 30px; letter-spacing: -0.015em">Nauja sistema nuo nulio</h3>
+<p style="margin: 12px 0 0; font-size: 15px; line-height: 22px; color: #5B544C">Tinka, kai reikia ne puslapio, o veikiančio produkto.</p>
+<p style="margin: 16px 0 0; color: #36322D">Padedu išgryninti sprendimą, suprojektuoju sąsają ir sukuriu sistemą nuo frontendo iki API ir duomenų bazės.</p>
+</div>
+<div style="grid-column: {{L.span4}}; min-width: 0; border-top: 1px solid #1C1A17; padding-top: 24px; padding-right: {{L.colPadR}}; opacity: {{rv.svc.o}}; transform: {{rv.svc.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 100ms">
+<h3 style="margin: 0; font-weight: 600; font-size: 24px; line-height: 30px; letter-spacing: -0.015em">Esamos sistemos gerinimas</h3>
+<p style="margin: 12px 0 0; font-size: 15px; line-height: 22px; color: #5B544C">Tinka, kai sistema veikia, bet lėta ar sunkiai vystoma.</p>
+<p style="margin: 16px 0 0; color: #36322D">Pirmiausia randu, kur problema, tada tvarkau tai, kas iš tikrųjų trukdo.</p>
+</div>
+<div style="grid-column: {{L.span4}}; min-width: 0; border-top: 1px solid #1C1A17; padding-top: 24px; padding-right: {{L.colPadR}}; opacity: {{rv.svc.o}}; transform: {{rv.svc.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 200ms">
+<h3 style="margin: 0; font-weight: 600; font-size: 24px; line-height: 30px; letter-spacing: -0.015em">Naujos funkcijos esamai sistemai</h3>
+<p style="margin: 12px 0 0; font-size: 15px; line-height: 22px; color: #5B544C">Tinka, kai produkto nereikia perrašyti.</p>
+<p style="margin: 16px 0 0; color: #36322D">Perprantu esamą kodą ir kuriu naujas funkcijas, negriaudama to, kas jau veikia.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background: #FBF7F0; border-top: 1px solid #DDD2C1; padding: {{L.secPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box">
+<div data-reveal="h3" style="display: flex; align-items: baseline; gap: 16px; margin: 0 0 {{L.headGap}}; opacity: {{rv.h3.o}}; transform: {{rv.h3.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A; white-space: nowrap">03 —</span>
+<h2 style="margin: 0; font-weight: 600; font-size: {{L.h2}}; line-height: {{L.h2lh}}; letter-spacing: -0.025em">Kaip vyksta darbas</h2>
+</div>
+<ol data-reveal="steps" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 32px">
+<li style="grid-column: {{L.span3}}; min-width: 0; border-top: 1px solid #DDD2C1; padding-top: 16px; opacity: {{rv.steps.o}}; transform: {{rv.steps.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 0ms">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">1</span>
+<h3 style="margin: 8px 0 0; font-weight: 600; font-size: 20px; line-height: 28px">Parašote</h3>
+<p style="margin: 8px 0 0; color: #36322D">Trumpai, ko reikia. Techninių terminų nereikia.</p>
+</li>
+<li style="grid-column: {{L.span3}}; min-width: 0; border-top: 1px solid #DDD2C1; padding-top: 16px; opacity: {{rv.steps.o}}; transform: {{rv.steps.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 100ms">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">2</span>
+<h3 style="margin: 8px 0 0; font-weight: 600; font-size: 20px; line-height: 28px">Planas ir kaina</h3>
+<p style="margin: 8px 0 0; color: #36322D">Per 24 val. po pokalbio gaunate planą ir fiksuotą kainą raštu.</p>
+</li>
+<li style="grid-column: {{L.span3}}; min-width: 0; border-top: 1px solid #DDD2C1; padding-top: 16px; opacity: {{rv.steps.o}}; transform: {{rv.steps.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 200ms">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">3</span>
+<h3 style="margin: 8px 0 0; font-weight: 600; font-size: 20px; line-height: 28px">Kūrimas</h3>
+<p style="margin: 8px 0 0; color: #36322D">Progresą matote nuolat, ne tik pabaigoje.</p>
+</li>
+<li style="grid-column: {{L.span3}}; min-width: 0; border-top: 1px solid #DDD2C1; padding-top: 16px; opacity: {{rv.steps.o}}; transform: {{rv.steps.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 300ms">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A">4</span>
+<h3 style="margin: 8px 0 0; font-weight: 600; font-size: 20px; line-height: 28px">Paleidimas</h3>
+<p style="margin: 8px 0 0; color: #36322D">Įdiegiu sistemą. Mano darbui taikoma 3 mėn. garantija.</p>
+</li>
+</ol>
+</div>
+</section>
+
+<section id="apie" style="background: #F6F0E6; border-top: 1px solid #DDD2C1; padding: {{L.secPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 56px; align-items: center">
+<div data-reveal="apie" style="grid-column: {{L.aboutImg}}; min-width: 0; position: relative; padding: {{L.aboutPad}}; opacity: {{rv.apie.o}}; transform: {{rv.apie.tl}}; transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<svg aria-hidden="true" viewBox="-2 -2 104 104" preserveAspectRatio="none" style="position: absolute; z-index: 0; left: 0; top: 0; width: 100%; height: 100%"><path d="M88.0 51.1C87.3 55.3 88.4 56.6 87.3 61.2C86.2 65.9 84.1 74.6 81.2 79.2C78.4 83.8 73.8 86.0 70.0 88.9C66.2 91.9 63.2 95.6 58.4 96.8C53.7 98.0 46.3 97.5 41.6 96.1C37.0 94.7 35.1 91.1 30.6 88.6C26.2 86.1 18.8 85.1 15.0 81.0C11.2 76.8 9.1 69.2 8.0 63.8C6.9 58.4 8.0 53.3 8.5 48.5C9.0 43.7 9.6 39.0 11.0 35.2C12.3 31.3 13.6 28.2 16.7 25.3C19.9 22.4 25.3 21.6 29.9 17.9C34.6 14.2 39.9 6.0 44.5 3.1C49.1 0.2 52.4 -0.2 57.4 0.5C62.5 1.2 69.9 4.7 74.9 7.3C79.9 10.0 84.5 11.7 87.2 16.5C89.9 21.3 90.9 30.3 91.1 36.1C91.2 41.9 88.6 46.9 88.0 51.1Z" fill="#F2DDCB"></path></svg>
+<img src="../assets/about-illustration.webp" alt="Gabrielės iliustracija" style="position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top">
+</div>
+<div style="grid-column: {{L.aboutText}}; min-width: 0; opacity: {{rv.apie.o}}; transform: {{rv.apie.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 150ms">
+<div style="display: flex; align-items: baseline; gap: 16px">
+<span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A; white-space: nowrap">04 —</span>
+<h2 style="margin: 0; font-weight: 600; font-size: {{L.h2}}; line-height: {{L.h2lh}}; letter-spacing: -0.025em">Apie mane</h2>
+</div>
+<p style="margin: 24px 0 0; max-width: 32em; font-size: 20px; line-height: 32px; color: #36322D">Esu Gabrielė, programuotoja iš Vilniaus. Kuriu sistemas, kuriomis žmonės naudojasi kasdien: nuo duomenų modelio iki sąsajos. Prieš keisdama kodą pirmiausia suprantu problemą.</p>
+<ul style="list-style: none; margin: 32px 0 0; padding: 16px 0 0; border-top: 1px solid #DDD2C1; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 15px; line-height: 22px; font-weight: 500">
+<li>2+ metai kuriant sistemas</li>
+<li>Frontend, backend ir API</li>
+<li>Dirbu su esamu kodu</li>
+</ul>
+<a href="Portfolio.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; color: {{accent}}; font-weight: 500; line-height: 24px; text-decoration: none">Daugiau apie mane →</a>
+</div>
+</div>
+</section>
+
+<section id="duk" style="background: #FBF7F0; border-top: 1px solid #DDD2C1; padding: {{L.secPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px">
+<div data-reveal="duk" style="grid-column: {{L.faq}}; min-width: 0; opacity: {{rv.duk.o}}; transform: {{rv.duk.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<div style="display: flex; align-items: baseline; gap: 16px; margin: 0 0 {{L.headGap}}">
+<span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A; white-space: nowrap">05 —</span>
+<h2 style="margin: 0; font-weight: 600; font-size: {{L.h2}}; line-height: {{L.h2lh}}; letter-spacing: -0.025em">Dažni klausimai</h2>
+</div>
+<div style="border-top: 1px solid #1C1A17">
+<div style="border-bottom: 1px solid #DDD2C1">
+<button type="button" onClick="{{f0.toggle}}" aria-expanded="{{f0.open}}" style="width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border: 0; background: transparent; font: inherit; font-size: 20px; line-height: 28px; font-weight: 500; color: #1C1A17; text-align: left; cursor: pointer">Kiek kainuoja projektas?<svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" style="flex: none; transform: {{f0.icon}}; transition: transform 240ms ease"><path d="M9 3v12M3 9h12"></path></svg></button>
+<sc-if value="{{f0.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 0 0 24px; max-width: 40em; color: #36322D">[Įrašyti: nuo X € / kaip skaičiuojama]</p></sc-if>
+</div>
+<div style="border-bottom: 1px solid #DDD2C1">
+<button type="button" onClick="{{f1.toggle}}" aria-expanded="{{f1.open}}" style="width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border: 0; background: transparent; font: inherit; font-size: 20px; line-height: 28px; font-weight: 500; color: #1C1A17; text-align: left; cursor: pointer">Kiek laiko trunka?<svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" style="flex: none; transform: {{f1.icon}}; transition: transform 240ms ease"><path d="M9 3v12M3 9h12"></path></svg></button>
+<sc-if value="{{f1.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 0 0 24px; max-width: 40em; color: #36322D">[Įrašyti: tipinis terminas]</p></sc-if>
+</div>
+<div style="border-bottom: 1px solid #DDD2C1">
+<button type="button" onClick="{{f2.toggle}}" aria-expanded="{{f2.open}}" style="width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border: 0; background: transparent; font: inherit; font-size: 20px; line-height: 28px; font-weight: 500; color: #1C1A17; text-align: left; cursor: pointer">Ar galite perimti jau veikiančią sistemą?<svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" style="flex: none; transform: {{f2.icon}}; transition: transform 240ms ease"><path d="M9 3v12M3 9h12"></path></svg></button>
+<sc-if value="{{f2.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 0 0 24px; max-width: 40em; color: #36322D">Taip, perprantu esamą kodą ir tobulinu jį palaipsniui.</p></sc-if>
+</div>
+<div style="border-bottom: 1px solid #DDD2C1">
+<button type="button" onClick="{{f3.toggle}}" aria-expanded="{{f3.open}}" style="width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border: 0; background: transparent; font: inherit; font-size: 20px; line-height: 28px; font-weight: 500; color: #1C1A17; text-align: left; cursor: pointer">Ar kaina gali pasikeisti eigoje?<svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" style="flex: none; transform: {{f3.icon}}; transition: transform 240ms ease"><path d="M9 3v12M3 9h12"></path></svg></button>
+<sc-if value="{{f3.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 0 0 24px; max-width: 40em; color: #36322D">Ne. Patvirtinus sąmatą, kaina nesikeičia.</p></sc-if>
+</div>
+<div style="border-bottom: 1px solid #DDD2C1">
+<button type="button" onClick="{{f4.toggle}}" aria-expanded="{{f4.open}}" style="width: 100%; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border: 0; background: transparent; font: inherit; font-size: 20px; line-height: 28px; font-weight: 500; color: #1C1A17; text-align: left; cursor: pointer">Ar galite į sistemą įdiegti AI funkcijas?<svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" style="flex: none; transform: {{f4.icon}}; transition: transform 240ms ease"><path d="M9 3v12M3 9h12"></path></svg></button>
+<sc-if value="{{f4.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 0 0 24px; max-width: 40em; color: #36322D">Taip, nuo paprastų LLM funkcijų iki agentų, kurie naudojasi sistemos API.</p></sc-if>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="kontaktai" style="background: #F6F0E6; border-top: 1px solid #DDD2C1; padding: {{L.secPad}} 0">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 {{L.side}}; box-sizing: border-box; display: grid; grid-template-columns: {{L.g12}}; column-gap: 24px; row-gap: 40px">
+<div data-reveal="kont" style="grid-column: {{L.contactText}}; min-width: 0; display: flex; flex-direction: column; opacity: {{rv.kont.o}}; transform: {{rv.kont.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)">
+<div style="display: flex; align-items: baseline; gap: 16px">
+<span aria-hidden="true" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 20px; color: #6A635A; white-space: nowrap">06 —</span>
+<h2 style="margin: 0; font-weight: 600; font-size: {{L.h2}}; line-height: {{L.h2lh}}; letter-spacing: -0.025em">Turite projekto idėją?</h2>
+</div>
+<p style="margin: 20px 0 0; max-width: 26em; font-size: 20px; line-height: 32px; color: #36322D">Parašykite kelis sakinius, ko reikia. [Atsakau per X darbo dienas.]</p>
+<ul style="list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-direction: column">
+<li><a href="mailto:gt1230112301@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; font-weight: 500; text-underline-offset: 5px; overflow-wrap: anywhere">gt1230112301@gmail.com</a></li>
+<li><a href="#" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; font-weight: 500; text-underline-offset: 5px">LinkedIn</a></li>
+<li><a href="https://github.com/gabwowce" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; font-weight: 500; text-underline-offset: 5px">github.com/gabwowce</a></li>
+</ul>
+</div>
+<form style="grid-column: {{L.contactForm}}; min-width: 0; display: flex; flex-direction: column; gap: 20px; opacity: {{rv.kont.o}}; transform: {{rv.kont.t}}; transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: 150ms">
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<label style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 22px; font-weight: 500">Vardas<input type="text" name="vardas" autocomplete="name" style="min-height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #8F8577; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 18px; font-weight: 400; color: #1C1A17"></label>
+<label style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 22px; font-weight: 500">El. paštas<input type="email" name="email" autocomplete="email" style="min-height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #8F8577; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 18px; font-weight: 400; color: #1C1A17"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 22px; font-weight: 500">Žinutė<textarea name="zinute" rows="6" style="box-sizing: border-box; padding: 12px 14px; border: 1px solid #8F8577; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 18px; line-height: 28px; font-weight: 400; color: #1C1A17; resize: vertical"></textarea></label>
+<div>
+<button type="button" style="min-height: 52px; padding: 0 32px; border: 0; border-radius: 6px; background: {{accent}}; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer">Siųsti</button>
+</div>
+</form>
+</div>
+</section>
+
+<footer style="background: #F6F0E6; border-top: 1px solid #DDD2C1">
+<div style="max-width: 1280px; margin: 0 auto; padding: 20px {{L.side}}; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; font-size: 15px; line-height: 22px; color: #5B544C">
+<span>Gabrielė Tamaševičiūtė · © 2026</span>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px">
+<a href="Portfolio.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; color: #1C1A17; font-weight: 500; text-underline-offset: 5px">CV ir portfolio</a>
+<a href="mailto:gt1230112301@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; color: #5B544C; text-decoration: none">gt1230112301@gmail.com</a>
+<a href="#" style="display: inline-flex; align-items: center; min-height: 44px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #5B544C; text-decoration: none">LT / EN</a>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#A9502F","options":["#A9502F","#8C4229","#2F5D50"]},"menuOpen":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":6200}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+var w = (typeof window !== 'undefined' && window.innerWidth) ? window.innerWidth : 1440;
+var reduced = false;
+try { reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { reduced = false; }
+this.reduced = reduced;
+this.revealKeys = ['hero', 'h1', 'ac', 'tm', 'km', 'h2', 'svc', 'h3', 'steps', 'apie', 'duk', 'kont'];
+var seen = {};
+var canObserve = typeof window !== 'undefined' && 'IntersectionObserver' in window;
+for (var i = 0; i < this.revealKeys.length; i++) seen[this.revealKeys[i]] = reduced || !canObserve;
+this.state = { narrow: w < 760, menu: !!props.menuOpen, hover: '', open: -1, active: '', ind: { x: 0, w: 0, on: false }, seen: seen };
+this.onResize = this.onResize.bind(this);
+this.onScroll = this.onScroll.bind(this);
+}
+componentDidMount() {
+window.addEventListener('resize', this.onResize);
+window.addEventListener('scroll', this.onScroll, { passive: true });
+this.onResize();
+var self = this;
+if (!this.reduced && 'IntersectionObserver' in window) {
+this.io = new IntersectionObserver(function (entries) {
+var add = null;
+entries.forEach(function (en) {
+if (!en.isIntersecting) return;
+var k = en.target.getAttribute('data-reveal');
+if (k && !self.state.seen[k]) { add = add || {}; add[k] = true; }
+self.io.unobserve(en.target);
+});
+if (add) self.setState({ seen: Object.assign({}, self.state.seen, add) });
+}, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+var els = document.querySelectorAll('[data-reveal]');
+for (var i = 0; i < els.length; i++) this.io.observe(els[i]);
+}
+}
+componentDidUpdate(prev) {
+if (prev.menuOpen !== this.props.menuOpen) this.setState({ menu: !!this.props.menuOpen });
+}
+componentWillUnmount() {
+window.removeEventListener('resize', this.onResize);
+window.removeEventListener('scroll', this.onScroll);
+if (this.io) this.io.disconnect();
+}
+onResize() {
+var n = window.innerWidth < 760;
+if (n !== this.state.narrow) this.setState({ narrow: n });
+this.onScroll();
+}
+onScroll() {
+var ids = ['darbai', 'paslaugos', 'apie', 'duk'];
+var act = '';
+for (var k = 0; k < ids.length; k++) {
+var el = document.getElementById(ids[k]);
+if (el && el.getBoundingClientRect().top <= 120) act = ids[k];
+}
+var link = act ? document.querySelector('[data-nav="' + act + '"]') : null;
+var cur = this.state.ind;
+var ind = link ? { x: link.offsetLeft, w: link.offsetWidth, on: true } : { x: cur.x, w: cur.w, on: false };
+if (act !== this.state.active || ind.x !== cur.x || ind.w !== cur.w || ind.on !== cur.on) this.setState({ active: act, ind: ind });
+}
+renderVals() {
+var self = this;
+var s = this.state;
+var accent = this.props.accent ?? '#A9502F';
+var n = s.narrow;
+var still = this.reduced;
+var row = function (id, turn) {
+var on = s.hover === id;
+return {
+enter: function () { self.setState({ hover: id }); },
+leave: function () { self.setState({ hover: '' }); },
+pos: on && !still ? 'center bottom' : 'center top',
+blob: on && !still ? 'rotate(' + turn + 'deg) scale(1.025)' : 'rotate(0deg) scale(1)'
+};
+};
+var faq = function (i) {
+return {
+open: s.open === i,
+toggle: function () { self.setState({ open: self.state.open === i ? -1 : i }); },
+icon: s.open === i ? 'rotate(45deg)' : 'rotate(0deg)'
+};
+};
+var box = function (l, r, t, b) { return { l: l, r: r, t: t, b: b }; };
+var rv = {};
+for (var i = 0; i < this.revealKeys.length; i++) {
+var k = this.revealKeys[i];
+var v = !!s.seen[k];
+rv[k] = { o: v ? '1' : '0', t: v ? 'translateY(0)' : 'translateY(16px)', tl: v ? 'translateY(0)' : 'translateY(32px)' };
+}
+return {
+rv: rv,
+accent: accent,
+n: n,
+wide: !n,
+menuShow: s.menu && n,
+openMenu: function () { self.setState({ menu: true }); },
+closeMenu: function () { self.setState({ menu: false }); },
+ind: { x: s.ind.x, w: s.ind.w, op: s.ind.on && !n ? '1' : '0' },
+ac: row('ac', -2), tm: row('tm', 2), km: row('km', -1.5),
+f0: faq(0), f1: faq(1), f2: faq(2), f3: faq(3), f4: faq(4),
+L: {
+side: n ? '20px' : '40px',
+navH: n ? '64px' : '80px',
+heroPad: n ? '48px' : '112px',
+secPad: n ? '64px' : '128px',
+headGap: n ? '32px' : '48px',
+rowPad: n ? '48px 0 56px' : '96px 0',
+colPadR: n ? '0' : '16px',
+stagePad: n ? '24px 8px 32px' : '64px 0 40px 128px',
+stageMr: '0',
+hb: n ? box('-12px', '-12px', '0', '8px') : box('72px', '-56px', '0', '-24px'),
+b1: n ? box('-14px', '-14px', '-20px', '-24px') : box('-64px', '-48px', '-56px', '-64px'),
+b2: n ? box('-14px', '-14px', '-24px', '-20px') : box('-56px', '-64px', '-64px', '-48px'),
+b3: n ? box('-14px', '-14px', '-20px', '-24px') : box('-72px', '-40px', '-48px', '-72px'),
+aboutPad: n ? '20px' : '40px',
+g12: n ? 'minmax(0, 1fr)' : 'repeat(12, minmax(0, 1fr))',
+h1: n ? '36px' : '56px', h1lh: n ? '40px' : '60px',
+h2: n ? '28px' : '40px', h2lh: n ? '32px' : '44px',
+h3f: n ? '24px' : '28px', h3flh: n ? '30px' : '34px',
+heroText: n ? '1 / -1' : '1 / span 5',
+heroStage: n ? '1 / -1' : '6 / span 7',
+rowText: n ? '1 / -1' : '1 / span 4',
+rowMedia: n ? '1 / -1' : '6 / span 7',
+span4: n ? '1 / -1' : 'span 4',
+span3: n ? '1 / -1' : 'span 3',
+aboutImg: n ? '1 / -1' : '1 / span 4',
+aboutText: n ? '1 / -1' : '6 / span 7',
+faq: n ? '1 / -1' : '3 / span 8',
+contactText: n ? '1 / -1' : '1 / span 5',
+contactForm: n ? '1 / -1' : '7 / span 6'
+}
+};
+}
+}
+</script>
+</body>
+</html>
