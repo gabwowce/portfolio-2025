@@ -1,0 +1,48 @@
+Du pataisymai prie paskutinės žinutės.
+
+1. HERO – GRĄŽINK KAIP BUVO
+
+Hero dalyje palik tą patį nešiojamo kompiuterio maketą su lojalumo sistemos ekranu, kokį turėjai prieš paskutinę žinutę. Kalbų platformos ekrano į hero nedėk. Projektų tvarka darbų sąraše lieka: 1) Kalbų mokymosi platforma, 2) TikMaker, 3) Lojalumo valdymo sistema.
+
+2. LOJALUMO SISTEMA – GRĄŽINK PROJEKTO PUSLAPĮ, BET TRUMPĄ
+
+Abstrakčios iliustracijos ir žymos „Konfidencialus projektas“ nebereikia. Rodome tikras ekrano kopijas su uždengtais duomenimis (ac-cards-redacted-1400.webp ir ac-loyalty-redacted-1400.webp) ir ant smėlio / kreminės dėmės.
+
+Puslapis pagal tą patį šabloną kaip kitų projektų, tik trumpesnis: 2 sekcijos vietoj 3, be punktų sąrašų, tik antraštė ir vienas sakinys. Jokių kliento, įmonės ar vidinių pavadinimų.
+
+Kortelė pagrindiniame puslapyje (užsakovui):
+Lojalumo valdymo sistema – Kortelės, klientai, akcijos ir kuponai vienoje administravimo sistemoje. Žymos: React, TypeScript, .NET.
+
+Kortelė /portfolio:
+• Kas tai: B2B administravimo sistema lojalumo programoms
+• Rolė: pagrindinė frontend programuotoja komandoje
+• Faktas: komandinis projektas · ~730 frontend testų
+• Žymos: React, TypeScript, RTK Query, AG Grid, .NET
+• „Skaityti plačiau →“
+
+Projekto puslapis
+
+Meta: B2B backoffice · komandinis projektas · 2026
+Kas tai: Administravimo sistema verslo lojalumo programoms: kortelės, klientai, akcijos ir kuponai valdomi vienoje vietoje. Projektas konfidencialus, todėl ekrano kopijose duomenys uždengti, o aprašymas trumpas.
+Būsena: aktyviai vystoma.
+
+01 — Kortelės ir klientai
+[Ekrano kopija: ac-cards-redacted-1400.webp]
+Visa informacija apie kortelę ir jos savininką viename ekrane: sąrašas kairėje, pasirinktas įrašas dešinėje.
+
+02 — Akcijos
+[Ekrano kopija: ac-loyalty-redacted-1400.webp]
+Akcijas galima sukurti ir išbandyti dar prieš jas paleidžiant.
+
+Techninė dalis:
+• Rolė: pagrindinė frontend programuotoja komandoje su backend programuotoju, taip pat dalis backend darbų.
+• Sprendimai:
+  – API klientas generuojamas iš backend'o OpenAPI aprašo, todėl frontend ir backend tipai visada sutampa.
+  – Meniu, skirtukai ir maršrutų apsauga kuriami iš vieno aprašo pagal naudotojo leidimus.
+  – Integraciniai testai tikrina ekranus su skirtingais rolių leidimais.
+• Mastas: 3 kalbos · ~730 frontend testų.
+• Stackas: React, TypeScript, RTK Query, AG Grid, Tailwind CSS, shadcn/ui · .NET, SQL Server · Vitest, Playwright.
+
+Apačioje, prieš „Kitas darbas“: „Daugiau apie šį projektą galiu papasakoti pokalbio metu.“
+
+Parodyk: pagrindinio puslapio hero ir darbų sekciją, /portfolio korteles ir lojalumo sistemos projekto puslapį (desktop 1440 + mobile 390).
