@@ -2,7 +2,7 @@ Desktop kryptis tinka, ją ir laikome. Dabar trys dalykai: viena išskirtinė de
 
 1. IŠSKIRTINĖ DETALĖ
 
-Dizainas dabar švarus, bet per daug neutralus: atrodo kaip gera šablonas, ne kaip frontend programuotojos darbas. Reikia vienos subtilios detalės, kuri parodo kompetenciją, o ne puošia.
+Dizainas dabar švarus, bet per daug neutralus: atrodo kaip geras šablonas, ne kaip frontend programuotojos darbas. Reikia vienos subtilios detalės, kuri parodo kompetenciją, o ne puošia.
 
 Pagrindinė detalė – „Specifikacijų“ režimas (kaip Figma Dev Mode):
 - Apatiniame kairiajame kampe mažas monospace jungiklis „Specifikacijos“ (ir klavišas S). Pagal nutylėjimą išjungtas.
