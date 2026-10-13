@@ -1,0 +1,86 @@
+Kalbų platformos projekto puslapio layoutas tinka. Lojalumo valdymo sistemos ir TikMaker puslapius padaryk lygiai pagal tą patį šabloną:
+
+• viršus: „← Visi darbai“, pavadinimas, meta eilutė, dvi kolonos „Kas tai“ ir „Būsena“;
+• 3 sunumeruotos sekcijos (01, 02, 03), ekrano kopija ant organinės dėmės pakaitomis dešinėje ir kairėje, šalia antraštė, 1–2 sakinių įžanga ir 3–5 punktai;
+• „Techninė dalis“ lentelė: Rolė, Sprendimai, Mastas, Stackas;
+• apačioje „Kitas darbas →“ ir „Aptarti projektą“.
+
+Seka „Kitas darbas“: Lojalumo sistema → Kalbų platforma → TikMaker → Lojalumo sistema.
+Kur ekrano kopijos dar nėra, palik laukelį su aprašu [Ekrano kopija: ...]. Nuotraukas įdėsiu pati.
+
+─────────────────────────────
+
+LOJALUMO VALDYMO SISTEMA
+
+Meta: B2B backoffice · klientinis projektas · [METAI]
+Kas tai: Lojalumo programos valdymo sistema verslui: kortelės, klientai, transakcijos, akcijos, kuponai ir klientų segmentai vienoje vietoje. Ekrano kopijose kliento duomenys uždengti.
+Būsena: [BŪSENA, pvz. naudojama ir toliau vystoma]
+Dėmė: šilta smėlio / kreminė.
+
+01 — Kortelės ir klientai
+[Ekrano kopija: ac-cards-redacted-1400.webp]
+Įžanga: Visa kortelės informacija viename ekrane: sąrašas kairėje, pasirinktos kortelės įrašas dešinėje.
+• kortelių sąrašas su paieška, filtrais ir prisegtomis kortelėmis;
+• kortelės įrašas: apžvalga, savininkas, sąskaitos, kuponai, transakcijos;
+• kortelės aktyvumas ir jai taikomos akcijos;
+• kortelių generavimas ir konfigūracija.
+
+02 — Akcijų testavimas
+[Ekrano kopija: ac-loyalty-redacted-1400.webp]
+Įžanga: Prieš paleidžiant akciją, ją galima išbandyti su virtualiu pirkėju ir krepšeliu.
+• virtualus pirkėjas: pagal tikrą kortelę arba suvestas rankiniu būdu;
+• galima įtraukti ir kitas šiuo metu aktyvias akcijas, kad rezultatas atitiktų realų;
+• akcijos, promo kodai, klientų segmentai, ataskaitos ir konfigūracija vienoje srityje.
+
+03 — Masiniai veiksmai ir detalės
+[Ekrano kopija: masinis veiksmas sąraše arba detalės dialogas]
+Įžanga: Kiekvienas naujas funkcionalumas veikia vienodai dviejose vietose: masiniame sąrašo veiksme ir detalės dialoge.
+• didelės lentelės su AG Grid;
+• rolės ir veiksmų auditas;
+• dvi kalbos, ~2200 vertimo raktų kiekvienai.
+
+Techninė dalis:
+• Rolė: atsakinga už frontendą. Rašau technines užduotis backend kolegai, API kontraktus deriname prieš įgyvendinimą, prižiūriu projektą kaip visumą. Pradžioje, kol nebuvo backend programuotojo, dariau viena: nuo duomenų modelio iki UI.
+• Sprendimai: API tipai generuojami iš backend schemos (RTK Query), todėl neatitikimai matomi prieš produkciją · AG Grid didelėms lentelėms · vienodas funkcionalumas masiniame veiksme ir detalės dialoge.
+• Mastas: ~27 maršrutai, 8 sritys, 2 × ~2200 vertimo raktų, rolės ir auditas.
+• Stackas: React, TypeScript, RTK Query, AG Grid, REST API.
+
+─────────────────────────────
+
+TIKMAKER
+
+Meta: vaizdo redaktorius · asmeninis projektas · 2026
+Kas tai: Vaizdo redaktorius trumpiems TikTok / Reels vaizdo įrašams, kuriame AI įgarsinimas yra laiko juostos dalis, o ne atskiras įrankis.
+Būsena: vidinis darbo įrankis, naudoju savo turiniui. Ne parduodamas produktas.
+Dėmė: švelni levandų / rausva. Redaktorius tamsus, todėl dėmė turi būti šviesi, kad tamsus ekranas ant jos išsiskirtų.
+
+01 — Scenos ir laiko juosta
+[Ekrano kopija: TikMaker/main-1400.webp]
+Įžanga: Vaizdo įrašas dėliojamas iš scenų, o kiekviena scena turi savo takelius laiko juostoje.
+• scenų tipai: hook, paaiškinimas, ekrano demonstracija, išvada;
+• takeliai: tekstai, vizualai, garsai, įgarsinimas;
+• scenas galima kopijuoti, dubliuoti, kirpti ir keisti vietomis.
+
+02 — AI įgarsinimas
+[Ekrano kopija: įgarsinimo laukas inspektoriuje]
+Įžanga: Kiekvienai scenai užrašomas tekstas, iš kurio sugeneruojamas balsas.
+• balsas generuojamas su ElevenLabs tiesiai redaktoriuje;
+• scenos trukmė apskaičiuojama iš teksto, kad kirpimas nenukristų anksčiau, nei baigtas sakinys;
+• įgarsinimo takelis laiko juostoje elgiasi kaip bet kuris kitas efektas.
+
+03 — Šablonai ir eksportas
+[Ekrano kopija: šablonai arba eksportas]
+Įžanga: Pasikartojančios scenos išsaugomos kaip šablonai, o baigtas įrašas eksportuojamas į MP4.
+• scenų šablonai ir „safe zones“ vertikaliam formatui;
+• projektas saugomas JSON: importas ir eksportas;
+• MP4 generavimas su Remotion.
+
+Techninė dalis:
+• Rolė: viena kūriau visą įrankį.
+• Sprendimai: įgarsinimas yra laiko juostos elementas · scenos trukmė skaičiuojama iš įgarsinimo teksto · projekto būsena saugoma JSON, todėl ją galima eksportuoti ir importuoti · vaizdo generavimas su Remotion.
+• Mastas: [jei turiu skaičių]
+• Stackas: React, TypeScript, Remotion, ElevenLabs.
+
+─────────────────────────────
+
+Parodyk abu puslapius: desktop 1440 ir mobile 390.
