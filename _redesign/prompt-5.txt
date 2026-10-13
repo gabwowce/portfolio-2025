@@ -1,0 +1,51 @@
+Du pataisymai.
+
+1. AUGALAS – NAUDOK PRIDĖTĄ NUOTRAUKĄ, NE SVG
+
+Augalo nepiešk ir neperkurk SVG. Naudok pridėtą failą plant.webp (permatomas fonas) tiesiai kaip paveikslėlį (<img src="plant.webp">), be jokių filtrų ir spalvų pakeitimų. Jei failo pasiekti negali, palik aiškų laukelį „[plant.webp]“ tokio paties dydžio ir vietos. Nekurk pakaitalo.
+
+2. /portfolio PUSLAPIS – PERDARYK Į TRUMPĄ, PERŽVELGIAMĄ VERSIJĄ
+
+Dabartinė versija per ilga: per daug teksto, per daug slinkti, nepatogu skaityti. Taisyklė: /portfolio puslapis yra santrauka, kurią darbdavys peržvelgia per 30 sekundžių. Visi išsamūs aprašymai (problema, sprendimai, mastas) keliauja į atskirus projektų puslapius, į kuriuos veda „Skaityti plačiau“.
+
+Tikslas: desktop puslapis telpa į ~2,5 ekrano aukščio. Jokių pastraipų ilgesnių nei 1 sakinys.
+
+Struktūra:
+
+a) Viršus (kaip dabar, tik kompaktiškiau): vardas, „Frontend / full-stack programuotoja · React, TypeScript“, Vilnius · [BŪSENA], nuorodos (CV PDF, GitHub, LinkedIn, el. paštas). Mygtukas „Atsisiųsti CV (PDF)“ dešinėje.
+
+b) „Trumpai“ – 4 faktų eilutė (desktop 4 stulpeliai, mobile 2 × 2), kiekvienas faktas: maža etiketė + 1 eilutė:
+   • Dabar – Programuotoja (Mid), UVS
+   • Patirtis – 2+ m. profesionaliai
+   • Fokusas – vidinės verslo sistemos
+   • Stackas – React, TypeScript, Next.js
+
+c) 01 — Atrinkti darbai: 3 vienodos kortelės vienoje eilutėje (mobile – viena po kita). Kiekvienoje kortelėje TIK:
+   • ekrano kopija viršuje (su ta pačia organine dėme kaip pagrindiniame puslapyje, tik mažesne);
+   • pavadinimas + 1 eilutė, kas tai;
+   • „Rolė:“ trumpai;
+   • 1 svarbiausias faktas;
+   • 3–4 stacko žymos;
+   • nuoroda „Skaityti plačiau →“ (ir „Live demo ↗“, jei yra).
+
+   Lojalumo valdymo sistema – Kortelių, kuponų, akcijų ir segmentų valdymas vienoje sistemoje. Rolė: frontend + techninės užduotys backend'ui. Faktas: ~27 maršrutai, 8 sritys. Žymos: React, TypeScript, RTK Query, AG Grid.
+   TikMaker – Vaizdo redaktorius su AI įgarsinimu. Rolė: viena, visas įrankis. Faktas: AI balso takelis tiesiai laiko juostoje. Žymos: React, TypeScript, Remotion, ElevenLabs.
+   keepmi – Skaitmeniniai kvietimai ir svečių centras šventės dienai. Rolė: viena, nuo idėjos iki MVP. Faktas: 3 kalbos, Stripe mokėjimai. Žymos: Next.js, Supabase, Stripe. + Live demo ↗
+
+d) 02 — Patirtis: kompaktiška lentelė, viena eilutė vienam darbui: datos | pareigos, įmonė | viena trumpa frazė.
+   • 2026 kov. – dabar | Programuotoja (Mid), UVS | Vidinė verslo sistema nuo nulio, vienintelė frontend programuotoja
+   • 2025 kov. – dabar | Laisvai samdoma programuotoja | Web ir mobile aplikacijos nuo idėjos iki paleidimo
+   • 2024 birž. – 2026 vas. | Jaunesnioji programuotoja, UVS | C#/.NET, WPF sistemos ekranai ir funkcionalumas
+   • 2021–2023 | Ankstesnė patirtis | Planuotoja (Girteka), administratorė (Jarinta)
+
+e) 03 — Technologijos: žymos, sugrupuotos į 3 eilutes (Frontend / Backend ir duomenys / Kita). Be aprašymų.
+
+f) Paskutinė eilutė: Išsilavinimas – Vilniaus kolegija, Programų sistemos, 2023–2027 (studijuoju) · el. paštas · mygtukas „Atsisiųsti CV (PDF)“.
+
+„Kaip dirbu komandoje“ sekciją išmesk: tai bus projektų ir „Apie mane“ puslapiuose.
+
+Lojalumo sistemos projekto puslapyje (atskirame) palik visą išsamų turinį: problema, rolė, sprendimai, mastas, stackas, ekrano kopijos. Ten ilgesnis tekstas tinka, nes jį atsidaro tas, kuris nori skaityti.
+
+A4 versija: visa /portfolio santrauka telpa į VIENĄ A4 lapą (ekrano kopijos mažos arba be jų).
+
+Parodyk naują /portfolio: desktop 1440, mobile 390 ir A4.
