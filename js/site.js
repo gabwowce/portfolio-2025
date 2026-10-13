@@ -72,7 +72,7 @@
 
     /* A menu left open on a phone must not stay open on a wide screen. */
     window.addEventListener("resize", function () {
-      if (window.innerWidth >= 760) close(false);
+      if (window.innerWidth >= 1100) close(false);
     });
   })();
 
@@ -100,61 +100,6 @@
         set(btn, willOpen);
       });
     });
-  })();
-
-  /* ---------------------------------------------------------------- */
-  /* Sliding underline under the current section's nav link           */
-  /* ---------------------------------------------------------------- */
-  (function () {
-    var bar = document.querySelector(".site-nav__indicator");
-    if (!bar) return;
-    var links = Array.prototype.slice.call(
-      document.querySelectorAll(".site-nav__links a[data-nav]")
-    );
-    var sections = links
-      .map(function (a) {
-        return document.getElementById(a.getAttribute("data-nav"));
-      })
-      .filter(Boolean);
-    var raf = null;
-
-    function update() {
-      raf = null;
-      var active = null;
-      sections.forEach(function (s) {
-        if (s.getBoundingClientRect().top <= 120) active = s.id;
-      });
-      /* Past the last section (contact), nothing in the nav is current. */
-      var contact = document.getElementById("kontaktai") ||
-        document.getElementById("contact");
-      if (contact && contact.getBoundingClientRect().top <= 120) active = null;
-
-      var link = active
-        ? document.querySelector('.site-nav__links a[data-nav="' + active + '"]')
-        : null;
-      if (link) {
-        bar.style.width = link.offsetWidth + "px";
-        bar.style.transform = "translateX(" + link.offsetLeft + "px)";
-        bar.style.opacity = "1";
-        links.forEach(function (a) {
-          if (a === link) a.setAttribute("aria-current", "true");
-          else a.removeAttribute("aria-current");
-        });
-      } else {
-        bar.style.opacity = "0";
-        links.forEach(function (a) {
-          a.removeAttribute("aria-current");
-        });
-      }
-    }
-
-    function schedule() {
-      if (!raf) raf = requestAnimationFrame(update);
-    }
-
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    update();
   })();
 
   /* ---------------------------------------------------------------- */
@@ -201,9 +146,7 @@
   /* ---------------------------------------------------------------- */
   /* Contact form – posts to Formspree, reports inline                */
   /* ---------------------------------------------------------------- */
-  (function () {
-    var form = document.querySelector("form[data-contact]");
-    if (!form) return;
+  document.querySelectorAll("form[data-contact]").forEach(function (form) {
     var status = form.querySelector(".form__status");
     var button = form.querySelector('button[type="submit"]');
     var msg = {
@@ -247,5 +190,5 @@
           button.disabled = false;
         });
     });
-  })();
+  });
 })();

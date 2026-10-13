@@ -14,6 +14,7 @@
 <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="Codeart">
 <meta property="og:locale" content="lt_LT">
 <meta property="og:title" content="Kalbų mokymosi platforma – projektas | Gabrielė Tamaševičiūtė">
 <meta property="og:description" content="Kalbų mokymosi platforma: vieša svetainė, mokinio platforma ir turinio valdymo sistema, kurioje užduotys sudaromos automatiškai iš žodyno. Next.js ir Supabase.">
@@ -45,21 +46,49 @@
 </head>
 <body class="page-project">
 <a class="skip-link" href="#main">Pereiti prie turinio</a>
-<header class="site-header site-header--compact">
+<header class="site-header">
 <div class="container site-header__in">
-<a class="brand" href="/lt/">Gabrielė Tamaševičiūtė</a>
-<a class="btn" href="/lt/#kontaktai">Aptarti projektą</a>
+<a class="brand" href="/lt/" aria-label="Gabrielė Tamaševičiūtė · Codeart, pagrindinis"><span class="brand__mark" aria-hidden="true">GT</span><span class="brand__text"><span class="brand__name">Gabrielė <span class="brand__surname">Tamaševičiūtė</span></span><span class="brand__co">Codeart</span></span></a>
+<nav class="site-nav" aria-label="Pagrindinė navigacija">
+<div class="site-nav__links">
+<a href="/lt/portfolio.html" aria-current="page">Portfolio</a>
+<a href="/lt/services.html">Paslaugos</a>
+<a href="/lt/about.html">Apie</a>
+<a href="/lt/resources.html">Gidai</a>
+<a href="/lt/contact.html">Kontaktai</a>
+</div>
+<a class="lang" href="/en/projects/language-platform.html" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a>
+<a class="btn" href="/lt/contact.html">Aptarti projektą</a>
+</nav>
+<button class="menu-toggle" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Atidaryti meniu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h16M3 15h16"/></svg></button>
 </div>
 </header>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meniu" hidden>
+<div class="mobile-menu__bar">
+<a class="brand" href="/lt/" aria-label="Gabrielė Tamaševičiūtė · Codeart, pagrindinis"><span class="brand__mark" aria-hidden="true">GT</span><span class="brand__text"><span class="brand__name">Gabrielė <span class="brand__surname">Tamaševičiūtė</span></span><span class="brand__co">Codeart</span></span></a>
+<button class="menu-toggle" type="button" data-menu-close aria-label="Uždaryti meniu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l12 12M17 5L5 17"/></svg></button>
+</div>
+<nav class="mobile-menu__nav" aria-label="Pagrindinė navigacija">
+<a href="/lt/portfolio.html" aria-current="page"><span class="mono" aria-hidden="true">01</span>Portfolio</a>
+<a href="/lt/services.html"><span class="mono" aria-hidden="true">02</span>Paslaugos</a>
+<a href="/lt/about.html"><span class="mono" aria-hidden="true">03</span>Apie</a>
+<a href="/lt/resources.html"><span class="mono" aria-hidden="true">04</span>Gidai</a>
+<a href="/lt/contact.html"><span class="mono" aria-hidden="true">05</span>Kontaktai</a>
+</nav>
+<div class="mobile-menu__foot">
+<a class="lang" href="/en/projects/language-platform.html" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a>
+<a class="btn" href="/lt/contact.html">Aptarti projektą</a>
+</div>
+</div>
 <main id="main">
 <section class="p-intro">
 <div class="container">
-<div class="p-intro__top"><a class="back" href="/lt/portfolio.html">← Visi darbai</a><a class="lang" href="/en/projects/language-platform.html" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a></div>
+<a class="back" href="/lt/portfolio.html">← Visi darbai</a>
 <h1>Kalbų mokymosi platforma</h1>
-<p class="p-meta">web platforma · <span class="todo">[KLIENTINIS PROJEKTAS / KLIENTO PAVADINIMAS]</span> · 2026</p>
+<p class="p-meta">web platforma · klientinis projektas · 2026</p>
 <dl class="p-summary">
 <div><dt class="mono">Kas tai</dt><dd>Internetinė kalbų mokymosi sistema iš trijų dalių: vieša mokymų svetainė, mokinio mokymosi platforma ir turinio valdymo sistema. Kursus administratorius kuria pats, be programuotojo: sistema iš įvesto žodyno sudaro interaktyvias užduotis, valdo prieigą prie kursų per aktyvavimo kodus, seka mokinių progresą ir baigus lygį išduoda sertifikatą.</dd></div>
-<div><dt class="mono">Būsena</dt><dd><span class="todo">[BŪSENA]</span></dd></div>
+<div><dt class="mono">Būsena</dt><dd>Aktyviai vystoma.</dd></div>
 </dl>
 </div>
 </section>
@@ -95,7 +124,7 @@
 </div>
 <figure class="feature__media d1" data-reveal="far">
 <div class="blob blob--rose" aria-hidden="true"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><path d="M88.0 51.1C87.3 55.3 88.4 56.6 87.3 61.2C86.2 65.9 84.1 74.6 81.2 79.2C78.4 83.8 73.8 86.0 70.0 88.9C66.2 91.9 63.2 95.6 58.4 96.8C53.7 98.0 46.3 97.5 41.6 96.1C37.0 94.7 35.1 91.1 30.6 88.6C26.2 86.1 18.8 85.1 15.0 81.0C11.2 76.8 9.1 69.2 8.0 63.8C6.9 58.4 8.0 53.3 8.5 48.5C9.0 43.7 9.6 39.0 11.0 35.2C12.3 31.3 13.6 28.2 16.7 25.3C19.9 22.4 25.3 21.6 29.9 17.9C34.6 14.2 39.9 6.0 44.5 3.1C49.1 0.2 52.4 -0.2 57.4 0.5C62.5 1.2 69.9 4.7 74.9 7.3C79.9 10.0 84.5 11.7 87.2 16.5C89.9 21.3 90.9 30.3 91.1 36.1C91.2 41.9 88.6 46.9 88.0 51.1Z"/></svg></div>
-<div class="shot-todo" role="img" aria-label="Ekrano kopija: importo dialogo analizės žingsnis su santrauka, įspėjimais apie dublikatus ir laukiamais medijos failais">[Ekrano kopija: importo dialogo analizės žingsnis su santrauka, įspėjimais apie dublikatus ir laukiamais medijos failais]</div>
+<div class="frame"><div class="frame__bar" aria-hidden="true"><span></span><span></span><span></span></div><img src="/img/site/kalbos-import.webp" srcset="/img/site/kalbos-import-760.webp 760w, /img/site/kalbos-import.webp 1100w" sizes="(max-width: 759px) 92vw, 760px" width="1100" height="600" alt="Turinio valdymas: turinio medis ir mygtukas „Importuoti iš Excel“" decoding="async" loading="lazy"></div>
 </figure>
 </div>
 </div>
@@ -114,11 +143,49 @@
 </div>
 </div>
 </section>
-</main>
-<footer class="p-foot">
+<section class="p-foot">
 <div class="container">
 <a class="next" href="/lt/projektai/tikmaker.html"><span class="mono">Kitas darbas</span><strong>TikMaker →</strong></a>
-<a class="btn btn--lg" href="/lt/#kontaktai">Aptarti projektą</a>
+<a class="btn btn--lg" href="/lt/contact.html">Aptarti projektą</a>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container footer__grid">
+<div class="footer__brand">
+<a class="brand" href="/lt/" aria-label="Gabrielė Tamaševičiūtė · Codeart, pagrindinis"><span class="brand__mark" aria-hidden="true">GT</span><span class="brand__text"><span class="brand__name">Gabrielė <span class="brand__surname">Tamaševičiūtė</span></span><span class="brand__co">Codeart</span></span></a>
+<p>Programuotoja ir produkto kūrėja. Dėmesys vartotojo patirčiai ir kokybei.</p>
+<p class="footer__status"><span class="dot" aria-hidden="true"></span>Atvira naujiems projektams</p>
+<div class="socials"><a class="social" href="mailto:gt1230112301@gmail.com" aria-label="El. paštas" title="El. paštas"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></a><a class="social" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-3.5a2.5 2.5 0 0 1 5 0V17M12 10.5V17"/></svg></a><a class="social" href="https://github.com/gabwowce" target="_blank" rel="me noopener" aria-label="GitHub" title="GitHub"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 19 3.8 5.1 5.1 0 0 0 18.9 1S17.7.7 15 2.5a13.4 13.4 0 0 0-6 0C6.3.7 5.1 1 5.1 1A5.1 5.1 0 0 0 5 3.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></svg></a><a class="social" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="me noopener" aria-label="TikTok" title="TikTok"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.4 4.6 5 5"/></svg></a></div>
+</div>
+<nav class="footer__links" aria-label="Nuorodos">
+<h2 class="footer__h">Nuorodos</h2>
+<ul><li><a href="/lt/">Pagrindinis</a></li><li><a href="/lt/portfolio.html">Portfolio</a></li><li><a href="/lt/services.html">Paslaugos</a></li><li><a href="/lt/about.html">Apie</a></li><li><a href="/lt/resources.html">Gidai</a></li><li><a href="/lt/contact.html">Kontaktai</a></li></ul>
+</nav>
+<div class="footer__contact">
+<h2 class="footer__h">Tiesiogiai</h2>
+<ul class="contact-list contact-list--compact"><li><span class="contact-list__ico"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span><span class="contact-list__body"><span class="contact-list__label">El. paštas</span><a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a></span></li><li><span class="contact-list__ico"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.5l2 5-2.4 1.6a11 11 0 0 0 5.3 5.3L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span class="contact-list__body"><span class="contact-list__label">Telefonas</span><a href="tel:+37067270403">+370 672 70403</a></span></li><li><span class="contact-list__ico"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span class="contact-list__body"><span class="contact-list__label">Vieta</span><span>Vilnius, Lietuva</span></span></li></ul>
+</div>
+<div class="footer__quick">
+<h2 class="footer__h">Trumpa žinutė</h2>
+<p class="small">Parašykite, atsakysiu per 24 val.</p>
+<form class="quick" data-contact action="https://formspree.io/f/xeorkyne" method="POST" data-msg-sending="Siunčiama…" data-msg-ok="Ačiū! Žinutė išsiųsta, atsakysiu el. paštu." data-msg-fail="Nepavyko išsiųsti. Parašykite tiesiai el. paštu: gt1230112301@gmail.com" data-msg-invalid="Užpildykite visus laukus ir patikrinkite el. pašto adresą.">
+<label class="visually-hidden" for="quick-email-lt">El. paštas</label>
+<input id="quick-email-lt" type="email" name="email" autocomplete="email" placeholder="El. paštas" required>
+<label class="visually-hidden" for="quick-msg-lt">Žinutė</label>
+<textarea id="quick-msg-lt" name="message" rows="2" placeholder="Žinutė" required></textarea>
+<div class="form__hp" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+<input type="hidden" name="_subject" value="Trumpa žinutė iš codeart.lt">
+<button class="btn" type="submit">Siųsti</button>
+<p class="form__status small" role="status" aria-live="polite"></p>
+</form>
+</div>
+</div>
+<div class="container">
+<div class="footer__bottom">
+<span>© 2026 Gabrielė Tamaševičiūtė · Codeart. Visos teisės saugomos.</span>
+<span class="footer__bottom-links"><a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a><a class="lang" href="/en/projects/language-platform.html" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a></span>
+</div>
 </div>
 </footer>
 </body>

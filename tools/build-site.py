@@ -42,6 +42,9 @@ ROUTES = {
     "p_lang": {"lt": "lt/projektai/kalbu-platforma.html", "en": "en/projects/language-platform.html"},
     "p_tik": {"lt": "lt/projektai/tikmaker.html", "en": "en/projects/tikmaker.html"},
     "p_loy": {"lt": "lt/projektai/lojalumo-sistema.html", "en": "en/projects/loyalty-system.html"},
+    "services": {"lt": "lt/services.html", "en": "en/services.html"},
+    "about": {"lt": "lt/about.html", "en": "en/about.html"},
+    "contact": {"lt": "lt/contact.html", "en": "en/contact.html"},
     "cv": {"lt": "lt/cv.html", "en": "en/cv.html"},
 }
 
@@ -94,6 +97,9 @@ IMAGES = {
     "loy_cards": ("loyalty-cards", 1400, 773, 760),
     "loy_promo": ("loyalty-promotions", 1400, 774, 760),
     "about": ("about-illustration", 900, 1173, 600),
+    "kalbos_import": ("kalbos-import", 1100, 600, 760),
+    "tik_library": ("tikmaker-library", 1000, 525, 760),
+    "tik_voice": ("tikmaker-voice", 840, 530, 760),
 }
 
 
@@ -174,6 +180,7 @@ def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website
 <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:type" content="{og_type}">
+<meta property="og:site_name" content="Codeart">
 <meta property="og:locale" content="{locale}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -261,14 +268,14 @@ T = {
         "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
-            ("Kiek kainuoja projektas?", "[Įrašyti: nuo X € / kaip skaičiuojama]"),
-            ("Kiek laiko trunka?", "[Įrašyti: tipinis terminas]"),
+            ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Po trumpo pokalbio per 24 val. atsiunčiu darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
+            ("Kiek laiko trunka?", "Priklauso nuo apimties: nedidelis patobulinimas gali užtrukti kelias dienas, nauja sistema – nuo kelių savaičių. Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus."),
             ("Ar galite perimti jau veikiančią sistemą?", "Taip, perprantu esamą kodą ir tobulinu jį palaipsniui."),
             ("Ar kaina gali pasikeisti eigoje?", "Ne. Patvirtinus sąmatą, kaina nesikeičia."),
             ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip, nuo paprastų LLM funkcijų iki agentų, kurie naudojasi sistemos API."),
         ],
         "contact_h": "Turite projekto idėją?",
-        "contact_lead": "Parašykite kelis sakinius, ko reikia. [Atsakau per X darbo dienas.]",
+        "contact_lead": "Parašykite kelis sakinius, ko reikia. Paprastai atsakau per 24 val.",
         "f_name": "Vardas",
         "f_email": "El. paštas",
         "f_msg": "Žinutė",
@@ -340,14 +347,14 @@ T = {
         "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
-            ("How much does a project cost?", "[To fill in: from X € / how it's calculated]"),
-            ("How long does it take?", "[To fill in: typical timeline]"),
+            ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. After a short call I send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
+            ("How long does it take?", "It depends on the scope: a small improvement can take a few days, a new system from a few weeks. I give the exact timeline in the plan, together with the price, before any work starts."),
             ("Can you take over a system that's already running?", "Yes, I get to know the existing code and improve it step by step."),
             ("Can the price change along the way?", "No. Once the estimate is approved, the price doesn't change."),
             ("Can you add AI features to the system?", "Yes, from simple LLM features to agents that use the system's API."),
         ],
         "contact_h": "Have a project idea?",
-        "contact_lead": "Write a few sentences about what you need. [I reply within X working days.]",
+        "contact_lead": "Write a few sentences about what you need. I usually reply within 24 hours.",
         "f_name": "Name",
         "f_email": "Email",
         "f_msg": "Message",
@@ -367,47 +374,514 @@ T = {
 
 
 # --------------------------------------------------------------------------
-# Home page
+# Icons (24px grid, stroke follows currentColor)
 # --------------------------------------------------------------------------
 
-def home(lang):
-    t = T[lang]
-    ids = t["ids"]
-    nav_links = "\n".join(
-        f'<a href="#{ids[k]}" data-nav="{ids[k]}">{t["nav"][k]}</a>'
-        for k in ("work", "services", "about", "faq"))
-    menu_links = "\n".join(
-        f'<a href="#{ids[k]}"><span class="mono" aria-hidden="true">{t["menu_nums"][k]}</span>{t["nav"][k]}</a>'
-        for k in ("work", "services", "about", "faq"))
+ICONS = {
+    "mail": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
+    "phone": '<path d="M5 4h3.5l2 5-2.4 1.6a11 11 0 0 0 5.3 5.3L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+    "linkedin": '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-3.5a2.5 2.5 0 0 1 5 0V17M12 10.5V17"/>',
+    "github": '<path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 19 3.8 5.1 5.1 0 0 0 18.9 1S17.7.7 15 2.5a13.4 13.4 0 0 0-6 0C6.3.7 5.1 1 5.1 1A5.1 5.1 0 0 0 5 3.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/>',
+    "tiktok": '<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.4 4.6 5 5"/>',
+    "pin": '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "layers": '<path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+    "wrench": '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
+    "plus": '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/>',
+    "system": '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="m7.5 11 2.5-2.5 2 2 4-4"/>',
+    "search": '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/>',
+    "code": '<path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/>',
+    "spark": '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+    "eye": '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    "list": '<path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
+    "shield": '<path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    "chat": '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',
+    "target": '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+    "tag": '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+    "check": '<path d="m5 12.5 4.5 4.5L19 7"/>',
+    "arrow": '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    "file": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 12v6M9 15l3 3 3-3"/>',
+    "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    "cap": '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
+}
 
-    header = f"""<a class="skip-link" href="#main">{t["skip"]}</a>
-<header class="site-header site-header--home">
+
+def icon(name, size=20):
+    return (f'<svg class="ico" aria-hidden="true" width="{size}" height="{size}" viewBox="0 0 24 24" '
+            f'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" '
+            f'stroke-linejoin="round">{ICONS[name]}</svg>')
+
+
+def icon_blob(name, tone):
+    """A line icon sitting on a small organic blob, used on cards."""
+    return (f'<span class="ico-blob ico-blob--{tone}" aria-hidden="true">'
+            f'<svg class="ico-blob__shape" viewBox="-2 -2 104 104" preserveAspectRatio="none">'
+            f'<path d="{PATHS["a"]}"/></svg>{icon(name, 24)}</span>')
+
+
+# --------------------------------------------------------------------------
+# Content shared by the new pages
+# --------------------------------------------------------------------------
+
+PHONE = "+370 672 70403"
+PHONE_HREF = "tel:+37067270403"
+
+C = {
+    "lt": {
+        "nav": [("portfolio", "Portfolio"), ("services", "Paslaugos"), ("about", "Apie"),
+                ("guides", "Gidai"), ("contact", "Kontaktai")],
+        "home": "Pagrindinis",
+        "tagline": "Programuotoja ir produkto kūrėja. Dėmesys vartotojo patirčiai ir kokybei.",
+        "links_h": "Nuorodos",
+        "quick_h": "Trumpa žinutė",
+        "quick_lead": "Parašykite, atsakysiu per 24 val.",
+        "quick_msg": "Žinutė",
+        "quick_subject": "Trumpa žinutė iš codeart.lt",
+        "rights": "Visos teisės saugomos",
+        "cta_h": "Turite projekto idėją?",
+        "cta_p": "Trumpai papasakokite apie projektą. Atsakau per 24 val. su darbų planu ir kaina.",
+        "cta_btn": "Susisiekti",
+        "contact_items": [
+            ("mail", "El. paštas", EMAIL, "mailto:" + EMAIL),
+            ("phone", "Telefonas", PHONE, PHONE_HREF),
+            ("linkedin", "LinkedIn", "Gabrielė Tamaševičiūtė", LINKEDIN),
+            ("github", "GitHub", "github.com/gabwowce", GITHUB),
+            ("tiktok", "TikTok", "@gabiebuilds", TIKTOK),
+            ("pin", "Vieta", "Vilnius, Lietuva", None),
+        ],
+        "status": "Atvira naujiems projektams",
+        "reply": "Paprastai atsakau per 24 val.",
+        "services_more": "Visos paslaugos →",
+        "svc_cta": "Aptarti projektą →",
+        "includes": "Apima",
+        "steps_cta_note": "Planą ir fiksuotą kainą raštu gaunate per 24 val. po pokalbio.",
+        # services page
+        "svc_title": "Paslaugos | Gabrielė Tamaševičiūtė · Codeart",
+        "svc_desc": "Naujos sistemos nuo nulio, esamų sistemų gerinimas ir naujos funkcijos. Fiksuota kaina, sutarta prieš pradedant, ir 3 mėn. garantija.",
+        "svc_eyebrow": "Paslaugos",
+        "svc_h1": "Su kuo galiu padėti",
+        "svc_lead": "Dirbu su sistemomis, o ne su pavieniais puslapiais. Galiu startuoti nuo nulio arba perimti tai, kas jau veikia.",
+        "svc_list_h": "Ką darau",
+        "price_h": "Kaina ir garantija",
+        "price": [
+            ("tag", "Fiksuota kaina", "Kiekvienam projektui pateikiu fiksuotą kainos pasiūlymą, sutartą prieš pradedant: perkate rezultatą, ne valandas, ir sąskaitoje nebūna netikėtumų. Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti."),
+            ("shield", "3 mėn. garantija", "Jei per 3 mėnesius po paleidimo paaiškėja klaida, atsiradusi dėl mano įgyvendinto sprendimo, ją ištaisau be papildomo mokesčio."),
+        ],
+        "expect_h": "Ko galite tikėtis",
+        "expect": ["Fiksuota sutarta kaina", "Jokių netikėtų papildomų darbų", "Nuolat matomas progresas",
+                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "3 mėn. garantija mano darbui"],
+        # about page
+        "about_title": "Apie mane | Gabrielė Tamaševičiūtė · Codeart",
+        "about_desc": "Gabrielė Tamaševičiūtė, programuotoja iš Vilniaus: kaip dirbu, vertybės, patirtis ir išsilavinimas.",
+        "about_eyebrow": "Apie mane",
+        "about_h1": "Esu Gabrielė, programuotoja iš Vilniaus",
+        "about_paras": [
+            "Kuriu web ir mobilias sistemas nuo idėjos iki veikiančio produkto. Mano pagrindinė sritis – frontend, tačiau dirbu per visą produkto grandinę: projektuoju vartotojo sąsajas, sistemos architektūrą, API sąveikas, duomenų struktūras ir suprantu backend logiką.",
+            "Šiuo metu nuo nulio vystau vidinę verslo sistemą kaip vienintelė frontend programuotoja. Pati išsigryninau poreikius, suprojektavau architektūrą ir vartotojo patirtį, aprašau backend funkcionalumą bei derinu techninius sprendimus su backend programuotoju.",
+        ],
+        "about_cv": "CV ir portfolio",
+        "about_pdf": "Atsisiųsti CV (PDF)",
+        "how_h": "Kaip dirbu",
+        "how": [
+            ("system", "Galvoju apie visą sistemą", "Žiūriu ne tik į ekraną, kurį tuo metu kuriu. Vertinu duomenų srautą, API, būsenas, naudotojų teises ir tai, kaip sprendimas paveiks kitas sistemos dalis."),
+            ("search", "Pirma suprantu problemą", "Kai kažkas neveikia ar veikia blogai, pirmiausia ieškau priežasties. Tik tada keičiu kodą. Tai ypač svarbu dirbant su jau veikiančiomis ir didesnėmis sistemomis."),
+            ("code", "Galiu dirbti su esamu kodu", "Nebūtina visko pradėti iš naujo. Galiu perprasti svetimą kodą, esamą architektūrą ir palaipsniui sistemą gerinti ar papildyti."),
+            ("spark", "Seku šiuolaikines technologijas", "Naudoju AI įrankius kūrimo procese ir integruoju AI funkcijas į pačius produktus: nuo paprastų LLM funkcijų iki agentų, galinčių naudotis sistemos API."),
+        ],
+        "values_h": "Vertybės",
+        "values": [
+            ("eye", "Aiškumas", "Jokių dviprasmybių, iš karto aišku, ko reikia."),
+            ("list", "Struktūra", "Darbas žingsniais, ne chaosu."),
+            ("shield", "Patikimumas", "Ką pažadu, tą ir padarau."),
+            ("chat", "Komunikacija", "Greiti atsakymai, visada aiškus statusas."),
+            ("code", "Kodo kokybė", "Švarus, testuotas, pernaudojamas kodas."),
+            ("target", "Atsakomybė", "Man rūpi rezultatas, ne tik užduotis."),
+        ],
+        "exp_h": "Patirtis",
+        "exp": [
+            ("Programuotoja (Mid)", "UVS", "2026 kov. – dabar", "Vilnius · React, TypeScript, C#/.NET",
+             "Kuriu vidinę verslo sistemą nuo nulio kaip vienintelė frontend programuotoja komandoje: pati suprojektavau architektūrą ir sąsają, išsiaiškinau poreikius ir suplanavau backend struktūrą. Deleguoju užduotis backend kolegai, tikrinu rezultatą ir atsakau už visą frontend dalį."),
+            ("Web ir mobile app programuotoja", "Laisvai samdoma", "2025 kov. – dabar", "Vilnius · React, Next.js, TypeScript, Tailwind, WordPress, Figma",
+             "Kuriu web ir mobiliąsias aplikacijas nuo idėjos iki veikiančio produkto: projektuoju architektūrą ir duomenų struktūrą, kuriu frontend, backend ir API, autentifikaciją bei duomenų bazės logiką. Esu kūrusi „Kibinukai“ užsakymų sistemą ir kelionių aplikaciją, kuriose buvau atsakinga už techninę architektūrą ir pilną funkcionalumo įgyvendinimą. Projektus savarankiškai vedu nuo poreikių išgryninimo iki paleidimo."),
+            ("Jaunesnioji programuotoja", "UVS", "2024 birž. – 2026 vas.", "Vilnius · C#/.NET, WPF (XAML), UI prieinamumas",
+             "Dirbau su WPF pagrindu sukurta SCO sistema: kūriau ir tobulinau aplikacijos ekranus naudodama XAML/XML ir C#, įgyvendinau naują funkcionalumą bei taisiau esamus sprendimus. Analizavau klaidas, debug'inau aplikaciją ir logus, ieškojau problemų priežasčių bei jas sprendžiau. Taip pat projektavau ekranų dizainą, rūpinausi UI prieinamumu ir ruošiau vizualinius elementus sistemai."),
+            ("Planuotoja", "Girteka Europe West", "2021 spal. – 2023 rugp.", "Vilnius · Planavimas, prioritetai, komunikacija", ""),
+            ("Administratorė", "UAB „Jarinta“", "2021 kov. – 2021 rugs.", "Vilnius", ""),
+        ],
+        "edu_h": "Išsilavinimas",
+        "edu": ("Vilniaus kolegija", "Programų sistemos", "2023–2027 · studijuoju"),
+        "lang_h": "Kalbos",
+        "langs": [("Lietuvių", "gimtoji"), ("Anglų", "B2"), ("Rusų", "B2")],
+        # contact page
+        "contact_title": "Kontaktai | Gabrielė Tamaševičiūtė · Codeart",
+        "contact_desc": "Parašykite apie savo projektą: el. paštas, telefonas ir kontaktų forma. Paprastai atsakau per 24 val.",
+        "contact_eyebrow": "Kontaktai",
+        "contact_h1": "Turite projekto idėją?",
+        "contact_lead": "Trumpai aprašykite poreikį. Techninių terminų nereikia: užtenka problemos ar idėjos.",
+        "direct_h": "Tiesiogiai",
+        "f_phone": "Tel. numeris (nebūtina)",
+        "next_h": "Kas bus toliau",
+        "next": [
+            ("Parašote", "Trumpai papasakojate, ko reikia. Techninių detalių nereikia: užtenka problemos ar idėjos."),
+            ("Trumpas pokalbis", "Per 20 min. išsigryniname poreikį, apimtį ir ar galiu būti tinkamas žmogus jūsų projektui."),
+            ("Aiškus planas ir kaina", "Per 24 val. atsiunčiu darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
+        ],
+    },
+    "en": {
+        "nav": [("portfolio", "Portfolio"), ("services", "Services"), ("about", "About"),
+                ("guides", "Guides"), ("contact", "Contact")],
+        "home": "Home",
+        "tagline": "Developer and product builder. Focused on user experience and quality.",
+        "links_h": "Links",
+        "quick_h": "Quick message",
+        "quick_lead": "Write to me, I'll reply within 24 hours.",
+        "quick_msg": "Message",
+        "quick_subject": "Quick message from codeart.lt (EN)",
+        "rights": "All rights reserved",
+        "cta_h": "Have a project idea?",
+        "cta_p": "Tell me briefly about your project. I reply within 24 hours with a work plan and a price.",
+        "cta_btn": "Get in touch",
+        "contact_items": [
+            ("mail", "Email", EMAIL, "mailto:" + EMAIL),
+            ("phone", "Phone", PHONE, PHONE_HREF),
+            ("linkedin", "LinkedIn", "Gabrielė Tamaševičiūtė", LINKEDIN),
+            ("github", "GitHub", "github.com/gabwowce", GITHUB),
+            ("tiktok", "TikTok", "@gabiebuilds", TIKTOK),
+            ("pin", "Location", "Vilnius, Lithuania", None),
+        ],
+        "status": "Open to new projects",
+        "reply": "I usually reply within 24 hours.",
+        "services_more": "All services →",
+        "svc_cta": "Discuss a project →",
+        "includes": "Includes",
+        "steps_cta_note": "You get a plan and a fixed price in writing within 24 hours of our call.",
+        "svc_title": "Services | Gabrielė Tamaševičiūtė · Codeart",
+        "svc_desc": "New systems from scratch, improving existing systems and new features. A fixed price agreed before we start, and a 3-month warranty.",
+        "svc_eyebrow": "Services",
+        "svc_h1": "How I can help",
+        "svc_lead": "I work on systems, not one-off pages. I can start from scratch or take over what's already running.",
+        "svc_list_h": "What I do",
+        "price_h": "Price and warranty",
+        "price": [
+            ("tag", "Fixed price", "For every project I give a fixed price, agreed before we start: you pay for the result, not for hours, and there are no surprises on the invoice. The price depends on the scope, the integrations and what the system needs to do."),
+            ("shield", "3-month warranty", "If within 3 months of launch a bug turns up that comes from my implementation, I fix it at no extra cost."),
+        ],
+        "expect_h": "What you can expect",
+        "expect": ["A fixed, agreed price", "No unexpected extra work", "Progress you can always see",
+                   "Decisions with a purpose", "UX that's comfortable to use", "A 3-month warranty on my work"],
+        "about_title": "About me | Gabrielė Tamaševičiūtė · Codeart",
+        "about_desc": "Gabrielė Tamaševičiūtė, a developer in Vilnius: how I work, values, experience and education.",
+        "about_eyebrow": "About me",
+        "about_h1": "I'm Gabrielė, a developer from Vilnius",
+        "about_paras": [
+            "I build web and mobile systems from idea to a working product. My main focus is frontend, but I work across the whole product chain: I design user interfaces, system architecture, API interactions, data structures, and understand backend logic.",
+            "I'm currently building an internal business system from scratch as the sole frontend developer. I worked out the requirements myself, designed the architecture and user experience, spec out backend functionality, and align technical decisions with the backend developer.",
+        ],
+        "about_cv": "CV and portfolio",
+        "about_pdf": "Download CV (PDF)",
+        "how_h": "How I work",
+        "how": [
+            ("system", "I think about the whole system", "I look beyond the screen I'm building. I consider the data flow, the API, states, user permissions and how a decision will affect other parts of the system."),
+            ("search", "I understand the problem first", "When something doesn't work or works badly, I look for the cause first. Only then do I change the code. This matters most with existing and larger systems."),
+            ("code", "I can work with existing code", "Not everything has to start from scratch. I can get to grips with someone else's code and existing architecture, and improve or extend the system step by step."),
+            ("spark", "I keep up with modern technology", "I use AI tools in development and build AI features into products themselves, from simple LLM features to agents that can use the system's API."),
+        ],
+        "values_h": "Values",
+        "values": [
+            ("eye", "Clarity", "No ambiguity, clear on what's needed from the start."),
+            ("list", "Structure", "Work broken into steps, not chaos."),
+            ("shield", "Reliability", "I do what I say I will."),
+            ("chat", "Communication", "Quick replies, status always clear."),
+            ("code", "Code quality", "Clean, tested, reusable code."),
+            ("target", "Ownership", "I care about the outcome, not just the task."),
+        ],
+        "exp_h": "Experience",
+        "exp": [
+            ("Developer (Mid)", "UVS", "Mar 2026 – present", "Vilnius · React, TypeScript, C#/.NET",
+             "Building an internal business system from scratch as the sole frontend developer on the team: I designed the architecture and interface myself, worked out the requirements and planned the backend structure. I hand off tasks to a backend colleague, review the result, and own the frontend end to end."),
+            ("Web & mobile app developer", "Self-employed", "Mar 2025 – present", "Vilnius · React, Next.js, TypeScript, Tailwind, WordPress, Figma",
+             "Building web and mobile apps from idea to working product: I design the architecture and data structure, and build the frontend, backend and API, authentication and database logic. I built the “Kibinukai” ordering system and a travel app, where I owned the technical architecture and the full implementation. I run projects independently, from scoping the requirements to launch."),
+            ("Junior developer", "UVS", "Jun 2024 – Feb 2026", "Vilnius · C#/.NET, WPF (XAML), UI accessibility",
+             "Worked on a WPF-based SCO system: built and improved application screens using XAML/XML and C#, implemented new functionality and fixed existing issues. Analysed bugs, debugged the application and logs, and tracked down and resolved root causes. Also designed screen layouts, worked on UI accessibility, and prepared visual assets for the system."),
+            ("Planner", "Girteka Europe West", "Oct 2021 – Aug 2023", "Vilnius · Planning, priorities, communication", ""),
+            ("Administrator", "UAB “Jarinta”", "Mar 2021 – Sep 2021", "Vilnius", ""),
+        ],
+        "edu_h": "Education",
+        "edu": ("Vilnius University of Applied Sciences", "Software Systems", "2023–2027 · in progress"),
+        "lang_h": "Languages",
+        "langs": [("Lithuanian", "native"), ("English", "B2"), ("Russian", "B2")],
+        "contact_title": "Contact | Gabrielė Tamaševičiūtė · Codeart",
+        "contact_desc": "Tell me about your project: email, phone and a contact form. I usually reply within 24 hours.",
+        "contact_eyebrow": "Contact",
+        "contact_h1": "Have a project idea?",
+        "contact_lead": "Briefly describe what you need. No technical terms needed: a problem or an idea is enough.",
+        "direct_h": "Directly",
+        "f_phone": "Phone (optional)",
+        "next_h": "What happens next",
+        "next": [
+            ("You write", "Tell me briefly what you need. No technical details needed: a problem or an idea is enough."),
+            ("A short call", "In 20 minutes we pin down the need, the scope and whether I'm the right person for your project."),
+            ("A clear plan and price", "Within 24 hours I send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
+        ],
+    },
+}
+
+SERVICES = {
+    "lt": [
+        ("layers", "sand", "Nauja sistema nuo nulio", "Tinka, kai reikia ne puslapio, o veikiančio produkto.",
+         "Padedu išgryninti sprendimą, suprojektuoju sąsają ir sukuriu sistemą nuo frontendo iki API ir duomenų bazės.",
+         "Kai reikia ne dar vieno puslapio, o pilnai veikiančio produkto. Padedu išgryninti sprendimą, suprojektuoju vartotojo sąsają ir realizuoju sistemą nuo frontendo iki API bei duomenų.",
+         ["React / TypeScript", "API ir backend", "Autentifikacija ir teisės", "Duomenų modelis", "Integracijos", "AI funkcijos"]),
+        ("wrench", "rose", "Esamos sistemos gerinimas", "Tinka, kai sistema veikia, bet lėta ar sunkiai vystoma.",
+         "Pirmiausia randu, kur problema, tada tvarkau tai, kas iš tikrųjų trukdo.",
+         "Jei sistema jau veikia, bet yra lėta, sudėtinga, pilna pasikartojančio kodo ar sunkiai vystoma, pirmiausia išsiaiškinu, kur problema, o tada tvarkau tai, kas iš tikrųjų trukdo.",
+         ["Našumo gerinimas", "Kodo refaktoringas", "Bug'ų paieška ir taisymas", "UX problemos", "API optimizavimas", "AI integracijos"]),
+        ("plus", "lavender", "Naujos funkcijos esamai sistemai", "Tinka, kai produkto nereikia perrašyti.",
+         "Perprantu esamą kodą ir kuriu naujas funkcijas, negriaudama to, kas jau veikia.",
+         "Kai produkto nereikia perrašyti, reikia tiesiog gerai į jį įsilieti. Perprantu esamą architektūrą, prisitaikau prie projekto struktūros ir kuriu naujas funkcijas negriaudama to, kas jau veikia.",
+         ["Nauji moduliai", "Frontend funkcijos", "Backend funkcijos", "Nauji API endpointai", "Integracijos", "AI agentai ir LLM"]),
+    ],
+    "en": [
+        ("layers", "sand", "A new system from scratch", "When you need a working product, not a web page.",
+         "I help pin down the solution, design the interface and build the system from frontend to API and database.",
+         "When you need a fully working product, not another web page. I help pin down the solution, design the user interface and build the system from frontend to API and data.",
+         ["React / TypeScript", "API and backend", "Authentication and permissions", "Data model", "Integrations", "AI features"]),
+        ("wrench", "rose", "Improving an existing system", "When the system works but is slow or hard to develop further.",
+         "First I find where the problem is, then I fix what actually gets in the way.",
+         "If the system already works but is slow, complicated, full of repeated code or hard to develop further, I first find out where the problem is, then fix what actually gets in the way.",
+         ["Performance", "Refactoring", "Finding and fixing bugs", "UX problems", "API optimisation", "AI integrations"]),
+        ("plus", "lavender", "New features for an existing system", "When the product doesn't need a rewrite.",
+         "I get to know the existing code and build new features without breaking what already works.",
+         "When the product doesn't need a rewrite, new work just has to fit in well. I learn the existing architecture, adapt to the project's structure and build new features without breaking what already works.",
+         ["New modules", "Frontend features", "Backend features", "New API endpoints", "Integrations", "AI agents and LLMs"]),
+    ],
+}
+
+
+# --------------------------------------------------------------------------
+# Shared chrome: header, footer, closing call to action
+# --------------------------------------------------------------------------
+
+def nav_href(key, lang):
+    if key == "guides":
+        return f"/{lang}/resources.html"
+    return url(key, lang)
+
+
+def brand(lang):
+    return (f'<a class="brand" href="{url("home", lang)}" aria-label="Gabrielė Tamaševičiūtė · Codeart, '
+            f'{C[lang]["home"].lower()}">'
+            '<span class="brand__mark" aria-hidden="true">GT</span>'
+            '<span class="brand__text"><span class="brand__name">Gabrielė <span class="brand__surname">'
+            'Tamaševičiūtė</span></span><span class="brand__co">Codeart</span></span></a>')
+
+
+def site_header(lang, key, current=None):
+    t, c = T[lang], C[lang]
+    links = []
+    menu = []
+    for i, (k, label) in enumerate(c["nav"], 1):
+        cur = ' aria-current="page"' if k == current else ""
+        links.append(f'<a href="{nav_href(k, lang)}"{cur}>{label}</a>')
+        menu.append(f'<a href="{nav_href(k, lang)}"{cur}><span class="mono" aria-hidden="true">0{i}</span>{label}</a>')
+    return f"""<a class="skip-link" href="#main">{t["skip"]}</a>
+<header class="site-header">
 <div class="container site-header__in">
-<a class="brand" href="{url("home", lang)}">Gabrielė Tamaševičiūtė</a>
+{brand(lang)}
 <nav class="site-nav" aria-label="{t["nav_label"]}">
 <div class="site-nav__links">
-{nav_links}
-<span class="site-nav__indicator" aria-hidden="true"></span>
+{chr(10).join(links)}
 </div>
-{lang_link(lang, "home")}
-<a class="btn" href="#{ids["contact"]}">{t["cta"]}</a>
+{lang_link(lang, key)}
+<a class="btn" href="{url("contact", lang)}">{t["cta"]}</a>
 </nav>
 <button class="menu-toggle" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="{t["menu_open"]}">{ICON_MENU}</button>
 </div>
 </header>
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="{t["menu"]}" hidden>
 <div class="mobile-menu__bar">
-<a class="brand" href="{url("home", lang)}">Gabrielė Tamaševičiūtė</a>
+{brand(lang)}
 <button class="menu-toggle" type="button" data-menu-close aria-label="{t["menu_close"]}">{ICON_CLOSE}</button>
 </div>
 <nav class="mobile-menu__nav" aria-label="{t["nav_label"]}">
-{menu_links}
+{chr(10).join(menu)}
 </nav>
 <div class="mobile-menu__foot">
-{lang_link(lang, "home")}
-<a class="btn" href="#{ids["contact"]}">{t["cta"]}</a>
+{lang_link(lang, key)}
+<a class="btn" href="{url("contact", lang)}">{t["cta"]}</a>
 </div>
 </div>"""
+
+
+def contact_form(lang, *, phone=False, cls="form"):
+    t, c = T[lang], C[lang]
+    phone_field = ""
+    if phone:
+        phone_field = f'<label class="field">{c["f_phone"]}<input type="tel" name="phone" autocomplete="tel"></label>'
+    return f"""<form class="{cls}" data-contact action="{FORMSPREE}" method="POST" data-msg-sending="{esc(t["f_sending"])}" data-msg-ok="{esc(t["f_ok"])}" data-msg-fail="{esc(t["f_fail"])}" data-msg-invalid="{esc(t["f_invalid"])}">
+<div class="form__row">
+<label class="field">{t["f_name"]}<input type="text" name="name" autocomplete="name" required></label>
+<label class="field">{t["f_email"]}<input type="email" name="email" autocomplete="email" required></label>
+</div>
+{phone_field}
+<label class="field">{t["f_msg"]}<textarea name="message" rows="6" required></textarea></label>
+<div class="form__hp" aria-hidden="true"><label>{t["f_hp"]}<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+<input type="hidden" name="_subject" value="{esc(t["f_subject"])}">
+<div><button class="btn btn--lg" type="submit">{t["f_send"]}</button></div>
+<p class="form__status" role="status" aria-live="polite"></p>
+</form>"""
+
+
+def contact_list(lang, keys=None, cls="contact-list"):
+    items = []
+    for ico, label, value, href in C[lang]["contact_items"]:
+        if keys and ico not in keys:
+            continue
+        ext = ' target="_blank" rel="me noopener"' if href and href.startswith("http") else ""
+        val = f'<a href="{href}"{ext}>{value}</a>' if href else f"<span>{value}</span>"
+        items.append(f'<li><span class="contact-list__ico">{icon(ico)}</span>'
+                     f'<span class="contact-list__body"><span class="contact-list__label">{label}</span>{val}</span></li>')
+    return f'<ul class="{cls}">' + "".join(items) + "</ul>"
+
+
+def socials(lang):
+    out = []
+    for ico, label, value, href in C[lang]["contact_items"]:
+        if ico in ("github", "linkedin", "tiktok", "mail"):
+            ext = ' target="_blank" rel="me noopener"' if href.startswith("http") else ""
+            out.append(f'<a class="social" href="{href}"{ext} aria-label="{label}" title="{label}">{icon(ico)}</a>')
+    return '<div class="socials">' + "".join(out) + "</div>"
+
+
+def cta_band(lang):
+    c = C[lang]
+    return f"""<section class="cta-band" aria-labelledby="cta-title">
+<div class="container cta-band__in" data-reveal>
+<div class="cta-band__blob">{blob("b", "apricot")}</div>
+<div class="cta-band__text">
+<h2 class="h2" id="cta-title">{c["cta_h"]}</h2>
+<p class="lead">{c["cta_p"]}</p>
+</div>
+<a class="btn btn--lg" href="{url("contact", lang)}">{c["cta_btn"]} {icon("arrow", 18)}</a>
+</div>
+</section>"""
+
+
+def site_footer(lang, key):
+    t, c = T[lang], C[lang]
+    links = [f'<li><a href="{url("home", lang)}">{c["home"]}</a></li>'] + [
+        f'<li><a href="{nav_href(k, lang)}">{label}</a></li>' for k, label in c["nav"]]
+    return f"""<footer class="footer">
+<div class="container footer__grid">
+<div class="footer__brand">
+{brand(lang)}
+<p>{c["tagline"]}</p>
+<p class="footer__status"><span class="dot" aria-hidden="true"></span>{c["status"]}</p>
+{socials(lang)}
+</div>
+<nav class="footer__links" aria-label="{c["links_h"]}">
+<h2 class="footer__h">{c["links_h"]}</h2>
+<ul>{"".join(links)}</ul>
+</nav>
+<div class="footer__contact">
+<h2 class="footer__h">{c["direct_h"]}</h2>
+{contact_list(lang, keys=("mail", "phone", "pin"), cls="contact-list contact-list--compact")}
+</div>
+<div class="footer__quick">
+<h2 class="footer__h">{c["quick_h"]}</h2>
+<p class="small">{c["quick_lead"]}</p>
+<form class="quick" data-contact action="{FORMSPREE}" method="POST" data-msg-sending="{esc(t["f_sending"])}" data-msg-ok="{esc(t["f_ok"])}" data-msg-fail="{esc(t["f_fail"])}" data-msg-invalid="{esc(t["f_invalid"])}">
+<label class="visually-hidden" for="quick-email-{lang}">{t["f_email"]}</label>
+<input id="quick-email-{lang}" type="email" name="email" autocomplete="email" placeholder="{t["f_email"]}" required>
+<label class="visually-hidden" for="quick-msg-{lang}">{c["quick_msg"]}</label>
+<textarea id="quick-msg-{lang}" name="message" rows="2" placeholder="{c["quick_msg"]}" required></textarea>
+<div class="form__hp" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+<input type="hidden" name="_subject" value="{esc(c["quick_subject"])}">
+<button class="btn" type="submit">{t["f_send"]}</button>
+<p class="form__status small" role="status" aria-live="polite"></p>
+</form>
+</div>
+</div>
+<div class="container">
+<div class="footer__bottom">
+<span>© {YEAR} Gabrielė Tamaševičiūtė · Codeart. {c["rights"]}.</span>
+<span class="footer__bottom-links"><a href="mailto:{EMAIL}">{EMAIL}</a>{lang_link(lang, key)}</span>
+</div>
+</div>
+</footer>"""
+
+
+def page_intro(eyebrow, h1, lead):
+    return f"""<section class="page-intro">
+<div class="container">
+<p class="mono page-intro__eyebrow" data-reveal>{eyebrow}</p>
+<h1 data-reveal class="d1">{h1}</h1>
+<p class="lead page-intro__lead d2" data-reveal>{lead}</p>
+</div>
+</section>"""
+
+
+def service_cards(lang, *, long=False):
+    c = C[lang]
+    cards = []
+    for i, (ico, tone, h, fit, short, longtext, tags) in enumerate(SERVICES[lang]):
+        tag_li = "".join(f"<li>{x}</li>" for x in tags)
+        link = (f'<a class="link service-card__link" href="{url("contact", lang)}">{c["svc_cta"]}</a>'
+                if long else "")
+        cards.append(f"""<article class="service-card{(' d' + str(i)) if i else ''}" data-reveal>
+{icon_blob(ico, tone)}
+<h3>{h}</h3>
+<p class="small service-card__fit">{fit}</p>
+<p class="service-card__text">{longtext if long else short}</p>
+<p class="label-mono service-card__inc">{c["includes"]}</p>
+<ul class="tags service-card__tags">{tag_li}</ul>
+{link}
+</article>""")
+    return '<div class="service-cards">' + "\n".join(cards) + "</div>"
+
+
+def timeline(steps, *, cols=4):
+    items = "\n".join(
+        f"""<li class="tl__step{(' d' + str(i)) if i else ''}" data-reveal>
+<span class="tl__num">{i + 1:02d}</span>
+<h3>{h}</h3>
+<p>{p}</p>
+</li>""" for i, (h, p) in enumerate(steps))
+    return f'<ol class="tl tl--{cols}">\n{items}\n</ol>'
+
+
+def faq_block(lang, prefix="faq"):
+    items = []
+    for i, (q, a) in enumerate(T[lang]["faq"], 1):
+        items.append(f"""<div class="faq__item">
+<h3 class="faq__q"><button class="faq__btn" type="button" data-faq aria-expanded="true" aria-controls="{prefix}-{i}">{q}{ICON_PLUS}</button></h3>
+<div class="faq__a" id="{prefix}-{i}"><p>{a}</p></div>
+</div>""")
+    return '<div class="faq">\n' + "\n".join(items) + "\n</div>"
+
+
+def sec_head(num, title, hid, extra=""):
+    return (f'<div class="sec-head{extra}" data-reveal><span class="mono" aria-hidden="true">{num} —</span>'
+            f'<h2 class="h2" id="{hid}">{title}</h2></div>')
+
+
+def assemble(lang, key, title, desc, body, *, jsonld=None, og_type="website", body_class="", current=None, cta=False):
+    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type)
+    cls = f' class="{body_class}"' if body_class else ""
+    page += f"<body{cls}>\n{site_header(lang, key, current)}\n<main id=\"main\">\n{body}\n</main>\n"
+    if cta:
+        page += cta_band(lang) + "\n"
+    page += site_footer(lang, key) + "\n</body>\n</html>\n"
+    write(ROUTES[key][lang], page)
+
+
+# --------------------------------------------------------------------------
+# Home page
+# --------------------------------------------------------------------------
+
+def home(lang):
+    t, c = T[lang], C[lang]
+    ids = t["ids"]
 
     hero = f"""<section class="hero" aria-labelledby="hero-title">
 <div class="container grid hero__grid">
@@ -415,10 +889,10 @@ def home(lang):
 <h1 class="hero__title" id="hero-title" data-reveal>{t["h1"]}</h1>
 <p class="lead hero__lead d1" data-reveal>{t["lead"]}</p>
 <div class="hero__ctas d2" data-reveal>
-<a class="btn btn--lg" href="#{ids["contact"]}">{t["cta"]}</a>
+<a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
 <a class="link-underline" href="#{ids["work"]}">{t["see_work"]}</a>
 </div>
-<p class="small hero__note d3" data-reveal>{t["hero_note"]}</p>
+<p class="small hero__note d3" data-reveal><span class="dot" aria-hidden="true"></span>{t["hero_note"]}</p>
 </div>
 <div class="hero__stage d1" data-reveal="far">
 {blob("hero", "hero")}
@@ -447,43 +921,32 @@ def home(lang):
 </article>""")
     works = f"""<section class="section section--raised" id="{ids["work"]}" aria-labelledby="work-title">
 <div class="container">
-<div class="sec-head" data-reveal><span class="mono" aria-hidden="true">01 —</span><h2 class="h2" id="work-title">{t["work_h"]}</h2></div>
+{sec_head("01", t["work_h"], "work-title")}
 {chr(10).join(rows)}
 <div class="work-all"><a class="link" href="{url("portfolio", lang)}">{t["all_projects"]}</a></div>
 </div>
 </section>"""
 
-    svc = "\n".join(
-        f"""<div class="service{(' d' + str(i)) if i else ''}" data-reveal>
-<h3>{h}</h3>
-<p class="small service__fit">{fit}</p>
-<p class="service__text">{txt}</p>
-</div>""" for i, (h, fit, txt) in enumerate(t["services"]))
     services = f"""<section class="section" id="{ids["services"]}" aria-labelledby="services-title">
 <div class="container">
-<div class="sec-head" data-reveal><span class="mono" aria-hidden="true">02 —</span><h2 class="h2" id="services-title">{t["services_h"]}</h2></div>
-<div class="grid services">
-{svc}
-</div>
+{sec_head("02", t["services_h"], "services-title")}
+{service_cards(lang)}
+<div class="work-all"><a class="link" href="{url("services", lang)}">{c["services_more"]}</a></div>
 </div>
 </section>"""
 
-    st = "\n".join(
-        f"""<li class="step{(' d' + str(i)) if i else ''}" data-reveal>
-<span class="mono">{i + 1}</span>
-<h3>{h}</h3>
-<p>{p}</p>
-</li>""" for i, (h, p) in enumerate(t["steps"]))
     steps = f"""<section class="section section--raised" aria-labelledby="steps-title">
 <div class="container">
-<div class="sec-head" data-reveal><span class="mono" aria-hidden="true">03 —</span><h2 class="h2" id="steps-title">{t["steps_h"]}</h2></div>
-<ol class="grid steps">
-{st}
-</ol>
+{sec_head("03", t["steps_h"], "steps-title")}
+{timeline(t["steps"])}
+<div class="tl-cta" data-reveal>
+<p>{icon("clock")}{c["steps_cta_note"]}</p>
+<a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
+</div>
 </div>
 </section>"""
 
-    facts = "".join(f"<li>{f}</li>" for f in t["facts"])
+    facts = "".join(f"<li>{icon('check', 18)}{f}</li>" for f in t["facts"])
     about = f"""<section class="section" id="{ids["about"]}" aria-labelledby="about-title">
 <div class="container grid about">
 <div class="about__media" data-reveal="far">
@@ -491,27 +954,22 @@ def home(lang):
 {img("about", t["about_alt"], "(max-width: 759px) 88vw, 340px")}
 </div>
 <div class="about__text d1" data-reveal>
-<div class="sec-head sec-head--tight"><span class="mono" aria-hidden="true">04 —</span><h2 class="h2" id="about-title">{t["about_h"]}</h2></div>
+{sec_head("04", t["about_h"], "about-title", " sec-head--tight")}
 <p class="lead">{t["about_text"]}</p>
 <ul class="facts">{facts}</ul>
-<a class="link" href="{url("portfolio", lang)}">{t["about_more"]}</a>
+<div class="about__links">
+<a class="link" href="{url("about", lang)}">{t["about_more"]}</a>
+<a class="link" href="{url("portfolio", lang)}">{c["about_cv"]} →</a>
+</div>
 </div>
 </div>
 </section>"""
 
-    items = []
-    for i, (q, a) in enumerate(t["faq"], 1):
-        items.append(f"""<div class="faq__item">
-<h3 class="faq__q"><button class="faq__btn" type="button" data-faq aria-expanded="true" aria-controls="faq-{i}">{q}{ICON_PLUS}</button></h3>
-<div class="faq__a" id="faq-{i}"><p>{todo(a)}</p></div>
-</div>""")
     faq = f"""<section class="section section--raised" id="{ids["faq"]}" aria-labelledby="faq-title">
 <div class="container grid">
 <div class="faq-wrap" data-reveal>
-<div class="sec-head"><span class="mono" aria-hidden="true">05 —</span><h2 class="h2" id="faq-title">{t["faq_h"]}</h2></div>
-<div class="faq">
-{chr(10).join(items)}
-</div>
+{sec_head("05", t["faq_h"], "faq-title").replace(' data-reveal', '')}
+{faq_block(lang)}
 </div>
 </div>
 </section>"""
@@ -519,39 +977,15 @@ def home(lang):
     contact = f"""<section class="section" id="{ids["contact"]}" aria-labelledby="contact-title">
 <div class="container grid contact">
 <div class="contact__text" data-reveal>
-<div class="sec-head sec-head--tight"><span class="mono" aria-hidden="true">06 —</span><h2 class="h2" id="contact-title">{t["contact_h"]}</h2></div>
-<p class="lead">{todo(t["contact_lead"])}</p>
-<ul class="contact__links">
-<li><a class="link-plain" href="mailto:{EMAIL}">{EMAIL}</a></li>
-<li><a class="link-plain" href="{LINKEDIN}" rel="me noopener" target="_blank">LinkedIn</a></li>
-<li><a class="link-plain" href="{GITHUB}" rel="me noopener" target="_blank">github.com/gabwowce</a></li>
-</ul>
+{sec_head("06", t["contact_h"], "contact-title", " sec-head--tight").replace(' data-reveal', '')}
+<p class="lead">{t["contact_lead"]}</p>
+{contact_list(lang, keys=("mail", "phone", "linkedin", "github"))}
 </div>
-<form class="form d1" data-reveal data-contact action="{FORMSPREE}" method="POST" data-msg-sending="{esc(t["f_sending"])}" data-msg-ok="{esc(t["f_ok"])}" data-msg-fail="{esc(t["f_fail"])}" data-msg-invalid="{esc(t["f_invalid"])}">
-<div class="form__row">
-<label class="field">{t["f_name"]}<input type="text" name="name" autocomplete="name" required></label>
-<label class="field">{t["f_email"]}<input type="email" name="email" autocomplete="email" required></label>
+<div class="contact__form d1" data-reveal>
+{contact_form(lang)}
 </div>
-<label class="field">{t["f_msg"]}<textarea name="message" rows="6" required></textarea></label>
-<div class="form__hp" aria-hidden="true"><label>{t["f_hp"]}<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-<input type="hidden" name="_subject" value="{esc(t["f_subject"])}">
-<div><button class="btn" type="submit">{t["f_send"]}</button></div>
-<p class="form__status" role="status" aria-live="polite"></p>
-</form>
 </div>
 </section>"""
-
-    footer = f"""<footer class="site-footer">
-<div class="container site-footer__in">
-<span>Gabrielė Tamaševičiūtė · © {YEAR}</span>
-<div class="site-footer__links">
-<a class="link-plain" href="{url("portfolio", lang)}">{t["footer_cv"]}</a>
-<a class="muted-link" href="{t["guides_url"]}">{t["footer_guides"]}</a>
-<a class="muted-link" href="mailto:{EMAIL}">{EMAIL}</a>
-{lang_link(lang, "home")}
-</div>
-</div>
-</footer>"""
 
     jsonld = [
         {
@@ -570,6 +1004,7 @@ def home(lang):
             "url": SITE + url("home", lang),
             "image": SITE + "/img/og-cover.jpg",
             "email": EMAIL,
+            "telephone": PHONE,
             "priceRange": "$$",
             "address": {"@type": "PostalAddress", "addressLocality": "Vilnius", "addressCountry": "LT"},
             "areaServed": [{"@type": "Country", "name": "Lietuva" if lang == "lt" else "Lithuania"}],
@@ -579,11 +1014,161 @@ def home(lang):
         },
         person_ld(lang),
     ]
+    assemble(lang, "home", t["home_title"], t["home_desc"],
+             "\n".join([hero, works, services, steps, about, faq, contact]), jsonld=jsonld)
 
-    page = head(lang, "home", t["home_title"], t["home_desc"], jsonld=jsonld)
-    page += "<body>\n" + header + '\n<main id="main">\n' + "\n".join(
-        [hero, works, services, steps, about, faq, contact]) + "\n</main>\n" + footer + "\n</body>\n</html>\n"
-    write(ROUTES["home"][lang], page)
+
+# --------------------------------------------------------------------------
+# Services, About and Contact pages
+# --------------------------------------------------------------------------
+
+def services_page(lang):
+    t, c = T[lang], C[lang]
+    price = "\n".join(f"""<article class="info-card{(' d' + str(i)) if i else ''}" data-reveal>
+{icon_blob(ico, "sand" if i == 0 else "rose")}
+<h3>{h}</h3>
+<p>{p}</p>
+</article>""" for i, (ico, h, p) in enumerate(c["price"]))
+    expect = "".join(f"<li>{icon('check', 18)}{x}</li>" for x in c["expect"])
+    body = f"""{page_intro(c["svc_eyebrow"], c["svc_h1"], c["svc_lead"])}
+<section class="section section--raised" aria-labelledby="svc-list">
+<div class="container">
+{sec_head("01", c["svc_list_h"], "svc-list")}
+{service_cards(lang, long=True)}
+</div>
+</section>
+<section class="section" aria-labelledby="svc-steps">
+<div class="container">
+{sec_head("02", t["steps_h"], "svc-steps")}
+{timeline(t["steps"])}
+</div>
+</section>
+<section class="section section--raised" aria-labelledby="svc-price">
+<div class="container">
+{sec_head("03", c["price_h"], "svc-price")}
+<div class="info-cards">
+{price}
+<article class="info-card info-card--list d2" data-reveal>
+<h3>{c["expect_h"]}</h3>
+<ul class="checklist">{expect}</ul>
+</article>
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="svc-faq">
+<div class="container grid">
+<div class="faq-wrap" data-reveal>
+<div class="sec-head"><span class="mono" aria-hidden="true">04 —</span><h2 class="h2" id="svc-faq">{t["faq_h"]}</h2></div>
+{faq_block(lang)}
+</div>
+</div>
+</section>"""
+    assemble(lang, "services", c["svc_title"], c["svc_desc"], body, current="services", cta=True)
+
+
+def about_page(lang):
+    t, c = T[lang], C[lang]
+    paras = "".join(f"<p>{p}</p>" for p in c["about_paras"])
+    facts = "".join(f"<li>{icon('check', 18)}{f}</li>" for f in t["facts"])
+    how = "\n".join(f"""<article class="principle{(' d' + str(i % 2)) if i % 2 else ''}" data-reveal>
+{icon_blob(ico, ("sand", "rose", "lavender", "apricot")[i])}
+<div><h3>{h}</h3><p>{p}</p></div>
+</article>""" for i, (ico, h, p) in enumerate(c["how"]))
+    values = "\n".join(f"""<li class="value{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
+<span class="value__ico">{icon(ico)}</span>
+<div><h3>{h}</h3><p>{p}</p></div>
+</li>""" for i, (ico, h, p) in enumerate(c["values"]))
+    exp = "\n".join(f"""<li class="job" data-reveal>
+<div class="job__when"><span class="mono">{when}</span></div>
+<div class="job__body">
+<h3>{role} <span class="job__org">· {org}</span></h3>
+<p class="mono job__meta">{meta}</p>
+{f'<p class="job__text">{text}</p>' if text else ''}
+</div>
+</li>""" for role, org, when, meta, text in c["exp"])
+    uni, prog, years = c["edu"]
+    langs = "".join(f"<li><span>{a}</span><span class=\"mono\">{b}</span></li>" for a, b in c["langs"])
+    body = f"""<section class="page-intro page-intro--about">
+<div class="container grid about">
+<div class="about__media" data-reveal="far">
+{blob("a", "apricot")}
+{img("about", t["about_alt"], "(max-width: 759px) 88vw, 340px", lazy=False)}
+</div>
+<div class="about__text d1" data-reveal>
+<p class="mono page-intro__eyebrow">{c["about_eyebrow"]}</p>
+<h1>{c["about_h1"]}</h1>
+<div class="about__paras">{paras}</div>
+<ul class="facts">{facts}</ul>
+<div class="about__links">
+<a class="btn btn--lg" href="{url("portfolio", lang)}">{c["about_cv"]}</a>
+<a class="link" href="{pdf(lang)}">{icon("file", 18)} {c["about_pdf"]}</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section section--raised" aria-labelledby="how-title">
+<div class="container">
+{sec_head("01", c["how_h"], "how-title")}
+<div class="principles">
+{how}
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="values-title">
+<div class="container">
+{sec_head("02", c["values_h"], "values-title")}
+<ul class="values">
+{values}
+</ul>
+</div>
+</section>
+<section class="section section--raised" aria-labelledby="exp-title">
+<div class="container">
+{sec_head("03", c["exp_h"], "exp-title")}
+<ol class="jobs">
+{exp}
+</ol>
+<div class="edu" data-reveal>
+<div class="edu__block">
+<span class="edu__ico">{icon("cap")}</span>
+<div><h3>{c["edu_h"]}</h3><p><strong>{uni}</strong> · {prog}</p><p class="mono">{years}</p></div>
+</div>
+<div class="edu__block">
+<span class="edu__ico">{icon("globe")}</span>
+<div><h3>{c["lang_h"]}</h3><ul class="langs">{langs}</ul></div>
+</div>
+</div>
+</div>
+</section>"""
+    assemble(lang, "about", c["about_title"], c["about_desc"], body, current="about", cta=True,
+             jsonld=[person_ld(lang)], og_type="profile")
+
+
+def contact_page(lang):
+    t, c = T[lang], C[lang]
+    body = f"""{page_intro(c["contact_eyebrow"], c["contact_h1"], c["contact_lead"])}
+<section class="section section--raised" aria-label="{c["contact_eyebrow"]}">
+<div class="container grid contact contact--page">
+<div class="contact__text" data-reveal>
+<h2 class="contact__h">{c["direct_h"]}</h2>
+{contact_list(lang)}
+<div class="contact__meta">
+<p><span class="dot" aria-hidden="true"></span>{c["status"]}</p>
+<p>{icon("clock", 18)}{c["reply"]}</p>
+</div>
+</div>
+<div class="contact__form d1" data-reveal>
+{contact_form(lang, phone=True)}
+</div>
+</div>
+</section>
+<section class="section" aria-labelledby="next-title">
+<div class="container">
+{sec_head("01", c["next_h"], "next-title")}
+{timeline(c["next"], cols=3)}
+</div>
+</section>"""
+    assemble(lang, "contact", c["contact_title"], c["contact_desc"], body, current="contact")
 
 
 def person_ld(lang):
@@ -611,9 +1196,9 @@ P = {
     "lt": {
         "title": "Gabrielė Tamaševičiūtė – CV ir portfolio | Frontend / full-stack programuotoja",
         "desc": "Frontend / full-stack programuotoja Vilniuje (React, TypeScript): atrinkti darbai, patirtis, technologijos ir CV.",
-        "back": "← codeart.lt",
+        "eyebrow": "CV ir portfolio",
         "role": "Frontend / full-stack programuotoja · React, TypeScript",
-        "where": "Vilnius · [BŪSENA, pvz. Atvira pasiūlymams]",
+        "where": "Vilnius · Atvira naujiems projektams",
         "contacts_label": "Kontaktai",
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Atsisiųsti CV (PDF)",
@@ -681,9 +1266,9 @@ P = {
     "en": {
         "title": "Gabrielė Tamaševičiūtė – CV and portfolio | Frontend / full-stack developer",
         "desc": "Frontend / full-stack developer in Vilnius (React, TypeScript): selected work, experience, technologies and CV.",
-        "back": "← codeart.lt",
+        "eyebrow": "CV and portfolio",
         "role": "Frontend / full-stack developer · React, TypeScript",
-        "where": "Vilnius · [STATUS, e.g. Open to offers]",
+        "where": "Vilnius · Open to new projects",
         "contacts_label": "Contacts",
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Download CV (PDF)",
@@ -787,27 +1372,26 @@ def portfolio(lang):
         f'<div><dt>{g}</dt><dd>{"".join(f"<span class=\"tag\">{x}</span>" for x in items)}</dd></div>'
         for g, items in p["tech"])
 
-    body = f"""<body class="page-cv">
-<header class="cv-head">
+    body = f"""<section class="cv-head">
 <div class="container">
-<div class="cv-head__top"><a class="back" href="{url("home", lang)}">{p["back"]}</a>{lang_link(lang, "portfolio")}</div>
 <div class="cv-head__row">
 <div>
+<p class="mono page-intro__eyebrow">{p["eyebrow"]}</p>
 <h1>Gabrielė Tamaševičiūtė</h1>
 <p class="cv-head__role">{p["role"]}</p>
-<p class="cv-head__where">{todo(p["where"])}</p>
+<p class="cv-head__where"><span class="dot" aria-hidden="true"></span>{p["where"]}</p>
 <nav class="cv-head__links" aria-label="{p["contacts_label"]}">
-<a href="{pdf(lang)}">{p["cv_pdf"]}</a>
-<a href="{GITHUB}" target="_blank" rel="me noopener">GitHub</a>
-<a href="{LINKEDIN}" target="_blank" rel="me noopener">LinkedIn</a>
-<a href="mailto:{EMAIL}">{EMAIL}</a>
+<a href="{pdf(lang)}">{icon("file", 18)}{p["cv_pdf"]}</a>
+<a href="{GITHUB}" target="_blank" rel="me noopener">{icon("github", 18)}GitHub</a>
+<a href="{LINKEDIN}" target="_blank" rel="me noopener">{icon("linkedin", 18)}LinkedIn</a>
+<a href="mailto:{EMAIL}">{icon("mail", 18)}{EMAIL}</a>
 </nav>
 </div>
-<a class="btn btn--lg" href="{pdf(lang)}">{p["cv_dl"]}</a>
+<a class="btn btn--lg" href="{pdf(lang)}">{icon("file", 18)} {p["cv_dl"]}</a>
 </div>
 </div>
-</header>
-<main id="main" class="container">
+</section>
+<div class="container">
 <section class="cv-facts" aria-label="{p["facts_label"]}">
 <dl>
 {facts}
@@ -837,21 +1421,13 @@ def portfolio(lang):
 {tech}
 </dl>
 </section>
-</main>
-<footer class="cv-foot">
-<div class="container">
-<p><strong>{p["edu_l"]}</strong> · {p["edu"]}</p>
-<div class="cv-foot__actions">
-<a class="link-plain" href="mailto:{EMAIL}">{EMAIL}</a>
-<a class="btn btn--md" href="{pdf(lang)}">{p["cv_dl"]}</a>
-</div>
-</div>
-</footer>
-</body>
-</html>
-"""
-    page = head(lang, "portfolio", p["title"], p["desc"], jsonld=[person_ld(lang)], og_type="profile")
-    write(ROUTES["portfolio"][lang], page + body)
+<section class="cv-sec cv-edu" aria-labelledby="edu-title">
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">04 —</span><h2 id="edu-title">{p["edu_l"]}</h2></div>
+<p class="cv-edu__line">{icon("cap")}<span>{p["edu"]}</span></p>
+</section>
+</div>"""
+    assemble(lang, "portfolio", p["title"], p["desc"], body, jsonld=[person_ld(lang)],
+             og_type="profile", body_class="page-cv", current="portfolio")
 
 
 # --------------------------------------------------------------------------
@@ -936,9 +1512,9 @@ PROJECTS = {
         "next": "p_tik",
         "tone": "rose",
         "lt": {
-            "title": "Kalbų mokymosi platforma", "meta": "web platforma · [KLIENTINIS PROJEKTAS / KLIENTO PAVADINIMAS] · 2026",
+            "title": "Kalbų mokymosi platforma", "meta": "web platforma · klientinis projektas · 2026",
             "what": "Internetinė kalbų mokymosi sistema iš trijų dalių: vieša mokymų svetainė, mokinio mokymosi platforma ir turinio valdymo sistema. Kursus administratorius kuria pats, be programuotojo: sistema iš įvesto žodyno sudaro interaktyvias užduotis, valdo prieigą prie kursų per aktyvavimo kodus, seka mokinių progresą ir baigus lygį išduoda sertifikatą.",
-            "status": "[BŪSENA]",
+            "status": "Aktyviai vystoma.",
             "features": [
                 ("b", ("kalbos_admin", "Turinio valdymas: kairėje turinio medis, dešinėje pamokos užduočių sąrašas"),
                  "Užduotys iš žodyno automatiškai",
@@ -956,7 +1532,7 @@ PROJECTS = {
                   "Testai vertinami serveryje pagal praėjimo ribą.",
                   "Žodžiai kartojami intervalais 1 → 3 → 7 → 21 diena.",
                   "Baigus lygį išduodamas PDF sertifikatas su unikaliu numeriu."]),
-                ("a", "[Ekrano kopija: importo dialogo analizės žingsnis su santrauka, įspėjimais apie dublikatus ir laukiamais medijos failais]",
+                ("a", ("kalbos_import", "Turinio valdymas: turinio medis ir mygtukas „Importuoti iš Excel“"),
                  "Visas kursas iš vieno Excel failo",
                  "Visą kursą galima įkelti vienu Excel failu, o sistema prieš įrašydama parodo, kas bus sukurta.",
                  ["Tuščias ir pavyzdinis šablonas atsisiunčiami iš sistemos.",
@@ -977,9 +1553,9 @@ PROJECTS = {
             "desc": "Kalbų mokymosi platforma: vieša svetainė, mokinio platforma ir turinio valdymo sistema, kurioje užduotys sudaromos automatiškai iš žodyno. Next.js ir Supabase.",
         },
         "en": {
-            "title": "Language learning platform", "meta": "web platform · [CLIENT PROJECT / CLIENT NAME] · 2026",
+            "title": "Language learning platform", "meta": "web platform · client project · 2026",
             "what": "An online language learning system in three parts: a public course website, a learner platform and a content management system. The admin builds courses on their own, without a developer: the system turns the entered vocabulary into interactive exercises, manages course access through activation codes, tracks learner progress and issues a certificate when a level is completed.",
-            "status": "[STATUS]",
+            "status": "Actively developed.",
             "features": [
                 ("b", ("kalbos_admin", "Content management: the content tree on the left, the lesson's exercise list on the right"),
                  "Exercises generated from the vocabulary",
@@ -997,7 +1573,7 @@ PROJECTS = {
                   "Tests are graded on the server against a pass mark.",
                   "Words are reviewed at intervals of 1 → 3 → 7 → 21 days.",
                   "Completing a level issues a PDF certificate with a unique number."]),
-                ("a", "[Screenshot: the analysis step of the import dialog with a summary, duplicate warnings and expected media files]",
+                ("a", ("kalbos_import", "Content management: the content tree and the “Import from Excel” button"),
                  "A whole course from one Excel file",
                  "A whole course can be uploaded as a single Excel file, and before saving the system shows what will be created.",
                  ["A blank and a sample template can be downloaded from the system.",
@@ -1034,7 +1610,7 @@ PROJECTS = {
                   "Kopijuoti, įklijuoti, dubliuoti (Ctrl+C / V / D), pakeisti elemento failą išlaikant animacijas.",
                   "Garso bangų formos laiko juostoje.",
                   "Bet kurį veiksmą galima atšaukti ir pakartoti."]),
-                ("c", "[Ekrano kopija: Visuals biblioteka su miniatiūromis ir peržiūra su saugios zonos perdanga]",
+                ("c", ("tik_library", "TikMaker: elementų biblioteka ir vertikalaus video peržiūra su scena"),
                  "Dizaino sistema, kuri neleidžia suklysti",
                  "Video ne piešiamas nuo nulio, o surenkamas iš patikrintų dalių. Tekstas neišlenda už kadro, scenos nenukerpamos per anksti, o stilius visada vienodas.",
                  ["7 scenų tipai, 25 vizualų tipai (terminalas, kodo pakeitimai, naršyklės ir telefono maketai, diagramos, statistika) ir 7 fonai.",
@@ -1042,7 +1618,7 @@ PROJECTS = {
                   "Išdėstymo šablonai vizualą pritaiko saugiai zonai, kurios neuždengia TikTok sąsaja.",
                   "Elementas gali sklandžiai „keliauti“ iš scenos į sceną.",
                   "Redaktorius įspėja apie per trumpą sceną, perpildytą kadrą ar per ilgas kodo eilutes."]),
-                ("a", "[Ekrano kopija: peržiūra su subtitrais ir paryškintu žodžiu, garso klipas laiko juostoje, Render MP4 eigos būsenoje]",
+                ("a", ("tik_voice", "TikMaker: peržiūra, „Render MP4“ mygtukas ir scenos įgarsinimo tekstas inspektoriuje"),
                  "Iš teksto į balsą, subtitrus ir MP4",
                  "Iš parašyto teksto sistema pati sukuria įgarsinimą ir TikTok stiliaus subtitrus, o galutinį video atvaizduoja vienu mygtuku.",
                  ["Įgarsinimas generuojamas su ElevenLabs, balso nustatymai išsaugomi.",
@@ -1075,7 +1651,7 @@ PROJECTS = {
                   "Copy, paste, duplicate (Ctrl+C / V / D), and swap an element's file while keeping its animations.",
                   "Audio waveforms on the timeline.",
                   "Any action can be undone and redone."]),
-                ("c", "[Screenshot: the Visuals library with thumbnails and a preview with the safe-zone overlay]",
+                ("c", ("tik_library", "TikMaker: the element library and the vertical video preview of a scene"),
                  "A design system that doesn't let you make mistakes",
                  "Videos aren't drawn from scratch but assembled from proven parts. Text never spills out of the frame, scenes aren't cut too early, and the style is always consistent.",
                  ["7 scene types, 25 visual types (terminal, code diffs, browser and phone mockups, diagrams, statistics) and 7 backgrounds.",
@@ -1083,7 +1659,7 @@ PROJECTS = {
                   "Layout templates fit each visual into the safe zone that TikTok's interface doesn't cover.",
                   "An element can travel smoothly from one scene to the next.",
                   "The editor warns about a scene that's too short, an overcrowded frame or code lines that are too long."]),
-                ("a", "[Screenshot: the preview with subtitles and a highlighted word, an audio clip on the timeline, Render MP4 in progress]",
+                ("a", ("tik_voice", "TikMaker: the preview, the “Render MP4” button and the scene's voice-over text in the inspector"),
                  "From text to voice, subtitles and MP4",
                  "From written text the system creates the voice-over and TikTok-style subtitles itself, and renders the final video with one button.",
                  ["The voice-over is generated with ElevenLabs, and voice settings are saved.",
@@ -1179,7 +1755,7 @@ def project(key, lang):
         if isinstance(media, tuple):
             image_key, alt = media
             visual = framed(image_key, alt, "(max-width: 759px) 92vw, 760px",
-                            dark=(image_key == "tik"), crop=False)
+                            dark=image_key.startswith("tik"), crop=False)
         else:
             visual = f'<div class="shot-todo" role="img" aria-label="{esc(media.strip("[]"))}">{esc(media)}</div>'
         lst = ""
@@ -1203,18 +1779,9 @@ def project(key, lang):
         dec = "".join(f"<li>{b}</li>" for a, b in d["decisions"])
     note = f'<p class="lead p-tech__note">{d["note"]}</p>' if d.get("note") else ""
 
-    body = f"""<body class="page-project">
-<a class="skip-link" href="#main">{t["skip"]}</a>
-<header class="site-header site-header--compact">
-<div class="container site-header__in">
-<a class="brand" href="{url("home", lang)}">Gabrielė Tamaševičiūtė</a>
-<a class="btn" href="{url("home", lang)}#{t["ids"]["contact"]}">{t["cta"]}</a>
-</div>
-</header>
-<main id="main">
-<section class="p-intro">
+    body = f"""<section class="p-intro">
 <div class="container">
-<div class="p-intro__top"><a class="back" href="{url("portfolio", lang)}">{l["back"]}</a>{lang_link(lang, key)}</div>
+<a class="back" href="{url("portfolio", lang)}">{l["back"]}</a>
 <h1>{d["title"]}</h1>
 <p class="p-meta">{todo(d["meta"])}</p>
 <dl class="p-summary">
@@ -1242,16 +1809,12 @@ def project(key, lang):
 </div>
 </div>
 </section>
-</main>
-<footer class="p-foot">
+<section class="p-foot">
 <div class="container">
 <a class="next" href="{url(nxt, lang)}"><span class="mono">{l["next"]}</span><strong>{PROJECTS[nxt][lang]["title"]} →</strong></a>
-<a class="btn btn--lg" href="{url("home", lang)}#{t["ids"]["contact"]}">{t["cta"]}</a>
+<a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
 </div>
-</footer>
-</body>
-</html>
-"""
+</section>"""
     title = f'{d["title"]} – {l["suffix"]}'
     jsonld = [{
         "@context": "https://schema.org",
@@ -1262,8 +1825,8 @@ def project(key, lang):
         "inLanguage": lang,
         "creator": {"@id": SITE + "/#person"},
     }]
-    page = head(lang, key, title, d["desc"], jsonld=jsonld, og_type="article")
-    write(ROUTES[key][lang], page + body)
+    assemble(lang, key, title, d["desc"], body, jsonld=jsonld, og_type="article",
+             body_class="page-project", current="portfolio")
 
 
 # --------------------------------------------------------------------------
@@ -1297,7 +1860,7 @@ def sitemap():
         if "/resources" in loc or "/game.html" in loc:
             keep.append(loc)
     new = []
-    for key in ("home", "portfolio", "p_lang", "p_tik", "p_loy"):
+    for key in ("home", "portfolio", "services", "about", "contact", "p_lang", "p_tik", "p_loy"):
         for lang in ("lt", "en"):
             new.append(SITE + url(key, lang))
     urls = new + [u for u in keep if u not in new]
@@ -1314,14 +1877,12 @@ def main():
         home(lang)
         portfolio(lang)
         cv_sheet(lang)
+        services_page(lang)
+        about_page(lang)
+        contact_page(lang)
         for key in ("p_lang", "p_tik", "p_loy"):
             project(key, lang)
 
-    redirect("lt/about.html", "/lt/#apie", "lt")
-    redirect("lt/services.html", "/lt/#paslaugos", "lt")
-    redirect("lt/contact.html", "/lt/#kontaktai", "lt")
-    redirect("en/about.html", "/en/#about", "en")
-    redirect("en/contact.html", "/en/#contact", "en")
     redirect("portfolio/index.html", "/lt/portfolio.html", "lt")
     sitemap()
 
