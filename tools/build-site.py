@@ -154,6 +154,14 @@ def lang_link(lang, key, cls="lang"):
             f'aria-label="{label}">{text}</a>')
 
 
+def asset(path):
+    """Root-relative URL with a content hash, so a new deploy is never
+    hidden behind a stylesheet or script the browser has cached."""
+    import hashlib
+    digest = hashlib.md5((ROOT / path.lstrip("/")).read_bytes()).hexdigest()[:8]
+    return f"{path}?v={digest}"
+
+
 def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website"):
     canonical = SITE + url(key, lang)
     alts = ""
@@ -188,14 +196,14 @@ def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website
 <meta property="og:image" content="{SITE}/img/og-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/schibsted-grotesk/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="{asset("/css/site.css")}">
 <script>
   /* Hide reveal-on-scroll content only once we know JS runs. If site.js
      never arrives, put everything back after a moment. */
   document.documentElement.classList.add("js");
   setTimeout(function () {{ if (!window.__site) document.documentElement.classList.remove("js"); }}, 3000);
 </script>
-<script src="/js/site.js" defer></script>
+<script src="{asset("/js/site.js")}" defer></script>
 {ld}</head>
 """
 
