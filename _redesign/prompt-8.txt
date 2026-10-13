@@ -1,0 +1,129 @@
+Turiu tikslius projektų aprašymus. Atnaujink lojalumo sistemos ir TikMaker projektų puslapius (šablonas tas pats kaip kalbų platformos) ir jų korteles pagrindiniame bei /portfolio puslapyje. Tekstus naudok tokius, kokie yra, netrumpink faktų ir nepridėk naujų. Kalbų platformos kol kas nekeisk – jos aprašymą atsiųsiu vėliau.
+
+SVARBU: lojalumo sistema konfidenciali. Jokių kliento pavadinimų, logotipų, vidinių sistemos pavadinimų ar tikrų duomenų. Visos jos ekrano kopijos yra su uždengtais (išblukintais) duomenimis, ir taip turi likti.
+
+═════════════════════════════
+LOJALUMO VALDYMO SISTEMA
+═════════════════════════════
+
+Kortelė pagrindiniame puslapyje (užsakovui):
+Lojalumo valdymo sistema – Kortelės, klientai, akcijos, kuponai ir segmentai vienoje vietoje, o akciją galima išbandyti dar prieš ją paleidžiant. Žymos: React, TypeScript, .NET.
+
+Kortelė /portfolio:
+• Kas tai: lojalumo programų administravimo sistema (B2B)
+• Rolė: pagrindinė frontend programuotoja komandoje, dalis backend
+• Faktas: 3 kalbos · ~730 frontend testų
+• Žymos: React, TypeScript, RTK Query, AG Grid, .NET
+
+Projekto puslapis
+
+Meta: B2B backoffice · komandinis projektas · 2026
+Kas tai: Lojalumo programų administravimo sistema mažmeninei prekybai. Vienoje vietoje valdomos lojalumo kortelės, jų savininkai ir klientai, kuriamos akcijos, kuponai ir klientų segmentai, o akciją galima išbandyti dar prieš ją paleidžiant. Ekrano kopijose duomenys uždengti.
+Būsena: aktyviai vystoma.
+Dėmė: šilta smėlio / kreminė.
+
+01 — Akcijų kūrimas ir testavimas
+[Ekrano kopija: naujos akcijos vedlys, prekių žingsnis su konflikto ženkliuku]
+[Ekrano kopija 2: testavimo skydelis su krepšeliu – ac-loyalty-redacted-1400.webp]
+Įžanga: Rinkodaros specialistas pats sukuria akciją žingsnis po žingsnio. Prieš paleisdamas jis patikrina, kokią nuolaidą akcija duos ir ar ji nesikerta su kitomis akcijomis.
+• akcijos vedlys: pagrindinė informacija, tikslas, taikymo sritis, prekės, naudos ir išimtys;
+• prekės renkamos per kategorijų medį arba paiešką; sistema parodo, jei prekė jau dalyvauja kitoje akcijoje;
+• akcija išbandoma su pavyzdiniu pirkinių krepšeliu, skaičiuojant taip pat, kaip realaus pirkimo metu;
+• akcijų prioritetas keičiamas tempiant pele;
+• akcijos kuriamos ir iš šablonų, jas galima pristabdyti ir tęsti.
+
+02 — Kortelių generavimas ir konfigūracija
+[Ekrano kopija: kortelių generavimo vedlys arba kortelių sąrašas su masinio veiksmo dialogu – ac-cards-redacted-1400.webp kol kas]
+Įžanga: Kortelių partijos išleidžiamos pagal iš anksto paruoštus parametrų rinkinius, todėl nereikia kurti kiekvienos kortelės rankomis ir rečiau suklystama.
+• kortelių generavimo užduotis kuriama vedliu, eiga matoma užduočių sąraše;
+• parametrų rinkiniai, limitai, šablonai ir prefiksai;
+• kortelių tipai, kategorijos ir sąskaitų tipai su priskyrimais;
+• masiniai veiksmai su keliomis kortelėmis vienu metu;
+• kortelės įrašas: apžvalga, savininkas, sąskaitos, kuponai, transakcijos.
+
+03 — Teisės ir veiksmų istorija
+[Ekrano kopija: rolės leidimų redagavimas arba audito žurnalas su išskleistu įrašu]
+Įžanga: Kiekvienas naudotojas mato tik tai, ką jam leista, o visi duomenų pakeitimai užfiksuojami: kas, ką ir kada pakeitė.
+• rolės kuriamos žymint leidimus iš sąrašo;
+• meniu, skirtukai ir mygtukai rodomi pagal leidimus, o atidarius puslapį be teisės rodomas „Nėra prieigos“;
+• audito žurnale matosi kiekvieno lauko sena ir nauja reikšmė.
+
+Techninė dalis:
+
+• Rolė: pagrindinė frontend programuotoja komandoje su backend programuotoju. Sukūriau didžiąją dalį frontend'o: korteles, lojalumą, klientus, nustatymus, teises, bendrus komponentus ir vertimus. Backend'e – pradinė projekto struktūra, prisijungimas, duomenų užklausų dalis, audito ir talpyklos logika. Akcijų testavimą kūrėme kartu.
+
+• Sprendimai:
+  – API klientas generuojamas iš backend'o OpenAPI aprašo: frontend ir backend tipai visada sutampa, o API pakeitimas iškart matosi kaip TypeScript klaida. Ranka rašoma tik talpyklos atnaujinimo logika, ir ji padengta testu.
+  – Vienas navigacijos šaltinis: iš to paties aprašo kuriamas meniu, skirtukai ir maršrutų apsauga pagal leidimus, todėl naujas puslapis teisių kontrolę gauna automatiškai.
+  – Kokybės patikros build metu: savi skriptai ir ESLint taisyklė sustabdo build'ą, jei kartojamos žinomos klaidos; lentelių sumos ir vidurkiai aprašomi backend'e ir sugeneruojami frontend'ui.
+  – Integraciniai testai su skirtingais rolių leidimų rinkiniais tikrina, kad ekranai veikia ir naudotojui be dalies teisių.
+  – Puslapiai kraunami tik kai jų reikia, ilgi sąrašai virtualizuoti, yra tamsi tema ir mobilus maketas.
+
+• Mastas: 21 maršrutas ir ~100 skirtukų · 3 kalbos × ~2200 vertimo raktų · ~730 frontend testų · 700+ tipizuotų API operacijų.
+
+• Stackas: React, TypeScript, Vite, React Router, Redux Toolkit / RTK Query, Zustand, React Hook Form + Zod, Tailwind CSS, shadcn/ui, AG Grid, ECharts, dnd-kit · .NET / ASP.NET Core, Entity Framework Core, SQL Server · Vitest, Testing Library, MSW, Playwright, xUnit.
+
+═════════════════════════════
+TIKMAKER
+═════════════════════════════
+
+Kortelė pagrindiniame puslapyje (užsakovui):
+TikMaker – Trumpų vertikalių vaizdo įrašų redaktorius: video surenkamas iš paruoštų scenų, o balsas ir subtitrai sukuriami iš teksto. Žymos: React, Remotion, ElevenLabs.
+
+Kortelė /portfolio:
+• Kas tai: vaizdo redaktorius ir dizaino sistema TikTok / Reels įrašams
+• Rolė: viena, visas įrankis
+• Faktas: laiko juosta su keyframe'ais · AI balsas su žodžių subtitrais
+• Žymos: React, TypeScript, Remotion, tRPC, ElevenLabs
+
+Projekto puslapis
+
+Meta: vaizdo redaktorius · asmeninis projektas · 2026
+Kas tai: Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau.
+Būsena: darbo įrankis, kurį naudoju savo turiniui.
+Dėmė: švelni levandų / rausva. Redaktorius tamsus, todėl dėmė šviesi, kad tamsus ekranas ant jos išsiskirtų.
+
+01 — Laiko juosta kaip montavimo programoje
+[Ekrano kopija: Scenes režimas, išskleista laiko juosta su keliomis eilėmis, pažymėtas klipas ir keyframe deimantėliai]
+Įžanga: Profesionalios montavimo programos patirtis, pritaikyta šiai sistemai: kiekvieną elementą galima tiksliai sudėlioti laike be papildomų programų.
+• klipai tempiami laike ir tarp eilučių, prisitraukia prie scenos kraštų, žymeklio ir kitų klipų;
+• keyframe'ai poziciją ir mastelį keičia laike, juos galima tempti;
+• kopijuoti, įklijuoti, dubliuoti (Ctrl+C / V / D), pakeisti elemento failą išlaikant animacijas;
+• garso bangų formos laiko juostoje;
+• bet kurį veiksmą galima atšaukti ir pakartoti.
+
+02 — Dizaino sistema, kuri neleidžia suklysti
+[Ekrano kopija: Visuals biblioteka su miniatiūromis ir peržiūra su saugios zonos perdanga]
+Įžanga: Video ne piešiamas nuo nulio, o surenkamas iš patikrintų dalių. Tekstas neišlenda už kadro, scenos nenukerpamos per anksti, o stilius visada vienodas.
+• 7 scenų tipai, 25 vizualų tipai (terminalas, kodo pakeitimai, naršyklės ir telefono maketai, diagramos, statistika) ir 7 fonai;
+• scenos trukmė apskaičiuojama automatiškai iš balso teksto ir ekrane rodomo teksto skaitymo laiko;
+• išdėstymo šablonai vizualą pritaiko saugiai zonai, kurios neuždengia TikTok sąsaja;
+• elementas gali sklandžiai „keliauti“ iš scenos į sceną;
+• redaktorius įspėja apie per trumpą sceną, perpildytą kadrą ar per ilgas kodo eilutes.
+
+03 — Iš teksto į balsą, subtitrus ir MP4
+[Ekrano kopija: peržiūra su subtitrais ir paryškintu žodžiu, garso klipas laiko juostoje, Render MP4 eigos būsenoje]
+Įžanga: Iš parašyto teksto sistema pati sukuria įgarsinimą ir TikTok stiliaus subtitrus, o galutinį video atvaizduoja vienu mygtuku.
+• įgarsinimas generuojamas su ElevenLabs, balso nustatymai išsaugomi;
+• subtitrai kuriami iš kiekvieno žodžio laiko: 2–3 žodžių grupės, tariamas žodis paryškintas;
+• perkėlus ar apkarpius garso klipą, subtitrai pasislenka kartu;
+• MP4 atvaizduojamas fone, matosi eigos procentai.
+
+Techninė dalis:
+
+• Rolė: viena kūriau visą įrankį: redaktorių, video variklį, serverį ir testus.
+
+• Sprendimai:
+  – Video kaip duomenys: visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami, ne atmetami. AI agentas gali sugeneruoti projekto scenarijų, ir jis patikrinamas iš karto.
+  – Tipų saugus API: tRPC tarp serverio ir kliento, todėl pakeitus API klaida matoma kompiliuojant. Serverio duomenys – TanStack Query, redaguojama būsena – Zustand su atšaukimo istorija. Automatinis išsaugojimas tik tada, kai projektas pasikeitė.
+  – Išdėstymas, kurio negalima perpildyti: kiekvienas vizualas žino savo natūralų dydį, o šablonai pritaiko mastelį saugiai zonai.
+  – Viena animacijų sistema: įėjimai, išėjimai, keyframe'ai ir perėjimai turi po vieną įgyvendinimą, o scenų laikas skaičiuojamas vienoje vietoje.
+  – Automatika: įmesti failai iškart atsiranda redaktoriuje, įkelti ekrano įrašai perkoduojami tiksliam slinkimui per kadrus, API padengtas testais.
+
+• Mastas: 113 komponentų · 7 scenų ir 25 vizualų tipai · 44 vizualų šablonai · 109 testai · 27 API procedūros.
+
+• Stackas: React, TypeScript, Vite, Mantine, Tailwind CSS, Zustand, TanStack Query · Remotion · Node.js, Express, tRPC, Zod · Vitest, supertest · ffmpeg · ElevenLabs.
+
+═════════════════════════════
+
+Parodyk: abu projektų puslapius (desktop 1440 + mobile 390) ir atnaujintas abiejų projektų korteles pagrindiniame ir /portfolio puslapyje.
