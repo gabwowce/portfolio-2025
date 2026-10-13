@@ -1,0 +1,28 @@
+„Specifikacijų“ režimo nedarome, jį išmesk. Monospace sekcijų numerius ir aktyvios nuorodos liniją navigacijoje palik, o poraštės eilutę apie puslapį išmesk.
+
+Vietoj to išskirtinumą kuria trys dalykai iš pridėtų pavyzdžių. Pavyzdžiai yra tik nuotaikos nuoroda: rodyklių, ranka rašytų užrašų ir mažų oranžinių brūkšnelių iš jų NEIMAME.
+
+1. TIKRI PROJEKTŲ EKRANAI KAIP PAGRINDINIS VAIZDAS
+- Hero dalyje lojalumo sistemos ekranas rodomas nešiojamo kompiuterio makete (šviesus, realistiškas, minkštas šešėlis), ne plokščiame naršyklės rėmelyje.
+- Darbų sąraše kiekvienas projektas rodomas didele ekrano kopija su plonu naršyklės rėmeliu ir apvaliais kampais. Ekranai turi būti ryškūs ir dideli: tai pagrindinis turinys, ne iliustracija.
+- Darbai išdėstyti vertikaliu sąrašu, ne karusele (be „<“ „>“ mygtukų).
+
+2. ORGANINĖS FONINĖS FORMOS
+- Už hero kompiuterio ir už kiekvieno projekto ekrano yra minkšta, nelygių kraštų spalvota dėmė: banguoti, laisvi kraštai, kaip popieriaus skiautė ar akvarelės dėmė, ne apskritimas ir ne stačiakampis.
+- Kiekvienas projektas turi savo atspalvį, visi pastelinių, šiltų, prigesintų tonų:
+  • lojalumo sistema – šilta smėlio / kreminė;
+  • TikMaker – švelni levandų / rausva;
+  • keepmi – persikinė.
+- Dėmė šiek tiek išlenda už ekrano kraštų (~40–80 px), ekranas stovi ant jos. Jokių gradientų, švytėjimų ir šešėlių pačiai dėmei: vienalytė spalva, labai mažas kontrastas su fonu.
+- Formos statiškos. Daugiausia: užvedus pelę ant projekto, dėmė vos pastebimai pasikeičia (pvz. 2–3 % pasisuka ar padidėja per 400 ms). Jei sistemoje įjungtas prefers-reduced-motion – jokio judesio.
+- Tos pačios dėmės, tik mažesnės, gali pasikartoti dar vienoje ar dviejose vietose (pvz. už nuotraukos „Apie mane“ skiltyje), bet ne kiekvienoje sekcijoje.
+
+3. BOTANINĖ ILIUSTRACIJA
+- Pridedu augalo stiklinėje vazoje iliustraciją (permatomas fonas, alyvuogių / sepijos tonai). Ji naudojama kaip vienintelis dekoratyvinis objektas.
+- Hero dalyje augalas stovi šalia kompiuterio, tarsi ant to paties stalo: kairėje, šiek tiek už jo, apačia sulygiuota su kompiuterio apačia.
+- Dar daugiausia viena vieta visame puslapyje (pvz. maža versija kontakto sekcijoje). Ne daugiau.
+- Mobile hero dalyje augalas mažesnis arba nerodomas, jei trukdo ekranui.
+
+Spalvas suderink su šiomis formomis ir augalu: fonas šiltas kreminis, akcentas lieka terakotinis (#A9502F tekstui ir mygtukams), dėmių atspalviai neturi konkuruoti su akcentu.
+
+Viskas, kas buvo prašyta anksčiau, galioja: mobile hamburger meniu (uždarytas ir atidarytas), pilnas pagrindinis puslapis (desktop 1440 + mobile 390), /portfolio puslapis (desktop, mobile, A4), lojalumo sistemos projekto puslapis ir dizaino sistemos lapas. /portfolio puslapyje dėmių ir augalo nenaudok arba naudok minimaliai: jis turi atrodyti kaip tvarkingas dokumentas, o atspausdintame A4 jų visai nėra.
