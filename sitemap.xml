@@ -1,184 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://codeart.lt/lt/</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/services.html</loc>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/portfolio.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/portfolio.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/portfolio.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/portfolio.html"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/about.html"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/contact.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/contact.html"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/portfolio.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/portfolio.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/portfolio.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/portfolio.html"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/resources.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources.html"/>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources.html"/>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code-guardrails.html</loc>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/about.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/about.html"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/contact.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/contact.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/contact.html"/>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/resources/claude-code.html</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources/claude-code.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources/claude-code.html"/>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code.html</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources/claude-code.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources/claude-code.html"/>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/resources/start-coding.html</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources/start-coding.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources/start-coding.html"/>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/start-coding.html</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/resources/start-coding.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/resources/start-coding.html"/>
-  </url>
-  <url>
-    <loc>https://codeart.lt/lt/game.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/game.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/game.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/game.html"/>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/game.html</loc>
-    <xhtml:link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/game.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://codeart.lt/en/game.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://codeart.lt/en/game.html"/>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code-hooks.html</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code-intro.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code-context.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code-commands.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://codeart.lt/en/resources/claude-code-mcp.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://codeart.lt/lt/</loc></url>
+  <url><loc>https://codeart.lt/en/</loc></url>
+  <url><loc>https://codeart.lt/lt/portfolio.html</loc></url>
+  <url><loc>https://codeart.lt/en/portfolio.html</loc></url>
+  <url><loc>https://codeart.lt/lt/projektai/kalbu-platforma.html</loc></url>
+  <url><loc>https://codeart.lt/en/projects/language-platform.html</loc></url>
+  <url><loc>https://codeart.lt/lt/projektai/tikmaker.html</loc></url>
+  <url><loc>https://codeart.lt/en/projects/tikmaker.html</loc></url>
+  <url><loc>https://codeart.lt/lt/projektai/lojalumo-sistema.html</loc></url>
+  <url><loc>https://codeart.lt/en/projects/loyalty-system.html</loc></url>
+  <url><loc>https://codeart.lt/lt/resources.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code-guardrails.html</loc></url>
+  <url><loc>https://codeart.lt/lt/resources/claude-code.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code.html</loc></url>
+  <url><loc>https://codeart.lt/lt/resources/start-coding.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/start-coding.html</loc></url>
+  <url><loc>https://codeart.lt/lt/game.html</loc></url>
+  <url><loc>https://codeart.lt/en/game.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code-hooks.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code-intro.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code-context.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code-commands.html</loc></url>
+  <url><loc>https://codeart.lt/en/resources/claude-code-mcp.html</loc></url>
 </urlset>

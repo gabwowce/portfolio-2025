@@ -1,633 +1,183 @@
 <!doctype html>
 <html lang="lt">
-  <head>
-    <script>/* Applies a stored theme choice before first paint; with no stored choice the CSS media query decides. */(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-    <title>Portfolio | Web aplikacijos ir mobilios programėlės – Codeart</title>
-    <meta
-      name="description"
-      content="Projektai: web aplikacijos su API ir duomenų baze, mobilios programėlės (React Native), autentifikacija. Atrinkti darbai ir sprendimai."
-    />
-    <meta name="robots" content="index,follow" />
-
-    <link rel="canonical" href="https://codeart.lt/lt/portfolio.html" />
-    <link rel="alternate" href="https://codeart.lt/lt/portfolio.html" hreflang="lt" />
-    <link rel="alternate" href="https://codeart.lt/en/portfolio.html" hreflang="en" />
-    <link rel="alternate" href="https://codeart.lt/en/portfolio.html" hreflang="x-default" />
-    <!-- Canonical + hreflang -->
-    <!-- Ikonos / tema -->
-    <link rel="icon" href="../img/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
-    <meta name="theme-color" content="#f2f0e9" />
-
-    <!-- Open Graph / X -->
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="lt_LT" />
-    <meta property="og:title" content="Gabrielė – Portfolio" />
-    <meta
-      property="og:description"
-      content="Projektų rinkinys: web ir mobilūs produktai, sukurti nuo sąsajos iki API ir duomenų bazės."
-    />
-    <meta
-      property="og:url"
-      content="https://codeart.lt/lt/portfolio.html"
-    />
-    <meta
-      property="og:image"
-      content="https://codeart.lt/img/og-cover.jpg"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- Preload'ai -->
-    <link
-      rel="preload"
-      href="../fonts/clash/ClashGrotesk-Variable.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <!-- CSS/JS (be dvigubų //) -->
-    <script src="../js/script.js" defer></script>
-    <script src="../js/gallery-lightbox.js" defer></script>
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/about.css" />
-    <link rel="stylesheet" href="../css/aside.css" />
-    <link rel="stylesheet" href="../css/blog.css" />
-    <link rel="stylesheet" href="../css/contact-me.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/person.css" />
-    <link rel="stylesheet" href="../css/hero.css" />
-    <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/card.css" />
-    <link rel="stylesheet" href="../css/projects.css" />
-    <link rel="stylesheet" href="../css/stack.css" />
-    <link rel="stylesheet" href="../css/games.css" />
-
-    <!-- JSON-LD: CollectionPage -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "Portfolio – Gabrielė",
-        "inLanguage": "lt",
-        "url": "https://codeart.lt/lt/portfolio.html"
-      }
-    </script>
-  </head>
-
-  <body>
-    <!-- HEADER (be aside) -->
-    <header class="site-header">
-      <div class="container header-in">
-        <a id="brand" class="brand" href="/lt">
-          <span class="icon" aria-hidden="true">GT</span>
-          <span aria-label="Gabrielė Tamaševičiūtė">Gabrielė · Codeart</span>
-        </a>
-        <!-- Hamburger -->
-        <button
-          class="hamburger"
-          id="navToggle"
-          aria-label="Atverti meniu"
-          aria-controls="primaryNav"
-          aria-expanded="false"
-        >
-          <span class="hamburger__bar" aria-hidden="true"></span>
-          <span class="hamburger__bar" aria-hidden="true"></span>
-          <span class="hamburger__bar" aria-hidden="true"></span>
-        </button>
-
-        <nav class="main-nav">
-          <button class="nav-close" id="navClose" aria-label="Uždaryti meniu">
-            ✕
-          </button>
-          <a class="nav-link" href="/">Pagrindinis</a>
-          <a class="nav-link" href="about.html">Apie</a>
-          <a class="nav-link active" href="portfolio.html">Portfolio</a>
-          <a class="nav-link" href="services.html">Paslaugos</a>
-          <a class="nav-link" href="/lt/resources.html">Gidai</a>
-          <a class="nav-link" href="contact.html">Kontaktai</a>
-          
-          <!-- Language switcher -->
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Perjungti šviesią ir tamsią temą" title="Perjungti šviesią ir tamsią temą">
-              <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
-              <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
-          </button>
-          <div class="nav-lang">
-            <!-- noscript/fallback gali vesti į EN pradžią -->
-            <a
-              id="langSwitch"
-              class="nav-link"
-              href="/en/"
-              hreflang="en"
-              aria-label="Switch language"
-              >EN</a
-            >
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="card-hero hero u-stagger">
-      <div class="container hero-grid-mini">
-        <div class="hero-copy">
-          <h1 class="display-l u-reveal">PORTFOLIO</h1>
-        </div>
-        <figure class="hero-portrait u-reveal">
-          <img
-            src="../img/person/sitting-desk-loptop-finger-up.webp" srcset="../img/person/sitting-desk-loptop-finger-up-450.webp 450w, ../img/person/sitting-desk-loptop-finger-up.webp 900w" sizes="(max-width: 640px) 62vw, 420px"
-            style="transform: scaleX(-1)"
-            alt="Gabrielė prie darbo stalo, pakelusi pirštą su idėja"
-            width="900"
-            height="1174"
-            loading="eager"
-            decoding="sync"
-            fetchpriority="high"
-          />
-        </figure>
-      </div>
-    </section>
-
-    <main class="content content--projects container">
-      <section
-        class="articles u-stagger"
-        style="background-color: transparent; padding: 0"
-      >
-        <div class="segmented" role="tablist" aria-label="Projektų filtras">
-          <span class="seg-thumb" aria-hidden="true"></span>
-          <button
-            class="seg-btn is-active"
-            data-filter="all"
-            role="tab"
-            aria-selected="true"
-          >
-            Visi
-          </button>
-          <button
-            class="seg-btn"
-            data-filter="web"
-            role="tab"
-            aria-selected="false"
-          >
-            Web
-          </button>
-          <button
-            class="seg-btn"
-            data-filter="mobile"
-            role="tab"
-            aria-selected="false"
-          >
-            Mobile
-          </button>
-        </div>
-
-        <div class="featured-grid">
-<article class="project project-xl project--sys project--split project--featured u-stagger" id="loyalty-backoffice" data-cat="web">
-            <div class="proj-visual u-reveal">
-              <div class="mock" data-gallery='[{"src": "../img/ac-cards-redacted-1400.webp", "alt": "Lojalumo backoffice \u2014 korteli\u0173 s\u0105ra\u0161as ir kortel\u0117s \u012fra\u0161as, duomenys u\u017edengti"}, {"src": "../img/ac-loyalty-redacted-1400.webp", "alt": "Akcij\u0173 testavimas su virtualiu krep\u0161eliu, duomenys u\u017edengti"}]'>
-                <div class="mock__bar" aria-hidden="true">
-                  <span class="mock__dot"></span><span class="mock__dot"></span><span class="mock__dot"></span>
-                  <span class="mock__addr"></span>
-                </div>
-                <img
-                  src="../img/ac-cards-redacted-1400.webp"
-                  srcset="../img/ac-cards-redacted-700.webp 700w, ../img/ac-cards-redacted-1400.webp 1400w"
-                  sizes="(max-width: 899px) 100vw, 560px"
-                  alt="Lojalumo backoffice — kortelių sąrašas ir kortelės įrašas, duomenys uždengti"
-                  width="1400" height="773" loading="eager" decoding="async" fetchpriority="high"
-                />
-                <span class="thumb-count">1 / 2</span>
-              </div>
-            </div>
-            <div class="meta u-reveal u-stagger">
-              <span class="project-eyebrow">Iškirtinis projektas</span>
-              <h3 class="u-reveal">Lojalumo valdymo sistema — B2B backoffice</h3>
-              <p class="sub u-reveal">Web · klientinis projektas · ekranai su uždengtais duomenimis</p>
-              <div class="share share--overlay u-reveal" data-share>
-                <a class="share-btn" data-network="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook" title="Facebook">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 22v-8h3l1-4h-4V7.5c0-1 .3-1.5 1.7-1.5H17V2.2c-.4-.1-1.7-.2-3.2-.2C10.9 2 9 3.7 9 7v3H6v4h3v8h4z"/></svg>
-                </a>
-                <a class="share-btn" data-network="x" target="_blank" rel="noopener" aria-label="Share on X" title="X">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.8l-5.3-6.5L5.3 22H2l7.3-8.4L1 2h6.9l4.8 5.8L18.9 2zm-1.2 18h1.7L6.2 3.9H4.4L17.7 20z"/></svg>
-                </a>
-                <a class="share-btn" data-network="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="LinkedIn">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 22h5V7H0v15zM8 7h4.8v2.1h.1C13.6 7.8 15 6.7 17.4 6.7 22.4 6.7 23 10 23 14.3V22h-5v-6.7c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H8V7z"/></svg>
-                </a>
-              </div>
-              <p class="desc u-reveal"><strong class="proj-aspect">Mano vaidmuo.</strong> Ne tik frontend'as. Rašau technines užduotis backend'o kolegai, derinu API kontraktus prieš įgyvendinimą ir prižiūriu projektą kaip visumą. Pradiniame etape, kol dar nebuvo prisijungęs backend'o žmogus, dariau viena: nuo duomenų modelio iki UI.</p>
-              <p class="desc u-reveal"><strong class="proj-aspect">Kaip dirbame.</strong> Backend'as keičiasi kartu su frontend'u: kiekvieną naują lauką ar endpoint'ą aptariame iš anksto, API tipus generuojame tiesiai iš backend'o schemos, todėl neatitikimai išryškėja dar prieš kodą pasiekiant naudotoją. Sistema apima ~27 maršrutus 8 skirtingose srityse (kortelės, kuponai, akcijos, segmentai, užduotys ir kt.), o kiekvienas naujas funkcionalumas turi atsispindėti dviejose vietose vienodai: masiniame sąrašo veiksme ir detalės dialoge.</p>
-              <ul class="stack-flow u-reveal">
-                    <li class="stack-node">React + TS<small>backoffice UI</small></li>
-                    <li class="stack-node">RTK Query<small>tipai iš schemos</small></li>
-                    <li class="stack-node">AG Grid<small>didelės lentelės</small></li>
-                    <li class="stack-node">REST API<small>gyvas backend'as</small></li>
-              </ul>
-              <ul class="stack-facts u-reveal">
-                <li><strong>~27</strong> maršrutų</li>
-                <li><strong>8</strong> sričių</li>
-                <li><strong>2 × ~2200</strong> vertimo raktų</li>
-                <li><strong>Rolės</strong> ir auditas</li>
-              </ul>
-              <a class="btn-pill project-cta u-reveal" href="#loyalty-backoffice">Peržiūrėti projekto detales →</a>
-            </div>
-          </article>
-
-          <div class="portfolio-grid--lg">
-<article class="project project--grid u-stagger" id="tikmaker" data-cat="web">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/TikMaker/main-1400.webp" alt="TikMaker — vaizdo redaktorius su AI įgarsinimu" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">TikMaker — vaizdo redaktorius su AI įgarsinimu</h3>
-                <span class="grid-card__year">2026</span>
-              </div>
-              <span class="stack-badge">AI viduje</span>
-              <p class="grid-card__desc">Vaizdo redaktorius savo TikTok / Reels turiniui: ElevenLabs balso takelis integruotas tiesiai į timeline kaip bet kuris kitas efektas. Vidinis darbo įrankis, ne parduodamas produktas.</p>
-              <ul class="tags grid-card__tags"><li>React + TS</li><li>ElevenLabs</li><li>Remotion</li></ul>
-              <div class="grid-card__links">
-
-              </div>
-            </div>
-          </article>
-<article class="project project--grid u-stagger" id="keepmi" data-cat="web">
-            <div class="grid-card__thumb u-reveal" data-gallery='[{"src": "../img/keepmi/landing-hero-1400.webp", "alt": "keepmi \u2014 pradinis puslapis"}, {"src": "../img/keepmi/dashboard-1400.webp", "alt": "keepmi \u2014 organizatoriaus skydelis"}, {"src": "../img/keepmi/select-design-1400.webp", "alt": "keepmi \u2014 kvietimo dizaino parinkimas"}]'>
-              <img src="../img/keepmi/landing-hero-1400.webp" alt="keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as" loading="lazy" decoding="async" />
-              <span class="thumb-count">1 / 3</span>
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">keepmi — skaitmeniniai kvietimai ir švenčių svečių hub'as</h3>
-                <span class="grid-card__year">2026</span>
-              </div>
-              
-              <p class="grid-card__desc">Skaitmeniniai kvietimai su svečių palinkėjimų rinkimu iki šventės. Pačią dieną visas svečių hub'as vienoje vietoje: albumas, programa, viktorinos. Trys kalbos, Stripe apmokėjimai. Veikiantis MVP, realių naudotojų kol kas nėra.</p>
-              <ul class="tags grid-card__tags"><li>Next.js</li><li>next-intl</li><li>Supabase</li><li>Stripe</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://keepmi.app/" target="_blank" rel="noopener">Live demo ↗</a>
-              </div>
-            </div>
-          </article>
-          </div>
-          <div class="portfolio-grid">
-<article class="project project--grid u-stagger" id="kidcan" data-cat="mobile">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/kidcan.png" alt="Kidcan — Parent &amp; Kids mobile apps" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">Kidcan — Parent & Kids mobile apps</h3>
-                <span class="grid-card__year">2025</span>
-              </div>
-              
-              <p class="grid-card__desc">Šeimų saugumo sprendimas: tėvai realiu laiku mato vaiko buvimo vietą per atskirą tėvų ir vaikų aplikacijų porą. Sukurta nuo nulio: dizainas, dvi mobilios aplikacijos ir bendras serveris.</p>
-              <ul class="tags grid-card__tags"><li>React Native</li><li>Expo</li><li>Kotlin</li><li>Supabase</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://github.com/gabwowce/KidcanParentsExpo" target="_blank" rel="noopener">Parents App ↗</a>
-                <a class="grid-card__link" href="https://github.com/gabwowce/KidcanKids" target="_blank" rel="noopener">Kids App ↗</a>
-              </div>
-            </div>
-          </article>
-<article class="project project--grid u-stagger" id="kibinai" data-cat="web">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/kibinai-group.png" alt="Kibinai Vilnius — Headless React + WordPress" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">Kibinai Vilnius — Headless React + WordPress</h3>
-                <span class="grid-card__year">2025</span>
-              </div>
-              
-              <p class="grid-card__desc">Restorano svetainė realiam verslui: meniu, turinys ir naujienos redaguojami be programuotojo pagalbos, o lankytojai mato greitai kraunamą, SEO-optimizuotą svetainę.</p>
-              <ul class="tags grid-card__tags"><li>React</li><li>WordPress</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://kibinaivilnius.lt/" target="_blank" rel="noopener">Live demo ↗</a>
-                <a class="grid-card__link" href="https://github.com/gabwowce/Kibinukai" target="_blank" rel="noopener">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-<article class="project project--grid u-stagger" id="ltsa" data-cat="web">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/LTSA.png" alt="LTSA — (HTML + CSS + JS)" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">LTSA — (HTML + CSS + JS)</h3>
-                <span class="grid-card__year">2026</span>
-              </div>
-              
-              <p class="grid-card__desc">Interaktyvi viktorina su el. pašto rinkimu: atsakymai automatiškai suvedami į Google Sheets, be jokio rankinio duomenų tvarkymo.</p>
-              <ul class="tags grid-card__tags"><li>HTML</li><li>CSS</li><li>JS</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://ltsa.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
-              </div>
-            </div>
-          </article>
-<article class="project project--grid u-stagger" id="autorent" data-cat="web">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/Group 200.webp" alt="AutoRent — automobilių nuoma" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">AutoRent — automobilių nuoma</h3>
-                <span class="grid-card__year">2025</span>
-              </div>
-              
-              <p class="grid-card__desc">Automobilių nuomos platforma su pilnu rezervacijos srautu: katalogas, paieška, filtrai, datų pasirinkimas ir užsakymo patvirtinimas.</p>
-              <ul class="tags grid-card__tags"><li>React</li><li>FastAPI</li><li>PostgreSQL</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://car-rental-frontend-v2.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
-                <a class="grid-card__link" href="https://github.com/gabwowce/car-rental-frontend" target="_blank" rel="noopener">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-<article class="project project--grid u-stagger" id="travel-app" data-cat="mobile">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/123.webp" alt="Travel App — React Native (Expo)" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">Travel App — React Native (Expo)</h3>
-                <span class="grid-card__year">2025</span>
-              </div>
-              
-              <p class="grid-card__desc">Kelionių planavimo aplikacijos pagrindas, veikiantis tiek Android, tiek iOS iš vieno kodo. Paruošta struktūra registracijai, žemėlapiams ir maršrutams.</p>
-              <ul class="tags grid-card__tags"><li>React Native</li><li>Expo</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://github.com/gabwowce/travel-app-front" target="_blank" rel="noopener">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-<article class="project project--grid u-stagger" id="convertclimb" data-cat="mobile">
-            <div class="grid-card__thumb u-reveal">
-              <img src="../img/124.webp" alt="ConvertClimb — React Native (Expo)" loading="lazy" decoding="async" />
-            </div>
-            <div class="grid-card__body u-reveal">
-              <div class="grid-card__top">
-                <h3 class="grid-card__title">ConvertClimb — React Native (Expo)</h3>
-                <span class="grid-card__year">2025</span>
-              </div>
-              
-              <p class="grid-card__desc">Nišinis įrankis laipiotojams: akimirksniu konvertuoja sudėtingumo laipsnius tarp skirtingų šalių sistemų. Veikia be interneto ryšio.</p>
-              <ul class="tags grid-card__tags"><li>React Native</li><li>Expo</li></ul>
-              <div class="grid-card__links">
-                <a class="grid-card__link" href="https://github.com/gabwowce/ConvertClimb" target="_blank" rel="noopener">GitHub ↗</a>
-              </div>
-            </div>
-          </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ASIDE (tik čia, ne header) -->
-      <aside aria-label="Greita informacija" class="sidebar u-reveal">
-        <div class="card card--soft profile profile--soft">
-          <div class="avatar-neo-halo">
-            <img
-              class="avatar-neo"
-              src="../img/person/avatar-profile.webp"
-              alt="Gabrielė – profilio nuotrauka"
-              width="320"
-              height="320"
-              loading="lazy"
-              decoding="async"
-              fetchpriority="low"
-            />
-          </div>
-          <h3 class="name t-title" style="margin: 0">GABRIELĖ</h3>
-          <p class="muted">Programuotoja</p>
-          <p class="muted xsmall">Vilnius, Lietuva</p>
-          <div
-            class="badge-aside"
-            style="margin: 10px auto 0; display: inline-block"
-          >
-            Atvira naujiems projektams
-          </div>
-
-          <div class="cta-stack" style="margin-top: 14px">
-            <a class="btn" href="mailto:gt1230112301@gmail.com"
-              >Parašyti el. laišką</a
-            >
-            <!-- CV hidden until the updated file is ready; restore by removing this wrapper.
-<a
-              class="btn outline"
-              href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf"
-              download
-              >Atsisiųsti CV</a
-            >
--->
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <footer class="site-footer" role="contentinfo">
-      <section class="cta-contact">
-        <div class="container footer-card-flex">
-            <figure class="person-figure person-cta" aria-hidden="true">
-                <img src="../img/person/fingers-down-half-body.webp" srcset="../img/person/fingers-down-half-body-450.webp 450w, ../img/person/fingers-down-half-body.webp 900w" sizes="(max-width: 640px) 62vw, 420px" alt="" width="900" height="1173" loading="lazy" decoding="async">
-            </figure>
-          <div class="cta-contact__text">
-            <h3>Turite projekto idėją?</h3>
-            <p>Trumpai papasakokite apie projektą. Atsakau per 24 val. su darbų planu ir kaina.</p>
-          </div>
-          <a class="btn-pill" href="/lt/contact.html">Susisiekime →</a>
-        </div>
-      </section>
-
-      <div class="footer-in container">
-        <div class="footer-top">
-          <!-- Brand / About -->
-          <section>
-            <a class="brand" href="/lt/index.html">
-              <span class="icon" aria-hidden="true">GT</span>
-              <span aria-label="Gabrielė Tamaševičiūtė"
-                >Gabrielė · Codeart</span
-              >
-            </a>
-            <p class="brand-note">
-              Programuotoja ir produkto kūrėja. Dėmesys vartotojo patirčiai ir
-              kokybei.
-            </p>
-            <div class="socials" aria-label="Socialiniai saitai">
-              <a
-                class="soc"
-                href="https://github.com/gabwowce"
-                aria-label="GitHub"
-                title="GitHub"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0018 3.77 5.07 5.07 0 0017.91 1S16.73.65 14 2.48a13.38 13.38 0 00-5 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 3.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
-                  />
-                </svg>
-              </a>
-              <a
-                class="soc"
-                href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/"
-                aria-label="LinkedIn"
-                title="LinkedIn"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"
-                  />
-                  <rect x="2" y="9" width="4" height="12" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-              <a
-                class="soc"
-                href="mailto:gt1230112301@gmail.com"
-                aria-label="El. paštas"
-                title="El. paštas"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M4 4h16v16H4z" />
-                  <path d="M22 6L12 13 2 6" />
-                </svg>
-              </a>
-              <a class="soc" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.2 3.2v11.6a4.4 4.4 0 1 1-3.6-4.3"/><path d="M15.2 3.2c.3 2.4 2.2 4.3 4.6 4.6"/></svg>
-              </a>
-            </div>
-          </section>
-
-          <!-- Quick links -->
-          <nav class="footer-card" aria-labelledby="flinks">
-            <h3 id="flinks" class="footer-title">Nuorodos</h3>
-            <ul class="footer-list">
-              <li>
-                <a class="footer-link" href="/lt/index.html">Pagrindinis</a>
-              </li>
-              <li><a class="footer-link" href="/lt/about.html">Apie</a></li>
-              <li>
-                <a class="footer-link" href="/lt/portfolio.html">Portfolio</a>
-              </li>
-              <li>
-              </li>
-              <li><a class="footer-link" href="/lt/resources.html">Gidai</a></li>
-              <li>
-                <a class="footer-link" href="/lt/contact.html">Kontaktai</a>
-              </li>
-              <!-- CV hidden until the updated file is ready; restore by removing this wrapper.
-<li>
-                <a
-                  class="footer-link"
-                  href="../docs/CV-Gabrielė-Tamaševičiūtė.pdf"
-                  download
-                  >CV / Reziumė</a
-                >
-              </li>
--->
-            </ul>
-          </nav>
-
-          <!-- Newsletter / CTA -->
-          <section class="footer-card" aria-labelledby="fnews">
-            <h3 id="fnews" class="footer-title">Trumpa žinutė</h3>
-            <form
-              class="newsletter"
-              action="https://formspree.io/f/xeorkyne"
-              method="POST"
-            >
-              <input
-                class="input"
-                type="email"
-                name="email"
-                placeholder="El. paštas"
-                aria-label="El. paštas"
-                required
-              />
-              <input
-                class="input"
-                type="text"
-                name="Message"
-                placeholder="Žinutė"
-                aria-label="Žinutė"
-                required
-              />
-              <input type="text" name="_gotcha" style="display: none" />
-              <!-- honeypot -->
-              <button class="btn-pill" type="submit">Parašyk 👋</button>
-              <p class="form-note" role="status" aria-live="polite"></p>
-              <small class="brand-note">Parašyk — atrašau per 24 val.</small>
-            </form>
-          </section>
-        </div>
-
-        <div class="footer-bottom">
-          <span>© 2025 Gabrielė · Codeart</span>
-          <div class="mini-nav">
-            <a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
-  <script>
-    (function initShare() {
-      const encode = (s) => encodeURIComponent(s);
-
-      document.querySelectorAll("[data-share]").forEach((block) => {
-        const article = block.closest(".project");
-        if (!article) return;
-
-        const id = article.id;
-        const title =
-          article.querySelector("h3")?.textContent.trim() || "Project";
-        const img = article.querySelector("img");
-        const image = img
-          ? new URL(img.getAttribute("src"), location.href).href
-          : "";
-
-        const url = id
-          ? `${location.origin}${location.pathname}#${id}`
-          : location.href;
-
-        const urls = {
-          facebook: `https://www.facebook.com/sharer/sharer.php?u=${encode(url)}`,
-          x: `https://twitter.com/intent/tweet?url=${encode(url)}&text=${encode(title)}`,
-          linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encode(url)}`,
-          pinterest: `https://pinterest.com/pin/create/button/?url=${encode(url)}&media=${encode(image)}&description=${encode(title)}`,
-        };
-
-        block.querySelectorAll("[data-network]").forEach((a) => {
-          const net = a.getAttribute("data-network");
-          if (urls[net]) a.href = urls[net];
-        });
-
-        const copyBtn = block.querySelector('[data-action="copy"]');
-        if (copyBtn) {
-          copyBtn.addEventListener("click", async () => {
-            try {
-              await navigator.clipboard.writeText(url);
-              copyBtn.textContent = "Copied";
-              setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
-            } catch {
-              prompt("Copy link:", url);
-            }
-          });
-        }
-      });
-    })();
-  </script>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabrielė Tamaševičiūtė – CV ir portfolio | Frontend / full-stack programuotoja</title>
+<meta name="description" content="Frontend / full-stack programuotoja Vilniuje (React, TypeScript): atrinkti darbai, patirtis, technologijos ir CV.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://codeart.lt/lt/portfolio.html">
+<link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/portfolio.html">
+<link rel="alternate" hreflang="en" href="https://codeart.lt/en/portfolio.html">
+<link rel="alternate" hreflang="x-default" href="https://codeart.lt/lt/portfolio.html">
+<meta name="theme-color" content="#F6F0E6">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="lt_LT">
+<meta property="og:title" content="Gabrielė Tamaševičiūtė – CV ir portfolio | Frontend / full-stack programuotoja">
+<meta property="og:description" content="Frontend / full-stack programuotoja Vilniuje (React, TypeScript): atrinkti darbai, patirtis, technologijos ir CV.">
+<meta property="og:url" content="https://codeart.lt/lt/portfolio.html">
+<meta property="og:image" content="https://codeart.lt/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/schibsted-grotesk/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script>
+  /* Hide reveal-on-scroll content only once we know JS runs. If site.js
+     never arrives, put everything back after a moment. */
+  document.documentElement.classList.add("js");
+  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("js"); }, 3000);
+</script>
+<script src="/js/site.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://codeart.lt/#person",
+  "name": "Gabrielė Tamaševičiūtė",
+  "jobTitle": "Frontend / full-stack programuotoja",
+  "url": "https://codeart.lt/lt/portfolio.html",
+  "email": "gt1230112301@gmail.com",
+  "knowsLanguage": [
+    "lt",
+    "en"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vilnius",
+    "addressCountry": "LT"
+  },
+  "sameAs": [
+    "https://github.com/gabwowce",
+    "https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/",
+    "https://www.tiktok.com/@gabiebuilds"
+  ],
+  "knowsAbout": [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Web application development",
+    "Internal business systems",
+    "API integration",
+    "Supabase",
+    ".NET"
+  ]
+}
+</script>
+</head>
+<body class="page-cv">
+<header class="cv-head">
+<div class="container">
+<div class="cv-head__top"><a class="back" href="/lt/">← codeart.lt</a><a class="lang" href="/en/portfolio.html" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a></div>
+<div class="cv-head__row">
+<div>
+<h1>Gabrielė Tamaševičiūtė</h1>
+<p class="cv-head__role">Frontend / full-stack programuotoja · React, TypeScript</p>
+<p class="cv-head__where">Vilnius · <span class="todo">[BŪSENA, pvz. Atvira pasiūlymams]</span></p>
+<nav class="cv-head__links" aria-label="Kontaktai">
+<a href="/lt/cv.pdf">CV (PDF)</a>
+<a href="https://github.com/gabwowce" target="_blank" rel="me noopener">GitHub</a>
+<a href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" target="_blank" rel="me noopener">LinkedIn</a>
+<a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+</nav>
+</div>
+<a class="btn btn--lg" href="/lt/cv.pdf">Atsisiųsti CV (PDF)</a>
+</div>
+</div>
+</header>
+<main id="main" class="container">
+<section class="cv-facts" aria-label="Trumpai">
+<dl>
+<div><dt>Dabar</dt><dd>Programuotoja (Mid), UVS</dd></div>
+<div><dt>Patirtis</dt><dd>2+ m. profesionaliai</dd></div>
+<div><dt>Fokusas</dt><dd>Vidinės verslo sistemos</dd></div>
+<div><dt>Stackas</dt><dd>React, TypeScript, Next.js</dd></div>
+</dl>
+</section>
+<section class="cv-sec cv-sec--works" aria-labelledby="works-title">
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">01 —</span><h2 id="works-title">Atrinkti darbai</h2></div>
+<div class="cards">
+<article class="card card--a">
+<div class="card__media">
+<div class="blob blob--rose" aria-hidden="true"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><path d="M88.0 51.1C87.3 55.3 88.4 56.6 87.3 61.2C86.2 65.9 84.1 74.6 81.2 79.2C78.4 83.8 73.8 86.0 70.0 88.9C66.2 91.9 63.2 95.6 58.4 96.8C53.7 98.0 46.3 97.5 41.6 96.1C37.0 94.7 35.1 91.1 30.6 88.6C26.2 86.1 18.8 85.1 15.0 81.0C11.2 76.8 9.1 69.2 8.0 63.8C6.9 58.4 8.0 53.3 8.5 48.5C9.0 43.7 9.6 39.0 11.0 35.2C12.3 31.3 13.6 28.2 16.7 25.3C19.9 22.4 25.3 21.6 29.9 17.9C34.6 14.2 39.9 6.0 44.5 3.1C49.1 0.2 52.4 -0.2 57.4 0.5C62.5 1.2 69.9 4.7 74.9 7.3C79.9 10.0 84.5 11.7 87.2 16.5C89.9 21.3 90.9 30.3 91.1 36.1C91.2 41.9 88.6 46.9 88.0 51.1Z"/></svg></div>
+<div class="frame"><div class="frame__bar" aria-hidden="true"><span></span><span></span><span></span></div><div class="frame__screen"><img src="/img/site/kalbos-mokinys.webp" srcset="/img/site/kalbos-mokinys-840.webp 840w, /img/site/kalbos-mokinys.webp 1663w" sizes="(max-width: 759px) 88vw, 380px" width="1663" height="880" alt="Kalbų platformos mokinio pradžios ekranas su kurso žemėlapiu" decoding="async" loading="lazy"></div></div>
+</div>
+<h3>Kalbų mokymosi platforma</h3>
+<dl class="card__facts">
+<div><dt>Kas tai:</dt><dd>kalbų mokymosi platforma su turinio valdymo sistema</dd></div>
+<div><dt>Rolė:</dt><dd>viena, visa sistema</dd></div>
+<div><dt>Faktas:</dt><dd>9 užduočių tipai iš vieno žodyno · 433 testai</dd></div>
+</dl>
+<ul class="tags" aria-label="Technologijos"><li>Next.js</li><li>TypeScript</li><li>Supabase</li><li>PostgreSQL</li></ul>
+<div class="card__links"><a class="link" href="/lt/projektai/kalbu-platforma.html" aria-label="Skaityti plačiau: Kalbų mokymosi platforma">Skaityti plačiau →</a></div>
+</article>
+<article class="card card--b">
+<div class="card__media">
+<div class="blob blob--lavender" aria-hidden="true"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><path d="M94.6 48.5C94.5 53.7 94.0 61.9 92.6 67.3C91.3 72.7 89.5 77.3 86.6 80.8C83.7 84.2 80.1 86.4 75.2 88.2C70.2 90.0 62.5 91.5 56.9 91.7C51.3 91.9 45.6 90.9 41.6 89.3C37.6 87.6 37.2 84.2 32.9 81.9C28.7 79.5 21.0 78.0 16.2 75.1C11.4 72.2 6.7 68.1 4.3 64.3C1.9 60.6 1.8 57.9 1.8 52.7C1.8 47.5 1.7 39.0 4.1 33.3C6.5 27.6 12.2 21.4 16.1 18.3C20.0 15.2 23.4 15.8 27.6 14.6C31.8 13.4 36.4 12.2 41.3 11.2C46.3 10.2 52.3 8.2 57.1 8.6C61.9 8.9 66.1 11.3 70.2 13.4C74.3 15.5 77.9 17.4 81.8 21.2C85.7 25.0 91.4 31.7 93.5 36.3C95.6 40.8 94.8 43.3 94.6 48.5Z"/></svg></div>
+<div class="frame frame--dark"><div class="frame__bar" aria-hidden="true"><span></span><span></span><span></span></div><div class="frame__screen"><img src="/img/site/tikmaker-editor.webp" srcset="/img/site/tikmaker-editor-760.webp 760w, /img/site/tikmaker-editor.webp 1400w" sizes="(max-width: 759px) 88vw, 380px" width="1400" height="812" alt="TikMaker redaktorius su laiko juosta" decoding="async" loading="lazy"></div></div>
+</div>
+<h3>TikMaker</h3>
+<dl class="card__facts">
+<div><dt>Kas tai:</dt><dd>vaizdo redaktorius ir dizaino sistema TikTok / Reels įrašams</dd></div>
+<div><dt>Rolė:</dt><dd>viena, visas įrankis</dd></div>
+<div><dt>Faktas:</dt><dd>laiko juosta su keyframe'ais · AI balsas su žodžių subtitrais</dd></div>
+</dl>
+<ul class="tags" aria-label="Technologijos"><li>React</li><li>TypeScript</li><li>Remotion</li><li>tRPC</li><li>ElevenLabs</li></ul>
+<div class="card__links"><a class="link" href="/lt/projektai/tikmaker.html" aria-label="Skaityti plačiau: TikMaker">Skaityti plačiau →</a></div>
+</article>
+<article class="card card--c">
+<div class="card__media">
+<div class="blob blob--sand" aria-hidden="true"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><path d="M89.9 51.8C88.7 57.3 88.0 61.8 86.3 65.5C84.6 69.1 82.2 70.4 79.5 73.6C76.8 76.9 73.5 81.2 70.1 84.9C66.8 88.7 64.4 94.4 59.5 96.3C54.5 98.2 45.2 97.6 40.2 96.4C35.3 95.2 34.0 91.9 29.9 89.3C25.7 86.7 19.0 85.2 15.3 80.9C11.5 76.7 8.7 69.2 7.2 63.6C5.7 58.1 6.0 52.6 6.2 47.7C6.5 42.8 6.5 38.0 8.5 34.1C10.4 30.2 14.3 27.3 18.0 24.4C21.8 21.4 26.7 19.1 30.8 16.5C35.0 13.9 38.7 10.3 43.1 8.6C47.5 7.0 51.8 6.5 57.2 6.6C62.7 6.6 70.2 7.1 75.8 8.9C81.5 10.7 88.2 13.5 91.1 17.5C94.1 21.5 93.8 27.1 93.6 32.8C93.4 38.5 91.2 46.4 89.9 51.8Z"/></svg></div>
+<div class="frame"><div class="frame__bar" aria-hidden="true"><span></span><span></span><span></span></div><div class="frame__screen"><img src="/img/site/loyalty-cards.webp" srcset="/img/site/loyalty-cards-760.webp 760w, /img/site/loyalty-cards.webp 1400w" sizes="(max-width: 759px) 88vw, 380px" width="1400" height="773" alt="Lojalumo sistema: kortelių sąrašas, duomenys uždengti" decoding="async" loading="lazy"></div></div>
+</div>
+<h3>Lojalumo valdymo sistema</h3>
+<dl class="card__facts">
+<div><dt>Kas tai:</dt><dd>B2B administravimo sistema lojalumo programoms</dd></div>
+<div><dt>Rolė:</dt><dd>pagrindinė frontend programuotoja komandoje</dd></div>
+<div><dt>Faktas:</dt><dd>komandinis projektas · ~730 frontend testų</dd></div>
+</dl>
+<ul class="tags" aria-label="Technologijos"><li>React</li><li>TypeScript</li><li>RTK Query</li><li>AG Grid</li><li>.NET</li></ul>
+<div class="card__links"><a class="link" href="/lt/projektai/lojalumo-sistema.html" aria-label="Skaityti plačiau: Lojalumo valdymo sistema">Skaityti plačiau →</a></div>
+</article>
+</div>
+<div class="others">
+<h3>Kiti darbai</h3>
+<ul class="rows">
+<li><span class="r-name">Kidcan</span><span class="r-desc">Tėvų ir vaikų aplikacijų pora vaiko vietai matyti realiu laiku</span><span class="r-stack">React Native · Expo · Kotlin · Supabase</span><span class="r-year">2025</span><span class="r-links"><a class="link" href="https://github.com/gabwowce/KidcanParentsExpo" target="_blank" rel="noopener" aria-label="Kidcan: Parents">Parents ↗</a><a class="link" href="https://github.com/gabwowce/KidcanKids" target="_blank" rel="noopener" aria-label="Kidcan: Kids">Kids ↗</a></span></li>
+<li><span class="r-name">Kibinai Vilnius</span><span class="r-desc">Restorano svetainė, kurios turinį verslas redaguoja pats</span><span class="r-stack">React · WordPress (headless)</span><span class="r-year">2025</span><span class="r-links"><a class="link" href="https://kibinaivilnius.lt/" target="_blank" rel="noopener" aria-label="Kibinai Vilnius: Live">Live ↗</a><a class="link" href="https://github.com/gabwowce/Kibinukai" target="_blank" rel="noopener" aria-label="Kibinai Vilnius: GitHub">GitHub ↗</a></span></li>
+<li><span class="r-name">AutoRent</span><span class="r-desc">Automobilių nuomos platforma su pilnu rezervacijos srautu</span><span class="r-stack">React · FastAPI · PostgreSQL</span><span class="r-year">2025</span><span class="r-links"><a class="link" href="https://car-rental-frontend-v2.vercel.app/" target="_blank" rel="noopener" aria-label="AutoRent: Live">Live ↗</a><a class="link" href="https://github.com/gabwowce/car-rental-frontend" target="_blank" rel="noopener" aria-label="AutoRent: GitHub">GitHub ↗</a></span></li>
+<li><span class="r-name">LTSA</span><span class="r-desc">Viktorina, kurios atsakymai patys suvedami į Google Sheets</span><span class="r-stack">HTML · CSS · JS</span><span class="r-year">2026</span><span class="r-links"><a class="link" href="https://ltsa.vercel.app/" target="_blank" rel="noopener" aria-label="LTSA: Live">Live ↗</a></span></li>
+<li><span class="r-name">Travel App</span><span class="r-desc">Kelionių planavimo aplikacijos pagrindas Android ir iOS</span><span class="r-stack">React Native · Expo</span><span class="r-year">2025</span><span class="r-links"><a class="link" href="https://github.com/gabwowce/travel-app-front" target="_blank" rel="noopener" aria-label="Travel App: GitHub">GitHub ↗</a></span></li>
+<li><span class="r-name">ConvertClimb</span><span class="r-desc">Laipiojimo sudėtingumo laipsnių konverteris, veikia be interneto</span><span class="r-stack">React Native · Expo</span><span class="r-year">2025</span><span class="r-links"><a class="link" href="https://github.com/gabwowce/ConvertClimb" target="_blank" rel="noopener" aria-label="ConvertClimb: GitHub">GitHub ↗</a></span></li>
+</ul>
+</div>
+</section>
+<section class="cv-sec" aria-labelledby="exp-title">
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">02 —</span><h2 id="exp-title">Patirtis</h2></div>
+<ol class="timeline">
+<li><span class="t-date">2026 kov. – dabar</span><span class="t-role">Programuotoja (Mid), UVS</span><span class="t-what">Vidinė verslo sistema nuo nulio, vienintelė frontend programuotoja</span></li>
+<li><span class="t-date">2025 kov. – dabar</span><span class="t-role">Laisvai samdoma programuotoja</span><span class="t-what">Web ir mobile aplikacijos nuo idėjos iki paleidimo</span></li>
+<li><span class="t-date">2024 birž. – 2026 vas.</span><span class="t-role">Jaunesnioji programuotoja, UVS</span><span class="t-what">C#/.NET, WPF sistemos ekranai ir funkcionalumas</span></li>
+<li class="is-past"><span class="t-date">2021–2023</span><span class="t-role">Ankstesnė patirtis</span><span class="t-what">Planuotoja (Girteka), administratorė (Jarinta)</span></li>
+</ol>
+</section>
+<section class="cv-sec" aria-labelledby="tech-title">
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">03 —</span><h2 id="tech-title">Technologijos</h2></div>
+<dl class="stack-list">
+<div><dt>Frontend</dt><dd><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">RTK Query</span><span class="tag">AG Grid</span></dd></div>
+<div><dt>Backend ir duomenys</dt><dd><span class="tag">REST API</span><span class="tag">Supabase</span><span class="tag">Autentifikacija</span><span class="tag">Duomenų bazės</span></dd></div>
+<div><dt>Kita</dt><dd><span class="tag">C#/.NET</span><span class="tag">WPF</span><span class="tag">Figma</span><span class="tag">WordPress</span><span class="tag">LLM integracijos</span><span class="tag">AI agentai</span></dd></div>
+</dl>
+</section>
+</main>
+<footer class="cv-foot">
+<div class="container">
+<p><strong>Išsilavinimas</strong> · Vilniaus kolegija, Programų sistemos, 2023–2027 (studijuoju)</p>
+<div class="cv-foot__actions">
+<a class="link-plain" href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a>
+<a class="btn btn--md" href="/lt/cv.pdf">Atsisiųsti CV (PDF)</a>
+</div>
+</div>
+</footer>
+</body>
 </html>
