@@ -5,6 +5,39 @@ codeart.lt nepasirodys.
 
 ---
 
+## 0. Dvi auditorijos, du įėjimai, vienas domenas
+
+Dabartinė svetainė bando vienu metu kalbėti dviem žmonėms, todėl nė vienam
+nekalba gerai: šalia „Fiksuota kaina“ stovi „RTK Query tipai iš schemos“.
+
+| | Užsakovas | Darbdavys / tech lead |
+|---|---|---|
+| Klausia | Ar išspręs mano problemą? Kiek kainuos? Kaip pradėti? | Kaip ji mąsto? Kokia jos rolė komandoje? Koks stackas? |
+| Nori matyti | rezultatą, procesą, kainą, kontaktą | techninius sprendimus, patirtį, CV, GitHub |
+| Įeina per | Google, rekomendaciją → `codeart.lt` | tavo atsiųstą nuorodą → `codeart.lt/portfolio` |
+
+**Struktūra:**
+
+- `codeart.lt` (`/lt/`, `/en/`): tik užsakovams. Mažai techninių terminų.
+  Viena pagrindinė užduotis: „Aptarti projektą“.
+- `codeart.lt/portfolio` (`/lt/portfolio/`, `/en/portfolio/`): tik
+  darbdaviams. CV ir portfolio viename puslapyje. Pagrindinėje navigacijoje jos
+  nėra, tik poraštėje („CV ir portfolio“). Darbdaviams tiesiog siunti šią
+  nuorodą. Darbdaviams Lietuvoje dažniausiai užtenka LT versijos, bet
+  tarptautinėms įmonėms reikia EN.
+- Projektų puslapiai (`/lt/projektai/lojalumo-sistema/` ir t. t.) bendri.
+  Viršuje rezultatas, žemiau techninė dalis. Užsakovas perskaito pradžią,
+  darbdavys skaito iki galo.
+- Dizaino sistema bendra (spalvos, šriftai, komponentai), todėl abu
+  puslapiai atrodo kaip viena svetainė.
+
+**Ką turi nuspręsti tu (keičia `/portfolio` tekstus):** ko ieškai darbdavio
+puslapiu? Naujos pilnos darbo vietos, papildomų projektų ar tik nori turėti
+nuorodą „jei kas paklaus“? Nuo to priklauso pirmas sakinys ir ar rašyti
+„Atvira pasiūlymams“.
+
+---
+
 ## 1. Kas dabar negerai (konkrečiai)
 
 **Hero turi ~14 elementų, kurie konkuruoja tarpusavyje:** viršutinė eilutė su
@@ -18,7 +51,10 @@ užrašas. Akis nežino, kur žiūrėti.
 dideliais SVG maketais. Lankytojas turi perskaityti du skirtingus procesus.
 
 **„Statistikos“ nėra statistikos:** „Full-stack“ ir „Nuo idėjos iki produkto“
-yra šūkiai, apsimetantys skaičiais.
+yra šūkiai, apsimetantys skaičiais. O „3+ metai kuriant sistemas“ neatitinka
+tavo pačios „Apie“ puslapio: programuoji profesionaliai nuo 2024 m. birželio
+(UVS), laisvai samdoma dirbi nuo 2025 m. kovo. 2026 m. spalį tai yra ~2,3
+metų. Tiksliau būtų „2+ metai“ arba visai be skaičiaus.
 
 **Klasikiniai AI generuoto dizaino ženklai:** švytinti sfera, tinklelio fonas,
 viršutinė eilutė su tašku ir mažomis didžiosiomis raidėmis (eyebrow), švytintys
@@ -180,8 +216,9 @@ trumpink, nepridėk naujų):
 6. **Apie mane** – antraštė „Apie mane“. Kairėje nuotrauka, dešinėje:
    „Esu Gabrielė, programuotoja iš Vilniaus. Kuriu sistemas, kuriomis žmonės
    naudojasi kasdien: nuo duomenų modelio iki sąsajos. Prieš keisdama kodą
-   pirmiausia suprantu problemą.“ Po tekstu 3 faktai eilute: „3+ metai
-   kuriant sistemas“, „Frontend, backend ir API“, „Dirbu su esamu kodu“.
+   pirmiausia suprantu problemą.“ Po tekstu 3 faktai eilute: „2+ metai
+   profesionaliai kuriant sistemas“, „Frontend, backend ir API“, „Dirbu su
+   esamu kodu“.
    Nuoroda „Daugiau apie mane →“.
 
 7. **DUK** – antraštė „Dažni klausimai“. Išskleidžiamas sąrašas:
@@ -211,6 +248,90 @@ trumpink, nepridėk naujų):
 
 ---
 
+## 4b. Antra žinutė Claude Design (tame pačiame pokalbyje)
+
+Abi pirmos kryptys (A redakcinė, B struktūrinė) yra pilki skeletai su
+tuščiais laukeliais: iš jų sunku spręsti, nes trūksta tikrų vaizdų ir bet
+kokio asmeniškumo. Iš „per daug“ peršokome į „nieko“. Prie žinutės pridėk
+tikrus vaizdus (nuotrauką, 3 projektų ekranų kopijas).
+
+────────────────────────────────────────────────────────────
+
+Nė viena kryptis kol kas netinka. Kas tinka ir kas ne:
+- iš B imame struktūrą: hero dešinėje tikro projekto ekranas naršyklės
+  rėmelyje, darbai sąrašu su linijomis tarp jų;
+- iš A imame šiltumą: sekcijos atskirtos skirtingu fono tonu;
+- netinka: per didelė H1 (užima pusę ekrano), per smulkus ir per blyškus
+  tekstas, A serifinės antraštės primena teisininkų biurą, o ne
+  programuotoją, B tekstas serifiniu šriftu po groteskine antrašte atrodo
+  atsitiktinai. Vienas groteskinis šriftas antraštėms ir tekstui, kitas tik
+  kodui/žymoms (monospace);
+- trūksta vieno asmeniško elemento. Ne dekoracijos, o kažko, kas parodo,
+  kad tai frontend programuotojos darbas (pvz. tikslios mikrosąveikos ant
+  projektų kortelių, švelni pelės šviesa tik hero dalyje).
+
+Pridedu tikrus vaizdus, naudok juos vietoj laukelių.
+
+**Pakeitimas: svetainė turi dvi auditorijas, todėl du puslapius.**
+
+1. **Pagrindinis puslapis (`codeart.lt`) – tik užsakovams.** Struktūra ir
+   tekstai lieka tokie, kokie buvo pirmame prompte. Projektų žymas palik
+   mažas ir tylias, užsakovui jos antraeilės. Poraštėje pridėk nuorodą
+   „CV ir portfolio“.
+
+2. **Naujas puslapis `codeart.lt/portfolio` – darbdaviams.** CV ir portfolio
+   viename. Ta pati dizaino sistema, bet tankesnis, labiau dokumento
+   formos. Turi gerai atrodyti ir atspausdintas (A4), nes jis atstoja CV.
+   Struktūra:
+   - **Viršus:** „Gabrielė Tamaševičiūtė“, „Frontend / full-stack
+     programuotoja · React, TypeScript“, „Vilnius“. Vienas sakinys:
+     „Kuriu vidines verslo sistemas nuo architektūros iki sąsajos.“
+     [Būsena: įrašyti, pvz. „Atvira pasiūlymams“]. Nuorodos eilute: CV (PDF),
+     GitHub, LinkedIn, el. paštas.
+   - **Atrinkti darbai:** 3 projektai, kiekvienas su: problema (1 sakinys),
+     mano rolė, 2–3 techniniai sprendimai, stackas, rezultatas. Pirmas:
+     *Lojalumo valdymo sistema (B2B backoffice).* Rolė: atsakinga už
+     frontendą, rašau technines užduotis backend kolegai, deriname API
+     kontraktus prieš įgyvendinimą. Sprendimai: API tipai generuojami iš
+     backend schemos (RTK Query), todėl neatitikimai matomi prieš
+     produkciją; AG Grid didelėms lentelėms; kiekviena funkcija veikia
+     vienodai masiniame veiksme ir detalės dialoge. Mastas: ~27 maršrutai,
+     8 sritys, 2 × ~2200 vertimo raktų, rolės ir auditas. Stackas: React,
+     TypeScript, RTK Query, AG Grid, REST API. Antras: *TikMaker* (React,
+     TypeScript, Remotion, ElevenLabs). Trečias: *keepmi* (Next.js,
+     next-intl, Supabase, Stripe).
+   - **Patirtis** (laiko juosta):
+     - Programuotoja (Mid), UVS · 2026 kov. – dabar · React, TypeScript,
+       C#/.NET. Vidinė verslo sistema nuo nulio: vienintelė frontend
+       programuotoja, suprojektavau architektūrą ir sąsają, planuoju
+       backend struktūrą ir deleguoju užduotis backend kolegai.
+     - Web ir mobile app programuotoja, laisvai samdoma · 2025 kov. –
+       dabar · React, Next.js, TypeScript. Projektai nuo poreikių iki
+       paleidimo, tarp jų „Kibinukai“ užsakymų sistema.
+     - Jaunesnioji programuotoja, UVS · 2024 birž. – 2026 vas. · C#/.NET,
+       WPF. SCO sistemos ekranai, nauji funkcionalumai, klaidų analizė,
+       UI prieinamumas.
+     - Ankstesnė patirtis (viena eilutė): planuotoja, Girteka Europe West
+       (2021–2023); administratorė, UAB „Jarinta“ (2021).
+   - **Technologijos:** trys grupės be įgūdžių juostų ir procentų:
+     Frontend (React, TypeScript, Next.js, Tailwind, RTK Query, AG Grid),
+     Backend ir duomenys (REST API, Supabase, autentifikacija, duomenų
+     bazės), Kita (C#/.NET, WPF, Figma, WordPress, LLM integracijos, AI
+     agentai).
+   - **Kaip dirbu komandoje:** 3 trumpi punktai: galvoju apie visą sistemą,
+     ne tik ekraną; pirma randu priežastį, tik tada keičiu kodą; perprantu
+     svetimą kodą ir jį gerinu palaipsniui.
+   - **Išsilavinimas:** Vilniaus kolegija, Programų sistemos, 2023–2027
+     (studijuoju).
+   - **Apačioje:** el. paštas ir mygtukas „Atsisiųsti CV (PDF)“.
+
+Pateik: pagrindinį puslapį pagal naują kryptį (desktop + mobile) ir
+`/portfolio` puslapį (desktop + mobile + kaip atrodo atspausdintas A4).
+
+────────────────────────────────────────────────────────────
+
+---
+
 ## 5. Kaip sujungti su codeart.lt
 
 Svetainė, kurią matai codeart.lt, yra būtent šis repo (`CNAME`). Todėl
@@ -229,8 +350,8 @@ svetaines.
      failų;
    - išsaugomi URL, `hreflang`, JSON-LD, `sitemap.xml`, kanoniniai adresai;
    - JS lieka tik tai, ko reikia (meniu, tema, kontaktų forma, DUK).
-4. **Eilė:** pagrindinis LT → portfolio → paslaugos → apie → kontaktai →
-   EN versija → senų CSS failų ir nenaudojamų paveikslėlių išvalymas.
+4. **Eilė:** pagrindinis LT → `/lt/portfolio/` darbdaviams → projektų
+   puslapiai → paslaugos → apie → kontaktai → EN versija → senų CSS failų ir nenaudojamų paveikslėlių išvalymas.
 
 ### Sprendimas, kurį turi priimti tu
 
