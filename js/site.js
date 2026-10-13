@@ -103,6 +103,27 @@
   })();
 
   /* ---------------------------------------------------------------- */
+  /* Sticky header: shadow once the page has scrolled                 */
+  /* ---------------------------------------------------------------- */
+  (function () {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+    var raf = null;
+    function update() {
+      raf = null;
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+    }
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!raf) raf = requestAnimationFrame(update);
+      },
+      { passive: true }
+    );
+    update();
+  })();
+
+  /* ---------------------------------------------------------------- */
   /* Reveal on scroll – each element animates once                    */
   /* ---------------------------------------------------------------- */
   (function () {

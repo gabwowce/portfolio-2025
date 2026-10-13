@@ -172,8 +172,9 @@ textarea {
   outline-offset: 2px;
 }
 
+/* Clear the sticky header when jumping to an anchor. */
 [id] {
-  scroll-margin-top: 24px;
+  scroll-margin-top: 104px;
 }
 
 .visually-hidden {
@@ -356,11 +357,21 @@ textarea {
 /* Site header and mobile menu                                        */
 /* ------------------------------------------------------------------ */
 
+/* The header stays at the top while scrolling; once the page has moved,
+   site.js adds .is-scrolled and a soft shadow separates it from content. */
 .site-header {
-  position: relative;
-  z-index: 10;
-  background: var(--bg-base);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 240, 230, 0.92);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--line);
+  transition: box-shadow 200ms ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 10px 30px -22px rgba(80, 58, 34, 0.45);
 }
 
 .site-header__in {
@@ -1035,8 +1046,17 @@ textarea {
 
 
 
-/* The photo is cut to the same organic shape as the blobs, so it is never
-   a plain rectangle; the apricot blob behind it shows around the edges. */
+/* Photos are cut to the same organic shape as the blobs, so they are never
+   plain rectangles; an apricot blob behind them shows around the edges. */
+.organic {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M46 3C58 0 71 4 82 6C93 8 99 17 98 30C97 42 92 50 95 62C98 75 96 88 85 94C74 100 62 96 50 98C37 100 22 101 12 94C2 87 4 74 3 62C2 50 7 41 4 29C1 17 6 6 18 4C28 2 36 5 46 3Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M46 3C58 0 71 4 82 6C93 8 99 17 98 30C97 42 92 50 95 62C98 75 96 88 85 94C74 100 62 96 50 98C37 100 22 101 12 94C2 87 4 74 3 62C2 50 7 41 4 29C1 17 6 6 18 4C28 2 36 5 46 3Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
 .about__media img {
   position: relative;
   z-index: 1;
@@ -1044,12 +1064,6 @@ textarea {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 20%;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M46 3C58 0 71 4 82 6C93 8 99 17 98 30C97 42 92 50 95 62C98 75 96 88 85 94C74 100 62 96 50 98C37 100 22 101 12 94C2 87 4 74 3 62C2 50 7 41 4 29C1 17 6 6 18 4C28 2 36 5 46 3Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M46 3C58 0 71 4 82 6C93 8 99 17 98 30C97 42 92 50 95 62C98 75 96 88 85 94C74 100 62 96 50 98C37 100 22 101 12 94C2 87 4 74 3 62C2 50 7 41 4 29C1 17 6 6 18 4C28 2 36 5 46 3Z'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
 }
 
 .about__media .blob {
@@ -1671,14 +1685,19 @@ textarea {
 .stack-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .stack-list > div {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   gap: 6px 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.stack-list > div:first-child {
+  border-top: 1px solid var(--line);
 }
 
 .stack-list dt {
@@ -2225,7 +2244,7 @@ textarea {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .sheet__stack div {
@@ -3239,5 +3258,49 @@ textarea {
   .footer .footer__grid {
     grid-template-columns: minmax(0, 1fr);
     padding-top: 56px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* /portfolio: photo next to the name                                 */
+/* ------------------------------------------------------------------ */
+
+.cv-head__id {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-width: 0;
+}
+
+.cv-head__photo {
+  position: relative;
+  flex: none;
+  width: 148px;
+  padding: 6px 10px 12px 4px;
+}
+
+.cv-head__photo .blob {
+  inset: 10% -4% -2% 12%;
+  transform: rotate(-6deg);
+}
+
+.cv-head__photo img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+@media (max-width: 640px) {
+  .cv-head__id {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cv-head__photo {
+    width: 112px;
   }
 }

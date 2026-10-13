@@ -953,7 +953,7 @@ def home(lang):
 <div class="container grid about">
 <div class="about__media" data-reveal="far">
 {blob("a", "apricot")}
-{img("about", t["about_alt"], "(max-width: 759px) 88vw, 340px")}
+{img("about", t["about_alt"], "(max-width: 759px) 88vw, 340px").replace("<img ", '<img class="organic" ')}
 </div>
 <div class="about__text d1" data-reveal>
 {sec_head("04", t["about_h"], "about-title", " sec-head--tight")}
@@ -1094,7 +1094,7 @@ def about_page(lang):
 <div class="container grid about">
 <div class="about__media" data-reveal="far">
 {blob("a", "apricot")}
-{img("about", t["about_alt"], "(max-width: 759px) 88vw, 340px", lazy=False)}
+{img("about", t["about_alt"], "(max-width: 759px) 88vw, 340px", lazy=False).replace("<img ", '<img class="organic" ')}
 </div>
 <div class="about__text d1" data-reveal>
 <p class="mono page-intro__eyebrow">{c["about_eyebrow"]}</p>
@@ -1255,9 +1255,24 @@ P = {
         ],
         "tech_h": "Technologijos",
         "tech": [
-            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind", "RTK Query", "AG Grid"]),
-            ("Backend ir duomenys", ["REST API", "Supabase", "Autentifikacija", "Duomenų bazės"]),
-            ("Kita", ["C#/.NET", "WPF", "Figma", "WordPress", "LLM integracijos", "AI agentai"]),
+            ("Frontend", ["React", "TypeScript", "JavaScript", "Next.js", "HTML / CSS", "Tailwind CSS", "shadcn/ui",
+                          "Redux Toolkit / RTK Query", "TanStack Query", "Zustand", "React Hook Form + Zod",
+                          "AG Grid", "Recharts / ECharts", "Remotion"]),
+            ("Backend ir API", ["C# / .NET (ASP.NET Core)", "Entity Framework Core", "Node.js", "Express", "tRPC",
+                                "REST API / OpenAPI", "Next.js Server Actions", "FastAPI"]),
+            ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "Supabase (Auth, Storage, RLS)"]),
+            ("Mobile ir desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
+            ("Testavimas ir kokybė", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
+            ("AI", ["LLM integracijos", "AI agentai", "ElevenLabs API"]),
+            ("Įrankiai ir dizainas", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "Figma"]),
+        ],
+        "tech_cv": [
+            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand", "AG Grid"]),
+            ("Backend ir API", ["C# / .NET", "Node.js", "Express", "tRPC", "REST API / OpenAPI"]),
+            ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "Supabase", "EF Core"]),
+            ("Mobile ir desktop", ["React Native", "Expo", "WPF"]),
+            ("Testavimas", ["Vitest", "Playwright", "Testing Library", "xUnit"]),
+            ("AI ir įrankiai", ["LLM integracijos", "AI agentai", "Git", "Figma", "Vercel"]),
         ],
         "edu_l": "Išsilavinimas",
         "edu": "Vilniaus kolegija, Programų sistemos, 2023–2027 (studijuoju)",
@@ -1325,9 +1340,24 @@ P = {
         ],
         "tech_h": "Technologies",
         "tech": [
-            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind", "RTK Query", "AG Grid"]),
-            ("Backend and data", ["REST API", "Supabase", "Authentication", "Databases"]),
-            ("Other", ["C#/.NET", "WPF", "Figma", "WordPress", "LLM integrations", "AI agents"]),
+            ("Frontend", ["React", "TypeScript", "JavaScript", "Next.js", "HTML / CSS", "Tailwind CSS", "shadcn/ui",
+                          "Redux Toolkit / RTK Query", "TanStack Query", "Zustand", "React Hook Form + Zod",
+                          "AG Grid", "Recharts / ECharts", "Remotion"]),
+            ("Backend and APIs", ["C# / .NET (ASP.NET Core)", "Entity Framework Core", "Node.js", "Express", "tRPC",
+                                  "REST API / OpenAPI", "Next.js Server Actions", "FastAPI"]),
+            ("Databases", ["SQL", "PostgreSQL", "SQL Server", "Supabase (Auth, Storage, RLS)"]),
+            ("Mobile and desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
+            ("Testing and quality", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
+            ("AI", ["LLM integrations", "AI agents", "ElevenLabs API"]),
+            ("Tools and design", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "Figma"]),
+        ],
+        "tech_cv": [
+            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand", "AG Grid"]),
+            ("Backend and APIs", ["C# / .NET", "Node.js", "Express", "tRPC", "REST API / OpenAPI"]),
+            ("Databases", ["SQL", "PostgreSQL", "SQL Server", "Supabase", "EF Core"]),
+            ("Mobile and desktop", ["React Native", "Expo", "WPF"]),
+            ("Testing", ["Vitest", "Playwright", "Testing Library", "xUnit"]),
+            ("AI and tools", ["LLM integrations", "AI agents", "Git", "Figma", "Vercel"]),
         ],
         "edu_l": "Education",
         "edu": "Vilnius University of Applied Sciences (Vilniaus kolegija), Software Systems, 2023–2027 (in progress)",
@@ -1377,6 +1407,11 @@ def portfolio(lang):
     body = f"""<section class="cv-head">
 <div class="container">
 <div class="cv-head__row">
+<div class="cv-head__id">
+<div class="cv-head__photo">
+{blob("a", "apricot")}
+{img("about", "Gabrielė Tamaševičiūtė", "150px", lazy=False).replace("<img ", '<img class="organic" ')}
+</div>
 <div>
 <p class="mono page-intro__eyebrow">{p["eyebrow"]}</p>
 <h1>Gabrielė Tamaševičiūtė</h1>
@@ -1388,6 +1423,7 @@ def portfolio(lang):
 <a href="{LINKEDIN}" target="_blank" rel="me noopener">{icon("linkedin", 18)}LinkedIn</a>
 <a href="mailto:{EMAIL}">{icon("mail", 18)}{EMAIL}</a>
 </nav>
+</div>
 </div>
 <a class="btn btn--lg" href="{pdf(lang)}">{icon("file", 18)} {p["cv_dl"]}</a>
 </div>
@@ -1452,7 +1488,7 @@ def cv_sheet(lang):
     rows = "\n".join(
         f'<tr{" class=\"is-past\"" if past else ""}><td class="d">{d}</td><td class="r">{r}</td><td>{w}</td></tr>'
         for d, r, w, past in p["exp"])
-    tech = "\n".join(f"<div><dt>{g}</dt><dd>{' · '.join(items)}</dd></div>" for g, items in p["tech"])
+    tech = "\n".join(f"<div><dt>{g}</dt><dd>{' · '.join(items)}</dd></div>" for g, items in p["tech_cv"])
     # LT has a short address of its own: /portfolio redirects to the LT page.
     site_cv = "codeart.lt/portfolio" if lang == "lt" else "codeart.lt" + url("portfolio", lang)
 
