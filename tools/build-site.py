@@ -235,7 +235,7 @@ T = {
         "h1": "Verslo sistemų ir web aplikacijų kūrimas",
         "lead": "Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant.",
         "see_work": "Peržiūrėti darbus",
-        "hero_note": "Programuotoja Vilniuje · React, TypeScript, API ir AI funkcijos · Priimu naujus projektus",
+        "hero_note": "React, TypeScript, .NET · API ir AI funkcijos",
         "hero_alt": "Pavyzdinė transporto valdymo sistema: transporto priemonių sąrašas, maršrutas žemėlapyje ir paskutinės lokacijos",
         "work_h": "Atlikti darbai",
         "all_projects": "Visi projektai →",
@@ -315,7 +315,7 @@ T = {
         "h1": "Business systems and web application development",
         "lead": "Internal tools, admin dashboards and web applications from idea to launch. Fixed price, agreed before we start.",
         "see_work": "See my work",
-        "hero_note": "Developer in Vilnius · React, TypeScript, APIs and AI features · Taking on new projects",
+        "hero_note": "React, TypeScript, .NET · APIs and AI features",
         "hero_alt": "Sample fleet management system: a vehicle list, a route on the map and the latest locations",
         "work_h": "Selected work",
         "all_projects": "All projects →",
@@ -441,7 +441,7 @@ C = {
         "nav": [("portfolio", "Portfolio"), ("services", "Paslaugos"), ("about", "Apie"),
                 ("contact", "Kontaktai")],
         "home": "Pagrindinis",
-        "tagline": "Programuotoja ir produkto kūrėja. Dėmesys vartotojo patirčiai ir kokybei.",
+        "tagline": "Kuriu sistemas, kurios žmonėms iš tikrųjų padeda.",
         "links_h": "Nuorodos",
         "rights": "Visos teisės saugomos",
         "cta_h": "Turite projekto idėją?",
@@ -455,7 +455,6 @@ C = {
             ("tiktok", "TikTok", "@gabiebuilds", TIKTOK),
             ("pin", "Vieta", "Vilnius, Lietuva", None),
         ],
-        "status": "Atvira naujiems projektams",
         "reply": "Paprastai atsakau per 24 val.",
         "services_more": "Visos paslaugos →",
         "svc_cta": "Aptarti projektą →",
@@ -538,7 +537,7 @@ C = {
         "nav": [("portfolio", "Portfolio"), ("services", "Services"), ("about", "About"),
                 ("contact", "Contact")],
         "home": "Home",
-        "tagline": "Developer and product builder. Focused on user experience and quality.",
+        "tagline": "I build systems that genuinely help people.",
         "links_h": "Links",
         "rights": "All rights reserved",
         "cta_h": "Have a project idea?",
@@ -552,7 +551,6 @@ C = {
             ("tiktok", "TikTok", "@gabiebuilds", TIKTOK),
             ("pin", "Location", "Vilnius, Lithuania", None),
         ],
-        "status": "Open to new projects",
         "reply": "I usually reply within 24 hours.",
         "services_more": "All services →",
         "svc_cta": "Discuss a project →",
@@ -778,7 +776,6 @@ def site_footer(lang, key):
 <div class="footer__brand">
 {brand(lang)}
 <p>{c["tagline"]}</p>
-<p class="footer__status"><span class="dot" aria-hidden="true"></span>{c["status"]}</p>
 {socials(lang)}
 </div>
 <nav class="footer__links" aria-label="{c["links_h"]}">
@@ -880,7 +877,7 @@ def home(lang):
 <a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
 <a class="link-underline" href="#{ids["work"]}">{t["see_work"]}</a>
 </div>
-<p class="small hero__note d3" data-reveal><span class="dot" aria-hidden="true"></span>{t["hero_note"]}</p>
+<p class="small hero__note d3" data-reveal>{t["hero_note"]}</p>
 </div>
 <div class="hero__stage d1" data-reveal="far">
 {blob("hero", "hero")}
@@ -1141,7 +1138,6 @@ def contact_page(lang):
 <h2 class="contact__h">{c["direct_h"]}</h2>
 {contact_list(lang)}
 <div class="contact__meta">
-<p><span class="dot" aria-hidden="true"></span>{c["status"]}</p>
 <p>{icon("clock", 18)}{c["reply"]}</p>
 </div>
 </div>
@@ -1186,7 +1182,7 @@ P = {
         "desc": "Frontend / full-stack programuotoja Vilniuje (React, TypeScript): atrinkti darbai, patirtis, technologijos ir CV.",
         "eyebrow": "CV ir portfolio",
         "role": "Frontend / full-stack programuotoja · React, TypeScript",
-        "where": "Vilnius · Atvira naujiems projektams",
+        "where": "Vilnius",
         "contacts_label": "Kontaktai",
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Atsisiųsti CV (PDF)",
@@ -1271,7 +1267,7 @@ P = {
         "desc": "Frontend / full-stack developer in Vilnius (React, TypeScript): selected work, experience, technologies and CV.",
         "eyebrow": "CV and portfolio",
         "role": "Frontend / full-stack developer · React, TypeScript",
-        "where": "Vilnius · Open to new projects",
+        "where": "Vilnius",
         "contacts_label": "Contacts",
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Download CV (PDF)",
@@ -1402,7 +1398,7 @@ def portfolio(lang):
 <p class="mono page-intro__eyebrow">{p["eyebrow"]}</p>
 <h1>Gabrielė Tamaševičiūtė</h1>
 <p class="cv-head__role">{p["role"]}</p>
-<p class="cv-head__where"><span class="dot" aria-hidden="true"></span>{p["where"]}</p>
+<p class="cv-head__where">{p["where"]}</p>
 <nav class="cv-head__links" aria-label="{p["contacts_label"]}">
 <a href="{pdf(lang)}">{icon("file", 18)}{p["cv_pdf"]}</a>
 <a href="{GITHUB}" target="_blank" rel="me noopener">{icon("github", 18)}GitHub</a>
