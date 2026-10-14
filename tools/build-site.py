@@ -264,7 +264,7 @@ T = {
         ],
         "steps_h": "Kaip vyksta darbas",
         "steps": [
-            ("Parašote", "Trumpai, ko reikia. Techninių terminų nereikia."),
+            ("Parašote", "Aprašote idėją ar problemą savais žodžiais, o aš padedu ją išgryninti."),
             ("Planas ir kaina", "Per 24 val. po pokalbio gaunate planą ir fiksuotą kainą raštu."),
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
             ("Paleidimas", "Įdiegiu sistemą. Mano darbui taikoma 3 mėn. garantija."),
@@ -272,7 +272,7 @@ T = {
         "about_h": "Apie mane",
         "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "Esu Gabrielė, programuotoja iš Vilniaus. Kuriu sistemas, kuriomis žmonės naudojasi kasdien: nuo duomenų modelio iki sąsajos. Prieš keisdama kodą pirmiausia suprantu problemą.",
-        "facts": ["2+ metai kuriant sistemas", "Frontend, backend ir API", "Dirbu su esamu kodu"],
+        "facts": ["3+ metai kuriant sistemas", "Frontend, backend ir API", "Dirbu su esamu kodu"],
         "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
@@ -341,7 +341,7 @@ T = {
         ],
         "steps_h": "How the work goes",
         "steps": [
-            ("You write", "Briefly, what you need. No technical terms needed."),
+            ("You write", "You describe the idea or problem in your own words, and I help pin it down."),
             ("Plan and price", "Within 24 hours of our call you get a plan and a fixed price in writing."),
             ("Building", "You see progress all along, not only at the end."),
             ("Launch", "I deploy the system. My work comes with a 3-month warranty."),
@@ -349,7 +349,7 @@ T = {
         "about_h": "About me",
         "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "I'm Gabrielė, a developer from Vilnius. I build systems people use every day, from the data model to the interface. Before changing code, I first understand the problem.",
-        "facts": ["2+ years building systems", "Frontend, backend and APIs", "I work with existing code"],
+        "facts": ["3+ years building systems", "Frontend, backend and APIs", "I work with existing code"],
         "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
@@ -1205,7 +1205,7 @@ P = {
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Atsisiųsti CV (PDF)",
         "facts_label": "Trumpai",
-        "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "2+ m. profesionaliai"),
+        "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "3+ m. profesionaliai"),
                   ("Fokusas", "Vidinės verslo sistemos"), ("Stackas", "React, TypeScript, Next.js")],
         "works_h": "Atrinkti darbai",
         "what": "Kas tai:", "role_l": "Rolė:", "fact": "Faktas:",
@@ -1290,7 +1290,7 @@ P = {
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Download CV (PDF)",
         "facts_label": "In short",
-        "facts": [("Now", "Developer (Mid), UVS"), ("Experience", "2+ years professionally"),
+        "facts": [("Now", "Developer (Mid), UVS"), ("Experience", "3+ years professionally"),
                   ("Focus", "Internal business systems"), ("Stack", "React, TypeScript, Next.js")],
         "works_h": "Selected work",
         "what": "What:", "role_l": "Role:", "fact": "Fact:",
