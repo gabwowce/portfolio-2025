@@ -1174,6 +1174,8 @@ P = {
         "title": "Gabrielė Tamaševičiūtė – CV ir portfolio | Frontend / full-stack programuotoja",
         "desc": "Frontend / full-stack programuotoja Vilniuje (React, TypeScript): atrinkti darbai, patirtis, technologijos ir CV.",
         "eyebrow": "CV ir portfolio",
+        "enlarge": "Padidinti nuotrauką",
+        "close": "Uždaryti",
         "role": "Frontend / full-stack programuotoja · React, TypeScript",
         "where": "Vilnius",
         "contacts_label": "Kontaktai",
@@ -1259,6 +1261,8 @@ P = {
         "title": "Gabrielė Tamaševičiūtė – CV and portfolio | Frontend / full-stack developer",
         "desc": "Frontend / full-stack developer in Vilnius (React, TypeScript): selected work, experience, technologies and CV.",
         "eyebrow": "CV and portfolio",
+        "enlarge": "Enlarge image",
+        "close": "Close",
         "role": "Frontend / full-stack developer · React, TypeScript",
         "where": "Vilnius",
         "contacts_label": "Contacts",
@@ -1343,6 +1347,17 @@ P = {
 }
 
 
+# Screenshot files for "Other work": name -> (file stem, large w, h, thumb w, h)
+OTHER_SHOTS = {
+    "Kidcan": ("kidcan", 1538, 1045, 240, 163),
+    "Kibinai Vilnius": ("kibinai", 1600, 1002, 240, 150),
+    "AutoRent": ("autorent", 1600, 1227, 240, 184),
+    "LTSA": ("ltsa", 1177, 839, 240, 171),
+    "Travel App": ("travel", 1600, 954, 240, 143),
+    "ConvertClimb": ("convertclimb", 1600, 954, 240, 143),
+}
+
+
 def portfolio(lang):
     p = P[lang]
     facts = "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["facts"])
@@ -1369,7 +1384,12 @@ def portfolio(lang):
     for name, desc, stack, year, links in p["others"]:
         ls = "".join(f'<a class="link" href="{u}" target="_blank" rel="noopener" aria-label="{name}: {label}">{label} ↗</a>'
                      for label, u in links)
-        others.append(f"""<li><span class="r-name">{name}</span><span class="r-desc">{desc}</span><span class="r-stack">{stack}</span><span class="r-year">{year}</span><span class="r-links">{ls}</span></li>""")
+        shot, w, h, tw, th = OTHER_SHOTS[name]
+        thumb = (f'<button class="r-thumb" type="button" data-lightbox="/img/site/others/{shot}.webp" '
+                 f'data-caption="{esc(name + " – " + desc)}">'
+                 f'<img src="/img/site/others/{shot}-thumb.webp" width="{tw}" height="{th}" alt="" loading="lazy" decoding="async">'
+                 f'<span class="visually-hidden">{p["enlarge"]}: {name}</span></button>')
+        others.append(f"""<li>{thumb}<span class="r-name">{name}</span><span class="r-desc">{desc}</span><span class="r-stack">{stack}</span><span class="r-year">{year}</span><span class="r-links">{ls}</span></li>""")
 
     exp = "\n".join(
         f'<li{" class=\"is-past\"" if past else ""}><span class="t-date">{d}</span><span class="t-role">{r}</span><span class="t-what">{w}</span></li>'
@@ -1438,7 +1458,11 @@ def portfolio(lang):
 <div class="cv-sec__head"><span class="mono" aria-hidden="true">04 —</span><h2 id="edu-title">{p["edu_l"]}</h2></div>
 <p class="cv-edu__line">{icon("cap")}<span>{p["edu"]}</span></p>
 </section>
-</div>"""
+</div>
+<dialog class="lightbox" id="lightbox" aria-label="{p["enlarge"]}">
+<button class="lightbox__close" type="button" data-lightbox-close aria-label="{p["close"]}">{ICON_CLOSE}</button>
+<figure><img src="" alt=""><figcaption></figcaption></figure>
+</dialog>"""
     assemble(lang, "portfolio", p["title"], p["desc"], body, jsonld=[person_ld(lang)],
              og_type="profile", body_class="page-cv", current="portfolio")
 

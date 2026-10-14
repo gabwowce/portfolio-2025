@@ -124,6 +124,37 @@
   })();
 
   /* ---------------------------------------------------------------- */
+  /* Lightbox for screenshots (native <dialog>)                       */
+  /* ---------------------------------------------------------------- */
+  (function () {
+    var dialog = document.getElementById("lightbox");
+    if (!dialog || typeof dialog.showModal !== "function") return;
+    var img = dialog.querySelector("img");
+    var caption = dialog.querySelector("figcaption");
+
+    document.querySelectorAll("[data-lightbox]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-caption") || "";
+        img.src = btn.getAttribute("data-lightbox");
+        img.alt = text;
+        caption.textContent = text;
+        dialog.showModal();
+      });
+    });
+
+    dialog.querySelector("[data-lightbox-close]").addEventListener("click", function () {
+      dialog.close();
+    });
+    /* A click on the dark backdrop (outside the picture) closes it. */
+    dialog.addEventListener("click", function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", function () {
+      img.removeAttribute("src");
+    });
+  })();
+
+  /* ---------------------------------------------------------------- */
   /* Reveal on scroll – each element animates once                    */
   /* ---------------------------------------------------------------- */
   (function () {
