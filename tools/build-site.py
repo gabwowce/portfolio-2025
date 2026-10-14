@@ -437,7 +437,6 @@ C = {
         "nav": [("portfolio", "Portfolio"), ("services", "Paslaugos"), ("about", "Apie"),
                 ("contact", "Kontaktai")],
         "home": "Pagrindinis",
-        "tagline": "Kuriu sistemas, kurios žmonėms iš tikrųjų padeda.",
         "links_h": "Nuorodos",
         "rights": "Visos teisės saugomos",
         "cta_h": "Turite projekto idėją?",
@@ -533,7 +532,6 @@ C = {
         "nav": [("portfolio", "Portfolio"), ("services", "Services"), ("about", "About"),
                 ("contact", "Contact")],
         "home": "Home",
-        "tagline": "I build systems that genuinely help people.",
         "links_h": "Links",
         "rights": "All rights reserved",
         "cta_h": "Have a project idea?",
@@ -771,7 +769,6 @@ def site_footer(lang, key):
 <div class="container footer__grid">
 <div class="footer__brand">
 {brand(lang)}
-<p>{c["tagline"]}</p>
 {socials(lang)}
 </div>
 <nav class="footer__links" aria-label="{c["links_h"]}">
