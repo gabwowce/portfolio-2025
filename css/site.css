@@ -1609,7 +1609,7 @@ textarea {
 @media (min-width: 1000px) {
   .rows > li {
     display: grid;
-    grid-template-columns: 112px 150px minmax(0, 1fr) minmax(0, 230px) 40px 150px;
+    grid-template-columns: 112px 160px minmax(0, 1fr) minmax(0, 250px) 150px;
     gap: 8px 20px;
   }
 

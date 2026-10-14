@@ -1381,7 +1381,7 @@ def portfolio(lang):
 </article>""")
 
     others = []
-    for name, desc, stack, year, links in p["others"]:
+    for name, desc, stack, _year, links in p["others"]:
         ls = "".join(f'<a class="link" href="{u}" target="_blank" rel="noopener" aria-label="{name}: {label}">{label} ↗</a>'
                      for label, u in links)
         shot, w, h, tw, th = OTHER_SHOTS[name]
@@ -1389,7 +1389,7 @@ def portfolio(lang):
                  f'data-caption="{esc(name + " – " + desc)}">'
                  f'<img src="/img/site/others/{shot}-thumb.webp" width="{tw}" height="{th}" alt="" loading="lazy" decoding="async">'
                  f'<span class="visually-hidden">{p["enlarge"]}: {name}</span></button>')
-        others.append(f"""<li>{thumb}<span class="r-name">{name}</span><span class="r-desc">{desc}</span><span class="r-stack">{stack}</span><span class="r-year">{year}</span><span class="r-links">{ls}</span></li>""")
+        others.append(f"""<li>{thumb}<span class="r-name">{name}</span><span class="r-desc">{desc}</span><span class="r-stack">{stack}</span><span class="r-links">{ls}</span></li>""")
 
     exp = "\n".join(
         f'<li{" class=\"is-past\"" if past else ""}><span class="t-date">{d}</span><span class="t-role">{r}</span><span class="t-what">{w}</span></li>'
