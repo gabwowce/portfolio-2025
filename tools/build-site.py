@@ -267,23 +267,26 @@ T = {
             ("Parašote", "Aprašote idėją ar problemą."),
             ("Planas ir kaina", "Per 24 val. po pokalbio gaunate planą ir fiksuotą kainą raštu."),
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
-            ("Paleidimas", "Įdiegiu sistemą. Mano darbui taikoma 3 mėn. garantija."),
+            ("Paleidimas", "Įdiegiu sistemą ir paruošiu instrukcijas, kaip ja naudotis. Mano darbui taikoma 3 mėn. garantija."),
         ],
         "about_h": "Apie mane",
         "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "Esu Gabrielė. Man patinka kurti sistemas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano darbu žmonės naudojasi kasdien ir yra juo patenkinti.",
-        "facts": ["3+ metai kuriant sistemas", "Frontend, backend ir API", "Dirbu su esamu kodu"],
+        "facts": ["3+ metai kuriant sistemas", "Frontend, backend, API ir AI", "Nuo idėjos iki paleidimo"],
         "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
             ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Po trumpo pokalbio per 24 val. atsiunčiu darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
             ("Kiek laiko trunka?", "Priklauso nuo apimties: nedidelis patobulinimas gali užtrukti kelias dienas, nauja sistema – nuo kelių savaičių. Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus."),
-            ("Ar galite perimti jau veikiančią sistemą?", "Taip, perprantu esamą kodą ir tobulinu jį palaipsniui."),
-            ("Ar kaina gali pasikeisti eigoje?", "Ne. Patvirtinus sąmatą, kaina nesikeičia."),
-            ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip, nuo paprastų LLM funkcijų iki agentų, kurie naudojasi sistemos API."),
+            ("Ką reikia paruošti prieš pirmą pokalbį?", "Užtenka trumpai aprašyti, ką norite sukurti ar kokią problemą išspręsti. Jei turite pavyzdžių, ekrano nuotraukų ar esamų dokumentų, puiku, bet tai nebūtina: visa kita išsiaiškiname pokalbio metu."),
+            ("Ar galite perimti jau veikiančią sistemą?", "Taip. Pirmiausia susipažįstu su esamu kodu, architektūra ir tuo, kas šiuo metu kelia problemų, tada pasiūlau, ką verta tvarkyti pirmiausia. Sistemos nebūtina perrašyti iš naujo: ją galima gerinti dalimis, netrukdant jūsų kasdieniam darbui."),
+            ("Ar kaina gali pasikeisti eigoje?", "Tai, kas numatyta plane, kainuoja tiek, kiek sutarėme. Jei eigoje atsiranda naujų didesnių pageidavimų, juos aptariame atskirai ir pradedame tik jums sutikus. Smulkius pakeitimus dažniausiai tiesiog įtraukiu: man svarbiausia, kad sistema veiktų taip, kaip tikitės, ir kad būtumėte patenkinti."),
+            ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip. Tai gali būti paprastos funkcijos, pavyzdžiui, tekstų rašymas, santraukos, vertimai ar paieška pagal prasmę, arba sudėtingesni sprendimai: AI asistentas, atsakantis į klausimus pagal jūsų dokumentus ir duomenis, ar agentas, galintis pats atlikti veiksmus sistemoje per jos API. Kartu įvertiname, kur AI iš tikrųjų sutaupys laiko, o kur užtenka paprastesnio sprendimo."),
+            ("Ar paruošiate instrukcijas, kaip naudotis sistema?", "Taip. Kartu su sistema paruošiu naudojimo instrukcijas ir reikalingą dokumentaciją, o pageidaujant ir video mokymus jūsų komandai, kad visi greitai perprastų naują sistemą."),
+            ("Kas bus po paleidimo?", "Pirmus 3 mėnesius be papildomo mokesčio taisau klaidas, atsiradusias dėl mano darbo. Vėliau galiu toliau prižiūrėti sistemą, kurti naujas funkcijas ar padėti, kai iškyla klausimų."),
         ],
         "contact_h": "Turite projekto idėją?",
-        "contact_lead": "Parašykite kelis sakinius, ko reikia. Paprastai atsakau per 24 val.",
+        "contact_lead": "Parašykite kelis sakinius apie savo projektą. Paprastai atsakau per 24 val.",
         "f_name": "Vardas",
         "f_email": "El. paštas",
         "f_msg": "Žinutė",
@@ -344,23 +347,26 @@ T = {
             ("You write", "You describe the idea or problem."),
             ("Plan and price", "Within 24 hours of our call you get a plan and a fixed price in writing."),
             ("Building", "You see progress all along, not only at the end."),
-            ("Launch", "I deploy the system. My work comes with a 3-month warranty."),
+            ("Launch", "I deploy the system and prepare guides on how to use it. My work comes with a 3-month warranty."),
         ],
         "about_h": "About me",
         "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "I'm Gabrielė. I love building systems that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing people use my work every day and be glad they have it.",
-        "facts": ["3+ years building systems", "Frontend, backend and APIs", "I work with existing code"],
+        "facts": ["3+ years building systems", "Frontend, backend, APIs and AI", "From idea to launch"],
         "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
             ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. After a short call I send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
             ("How long does it take?", "It depends on the scope: a small improvement can take a few days, a new system from a few weeks. I give the exact timeline in the plan, together with the price, before any work starts."),
-            ("Can you take over a system that's already running?", "Yes, I get to know the existing code and improve it step by step."),
-            ("Can the price change along the way?", "No. Once the estimate is approved, the price doesn't change."),
-            ("Can you add AI features to the system?", "Yes, from simple LLM features to agents that use the system's API."),
+            ("What should I prepare before our first call?", "A short description of what you want to build or which problem you want to solve is enough. Examples, screenshots or existing documents help, but they're not required: we work out the rest during the call."),
+            ("Can you take over a system that's already running?", "Yes. First I get to know the existing code, the architecture and what's causing problems right now, then I suggest what's worth fixing first. The system doesn't have to be rewritten: it can be improved piece by piece without getting in the way of your daily work."),
+            ("Can the price change along the way?", "Whatever is in the plan costs what we agreed. If bigger new requests come up along the way, we discuss them separately and start only once you agree. Small changes I usually just include: what matters most to me is that the system works the way you expect and that you're happy with it."),
+            ("Can you add AI features to the system?", "Yes. These can be simple features such as writing text, summaries, translations or meaning-based search, or more advanced ones: an AI assistant that answers questions from your documents and data, or an agent that can take actions in the system through its API. Together we work out where AI will really save time and where something simpler is enough."),
+            ("Do you prepare guides on how to use the system?", "Yes. Along with the system I prepare user guides and the documentation you need, and on request video training for your team, so everyone gets comfortable with the new system quickly."),
+            ("What happens after launch?", "For the first 3 months I fix, at no extra cost, any bugs caused by my work. After that I can keep maintaining the system, build new features or help whenever questions come up."),
         ],
         "contact_h": "Have a project idea?",
-        "contact_lead": "Write a few sentences about what you need. I usually reply within 24 hours.",
+        "contact_lead": "Write a few sentences about your project. I usually reply within 24 hours.",
         "f_name": "Name",
         "f_email": "Email",
         "f_msg": "Message",
@@ -437,10 +443,6 @@ C = {
         "home": "Pagrindinis",
         "tagline": "Programuotoja ir produkto kūrėja. Dėmesys vartotojo patirčiai ir kokybei.",
         "links_h": "Nuorodos",
-        "quick_h": "Trumpa žinutė",
-        "quick_lead": "Parašykite, atsakysiu per 24 val.",
-        "quick_msg": "Žinutė",
-        "quick_subject": "Trumpa žinutė iš codeart.lt",
         "rights": "Visos teisės saugomos",
         "cta_h": "Turite projekto idėją?",
         "cta_p": "Trumpai papasakokite apie projektą. Atsakau per 24 val. su darbų planu ir kaina.",
@@ -473,7 +475,7 @@ C = {
         ],
         "expect_h": "Ko galite tikėtis",
         "expect": ["Fiksuota sutarta kaina", "Jokių netikėtų papildomų darbų", "Nuolat matomas progresas",
-                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "3 mėn. garantija mano darbui"],
+                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "Instrukcijos, dokumentacija ir, jei reikia, video mokymai", "3 mėn. garantija mano darbui"],
         # about page
         "about_title": "Apie mane | Gabrielė Tamaševičiūtė · Codeart",
         "about_desc": "Gabrielė Tamaševičiūtė, programuotoja iš Vilniaus: kaip dirbu, vertybės, patirtis ir išsilavinimas.",
@@ -522,12 +524,12 @@ C = {
         "contact_desc": "Parašykite apie savo projektą: el. paštas, telefonas ir kontaktų forma. Paprastai atsakau per 24 val.",
         "contact_eyebrow": "Kontaktai",
         "contact_h1": "Turite projekto idėją?",
-        "contact_lead": "Trumpai aprašykite poreikį. Techninių terminų nereikia: užtenka problemos ar idėjos.",
+        "contact_lead": "Papasakokite apie savo projektą: ką norite sukurti ar kokią problemą išspręsti.",
         "direct_h": "Tiesiogiai",
         "f_phone": "Tel. numeris (nebūtina)",
         "next_h": "Kas bus toliau",
         "next": [
-            ("Parašote", "Trumpai papasakojate, ko reikia. Techninių detalių nereikia: užtenka problemos ar idėjos."),
+            ("Parašote", "Trumpai papasakojate apie savo projektą ar idėją."),
             ("Trumpas pokalbis", "Per 20 min. išsigryniname poreikį, apimtį ir ar galiu būti tinkamas žmogus jūsų projektui."),
             ("Aiškus planas ir kaina", "Per 24 val. atsiunčiu darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
         ],
@@ -538,10 +540,6 @@ C = {
         "home": "Home",
         "tagline": "Developer and product builder. Focused on user experience and quality.",
         "links_h": "Links",
-        "quick_h": "Quick message",
-        "quick_lead": "Write to me, I'll reply within 24 hours.",
-        "quick_msg": "Message",
-        "quick_subject": "Quick message from codeart.lt (EN)",
         "rights": "All rights reserved",
         "cta_h": "Have a project idea?",
         "cta_p": "Tell me briefly about your project. I reply within 24 hours with a work plan and a price.",
@@ -573,7 +571,7 @@ C = {
         ],
         "expect_h": "What you can expect",
         "expect": ["A fixed, agreed price", "No unexpected extra work", "Progress you can always see",
-                   "Decisions with a purpose", "UX that's comfortable to use", "A 3-month warranty on my work"],
+                   "Decisions with a purpose", "UX that's comfortable to use", "Guides, documentation and video training if needed", "A 3-month warranty on my work"],
         "about_title": "About me | Gabrielė Tamaševičiūtė · Codeart",
         "about_desc": "Gabrielė Tamaševičiūtė, a developer in Vilnius: how I work, values, experience and education.",
         "about_eyebrow": "About me",
@@ -620,12 +618,12 @@ C = {
         "contact_desc": "Tell me about your project: email, phone and a contact form. I usually reply within 24 hours.",
         "contact_eyebrow": "Contact",
         "contact_h1": "Have a project idea?",
-        "contact_lead": "Briefly describe what you need. No technical terms needed: a problem or an idea is enough.",
+        "contact_lead": "Tell me about your project: what you'd like to build or which problem you want to solve.",
         "direct_h": "Directly",
         "f_phone": "Phone (optional)",
         "next_h": "What happens next",
         "next": [
-            ("You write", "Tell me briefly what you need. No technical details needed: a problem or an idea is enough."),
+            ("You write", "You tell me briefly about your project or idea."),
             ("A short call", "In 20 minutes we pin down the need, the scope and whether I'm the right person for your project."),
             ("A clear plan and price", "Within 24 hours I send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
         ],
@@ -790,20 +788,6 @@ def site_footer(lang, key):
 <div class="footer__contact">
 <h2 class="footer__h">{c["direct_h"]}</h2>
 {contact_list(lang, keys=("mail", "phone", "pin"), cls="contact-list contact-list--compact")}
-</div>
-<div class="footer__quick">
-<h2 class="footer__h">{c["quick_h"]}</h2>
-<p class="small">{c["quick_lead"]}</p>
-<form class="quick" data-contact action="{FORMSPREE}" method="POST" data-msg-sending="{esc(t["f_sending"])}" data-msg-ok="{esc(t["f_ok"])}" data-msg-fail="{esc(t["f_fail"])}" data-msg-invalid="{esc(t["f_invalid"])}">
-<label class="visually-hidden" for="quick-email-{lang}">{t["f_email"]}</label>
-<input id="quick-email-{lang}" type="email" name="email" autocomplete="email" placeholder="{t["f_email"]}" required>
-<label class="visually-hidden" for="quick-msg-{lang}">{c["quick_msg"]}</label>
-<textarea id="quick-msg-{lang}" name="message" rows="2" placeholder="{c["quick_msg"]}" required></textarea>
-<div class="form__hp" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-<input type="hidden" name="_subject" value="{esc(c["quick_subject"])}">
-<button class="btn" type="submit">{t["f_send"]}</button>
-<p class="form__status small" role="status" aria-live="polite"></p>
-</form>
 </div>
 </div>
 <div class="container">

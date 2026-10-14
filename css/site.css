@@ -3073,7 +3073,7 @@ textarea {
   padding-top: 72px;
   padding-bottom: 48px;
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.8fr) minmax(0, 1fr);
   gap: 40px 32px;
 }
 
@@ -3169,52 +3169,6 @@ textarea {
   color: #f6f0e6;
 }
 
-.footer__quick .small {
-  margin-bottom: 12px;
-}
-
-.quick {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.quick input,
-.quick textarea {
-  min-height: 44px;
-  padding: 10px 12px;
-  border: 1px solid rgba(246, 240, 230, 0.28);
-  border-radius: 6px;
-  background: rgba(246, 240, 230, 0.06);
-  color: #f6f0e6;
-  font-size: 15px;
-  resize: vertical;
-}
-
-.quick input::placeholder,
-.quick textarea::placeholder {
-  color: #a79e91;
-}
-
-.quick input:focus-visible,
-.quick textarea:focus-visible,
-.footer :focus-visible {
-  outline: 2px solid #f6f0e6;
-  outline-offset: 2px;
-}
-
-.quick .btn {
-  align-self: flex-start;
-}
-
-.footer .form__status {
-  min-height: 22px;
-  color: #d9d1c4;
-}
-
-.footer .form__status.is-error {
-  color: #f0a58a;
-}
 
 .footer__bottom {
   padding: 20px 0;
