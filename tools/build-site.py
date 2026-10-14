@@ -264,7 +264,7 @@ T = {
         ],
         "steps_h": "Kaip vyksta darbas",
         "steps": [
-            ("Parašote", "Aprašote idėją ar problemą savais žodžiais, o aš padedu ją išgryninti."),
+            ("Parašote", "Aprašote idėją ar problemą."),
             ("Planas ir kaina", "Per 24 val. po pokalbio gaunate planą ir fiksuotą kainą raštu."),
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
             ("Paleidimas", "Įdiegiu sistemą. Mano darbui taikoma 3 mėn. garantija."),
@@ -341,7 +341,7 @@ T = {
         ],
         "steps_h": "How the work goes",
         "steps": [
-            ("You write", "You describe the idea or problem in your own words, and I help pin it down."),
+            ("You write", "You describe the idea or problem."),
             ("Plan and price", "Within 24 hours of our call you get a plan and a fixed price in writing."),
             ("Building", "You see progress all along, not only at the end."),
             ("Launch", "I deploy the system. My work comes with a 3-month warranty."),
