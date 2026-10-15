@@ -1861,6 +1861,17 @@ def project(key, lang):
         "url": SITE + url(key, lang),
         "inLanguage": lang,
         "creator": {"@id": SITE + "/#person"},
+    }, {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": name, "item": SITE + url(k, lang)}
+            for i, (k, name) in enumerate([
+                ("home", "Pradžia" if lang == "lt" else "Home"),
+                ("portfolio", "Portfolio"),
+                (key, d["title"]),
+            ], 1)
+        ],
     }]
     assemble(lang, key, title, d["desc"], body, jsonld=jsonld, og_type="article",
              body_class="page-project", current="portfolio")
@@ -1891,16 +1902,11 @@ def redirect(path, target, lang):
 
 
 def sitemap():
-    keep = []
-    old = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for loc in re.findall(r"<loc>([^<]+)</loc>", old):
-        if "/game.html" in loc:
-            keep.append(loc)
-    new = []
+    # The old game pages are not linked from the site and carry noindex, so they stay out.
+    urls = []
     for key in ("home", "portfolio", "services", "about", "contact", "p_lang", "p_tik", "p_loy"):
         for lang in ("lt", "en"):
-            new.append(SITE + url(key, lang))
-    urls = new + [u for u in keep if u not in new]
+            urls.append(SITE + url(key, lang))
     body = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
     write("sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
