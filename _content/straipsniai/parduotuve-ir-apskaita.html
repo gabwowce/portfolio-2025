@@ -1,0 +1,54 @@
+<!--
+{
+  "status": "draft",
+  "order": 9,
+  "date": "2026-10-16",
+  "service": "s_integrations",
+  "title": "Kaip sujungti el. parduotuvę su apskaita ir nebeperrašinėti sąskaitų | Codeart",
+  "title_short": "El. parduotuvės ir apskaitos sujungimas",
+  "h1": "Kaip sujungti el. parduotuvę su apskaita ir nebeperrašinėti sąskaitų",
+  "lead": "Jei kiekvieną užsakymą iš WooCommerce ar Shopify rankomis suvedate į apskaitos programą, šį darbą galima automatizuoti. Paaiškinu, kaip tai veikia ir nuo ko pradėti.",
+  "desc": "WooCommerce ar Shopify integracija su apskaitos programa (pvz. Rivilė, B1.lt): kaip automatiškai perkelti užsakymus, sąskaitas ir likučius, ką reikia žinoti ir nuo ko pradėti."
+}
+-->
+<p>Daugelis el. parduotuvių pradeda nuo paprasto proceso: gavus užsakymą, kažkas jį perrašo į apskaitos programą ir išrašo sąskaitą. Kol užsakymų keli per dieną, tai pakenčiama. Kai jų dešimtys, tai tampa atskiru darbu ir nuolatiniu klaidų šaltiniu.</p>
+
+<h2>Ką galima automatizuoti</h2>
+<ul>
+  <li><strong>Užsakymai → apskaita.</strong> Apmokėtas užsakymas parduotuvėje automatiškai sukuria pardavimo dokumentą apskaitos programoje.</li>
+  <li><strong>Sąskaitos klientui.</strong> Sąskaita sugeneruojama ir išsiunčiama klientui be rankinio darbo.</li>
+  <li><strong>Likučiai atgal į parduotuvę.</strong> Kai prekė parduodama kitu kanalu ar atvežama nauja siunta, likutis parduotuvėje atsinaujina pats.</li>
+  <li><strong>Prekės ir kainos.</strong> Nauji produktai ar kainų pakeitimai apskaitoje persikelia į parduotuvę.</li>
+  <li><strong>Grąžinimai.</strong> Grąžintas užsakymas sukuria kreditinę sąskaitą.</li>
+</ul>
+
+<h2>Kaip tai veikia</h2>
+<p>Dauguma šiuolaikinių programų turi API – sąsają, per kurią kitos programos gali saugiai skaityti ir siųsti duomenis. WooCommerce ir Shopify turi gerai dokumentuotus API. Apskaitos programos tai daro skirtingai: vienos turi API, kitos leidžia importuoti failus, kai kurios jungiasi per partnerių sprendimus.</p>
+<p>Integracija yra nedidelė programa tarp jūsų sistemų. Ji „klausosi“, kas vyksta parduotuvėje, paverčia duomenis į apskaitos programos formatą ir juos perduoda. Jei kas nors nepavyksta, pavyzdžiui, trūksta prekės kodo, ji tai užfiksuoja ir praneša jums.</p>
+
+<h2>Dažniausios kliūtys</h2>
+<ul>
+  <li><strong>Nesutampantys prekių kodai.</strong> Jei parduotuvėje ir apskaitoje ta pati prekė vadinasi skirtingai ar turi skirtingus kodus, juos pirmiausia reikia suderinti. Tai dažnai didžiausia darbo dalis.</li>
+  <li><strong>PVM ir nuolaidos.</strong> Kuponai, nemokamas pristatymas ir skirtingi PVM tarifai turi būti perkelti teisingai.</li>
+  <li><strong>Prieigos.</strong> Kai kurioms apskaitos programoms API prieiga reikalauja papildomo modulio ar licencijos. Tai verta pasitikrinti iš anksto.</li>
+  <li><strong>Seni duomenys.</strong> Integracija dažniausiai veikia nuo paleidimo dienos, o istorinius užsakymus, jei reikia, perkeliame atskirai.</li>
+</ul>
+
+<h2>Gatavas papildinys ar integracija pagal užsakymą?</h2>
+<p>Populiarioms programų poroms kartais egzistuoja gatavi papildiniai. Jei toks yra ir tinka jūsų procesui, rinkitės jį: tai pigiau. Integracija pagal užsakymą verta, kai:</p>
+<ul>
+  <li>papildinio jūsų programoms nėra;</li>
+  <li>jūsų procesas turi išimčių, kurių papildinys nepalaiko (pvz. keli sandėliai, rinkiniai, didmeninės kainos);</li>
+  <li>reikia sujungti daugiau nei dvi sistemas, pavyzdžiui, parduotuvę, apskaitą ir kurjerį.</li>
+</ul>
+
+<h2>Nuo ko pradėti</h2>
+<ol>
+  <li>Užrašykite, kokius duomenis dabar perrašote ir kiek laiko tai užtrunka per savaitę.</li>
+  <li>Pasitikrinkite, kokią apskaitos programos versiją naudojate ir ar ji turi API arba importą.</li>
+  <li>Suderinkite prekių kodus parduotuvėje ir apskaitoje.</li>
+  <li>Pradėkite nuo vienos krypties, pavyzdžiui, užsakymai → apskaita. Likučius galima pridėti antru etapu.</li>
+</ol>
+<p>Kartu su apskaita dažnai verta automatizuoti ir siuntas. Apie tai rašiau straipsnyje <a href="/lt/straipsniai/automatinis-siuntu-generavimas.html">Automatinis siuntų generavimas</a>.</p>
+<p>[Tavo patirtis ar pavyzdys su konkrečia apskaitos programa, kai turėsi.]</p>
+<p>Norite sužinoti, ar jūsų programas galima sujungti ir kiek tai kainuotų? Parašykite, kokias programas naudojate. Daugiau: <a href="/lt/paslaugos/integracijos.html">Sistemų integracijos</a>.</p>

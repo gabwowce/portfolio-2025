@@ -1,0 +1,375 @@
+"""
+Text of the service pages, LT and EN. tools/build-site.py turns it into
+lt/paslaugos/*.html and en/services/*.html.
+
+"status": "draft" pages are built only with --drafts. Change it to
+"published" once the page is ready, then run the normal build.
+
+Text in [square brackets] is a placeholder still to be filled in: a price,
+a timeline, or a detail only you know. The build warns if a published page
+still has one.
+
+Per language:
+  path        output file
+  name        short name, used on cards and in breadcrumbs
+  title/desc  <title> and meta description (search results)
+  h1, lead    page heading and intro
+  card        one-sentence summary for the services page and articles
+  fit         situations the client recognises: (heading, text)
+  build       concrete things I can build: (heading, text)
+  get         what the client gets (checklist)
+  price, time "from" price and typical timeline
+  project     (project key, how that project relates) or None
+  faq         (question, answer)
+"""
+
+SERVICE_PAGES = {
+    # ------------------------------------------------------------------
+    "s_systems": {
+        "status": "draft",
+        "lt": {
+            "path": "lt/paslaugos/verslo-sistemos.html",
+            "name": "Verslo sistemos pagal užsakymą",
+            "title": "Verslo valdymo sistemos kūrimas pagal užsakymą | Codeart",
+            "desc": "Užsakymų valdymas, CRM, sandėlio apskaita ar darbuotojų grafikai vienoje sistemoje, sukurtoje pagal jūsų procesą. Pakeičia Excel ir chaosą. Fiksuota kaina, 3 mėn. garantija.",
+            "h1": "Verslo valdymo sistema pagal jūsų procesą",
+            "lead": "Kai užsakymai, klientai ir likučiai išmėtyti po Excel lenteles, el. laiškus ir žinutes, sukuriu vieną sistemą, kurioje viskas matosi iš karto. Ji pritaikyta prie to, kaip jūs dirbate, o ne atvirkščiai.",
+            "card": "Užsakymų valdymas, CRM, sandėlis ar grafikai vienoje sistemoje, pritaikytoje prie jūsų darbo.",
+            "fit_h": "Kam tinka",
+            "fit": [
+                ("Excel nebepakanka", "Lentelių vis daugiau, versijos maišosi, o norint sužinoti užsakymo būseną reikia kažko paklausti."),
+                ("Gatavos programos netinka", "Išbandėte Pipedrive, Trello ar kitą įrankį, bet jūsų procesas į jį netelpa arba mokate už daug nereikalingų funkcijų."),
+                ("Darbas užstringa ties vienu žmogumi", "Kai svarbus darbuotojas atostogauja, niekas nežino, kas kur yra. Informacija turi būti sistemoje, ne galvoje."),
+            ],
+            "build_h": "Ką galiu sukurti",
+            "build": [
+                ("Užsakymų ir darbų valdymas", "Užsakymas nuo užklausos iki sąskaitos: būsenos, atsakingi žmonės, terminai ir priminimai vienoje vietoje."),
+                ("CRM pagal jūsų pardavimus", "Klientai, kontaktų istorija, pasiūlymai ir priminimai be nereikalingų funkcijų, už kurias tektų mokėti kas mėnesį."),
+                ("Sandėlio ir likučių apskaita", "Matote, kiek ko liko, kas rezervuota ir ką laikas užsakyti. Su perspėjimais, kai likutis per mažas."),
+                ("Darbuotojų grafikai ir laiko apskaita", "Pamainos, atostogos ir dirbtos valandos be rankinio skaičiavimo ir be grafiko nuotraukų messenger'yje."),
+                ("Valdymo skydelis vadovui", "Svarbiausi skaičiai iš kelių sistemų viename ekrane: pardavimai, užsakymai, vėluojantys darbai."),
+                ("Klientų savitarna", "Klientas pats mato savo užsakymų būseną, sąskaitas ir dokumentus, todėl jums mažiau skambučių."),
+            ],
+            "get": [
+                "Sistemą, veikiančią naršyklėje kompiuteryje ir telefone",
+                "Vartotojus su skirtingomis teisėmis (vadovas, darbuotojas, klientas)",
+                "Duomenų perkėlimą iš esamų Excel lentelių",
+                "Integracijas su jūsų naudojamomis programomis, jei reikia",
+                "Naudojimo instrukcijas ir apmokymą komandai",
+                "3 mėn. garantiją po paleidimo",
+            ],
+            "price": "[nuo X €]",
+            "time": "[4–10 sav.]",
+            "project": ("p_loy", "B2B administravimo sistema lojalumo programoms: kortelės, klientai, akcijos ir kuponai valdomi vienoje vietoje. Komandoje buvau pagrindinė frontend programuotoja ir dirbau dalį backend darbų."),
+            "faq": [
+                ("Kuo sistema pagal užsakymą geresnė už gatavą programą?", "Gatava programa tinka, kai jūsų procesas standartinis. Sistema pagal užsakymą apsimoka, kai procesas savitas, kai gatavoje programoje mokate už daug vartotojų ar nereikalingų funkcijų arba kai reikia sujungti kelias programas į vieną. Pirmo pokalbio metu atvirai pasakysiu, jei jums labiau tiktų gatavas sprendimas."),
+                ("Ar galima pradėti nuo mažesnės versijos?", "Taip, ir dažniausiai taip ir patariu. Pirmiausia sukuriame tai, kas sutaupo daugiausia laiko, pavyzdžiui, užsakymų sąrašą su būsenomis, o kitas dalis pridedame vėliau."),
+                ("Ar galėsime perkelti duomenis iš Excel?", "Taip. Esamas lenteles perkeliu į naują sistemą, kad nereikėtų nieko suvedinėti iš naujo."),
+                ("Kas bus, jei vėliau reikės naujų funkcijų?", "Sistemą kuriu taip, kad ją būtų galima plėsti. Naujas funkcijas galiu pridėti ir aš, ir kitas programuotojas: kodas jūsų, o ne užrakintas pas mane."),
+                ("Kur laikomi duomenys?", "Patikimuose debesijos serveriuose ES, su atsarginėmis kopijomis. Konkretų sprendimą aptariame pagal jūsų poreikius ir biudžetą."),
+            ],
+        },
+        "en": {
+            "path": "en/services/business-systems.html",
+            "name": "Custom business systems",
+            "title": "Custom business management system development | Codeart",
+            "desc": "Order management, CRM, stock or staff schedules in one system built around your process. Replaces spreadsheets and chaos. Fixed price, 3-month warranty.",
+            "h1": "A business management system built around your process",
+            "lead": "When orders, clients and stock are scattered across spreadsheets, emails and chats, I build one system where everything is visible at once. It fits the way you work, not the other way round.",
+            "card": "Order management, CRM, stock or schedules in one system that fits the way you work.",
+            "fit_h": "Who it's for",
+            "fit": [
+                ("You've outgrown spreadsheets", "There are more and more sheets, versions get mixed up, and finding out an order's status means asking someone."),
+                ("Off-the-shelf tools don't fit", "You've tried Pipedrive, Trello or something else, but your process doesn't fit, or you pay for lots of features you don't need."),
+                ("Work stalls when one person is away", "When a key employee is on holiday, nobody knows where things are. The information should live in a system, not in someone's head."),
+            ],
+            "build_h": "What I can build",
+            "build": [
+                ("Order and job management", "An order from enquiry to invoice: statuses, owners, deadlines and reminders in one place."),
+                ("A CRM shaped around your sales", "Clients, contact history, offers and reminders, without features you'd pay for every month and never use."),
+                ("Stock and inventory tracking", "See what's left, what's reserved and what to reorder, with alerts when stock runs low."),
+                ("Staff schedules and time tracking", "Shifts, holidays and hours worked, without manual counting or photos of the rota in a group chat."),
+                ("A dashboard for management", "The key numbers from several systems on one screen: sales, orders, overdue work."),
+                ("A client self-service portal", "Clients see their order status, invoices and documents themselves, so you get fewer calls."),
+            ],
+            "get": [
+                "A system that runs in the browser on desktop and mobile",
+                "Users with different permissions (manager, staff, client)",
+                "Your existing spreadsheet data moved over",
+                "Integrations with the tools you already use, if needed",
+                "User guides and training for your team",
+                "A 3-month warranty after launch",
+            ],
+            "price": "[from X €]",
+            "time": "[4–10 weeks]",
+            "project": ("p_loy", "A B2B admin system for loyalty programmes: cards, clients, promotions and coupons managed in one place. I was the lead frontend developer in the team and also did part of the backend work."),
+            "faq": [
+                ("Why a custom system rather than an off-the-shelf tool?", "An off-the-shelf tool works when your process is standard. A custom system pays off when your process is specific, when you pay per seat or for features you don't use, or when several tools need to become one. On our first call I'll tell you honestly if an existing product would suit you better."),
+                ("Can we start with a smaller version?", "Yes, and that's usually what I recommend. We first build the part that saves the most time, for example an order list with statuses, and add the rest later."),
+                ("Can we move our data from spreadsheets?", "Yes. I move your existing sheets into the new system, so nothing has to be typed in again."),
+                ("What if we need new features later?", "I build the system so it can grow. New features can be added by me or by another developer: the code is yours, not locked in with me."),
+                ("Where is the data stored?", "On reliable cloud servers in the EU, with backups. We pick the exact setup based on your needs and budget."),
+            ],
+        },
+    },
+    # ------------------------------------------------------------------
+    "s_apps": {
+        "status": "draft",
+        "lt": {
+            "path": "lt/paslaugos/programeliu-kurimas.html",
+            "name": "Programėlių ir web aplikacijų kūrimas",
+            "title": "Programėlės ir web aplikacijos kūrimas nuo nulio | Codeart",
+            "desc": "Sukuriu pirmą veikiančią jūsų programėlės ar web aplikacijos versiją (MVP): dizainas, frontend, backend ir paleidimas. Fiksuota kaina, 3 mėn. garantija.",
+            "h1": "Programėlės ir web aplikacijos kūrimas nuo nulio",
+            "lead": "Turite idėją produktui, platformai ar įrankiui klientams? Padedu ją išgryninti ir sukuriu pirmą veikiančią versiją, kurią galite rodyti klientams, investuotojams ar komandai.",
+            "card": "Programėlė ar web aplikacija nuo idėjos iki paleidimo: pirma veikianti versija (MVP), kurią galima rodyti klientams.",
+            "fit_h": "Kam tinka",
+            "fit": [
+                ("Turite idėją, bet ne komandą", "Nereikia samdyti dizainerio, frontend ir backend programuotojų atskirai. Vienas žmogus atsako už visą produktą."),
+                ("Norite greitai patikrinti idėją", "Vietoj metų trukmės projekto sukuriame mažiausią versiją, su kuria jau galima dirbti ir gauti atsiliepimų."),
+                ("No-code prototipas nebetinka", "Pasidarėte prototipą su Lovable, Bubble ar kitu įrankiu, bet jis lėtas, ribotas ar nesaugus. Perkeliu jį į tvarkingą kodą."),
+            ],
+            "build_h": "Ką galiu sukurti",
+            "build": [
+                ("Platformą su vartotojų paskyromis", "Registracija, prisijungimas, skirtingos rolės ir asmeninė erdvė kiekvienam vartotojui."),
+                ("Mokymų ar narystės platformą", "Kursai, pamokos, progresas, prieiga pagal kodus ar prenumeratą, sertifikatai."),
+                ("Rezervacijų ar registracijos sistemą", "Laisvų laikų kalendorius, priminimai klientams ir administravimas jums."),
+                ("Užsakymų ar pasiūlymų skaičiuoklę", "Klientas pats apsiskaičiuoja kainą, o jūs gaunate tvarkingą užklausą su visa informacija."),
+                ("Mobiliai pritaikytą programėlę", "Web aplikacija, kuri telefone veikia kaip programėlė (PWA). Jei reikia, ir programėlę App Store bei Google Play."),
+                ("Vidinį įrankį komandai", "Nedidelis įrankis vienai konkrečiai problemai, kuri dabar sprendžiama rankomis."),
+            ],
+            "get": [
+                "Sąsajos dizainą, suderintą prieš programuojant",
+                "Veikiančią aplikaciją su duomenų baze ir prisijungimu",
+                "Paleidimą jūsų domene ir serveryje",
+                "Kodą, kuris priklauso jums",
+                "Naudojimo instrukcijas",
+                "3 mėn. garantiją po paleidimo",
+            ],
+            "price": "[nuo X €]",
+            "time": "[4–8 sav.]",
+            "project": ("p_lang", "Kalbų mokymosi platforma iš trijų dalių: vieša svetainė, mokinio platforma ir turinio valdymo sistema, kurioje užduotys sudaromos automatiškai iš žodyno. Visą sistemą sukūriau viena: duomenų bazę, serverio logiką, abi platformas ir testus."),
+            "faq": [
+                ("Kas yra MVP?", "MVP (angl. minimum viable product) yra mažiausia produkto versija, su kuria jau galima dirbti ir kurią galima parodyti tikriems vartotojams. Ji leidžia patikrinti idėją neišleidžiant viso biudžeto iš karto."),
+                ("Web aplikacija ar mobilioji programėlė?", "Daugumai projektų pradžiai užtenka web aplikacijos, kuri gerai veikia ir telefone. Ji pigesnė, greičiau paleidžiama ir nereikia laukti App Store patvirtinimo. Mobiliąją programėlę verta kurti, kai reikia telefono funkcijų, pvz. pranešimų, kameros ar darbo be interneto."),
+                ("Ar padėsite, jei idėja dar neaiški?", "Taip. Pirmiausia kartu išsiaiškiname, kam skirtas produktas ir kokia mažiausia versija jau būtų naudinga. Tik tada skaičiuoju kainą."),
+                ("Kam priklausys kodas?", "Jums. Perduodu visą kodą ir prieigas, todėl ateityje galite tęsti su manimi ar su kitu programuotoju."),
+                ("Ar galite tęsti jau pradėtą projektą?", "Taip. Peržiūriu esamą kodą ir pasakau, ką verta palikti, o ką geriau perdaryti."),
+            ],
+        },
+        "en": {
+            "path": "en/services/app-development.html",
+            "name": "App and web application development",
+            "title": "App and web application development from scratch | Codeart",
+            "desc": "I build the first working version (MVP) of your app or web application: design, frontend, backend and launch. Fixed price, 3-month warranty.",
+            "h1": "App and web application development from scratch",
+            "lead": "Have an idea for a product, a platform or a tool for your clients? I help you pin it down and build the first working version you can show to clients, investors or your team.",
+            "card": "An app or web application from idea to launch: a first working version (MVP) you can show to clients.",
+            "fit_h": "Who it's for",
+            "fit": [
+                ("You have an idea but no team", "No need to hire a designer, frontend and backend developers separately. One person is responsible for the whole product."),
+                ("You want to test the idea quickly", "Instead of a year-long project we build the smallest version that can already be used and get feedback."),
+                ("Your no-code prototype has hit its limits", "You built a prototype with Lovable, Bubble or a similar tool, but it's slow, limited or insecure. I move it into proper code."),
+            ],
+            "build_h": "What I can build",
+            "build": [
+                ("A platform with user accounts", "Sign-up, login, different roles and a personal space for every user."),
+                ("A learning or membership platform", "Courses, lessons, progress, access by code or subscription, certificates."),
+                ("A booking or registration system", "A calendar of free slots, reminders for clients and an admin side for you."),
+                ("An order or quote calculator", "Clients work out the price themselves, and you get a complete, tidy request."),
+                ("A mobile-friendly app", "A web app that works like an app on the phone (PWA). If needed, an app for the App Store and Google Play too."),
+                ("An internal tool for your team", "A small tool for one specific problem that is solved by hand today."),
+            ],
+            "get": [
+                "An interface design agreed before coding starts",
+                "A working application with a database and login",
+                "Launch on your domain and server",
+                "Code that belongs to you",
+                "User guides",
+                "A 3-month warranty after launch",
+            ],
+            "price": "[from X €]",
+            "time": "[4–8 weeks]",
+            "project": ("p_lang", "A language learning platform in three parts: a public website, a learner platform and a content management system that generates exercises from the vocabulary. I built the whole system on my own: the database, server logic, both platforms and the tests."),
+            "faq": [
+                ("What is an MVP?", "An MVP (minimum viable product) is the smallest version of a product that can already be used and shown to real users. It lets you test the idea without spending the whole budget up front."),
+                ("A web app or a mobile app?", "For most projects a web app that works well on the phone is enough to start with. It costs less, launches sooner and doesn't wait for App Store review. A native mobile app is worth it when you need phone features such as notifications, the camera or offline use."),
+                ("Can you help if the idea isn't clear yet?", "Yes. First we work out together who the product is for and what the smallest useful version is. Only then do I price it."),
+                ("Who owns the code?", "You do. I hand over all the code and access, so later you can continue with me or with another developer."),
+                ("Can you continue a project someone else started?", "Yes. I review the existing code and tell you what's worth keeping and what's better rebuilt."),
+            ],
+        },
+    },
+    # ------------------------------------------------------------------
+    "s_integrations": {
+        "status": "draft",
+        "lt": {
+            "path": "lt/paslaugos/integracijos.html",
+            "name": "Sistemų integracijos",
+            "title": "Sistemų integracijos: el. parduotuvė, apskaita, siuntos, mokėjimai | Codeart",
+            "desc": "Sujungiu jūsų programas, kad duomenys keliautų patys: el. parduotuvė su apskaita (Rivilė, B1.lt), siuntos (Omniva, DPD, LP Express), mokėjimai ir CRM. Mažiau rankinio darbo ir klaidų.",
+            "h1": "Sistemų integracijos: kad programos kalbėtųsi tarpusavyje",
+            "lead": "Jei tuos pačius duomenis perrašote iš vienos programos į kitą, tą darbą galima automatizuoti. Sujungiu el. parduotuvę, apskaitą, siuntų tarnybas, mokėjimus ir CRM per API.",
+            "card": "El. parduotuvė, apskaita, siuntos ir mokėjimai sujungti taip, kad duomenų nebereikėtų perrašinėti ranka.",
+            "fit_h": "Kam tinka",
+            "fit": [
+                ("Perrašote duomenis ranka", "Užsakymus iš parduotuvės suvedate į apskaitą, o siuntų duomenis kopijuojate į kurjerio sistemą."),
+                ("Klaidos kainuoja", "Neteisingas adresas, praleista sąskaita ar netikslus likutis kainuoja laiko ir klientų pasitikėjimo."),
+                ("Programos neturi reikalingo ryšio", "Gatavas papildinys neegzistuoja, veikia ne taip, kaip reikia, arba kainuoja daugiau nei naudos."),
+            ],
+            "build_h": "Ką galiu sujungti",
+            "build": [
+                ("El. parduotuvė ↔ apskaita", "WooCommerce ar Shopify užsakymai patys tampa sąskaitomis apskaitos programoje (pvz. Rivilė, B1.lt), o likučiai grįžta atgal."),
+                ("Automatinis siuntų generavimas", "Siuntos lipdukai Omniva, DPD ar LP Express sistemose sukuriami iš užsakymo vienu paspaudimu arba visai automatiškai."),
+                ("Mokėjimai", "Montonio, Paysera ar Stripe mokėjimai su automatiniu užsakymo būsenos atnaujinimu ir sąskaita klientui."),
+                ("Užklausų forma → CRM", "Užklausa iš svetainės pati atsiranda CRM ar el. lentelėje, o klientas iškart gauna patvirtinimo laišką."),
+                ("Duomenų sinchronizavimas", "Prekės, kainos ir likučiai tarp tiekėjo, sandėlio ir parduotuvės atnaujinami pagal grafiką."),
+                ("Savas API jūsų sistemai", "Jei jūsų sistemai reikia API, kad prie jos galėtų jungtis partneriai ar kitos programos, jį suprojektuoju ir sukuriu."),
+            ],
+            "get": [
+                "Esamų programų ir jų API galimybių įvertinimą",
+                "Veikiančią integraciją su klaidų žurnalu",
+                "Pranešimus, jei kažkas nepavyksta",
+                "Dokumentaciją, kaip integracija veikia",
+                "3 mėn. garantiją po paleidimo",
+            ],
+            "price": "[nuo X €]",
+            "time": "[1–4 sav.]",
+            "project": None,
+            "faq": [
+                ("Ar galima sujungti bet kurias programas?", "Dažniausiai taip, jei programa turi API ar duomenų importą ir eksportą. Pirmiausia patikrinu, ką leidžia jūsų naudojamos programos, ir tik tada pasiūlau sprendimą bei kainą."),
+                ("Kodėl ne gatavas papildinys?", "Jei geras papildinys egzistuoja, pasiūlysiu jį. Integraciją pagal užsakymą verta daryti, kai papildinio nėra, jis netinka jūsų procesui arba kainuoja daugiau nei naudos."),
+                ("Ko reikės iš mūsų?", "Prieigų prie programų (API raktų ar paskyrų) ir trumpo paaiškinimo, kaip dabar keliauja duomenys. Su kurjerių tarnybomis ir mokėjimų sistemomis dažnai reikia ir jūsų sutarties su jomis."),
+                ("Kas bus, jei programa pasikeis?", "Integracija registruoja klaidas ir praneša, jei kas nors nustoja veikti. Palaikymą galime sutarti atskirai."),
+            ],
+        },
+        "en": {
+            "path": "en/services/integrations.html",
+            "name": "System integrations",
+            "title": "System integrations: e-shop, accounting, shipping, payments | Codeart",
+            "desc": "I connect your tools so data moves by itself: e-shop and accounting, shipping (Omniva, DPD, LP Express), payments and CRM. Less manual work and fewer mistakes.",
+            "h1": "System integrations that get your tools talking",
+            "lead": "If you copy the same data from one program into another, that work can be automated. I connect e-shops, accounting, couriers, payments and CRMs through their APIs.",
+            "card": "E-shop, accounting, shipping and payments connected so data no longer has to be retyped by hand.",
+            "fit_h": "Who it's for",
+            "fit": [
+                ("You retype data by hand", "Orders from the shop go into accounting by hand, and shipping details are copied into the courier's system."),
+                ("Mistakes cost you", "A wrong address, a missed invoice or an inaccurate stock count costs time and customers' trust."),
+                ("Your tools lack the connection you need", "No ready-made plugin exists, it doesn't work the way you need, or it costs more than it's worth."),
+            ],
+            "build_h": "What I can connect",
+            "build": [
+                ("E-shop ↔ accounting", "WooCommerce or Shopify orders turn into invoices in your accounting software automatically, and stock levels flow back."),
+                ("Automatic shipping labels", "Omniva, DPD or LP Express labels created from an order in one click, or fully automatically."),
+                ("Payments", "Montonio, Paysera or Stripe payments that update the order status and send the client an invoice."),
+                ("Enquiry form → CRM", "An enquiry from your website lands in your CRM or spreadsheet, and the client gets a confirmation email straight away."),
+                ("Data sync", "Products, prices and stock between supplier, warehouse and shop, updated on a schedule."),
+                ("An API for your system", "If your system needs an API so partners or other tools can connect to it, I design and build it."),
+            ],
+            "get": [
+                "A review of your current tools and what their APIs allow",
+                "A working integration with an error log",
+                "Alerts when something fails",
+                "Documentation of how the integration works",
+                "A 3-month warranty after launch",
+            ],
+            "price": "[from X €]",
+            "time": "[1–4 weeks]",
+            "project": None,
+            "faq": [
+                ("Can any two programs be connected?", "Usually yes, if the program has an API or data import and export. First I check what your tools allow, and only then propose a solution and a price."),
+                ("Why not a ready-made plugin?", "If a good plugin exists, I'll suggest it. A custom integration is worth it when there's no plugin, it doesn't fit your process, or it costs more than it's worth."),
+                ("What will you need from us?", "Access to the tools (API keys or accounts) and a short explanation of how data moves today. Couriers and payment providers often also require your own contract with them."),
+                ("What happens if one of the tools changes?", "The integration logs errors and alerts you if something stops working. Ongoing support can be agreed separately."),
+            ],
+        },
+    },
+    # ------------------------------------------------------------------
+    "s_ai": {
+        "status": "draft",
+        "lt": {
+            "path": "lt/paslaugos/ai-chatbot.html",
+            "name": "AI chatbot ir DI sprendimai verslui",
+            "title": "AI chatbot verslui: pokalbių robotas svetainei | Codeart",
+            "desc": "AI chatbot, kuris atsako jūsų klientams pagal jūsų informaciją: kainos, paslaugos, pristatymas, darbo laikas. Taip pat DI asistentai darbuotojams ir dokumentų apdorojimas.",
+            "h1": "AI chatbot ir DI sprendimai verslui",
+            "lead": "Pokalbių robotas, kuris klientams atsako dieną ir naktį, remdamasis jūsų informacija, o ne spėliodamas. Kai reikia, perduoda pokalbį žmogui.",
+            "card": "Pokalbių robotas, kuris atsako klientams pagal jūsų informaciją, ir kiti DI sprendimai kasdieniam darbui.",
+            "fit_h": "Kam tinka",
+            "fit": [
+                ("Klientai klausia to paties", "Kainos, darbo laikas, pristatymas, grąžinimas: tie patys klausimai kasdien atima valandas."),
+                ("Užklausos ateina ne darbo metu", "Klientas rašo vakare, o atsakymą gauna kitą dieną, kai jau nusipirko kitur."),
+                ("Darbuotojai ieško informacijos", "Taisyklės, instrukcijos ir kainoraščiai išmėtyti po dokumentus, ir kiekvieną kartą jų tenka ieškoti iš naujo."),
+            ],
+            "build_h": "Ką galiu sukurti",
+            "build": [
+                ("AI chatbot svetainei", "Atsako į klientų klausimus pagal jūsų DUK, kainas ir taisykles. Nežinodamas atsakymo, pasiūlo susisiekti su jumis."),
+                ("Asistentas darbuotojams", "Atsako į klausimus pagal vidinius dokumentus: instrukcijas, sutartis, procedūras."),
+                ("Užklausų rūšiavimas", "Gautus laiškus ar užklausas suskirsto pagal temą ir parengia atsakymo juodraštį."),
+                ("Dokumentų apdorojimas", "Iš sąskaitų, užsakymų ar PDF dokumentų ištraukia reikalingus duomenis ir perkelia juos į jūsų sistemą."),
+                ("Tekstų generavimas", "Produktų aprašymai, vertimai ar santraukos jūsų tonu, su galimybe peržiūrėti prieš skelbiant."),
+                ("DI funkcijos esamai sistemai", "Paieška natūralia kalba, santraukos ar rekomendacijos jūsų jau veikiančioje sistemoje."),
+            ],
+            "get": [
+                "Chatbot'ą, apmokytą jūsų informacija",
+                "Įdiegimą jūsų svetainėje",
+                "Pokalbių istoriją, kurią galite peržiūrėti",
+                "Taisykles, ką robotas gali ir ko negali sakyti",
+                "Perdavimą žmogui, kai robotas nežino atsakymo",
+                "3 mėn. garantiją po paleidimo",
+            ],
+            "price": "[nuo X €]",
+            "time": "[1–3 sav.]",
+            "project": ("p_tik", "TikMaker – vaizdo įrašų redaktorius, kuriame balsas ir subtitrai sukuriami iš teksto per AI įgarsinimo paslaugą. Visą įrankį sukūriau viena: redaktorių, video variklį ir serverį."),
+            "faq": [
+                ("Ar chatbot'as neprikurs neteisingų atsakymų?", "Robotas atsako tik pagal jūsų pateiktą informaciją ir gauna aiškias taisykles: jei atsakymo nežino, taip ir sako bei pasiūlo susisiekti. Prieš paleidžiant jį kartu išbandome su tikrais klientų klausimais."),
+                ("Kiek kainuoja chatbot'o naudojimas kas mėnesį?", "Be kūrimo kainos mokate už AI modelio naudojimą: kuo daugiau pokalbių, tuo daugiau. Mažam verslui tai dažniausiai nedidelė suma. Tikslų įvertinimą pateikiu pagal jūsų pokalbių kiekį."),
+                ("Ar jis kalba lietuviškai?", "Taip. Šiuolaikiniai AI modeliai gerai supranta ir rašo lietuviškai, o robotas gali atsakyti ta kalba, kuria klientas parašė."),
+                ("Kaip su asmens duomenimis (BDAR)?", "Renkamės paslaugų teikėjus, kurie nenaudoja jūsų duomenų modeliams mokyti, saugome tik būtinus duomenis ir lankytojui aiškiai parodome, kad jis kalbasi su robotu."),
+                ("Ar galima prijungti prie mūsų sistemos?", "Taip. Robotas gali, pavyzdžiui, patikrinti užsakymo būseną ar užregistruoti vizitui, jei jūsų sistema turi API."),
+            ],
+        },
+        "en": {
+            "path": "en/services/ai-chatbot.html",
+            "name": "AI chatbots and AI solutions for business",
+            "title": "AI chatbot for business: a chatbot for your website | Codeart",
+            "desc": "An AI chatbot that answers your customers from your own information: prices, services, delivery, opening hours. Also AI assistants for staff and document processing.",
+            "h1": "AI chatbots and AI solutions for business",
+            "lead": "A chatbot that answers customers day and night from your information, not from guesswork. When needed, it hands the conversation over to a person.",
+            "card": "A chatbot that answers customers from your information, plus other AI solutions for everyday work.",
+            "fit_h": "Who it's for",
+            "fit": [
+                ("Customers ask the same things", "Prices, opening hours, delivery, returns: the same questions take hours every day."),
+                ("Enquiries arrive after hours", "A customer writes in the evening and gets an answer the next day, after they've already bought elsewhere."),
+                ("Staff keep searching for information", "Rules, guides and price lists are scattered across documents and have to be looked up again every time."),
+            ],
+            "build_h": "What I can build",
+            "build": [
+                ("An AI chatbot for your website", "Answers customer questions from your FAQ, prices and policies. When it doesn't know, it offers to put them in touch with you."),
+                ("An assistant for your staff", "Answers questions from internal documents: guides, contracts, procedures."),
+                ("Enquiry triage", "Sorts incoming emails or enquiries by topic and drafts a reply."),
+                ("Document processing", "Pulls the data you need out of invoices, orders or PDFs and puts it into your system."),
+                ("Text generation", "Product descriptions, translations or summaries in your tone, reviewed before they go out."),
+                ("AI features for an existing system", "Natural-language search, summaries or recommendations inside the system you already use."),
+            ],
+            "get": [
+                "A chatbot trained on your information",
+                "Installation on your website",
+                "A conversation history you can review",
+                "Rules on what the bot can and can't say",
+                "Hand-over to a person when the bot doesn't know",
+                "A 3-month warranty after launch",
+            ],
+            "price": "[from X €]",
+            "time": "[1–3 weeks]",
+            "project": ("p_tik", "TikMaker is a video editor where the voice-over and subtitles are generated from text through an AI voice service. I built the whole tool on my own: the editor, the video engine and the server."),
+            "faq": [
+                ("Won't the chatbot make things up?", "The bot answers only from the information you provide and follows clear rules: if it doesn't know, it says so and offers to put the customer in touch. Before launch we test it together on real customer questions."),
+                ("What does it cost to run each month?", "On top of the build you pay for the AI model's usage: the more conversations, the more it costs. For a small business this is usually a modest amount. I give an estimate based on your volume."),
+                ("Does it speak Lithuanian?", "Yes. Today's AI models understand and write Lithuanian well, and the bot can reply in whichever language the customer wrote in."),
+                ("What about personal data (GDPR)?", "We choose providers that don't use your data to train their models, store only what's needed, and make it clear to visitors that they're talking to a bot."),
+                ("Can it connect to our system?", "Yes. If your system has an API, the bot can, for example, check an order's status or book an appointment."),
+            ],
+        },
+    },
+}

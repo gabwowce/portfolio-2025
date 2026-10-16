@@ -28,6 +28,7 @@ import html
 import json
 import re
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://codeart.lt"
@@ -147,6 +148,8 @@ ICON_PLUS = ('<svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18"
 
 def lang_link(lang, key, cls="lang"):
     other = "en" if lang == "lt" else "lt"
+    if not ROUTES[key].get(other):
+        key = "home"
     label = ("Kalba: lietuvių. Perjungti į anglų" if lang == "lt"
              else "Language: English. Switch to Lithuanian")
     # Wrapped in a span: as direct flex children the bold and plain runs
@@ -167,7 +170,7 @@ def asset(path):
 def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website"):
     canonical = SITE + url(key, lang)
     alts = ""
-    if not noindex:
+    if not noindex and all(ROUTES[key].get(l) for l in ("lt", "en")):
         alts = (f'<link rel="alternate" hreflang="lt" href="{SITE + url(key, "lt")}">\n'
                 f'<link rel="alternate" hreflang="en" href="{SITE + url(key, "en")}">\n'
                 f'<link rel="alternate" hreflang="x-default" href="{SITE + url(key, "lt")}">\n')
@@ -664,6 +667,13 @@ def nav_href(key, lang):
     return url(key, lang)
 
 
+def nav_items(lang):
+    items = list(C[lang]["nav"])
+    if lang == "lt" and any(visible(a) for a in ARTICLES):
+        items.insert(len(items) - 1, ("articles", "Straipsniai"))
+    return items
+
+
 def brand(lang):
     return (f'<a class="brand" href="{url("home", lang)}" aria-label="Gabrielė Tamaševičiūtė · Codeart, '
             f'{C[lang]["home"].lower()}">'
@@ -676,7 +686,7 @@ def site_header(lang, key, current=None):
     t, c = T[lang], C[lang]
     links = []
     menu = []
-    for i, (k, label) in enumerate(c["nav"], 1):
+    for i, (k, label) in enumerate(nav_items(lang), 1):
         cur = ' aria-current="page"' if k == current else ""
         links.append(f'<a href="{nav_href(k, lang)}"{cur}>{label}</a>')
         menu.append(f'<a href="{nav_href(k, lang)}"{cur}><span class="mono" aria-hidden="true">0{i}</span>{label}</a>')
@@ -766,7 +776,7 @@ def cta_band(lang):
 def site_footer(lang, key):
     t, c = T[lang], C[lang]
     links = [f'<li><a href="{url("home", lang)}">{c["home"]}</a></li>'] + [
-        f'<li><a href="{nav_href(k, lang)}">{label}</a></li>' for k, label in c["nav"]]
+        f'<li><a href="{nav_href(k, lang)}">{label}</a></li>' for k, label in nav_items(lang)]
     return f"""<footer class="footer">
 <div class="container footer__grid">
 <div class="footer__brand">
@@ -830,9 +840,9 @@ def timeline(steps, *, cols=4):
     return f'<ol class="tl tl--{cols}">\n{items}\n</ol>'
 
 
-def faq_block(lang, prefix="faq"):
+def faq_block(lang, prefix="faq", faq=None):
     items = []
-    for i, (q, a) in enumerate(T[lang]["faq"], 1):
+    for i, (q, a) in enumerate(faq or T[lang]["faq"], 1):
         items.append(f"""<div class="faq__item">
 <h3 class="faq__q"><button class="faq__btn" type="button" data-faq aria-expanded="true" aria-controls="{prefix}-{i}">{q}{ICON_PLUS}</button></h3>
 <div class="faq__a" id="{prefix}-{i}"><p>{a}</p></div>
@@ -845,8 +855,12 @@ def sec_head(num, title, hid, extra=""):
             f'<h2 class="h2" id="{hid}">{title}</h2></div>')
 
 
-def assemble(lang, key, title, desc, body, *, jsonld=None, og_type="website", body_class="", current=None, cta=False):
-    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type)
+def assemble(lang, key, title, desc, body, *, jsonld=None, og_type="website", body_class="", current=None, cta=False,
+             draft=False):
+    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type, noindex=draft)
+    if draft:
+        body_class = (body_class + " is-draft").strip()
+        body = f'<p class="draft-banner">{DRAFT_NOTE[lang]}</p>\n' + body
     cls = f' class="{body_class}"' if body_class else ""
     page += f"<body{cls}>\n{site_header(lang, key, current)}\n<main id=\"main\">\n{body}\n</main>\n"
     if cta:
@@ -1015,6 +1029,7 @@ def services_page(lang):
 <div class="container">
 {sec_head("01", c["svc_list_h"], "svc-list")}
 {service_cards(lang, long=True)}
+{service_page_cards(lang)}
 </div>
 </section>
 <section class="section" aria-labelledby="svc-steps">
@@ -1880,6 +1895,401 @@ def project(key, lang):
 
 
 # --------------------------------------------------------------------------
+# Service pages and articles
+#
+# Their text lives outside this file: service pages in
+# tools/services_content.py, articles in _content/straipsniai/*.html (a JSON
+# header in a leading HTML comment, then the body as plain HTML). Each one
+# has "status": "draft" or "published".
+#
+# A normal build writes only published pages and deletes the files of
+# drafts, so a draft can never go live by accident. With --drafts the drafts
+# are written too, marked and noindex, for previewing locally. Never commit
+# a --drafts build: run the normal build first.
+# --------------------------------------------------------------------------
+
+DRAFTS = "--drafts" in sys.argv
+
+from services_content import SERVICE_PAGES  # noqa: E402  (lives next to this script)
+
+DRAFT_NOTE = {
+    "lt": "Juodraštis: puslapis nepublikuotas. Paryškintą tekstą laužtiniuose skliaustuose dar reikia užpildyti.",
+    "en": "Draft: this page is not published. Highlighted text in brackets still has to be filled in.",
+}
+
+MONTHS_LT = ["sausio", "vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos",
+             "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"]
+
+
+def load_articles():
+    out = []
+    for f in sorted((ROOT / "_content" / "straipsniai").glob("*.html")):
+        m = re.match(r"\s*<!--(.*?)-->\s*(.*)", f.read_text(encoding="utf-8"), re.S)
+        meta = json.loads(m.group(1))
+        meta["slug"] = f.stem
+        meta["body"] = m.group(2).strip()
+        out.append(meta)
+    return sorted(out, key=lambda a: (a.get("order", 99), a["slug"]))
+
+
+ARTICLES = load_articles()
+
+for _key, _svc in SERVICE_PAGES.items():
+    ROUTES[_key] = {"lt": _svc["lt"]["path"], "en": _svc["en"]["path"]}
+ROUTES["articles"] = {"lt": "lt/straipsniai/index.html"}
+for _a in ARTICLES:
+    ROUTES["a_" + _a["slug"]] = {"lt": f"lt/straipsniai/{_a['slug']}.html"}
+
+
+def visible(item):
+    return item["status"] == "published" or DRAFTS
+
+
+def is_draft(item):
+    return item["status"] != "published"
+
+
+def date_lt(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    return f"{y} m. {MONTHS_LT[m - 1]} {d} d."
+
+
+def reading_minutes(body):
+    words = len(re.sub(r"<[^>]+>", " ", body).split())
+    return max(1, round(words / 200))
+
+
+def plain(text):
+    return html.unescape(re.sub(r"<[^>]+>", "", text))
+
+
+def breadcrumb_ld(lang, trail):
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": name, "item": SITE + url(k, lang)}
+            for i, (k, name) in enumerate(trail, 1)
+        ],
+    }
+
+
+SVC_L = {
+    "lt": {"back": "← Visos paslaugos", "crumb_home": "Pradžia", "crumb_svc": "Paslaugos",
+           "price_l": "Kaina", "time_l": "Terminas", "get_h": "Ką gaunate", "price_h": "Kaina ir terminai",
+           "price_p": "Fiksuota kaina, sutarta raštu prieš pradedant. Tiksli suma priklauso nuo apimties ir integracijų.",
+           "time_p": "Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus.",
+           "warranty_h": "3 mėn. garantija",
+           "warranty_p": "Jei per 3 mėnesius po paleidimo paaiškėja klaida dėl mano įgyvendinto sprendimo, ją ištaisau nemokamai.",
+           "example_h": "Pavyzdys iš mano darbų", "project_link": "Žiūrėti projektą →",
+           "articles_h": "Daugiau šia tema", "subpages_h": "Konkretūs sprendimai", "more": "Plačiau →",
+           "country": "Lietuva"},
+    "en": {"back": "← All services", "crumb_home": "Home", "crumb_svc": "Services",
+           "price_l": "Price", "time_l": "Timeline", "get_h": "What you get", "price_h": "Price and timeline",
+           "price_p": "A fixed price, agreed in writing before we start. The exact amount depends on the scope and integrations.",
+           "time_p": "I give the exact timeline in the plan, together with the price, before any work starts.",
+           "warranty_h": "3-month warranty",
+           "warranty_p": "If a bug caused by my work shows up within 3 months of launch, I fix it free of charge.",
+           "example_h": "An example from my work", "project_link": "View the project →",
+           "articles_h": "More on this topic", "subpages_h": "Specific solutions", "more": "Read more →",
+           "country": "Lithuania"},
+}
+
+FIT_ICONS = [("target", "sand"), ("clock", "rose"), ("list", "lavender"), ("spark", "apricot")]
+
+
+def card_grid(items, *, icons=False):
+    cards = []
+    for i, (h, p) in enumerate(items):
+        ico = icon_blob(*FIT_ICONS[i % len(FIT_ICONS)]) + "\n" if icons else ""
+        cls = "info-card" if icons else "info-card info-card--list"
+        cards.append(f"""<article class="{cls}{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
+{ico}<h3>{h}</h3>
+<p>{p}</p>
+</article>""")
+    return '<div class="info-cards">\n' + "\n".join(cards) + "\n</div>"
+
+
+def service_page_cards(lang):
+    pages = [(k, s) for k, s in SERVICE_PAGES.items() if visible(s)]
+    if not pages:
+        return ""
+    l = SVC_L[lang]
+    cards = "\n".join(f"""<article class="info-card info-card--list{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
+<h3>{s[lang]["name"]}</h3>
+<p>{s[lang]["card"]}</p>
+<a class="link" href="{url(k, lang)}">{l["more"]}</a>
+</article>""" for i, (k, s) in enumerate(pages))
+    return f"""<div class="svc-sub">
+<h3 class="svc-sub__h" data-reveal>{l["subpages_h"]}</h3>
+<div class="info-cards info-cards--4">
+{cards}
+</div>
+</div>"""
+
+
+def article_links(items):
+    return '<ul class="article-links">' + "".join(
+        f'<li><a href="{url("a_" + a["slug"], "lt")}">{a["title_short"]}</a>'
+        f'<span class="mono">{reading_minutes(a["body"])} min.</span></li>' for a in items) + "</ul>"
+
+
+def service_page(key, lang):
+    svc = SERVICE_PAGES[key]
+    d, l, t = svc[lang], SVC_L[lang], T[lang]
+    num = iter(f"{i:02d}" for i in range(1, 10))
+
+    get = "".join(f"<li>{icon('check', 18)}{todo(x)}</li>" for x in d["get"])
+    sections = [f"""<section class="section section--raised" aria-labelledby="svc-fit">
+<div class="container">
+{sec_head(next(num), d["fit_h"], "svc-fit")}
+{card_grid(d["fit"], icons=True)}
+</div>
+</section>""", f"""<section class="section" aria-labelledby="svc-build">
+<div class="container">
+{sec_head(next(num), d["build_h"], "svc-build")}
+{card_grid(d["build"])}
+</div>
+</section>""", f"""<section class="section section--raised" aria-labelledby="svc-price">
+<div class="container">
+{sec_head(next(num), l["price_h"], "svc-price")}
+<div class="info-cards">
+<article class="info-card info-card--list" data-reveal>
+<h3>{l["get_h"]}</h3>
+<ul class="checklist">{get}</ul>
+</article>
+<article class="info-card d1" data-reveal>
+{icon_blob("tag", "sand")}
+<h3>{l["price_l"]}: {todo(d["price"])}</h3>
+<p>{l["price_p"]}</p>
+</article>
+<article class="info-card d2" data-reveal>
+{icon_blob("shield", "rose")}
+<h3>{l["time_l"]}: {todo(d["time"])}</h3>
+<p>{l["time_p"]} {l["warranty_p"]}</p>
+</article>
+</div>
+</div>
+</section>""", f"""<section class="section" aria-labelledby="svc-steps">
+<div class="container">
+{sec_head(next(num), t["steps_h"], "svc-steps")}
+{timeline(t["steps"])}
+</div>
+</section>"""]
+
+    if d.get("project"):
+        pkey, text = d["project"]
+        sections.append(f"""<section class="section section--raised" aria-labelledby="svc-example">
+<div class="container">
+{sec_head(next(num), l["example_h"], "svc-example")}
+<article class="info-card info-card--list svc-example" data-reveal>
+<h3>{PROJECTS[pkey][lang]["title"]}</h3>
+<p>{text}</p>
+<a class="link" href="{url(pkey, lang)}">{l["project_link"]}</a>
+</article>
+</div>
+</section>""")
+
+    sections.append(f"""<section class="section" aria-labelledby="svc-faq">
+<div class="container grid">
+<div class="faq-wrap" data-reveal>
+{sec_head(next(num), t["faq_h"], "svc-faq").replace(' data-reveal', '')}
+{faq_block(lang, "svc-faq", [(q, todo(a)) for q, a in d["faq"]])}
+</div>
+</div>
+</section>""")
+
+    related = [a for a in ARTICLES if a.get("service") == key and visible(a)] if lang == "lt" else []
+    if related:
+        sections.append(f"""<section class="section section--raised" aria-labelledby="svc-articles">
+<div class="container">
+{sec_head(next(num), l["articles_h"], "svc-articles")}
+{article_links(related)}
+</div>
+</section>""")
+
+    body = f"""<section class="page-intro">
+<div class="container">
+<a class="back" href="{url("services", lang)}">{l["back"]}</a>
+<h1 data-reveal>{d["h1"]}</h1>
+<p class="lead page-intro__lead d1" data-reveal>{d["lead"]}</p>
+<div class="svc-intro__cta d2" data-reveal>
+<a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
+<span class="mono">{l["price_l"]}: {todo(d["price"])} · {l["time_l"]}: {todo(d["time"])}</span>
+</div>
+</div>
+</section>
+""" + "\n".join(sections)
+
+    jsonld = [{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": d["name"],
+        "serviceType": d["name"],
+        "description": d["desc"],
+        "url": SITE + url(key, lang),
+        "provider": {"@id": SITE + "/#business"},
+        "areaServed": {"@type": "Country", "name": l["country"]},
+    }, {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": plain(q),
+                        "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in d["faq"]],
+    }, breadcrumb_ld(lang, [("home", l["crumb_home"]), ("services", l["crumb_svc"]), (key, d["name"])])]
+    assemble(lang, key, d["title"], d["desc"], body, jsonld=jsonld, current="services", cta=True,
+             draft=is_draft(svc))
+
+
+def live_links(body):
+    """Unwrap links to service pages or articles that are not built in this run,
+    so a published article never links to a draft that isn't online."""
+    built = {"/" + ROUTES[k]["lt"] for k, svc in SERVICE_PAGES.items() if visible(svc)}
+    built |= {"/" + ROUTES["a_" + a["slug"]]["lt"] for a in ARTICLES if visible(a)}
+
+    def keep(m):
+        return m.group(0) if m.group(1) in built else m.group(2)
+    return re.sub(r'<a href="(/lt/(?:straipsniai|paslaugos)/[^"#]+)[^"]*">(.*?)</a>', keep, body, flags=re.S)
+
+
+def article_page(a):
+    key, lang = "a_" + a["slug"], "lt"
+    svc_key = a.get("service")
+    aside = ""
+    if svc_key and visible(SERVICE_PAGES[svc_key]):
+        s = SERVICE_PAGES[svc_key]["lt"]
+        aside = f"""<aside class="article-aside" aria-label="Susijusi paslauga">
+<p class="mono">Susijusi paslauga</p>
+<h2>{s["name"]}</h2>
+<p>{s["card"]}</p>
+<a class="link" href="{url(svc_key, lang)}">Plačiau apie paslaugą →</a>
+</aside>"""
+    related = [b for b in ARTICLES if b is not a and visible(b) and b.get("service") == svc_key][:3]
+    more = ""
+    if related:
+        more = f"""<section class="section section--raised" aria-labelledby="art-more">
+<div class="container">
+{sec_head("—", "Susiję straipsniai", "art-more")}
+{article_links(related)}
+</div>
+</section>"""
+    modified = lastmod(ROUTES[key][lang])
+    body = f"""<article>
+<header class="page-intro article-head">
+<div class="container">
+<a class="back" href="{url("articles", lang)}">← Visi straipsniai</a>
+<p class="mono page-intro__eyebrow">{date_lt(a["date"])} · {reading_minutes(a["body"])} min. skaitymo</p>
+<h1>{a["h1"]}</h1>
+<p class="lead page-intro__lead">{a["lead"]}</p>
+</div>
+</header>
+<div class="section article-body">
+<div class="container article-grid">
+<div class="prose">
+{todo(live_links(a["body"]))}
+</div>
+{aside}
+</div>
+</div>
+</article>
+{more}"""
+    jsonld = [{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": a["h1"],
+        "description": a["desc"],
+        "url": SITE + url(key, lang),
+        "mainEntityOfPage": SITE + url(key, lang),
+        "inLanguage": lang,
+        "datePublished": a["date"],
+        "dateModified": max(a["date"], modified),
+        "image": SITE + "/img/og-cover.jpg",
+        "author": {"@id": SITE + "/#person"},
+        "publisher": {"@id": SITE + "/#business"},
+    }, breadcrumb_ld(lang, [("home", "Pradžia"), ("articles", "Straipsniai"), (key, a["title_short"])])]
+    assemble(lang, key, a["title"], a["desc"], body, jsonld=jsonld, og_type="article",
+             current="articles", cta=True, draft=is_draft(a))
+
+
+def articles_index():
+    shown = [a for a in ARTICLES if visible(a)]
+    groups = []
+    for svc_key in list(SERVICE_PAGES) + [None]:
+        items = [a for a in shown if a.get("service") == svc_key]
+        if not items:
+            continue
+        name = SERVICE_PAGES[svc_key]["lt"]["name"] if svc_key else "Kita"
+        cards = "\n".join(f"""<li class="info-card info-card--list article-card" data-reveal>
+<p class="mono">{date_lt(a["date"])} · {reading_minutes(a["body"])} min.{" · juodraštis" if is_draft(a) else ""}</p>
+<h3><a href="{url("a_" + a["slug"], "lt")}">{a["title_short"]}</a></h3>
+<p>{a["desc"]}</p>
+</li>""" for a in items)
+        groups.append(f"""<div class="article-group">
+<h2 class="article-group__h" data-reveal>{name}</h2>
+<ul class="article-list">
+{cards}
+</ul>
+</div>""")
+    body = f"""{page_intro("Straipsniai", "Apie verslo sistemas, programėles ir AI",
+                         "Atsakymai į klausimus, kuriuos klientai dažniausiai užduoda prieš užsakydami sistemą: kiek kainuoja, ką rinktis ir nuo ko pradėti.")}
+<section class="section section--raised" aria-label="Straipsnių sąrašas">
+<div class="container">
+{chr(10).join(groups)}
+</div>
+</section>"""
+    jsonld = [breadcrumb_ld("lt", [("home", "Pradžia"), ("articles", "Straipsniai")])]
+    assemble("lt", "articles", "Straipsniai apie verslo sistemas, programėles ir AI | Codeart",
+             "Kiek kainuoja verslo sistema ar programėlė, ką rinktis ir kaip AI gali padėti verslui: praktiški straipsniai iš programuotojos Gabrielės Tamaševičiūtės.",
+             body, jsonld=jsonld, current="articles", cta=True,
+             draft=not any(a["status"] == "published" for a in ARTICLES))
+
+
+def remove(path):
+    p = ROOT / path
+    if p.exists():
+        p.unlink()
+        print("removed", path, "(draft)")
+        if not any(p.parent.iterdir()):
+            p.parent.rmdir()
+
+
+def build_extras():
+    for key, svc in SERVICE_PAGES.items():
+        for lang in ("lt", "en"):
+            if visible(svc):
+                service_page(key, lang)
+            else:
+                remove(ROUTES[key][lang])
+    for a in ARTICLES:
+        if visible(a):
+            article_page(a)
+        else:
+            remove(ROUTES["a_" + a["slug"]]["lt"])
+    if any(visible(a) for a in ARTICLES):
+        articles_index()
+    else:
+        remove(ROUTES["articles"]["lt"])
+    # A published page must not go live with [placeholders] still in it.
+    for key, svc in SERVICE_PAGES.items():
+        if not is_draft(svc):
+            for lang in ("lt", "en"):
+                if "[" in json.dumps(svc[lang], ensure_ascii=False):
+                    print(f"WARNING: published service page {ROUTES[key][lang]} still has [placeholders]")
+    for a in ARTICLES:
+        if not is_draft(a) and re.search(r"\[[^\]]+\]", a["body"]):
+            print(f"WARNING: published article {a['slug']} still has [placeholders]")
+
+
+def published_extra_routes():
+    keys = [k for k, s in SERVICE_PAGES.items() if not is_draft(s)]
+    out = [(k, lang) for k in keys for lang in ("lt", "en")]
+    arts = [a for a in ARTICLES if not is_draft(a)]
+    if arts:
+        out.append(("articles", "lt"))
+        out += [("a_" + a["slug"], "lt") for a in arts]
+    return out
+
+
+# --------------------------------------------------------------------------
 # Redirects for URLs that no longer have their own page
 # --------------------------------------------------------------------------
 
@@ -1917,9 +2327,10 @@ def lastmod(path):
 def sitemap():
     # The old game pages are not linked from the site and carry noindex, so they stay out.
     rows = []
-    for key in ("home", "portfolio", "services", "about", "contact", "p_lang", "p_tik", "p_loy"):
-        for lang in ("lt", "en"):
-            rows.append(f"  <url><loc>{SITE + url(key, lang)}</loc><lastmod>{lastmod(ROUTES[key][lang])}</lastmod></url>")
+    pages = [(key, lang) for key in ("home", "portfolio", "services", "about", "contact", "p_lang", "p_tik", "p_loy")
+             for lang in ("lt", "en")] + published_extra_routes()
+    for key, lang in pages:
+        rows.append(f"  <url><loc>{SITE + url(key, lang)}</loc><lastmod>{lastmod(ROUTES[key][lang])}</lastmod></url>")
     body = "\n".join(rows)
     write("sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -1938,6 +2349,8 @@ def main():
         contact_page(lang)
         for key in ("p_lang", "p_tik", "p_loy"):
             project(key, lang)
+
+    build_extras()
 
     redirect("portfolio/index.html", "/lt/portfolio.html", "lt")
     # Google picked codeart.lt/ over /lt/ as the LT home page, so / is the home page now.
@@ -1962,6 +2375,8 @@ def main():
     redirect("portfolio-2025/en/index.html", "/en/", "en")
     redirect("portfolio-2025/lt/index.html", "/", "lt")
     sitemap()
+    if DRAFTS:
+        print("\nDRAFTS BUILD: drafts were written for preview. Run the build without --drafts before committing.")
 
 
 if __name__ == "__main__":

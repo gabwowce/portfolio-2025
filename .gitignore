@@ -7,3 +7,5 @@ guard.log
 # client's branding, so they must never be committed to a public repo.
 # Kept locally as reference only.
 img/ac/
+
+__pycache__/
