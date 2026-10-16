@@ -1953,6 +1953,12 @@ def main():
     redirect("lt/resources.html", "/lt/", "lt")
     redirect("lt/resources/claude-code.html", "/lt/", "lt")
     redirect("lt/resources/start-coding.html", "/lt/", "lt")
+    # Old addresses Google still crawls and gets a 404 for.
+    redirect("lt/blog.html", "/lt/", "lt")
+    redirect("en/blog.html", "/en/", "en")
+    redirect("contact.html", "/lt/contact.html", "lt")
+    redirect("portfolio-2025/en/index.html", "/en/", "en")
+    redirect("portfolio-2025/lt/index.html", "/lt/", "lt")
     sitemap()
 
 
