@@ -8,7 +8,7 @@ HTML that uses css/site.css and js/site.js only. Both languages share
 every template below, so the two versions cannot drift apart.
 
 Writes:
-  lt/index.html, en/index.html                     home (for clients)
+  index.html, en/index.html                        home (for clients; /lt/ redirects to /)
   lt/portfolio.html, en/portfolio.html             CV + portfolio (employers)
   lt/projektai/*.html, en/projects/*.html          project pages
   lt/cv.html, en/cv.html                           the A4 CV sheet
@@ -39,7 +39,7 @@ FORMSPREE = "https://formspree.io/f/xeorkyne"
 YEAR = "2026"
 
 ROUTES = {
-    "home": {"lt": "lt/index.html", "en": "en/index.html"},
+    "home": {"lt": "index.html", "en": "en/index.html"},
     "portfolio": {"lt": "lt/portfolio.html", "en": "en/portfolio.html"},
     "p_lang": {"lt": "lt/projektai/kalbu-platforma.html", "en": "en/projects/language-platform.html"},
     "p_tik": {"lt": "lt/projektai/tikmaker.html", "en": "en/projects/tikmaker.html"},
@@ -1940,6 +1940,8 @@ def main():
             project(key, lang)
 
     redirect("portfolio/index.html", "/lt/portfolio.html", "lt")
+    # Google picked codeart.lt/ over /lt/ as the LT home page, so / is the home page now.
+    redirect("lt/index.html", "/", "lt")
     # The guides were removed; their old addresses land on the home page.
     redirect("en/resources.html", "/en/", "en")
     redirect("en/resources/claude-code-commands.html", "/en/", "en")
@@ -1950,15 +1952,15 @@ def main():
     redirect("en/resources/claude-code-mcp.html", "/en/", "en")
     redirect("en/resources/claude-code.html", "/en/", "en")
     redirect("en/resources/start-coding.html", "/en/", "en")
-    redirect("lt/resources.html", "/lt/", "lt")
-    redirect("lt/resources/claude-code.html", "/lt/", "lt")
-    redirect("lt/resources/start-coding.html", "/lt/", "lt")
+    redirect("lt/resources.html", "/", "lt")
+    redirect("lt/resources/claude-code.html", "/", "lt")
+    redirect("lt/resources/start-coding.html", "/", "lt")
     # Old addresses Google still crawls and gets a 404 for.
-    redirect("lt/blog.html", "/lt/", "lt")
+    redirect("lt/blog.html", "/", "lt")
     redirect("en/blog.html", "/en/", "en")
     redirect("contact.html", "/lt/contact.html", "lt")
     redirect("portfolio-2025/en/index.html", "/en/", "en")
-    redirect("portfolio-2025/lt/index.html", "/lt/", "lt")
+    redirect("portfolio-2025/lt/index.html", "/", "lt")
     sitemap()
 
 
