@@ -23,9 +23,11 @@ Text in [square brackets] is a placeholder the owner still has to fill
 in. It is rendered on purpose so it cannot be forgotten.
 """
 from pathlib import Path
+import datetime
 import html
 import json
 import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://codeart.lt"
@@ -1861,6 +1863,17 @@ def project(key, lang):
         "url": SITE + url(key, lang),
         "inLanguage": lang,
         "creator": {"@id": SITE + "/#person"},
+    }, {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": name, "item": SITE + url(k, lang)}
+            for i, (k, name) in enumerate([
+                ("home", "Pradžia" if lang == "lt" else "Home"),
+                ("portfolio", "Portfolio"),
+                (key, d["title"]),
+            ], 1)
+        ],
     }]
     assemble(lang, key, title, d["desc"], body, jsonld=jsonld, og_type="article",
              body_class="page-project", current="portfolio")
@@ -1890,18 +1903,24 @@ def redirect(path, target, lang):
 """)
 
 
+def lastmod(path):
+    """Date of the last commit that changed the page, or today if it has uncommitted changes."""
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True)
+    if git("diff", "--quiet", "HEAD", "--", path).returncode == 0:
+        date = git("log", "-1", "--format=%cs", "--", path).stdout.strip()
+        if date:
+            return date
+    return datetime.date.today().isoformat()
+
+
 def sitemap():
-    keep = []
-    old = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for loc in re.findall(r"<loc>([^<]+)</loc>", old):
-        if "/game.html" in loc:
-            keep.append(loc)
-    new = []
+    # The old game pages are not linked from the site and carry noindex, so they stay out.
+    rows = []
     for key in ("home", "portfolio", "services", "about", "contact", "p_lang", "p_tik", "p_loy"):
         for lang in ("lt", "en"):
-            new.append(SITE + url(key, lang))
-    urls = new + [u for u in keep if u not in new]
-    body = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
+            rows.append(f"  <url><loc>{SITE + url(key, lang)}</loc><lastmod>{lastmod(ROUTES[key][lang])}</lastmod></url>")
+    body = "\n".join(rows)
     write("sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {body}
