@@ -1269,12 +1269,11 @@ textarea {
   outline-offset: 2px;
 }
 
+/* Honeypot for bots. display: none, not off-screen: browsers autofill
+   off-screen fields with the visitor's name or phone, and Formspree then
+   rejects a real message as spam. */
 .form__hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  display: none;
 }
 
 .form__status {
