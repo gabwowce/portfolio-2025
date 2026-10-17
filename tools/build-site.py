@@ -451,6 +451,9 @@ def icon_blob(name, tone):
 # --------------------------------------------------------------------------
 
 PHONE = "+370 672 70403"
+# The legal entity behind Codeart, as registered in the Register of Legal Entities.
+COMPANY = "Code art, MB"
+COMPANY_CODE = "307111383"
 PHONE_HREF = "tel:+37067270403"
 
 C = {
@@ -460,6 +463,7 @@ C = {
         "home": "Pagrindinis",
         "links_h": "Nuorodos",
         "rights": "Visos teisės saugomos",
+        "company_code": "Įmonės kodas",
         "cta_h": "Turite projekto idėją?",
         "cta_p": "Trumpai papasakokite apie projektą. Atsakau per 24 val. su darbų planu ir kaina.",
         "cta_btn": "Susisiekti",
@@ -555,6 +559,7 @@ C = {
         "home": "Home",
         "links_h": "Links",
         "rights": "All rights reserved",
+        "company_code": "Company code",
         "cta_h": "Have a project idea?",
         "cta_p": "Tell me briefly about your project. I reply within 24 hours with a work plan and a price.",
         "cta_btn": "Get in touch",
@@ -820,7 +825,7 @@ def site_footer(lang, key):
 </div>
 <div class="container">
 <div class="footer__bottom">
-<span>© {YEAR} Gabrielė Tamaševičiūtė · Codeart. {c["rights"]}.</span>
+<span>© {YEAR} {COMPANY} · {c["company_code"]} {COMPANY_CODE}. {c["rights"]}.</span>
 <span class="footer__bottom-links"><a href="mailto:{EMAIL}">{EMAIL}</a>{lang_link(lang, key)}</span>
 </div>
 </div>
@@ -1055,6 +1060,8 @@ def home(lang):
             "@type": "ProfessionalService",
             "@id": SITE + "/#business",
             "name": "Codeart — Gabrielė Tamaševičiūtė",
+            "legalName": COMPANY,
+            "identifier": {"@type": "PropertyValue", "propertyID": "Įmonės kodas", "value": COMPANY_CODE},
             "description": t["home_desc"],
             "url": SITE + url("home", lang),
             "image": SITE + "/img/og-cover.jpg",
