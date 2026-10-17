@@ -103,6 +103,10 @@ IMAGES = {
     "kalbos_import": ("kalbos-import", 1100, 600, 760),
     "tik_library": ("tikmaker-library", 1000, 525, 760),
     "tik_voice": ("tikmaker-voice", 840, 530, 760),
+    "sol_systems": ("solution-systems", 1447, 1069, 560),
+    "sol_apps": ("solution-apps", 1447, 1055, 560),
+    "sol_integrations": ("solution-integrations", 1448, 1053, 560),
+    "sol_ai": ("solution-ai", 1448, 1003, 560),
 }
 
 
@@ -167,7 +171,7 @@ def asset(path):
     return f"{path}?v={digest}"
 
 
-def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website"):
+def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website", og_image="/img/og-cover.jpg"):
     canonical = SITE + url(key, lang)
     alts = ""
     if not noindex and all(ROUTES[key].get(l) for l in ("lt", "en")):
@@ -198,7 +202,7 @@ def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/img/og-cover.jpg">
+<meta property="og:image" content="{SITE}{og_image}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/schibsted-grotesk/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{asset("/css/site.css")}">
@@ -239,24 +243,24 @@ T = {
         "home_desc": "Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant. Programuotoja Vilniuje.",
         "h1": "Verslo sistemų ir web aplikacijų kūrimas",
         "lead": "Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant.",
-        "see_work": "Peržiūrėti darbus",
-        "hero_note": "React, TypeScript, .NET · API ir AI funkcijos",
+        "see_work": "Peržiūrėti paslaugas",
+        "hero_note": "React, TypeScript, Next.js, Supabase · API ir AI funkcijos",
         "hero_alt": "Pavyzdinė transporto valdymo sistema: transporto priemonių sąrašas, maršrutas žemėlapyje ir paskutinės lokacijos",
         "work_h": "Atlikti darbai",
         "all_projects": "Visi projektai →",
         "works": [
-            ("p_lang", "a", "rose", "kalbos", False, "Kalbų mokymosi platforma",
-             "Vieša svetainė, mokinio platforma ir turinio valdymas vienoje sistemoje. Administratorius kursus kuria pats, o užduotys sudaromos automatiškai iš žodyno.",
-             "Next.js · Supabase",
-             "Kalbų platformos mokinio pradžios ekranas: kurso žemėlapis, tęsiama pamoka, kartojimas ir progresas"),
-            ("p_tik", "b", "lavender", "tik", True, "TikMaker",
-             "Trumpų vertikalių vaizdo įrašų redaktorius: video surenkamas iš paruoštų scenų, o balsas ir subtitrai sukuriami iš teksto.",
-             "React · Remotion · ElevenLabs",
-             "TikMaker redaktorius: scenos, peržiūra ir laiko juosta su keliomis eilėmis"),
-            ("p_loy", "c", "sand", "loy_cards", False, "Lojalumo valdymo sistema",
+            ("p_loy", "a", "rose", "loy_cards", False, "Lojalumo valdymo sistema",
              "Kortelės, klientai, akcijos ir kuponai vienoje administravimo sistemoje.",
              "React · TypeScript · .NET",
              "Lojalumo sistema: kortelių sąrašas ir pasirinktos kortelės detalės, duomenys uždengti"),
+            ("p_lang", "b", "lavender", "kalbos", False, "Kalbų mokymosi platforma",
+             "Vieša svetainė, mokinio platforma ir turinio valdymas vienoje sistemoje. Administratorius kursus kuria pats, o užduotys sudaromos automatiškai iš žodyno.",
+             "Next.js · Supabase",
+             "Kalbų platformos mokinio pradžios ekranas: kurso žemėlapis, tęsiama pamoka, kartojimas ir progresas"),
+            ("p_tik", "c", "sand", "tik", True, "TikMaker",
+             "Trumpų vertikalių vaizdo įrašų redaktorius: video surenkamas iš paruoštų scenų, o balsas ir subtitrai sukuriami iš teksto.",
+             "React · Remotion · ElevenLabs",
+             "TikMaker redaktorius: scenos, peržiūra ir laiko juosta su keliomis eilėmis"),
         ],
         "services_h": "Su kuo galiu padėti",
         "services": [
@@ -270,7 +274,7 @@ T = {
         "steps_h": "Kaip vyksta darbas",
         "steps": [
             ("Parašote", "Aprašote idėją ar problemą."),
-            ("Planas ir kaina", "Per 24 val. po pokalbio gaunate planą ir fiksuotą kainą raštu."),
+            ("Planas ir kaina", "Kai išsiaiškiname poreikį, per 24 val. gaunate planą ir fiksuotą kainą raštu."),
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
             ("Paleidimas", "Įdiegiu sistemą ir paruošiu instrukcijas, kaip ja naudotis. Mano darbui taikoma 3 mėn. garantija."),
         ],
@@ -281,12 +285,12 @@ T = {
         "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
-            ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Po trumpo pokalbio per 24 val. atsiunčiu darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
+            ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Kai išsiaiškiname poreikį (dažniausiai užtenka kelių laiškų), per 24 val. atsiunčiu darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
             ("Kiek laiko trunka?", "Priklauso nuo apimties: nedidelis patobulinimas gali užtrukti kelias dienas, nauja sistema – nuo kelių savaičių. Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus."),
             ("Ar galite perimti jau veikiančią sistemą?", "Taip. Nebūtina visko kurti iš naujo: galiu tęsti darbą su jūsų esama sistema, sutvarkyti tai, kas neveikia ar trukdo, ir pridėti naujų funkcijų."),
             ("Ar kaina gali pasikeisti eigoje?", "Ne, sutarta kaina nesikeičia. Jei darbo eigoje sugalvojate ką nors naujo ir didesnio, tai aptariame atskirai. Smulkius pageidavimus dažniausiai tiesiog įtraukiu: man svarbu, kad sistema jums tiktų."),
             ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip. Pavyzdžiui, galiu sukurti pokalbių asistentą, kuris atsako klientams į klausimus pagal jūsų informaciją, automatiškai rašyti tekstus ar produktų aprašymus, apibendrinti dokumentus ir laiškus, išversti turinį į kitas kalbas ar padėti greičiau rasti reikiamą informaciją. Jei turite savo idėją, kaip AI galėtų palengvinti jūsų darbą, parašykite: kartu įvertinsime, kaip ją įgyvendinti."),
-            ("Ar paruošiate instrukcijas, kaip naudotis sistema?", "Taip. Kartu su sistema paruošiu naudojimo instrukcijas ir reikalingą dokumentaciją, o pageidaujant ir video mokymus jūsų komandai, kad visi greitai perprastų naują sistemą."),
+            ("Ar paruošiate instrukcijas, kaip naudotis sistema?", "Taip. Kartu su sistema paruošiu naudojimo instrukcijas, o jei reikia, ir trumpas vaizdo instrukcijas, kad visi greitai perprastų naują sistemą."),
         ],
         "contact_h": "Turite projekto idėją?",
         "contact_lead": "Parašykite kelis sakinius apie savo projektą. Paprastai atsakau per 24 val.",
@@ -317,24 +321,24 @@ T = {
         "home_desc": "Internal tools, admin dashboards and web applications from idea to launch. Fixed price, agreed before we start. Developer based in Vilnius.",
         "h1": "Business systems and web application development",
         "lead": "Internal tools, admin dashboards and web applications from idea to launch. Fixed price, agreed before we start.",
-        "see_work": "See my work",
-        "hero_note": "React, TypeScript, .NET · APIs and AI features",
+        "see_work": "See services",
+        "hero_note": "React, TypeScript, Next.js, Supabase · APIs and AI features",
         "hero_alt": "Sample fleet management system: a vehicle list, a route on the map and the latest locations",
         "work_h": "Selected work",
         "all_projects": "All projects →",
         "works": [
-            ("p_lang", "a", "rose", "kalbos", False, "Language learning platform",
-             "A public website, a learner platform and content management in one system. The admin builds courses on their own, and exercises are generated automatically from the vocabulary.",
-             "Next.js · Supabase",
-             "The learner home screen of the language platform: course map, lesson in progress, review and progress"),
-            ("p_tik", "b", "lavender", "tik", True, "TikMaker",
-             "An editor for short vertical videos: a video is assembled from ready-made scenes, and the voice-over and subtitles are generated from text.",
-             "React · Remotion · ElevenLabs",
-             "The TikMaker editor: scenes, preview and a multi-row timeline"),
-            ("p_loy", "c", "sand", "loy_cards", False, "Loyalty management system",
+            ("p_loy", "a", "rose", "loy_cards", False, "Loyalty management system",
              "Cards, customers, promotions and coupons in one admin system.",
              "React · TypeScript · .NET",
              "Loyalty system: the card list and the selected card's details, data masked"),
+            ("p_lang", "b", "lavender", "kalbos", False, "Language learning platform",
+             "A public website, a learner platform and content management in one system. The admin builds courses on their own, and exercises are generated automatically from the vocabulary.",
+             "Next.js · Supabase",
+             "The learner home screen of the language platform: course map, lesson in progress, review and progress"),
+            ("p_tik", "c", "sand", "tik", True, "TikMaker",
+             "An editor for short vertical videos: a video is assembled from ready-made scenes, and the voice-over and subtitles are generated from text.",
+             "React · Remotion · ElevenLabs",
+             "The TikMaker editor: scenes, preview and a multi-row timeline"),
         ],
         "services_h": "How I can help",
         "services": [
@@ -348,7 +352,7 @@ T = {
         "steps_h": "How the work goes",
         "steps": [
             ("You write", "You describe the idea or problem."),
-            ("Plan and price", "Within 24 hours of our call you get a plan and a fixed price in writing."),
+            ("Plan and price", "Once we've pinned down the need, you get a plan and a fixed price in writing within 24 hours."),
             ("Building", "You see progress all along, not only at the end."),
             ("Launch", "I deploy the system and prepare guides on how to use it. My work comes with a 3-month warranty."),
         ],
@@ -359,12 +363,12 @@ T = {
         "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
-            ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. After a short call I send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
+            ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. Once we've pinned down the need (a few emails are usually enough), I send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
             ("How long does it take?", "It depends on the scope: a small improvement can take a few days, a new system from a few weeks. I give the exact timeline in the plan, together with the price, before any work starts."),
             ("Can you take over a system that's already running?", "Yes. There's no need to start from scratch: I can keep working on your existing system, fix what doesn't work or gets in the way, and add new features."),
             ("Can the price change along the way?", "No, the agreed price doesn't change. If you come up with something new and bigger along the way, we discuss it separately. Small requests I usually just include: what matters to me is that the system suits you."),
             ("Can you add AI features to the system?", "Yes. For example, I can build a chat assistant that answers your customers' questions from your own information, write texts or product descriptions automatically, summarise documents and emails, translate content into other languages, or help people find what they need faster. If you have your own idea of how AI could make your work easier, get in touch and we'll work out how to make it happen."),
-            ("Do you prepare guides on how to use the system?", "Yes. Along with the system I prepare user guides and the documentation you need, and on request video training for your team, so everyone gets comfortable with the new system quickly."),
+            ("Do you prepare guides on how to use the system?", "Yes. Along with the system I prepare user guides and, if needed, short video guides, so everyone gets comfortable with the new system quickly."),
         ],
         "contact_h": "Have a project idea?",
         "contact_lead": "Write a few sentences about your project. I usually reply within 24 hours.",
@@ -414,6 +418,20 @@ ICONS = {
     "file": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 12v6M9 15l3 3 3-3"/>',
     "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
     "cap": '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
+    "box": '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
+    "users": '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/>',
+    "user": '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    "calendar": '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    "chart": '<path d="M3 20h18M6 16v-5M11 16V6M16 16v-8"/>',
+    "card": '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/>',
+    "truck": '<path d="M2 6h12v10H2zM14 9h4l3.5 4v3H14"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/>',
+    "sync": '<path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/>',
+    "plug": '<path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/>',
+    "pen": '<path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/>',
+    "filter": '<path d="M3 5h18l-7 8v6l-4 2v-8z"/>',
+    "mobile": '<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/>',
+    "calc": '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>',
+    "bot": '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/>',
 }
 
 
@@ -457,15 +475,16 @@ C = {
         ],
         "reply": "Paprastai atsakau per 24 val.",
         "services_more": "Visos paslaugos →",
+        "services_intro": "Kuriu nuo nulio, tobulinu esamas sistemas ir pridedu naujų funkcijų.",
         "svc_cta": "Aptarti projektą →",
         "includes": "Apima",
-        "steps_cta_note": "Planą ir fiksuotą kainą raštu gaunate per 24 val. po pokalbio.",
+        "steps_cta_note": "Kai išsiaiškiname poreikį, planą ir fiksuotą kainą raštu gaunate per 24 val.",
         # services page
         "svc_title": "Paslaugos | Gabrielė Tamaševičiūtė · Codeart",
         "svc_desc": "Naujos sistemos nuo nulio, esamų sistemų gerinimas ir naujos funkcijos. Fiksuota kaina, sutarta prieš pradedant, ir 3 mėn. garantija.",
         "svc_eyebrow": "Paslaugos",
         "svc_h1": "Su kuo galiu padėti",
-        "svc_lead": "Dirbu su sistemomis, o ne su pavieniais puslapiais. Galiu startuoti nuo nulio arba perimti tai, kas jau veikia.",
+        "svc_lead": "Pradedate nuo nulio ar jau turite sistemą? Padedu ją sukurti, sutvarkyti arba išplėsti.",
         "svc_list_h": "Ką darau",
         "price_h": "Kaina ir garantija",
         "price": [
@@ -474,7 +493,7 @@ C = {
         ],
         "expect_h": "Ko galite tikėtis",
         "expect": ["Fiksuota sutarta kaina", "Jokių netikėtų papildomų darbų", "Nuolat matomas progresas",
-                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "Instrukcijos, dokumentacija ir, jei reikia, video mokymai", "3 mėn. garantija mano darbui"],
+                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "Instrukcijos, o jei reikia, ir vaizdo įrašai", "3 mėn. garantija mano darbui"],
         # about page
         "about_title": "Apie mane | Gabrielė Tamaševičiūtė · Codeart",
         "about_desc": "Gabrielė Tamaševičiūtė, programuotoja iš Vilniaus: kaip dirbu, vertybės, patirtis ir išsilavinimas.",
@@ -529,8 +548,8 @@ C = {
         "next_h": "Kas bus toliau",
         "next": [
             ("Parašote", "Trumpai papasakojate apie savo projektą ar idėją."),
-            ("Trumpas pokalbis", "Per 20 min. išsigryniname poreikį, apimtį ir ar galiu būti tinkamas žmogus jūsų projektui."),
-            ("Aiškus planas ir kaina", "Per 24 val. atsiunčiu darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
+            ("Keli klausimai", "Jei ko nors trūksta, paklausiu el. paštu. Taip išsigryniname poreikį, apimtį ir ar galiu būti tinkamas žmogus jūsų projektui."),
+            ("Aiškus planas ir kaina", "Per 24 val. po to atsiunčiu darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
         ],
     },
     "en": {
@@ -552,9 +571,10 @@ C = {
         ],
         "reply": "I usually reply within 24 hours.",
         "services_more": "All services →",
+        "services_intro": "I build from scratch, improve existing systems and add new features.",
         "svc_cta": "Discuss a project →",
         "includes": "Includes",
-        "steps_cta_note": "You get a plan and a fixed price in writing within 24 hours of our call.",
+        "steps_cta_note": "Once we've pinned down the need, you get a plan and a fixed price in writing within 24 hours.",
         "svc_title": "Services | Gabrielė Tamaševičiūtė · Codeart",
         "svc_desc": "New systems from scratch, improving existing systems and new features. A fixed price agreed before we start, and a 3-month warranty.",
         "svc_eyebrow": "Services",
@@ -568,7 +588,7 @@ C = {
         ],
         "expect_h": "What you can expect",
         "expect": ["A fixed, agreed price", "No unexpected extra work", "Progress you can always see",
-                   "Decisions with a purpose", "UX that's comfortable to use", "Guides, documentation and video training if needed", "A 3-month warranty on my work"],
+                   "Decisions with a purpose", "UX that's comfortable to use", "User guides, plus video guides if needed", "A 3-month warranty on my work"],
         "about_title": "About me | Gabrielė Tamaševičiūtė · Codeart",
         "about_desc": "Gabrielė Tamaševičiūtė, a developer in Vilnius: how I work, values, experience and education.",
         "about_eyebrow": "About me",
@@ -621,39 +641,51 @@ C = {
         "next_h": "What happens next",
         "next": [
             ("You write", "You tell me briefly about your project or idea."),
-            ("A short call", "In 20 minutes we pin down the need, the scope and whether I'm the right person for your project."),
-            ("A clear plan and price", "Within 24 hours I send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
+            ("A few questions", "If anything is missing, I ask by email. That way we pin down the need, the scope and whether I'm the right person for your project."),
+            ("A clear plan and price", "Within 24 hours after that I send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
         ],
     },
 }
 
 SERVICES = {
     "lt": [
-        ("layers", "sand", "Nauja sistema nuo nulio", "Tinka, kai reikia ne puslapio, o veikiančio produkto.",
-         "Padedu išgryninti sprendimą, suprojektuoju sąsają ir sukuriu sistemą nuo frontendo iki API ir duomenų bazės.",
-         "Kai reikia ne dar vieno puslapio, o pilnai veikiančio produkto. Padedu išgryninti sprendimą, suprojektuoju vartotojo sąsają ir realizuoju sistemą nuo frontendo iki API bei duomenų.",
+        ("layers", "sand", "Sistemos kūrimas nuo nulio", "Kai reikia ne puslapio, o veikiančio produkto.",
+         "Išgryninu sprendimą, suprojektuoju visą sistemą ir sukuriu ją nuo frontendo iki API ir duomenų bazės.",
+         ["Išgryninu, ką sistema turi daryti",
+          "Suprojektuoju visą sprendimą: architektūrą, duomenis ir sąsają",
+          "Sukuriu ją nuo frontendo iki API ir duomenų bazės"],
          ["React / TypeScript", "API ir backend", "Autentifikacija ir teisės", "Duomenų modelis", "Integracijos", "AI funkcijos"]),
-        ("wrench", "rose", "Esamos sistemos gerinimas", "Tinka, kai sistema veikia, bet lėta ar sunkiai vystoma.",
+        ("wrench", "rose", "Esamos sistemos tobulinimas", "Kai sistema veikia, bet lėta ar sunkiai vystoma.",
          "Pirmiausia randu, kur problema, tada tvarkau tai, kas iš tikrųjų trukdo.",
-         "Jei sistema jau veikia, bet yra lėta, sudėtinga, pilna pasikartojančio kodo ar sunkiai vystoma, pirmiausia išsiaiškinu, kur problema, o tada tvarkau tai, kas iš tikrųjų trukdo.",
+         ["Randu, kas iš tikrųjų stabdo",
+          "Sutvarkau painų, pasikartojantį kodą ir pagerinu našumą",
+          "Neliečiu to, kas veikia gerai"],
          ["Našumo gerinimas", "Kodo refaktoringas", "Bug'ų paieška ir taisymas", "UX problemos", "API optimizavimas", "AI integracijos"]),
-        ("plus", "lavender", "Naujos funkcijos esamai sistemai", "Tinka, kai produkto nereikia perrašyti.",
+        ("plus", "lavender", "Naujų funkcijų kūrimas", "Kai produkto perrašyti nereikia, tik jį išplėsti.",
          "Perprantu esamą kodą ir kuriu naujas funkcijas, negriaudama to, kas jau veikia.",
-         "Kai produkto nereikia perrašyti, reikia tiesiog gerai į jį įsilieti. Perprantu esamą architektūrą, prisitaikau prie projekto struktūros ir kuriu naujas funkcijas negriaudama to, kas jau veikia.",
+         ["Perprantu esamą architektūrą",
+          "Kuriu pagal projekto struktūrą",
+          "Negriaunu to, kas jau veikia"],
          ["Nauji moduliai", "Frontend funkcijos", "Backend funkcijos", "Nauji API endpointai", "Integracijos", "AI agentai ir LLM"]),
     ],
     "en": [
         ("layers", "sand", "A new system from scratch", "When you need a working product, not a web page.",
-         "I help pin down the solution, design the interface and build the system from frontend to API and database.",
-         "When you need a fully working product, not another web page. I help pin down the solution, design the user interface and build the system from frontend to API and data.",
+         "I pin down the solution, design the whole system and build it from frontend to API and database.",
+         ["I pin down what the system needs to do",
+          "I design the whole solution: architecture, data and interface",
+          "I build it from frontend to API and database"],
          ["React / TypeScript", "API and backend", "Authentication and permissions", "Data model", "Integrations", "AI features"]),
         ("wrench", "rose", "Improving an existing system", "When the system works but is slow or hard to develop further.",
          "First I find where the problem is, then I fix what actually gets in the way.",
-         "If the system already works but is slow, complicated, full of repeated code or hard to develop further, I first find out where the problem is, then fix what actually gets in the way.",
+         ["I find what actually slows it down",
+          "I clean up tangled, repeated code and improve performance",
+          "I leave what works well alone"],
          ["Performance", "Refactoring", "Finding and fixing bugs", "UX problems", "API optimisation", "AI integrations"]),
-        ("plus", "lavender", "New features for an existing system", "When the product doesn't need a rewrite.",
+        ("plus", "lavender", "New features for an existing system", "When the product needs extending, not rewriting.",
          "I get to know the existing code and build new features without breaking what already works.",
-         "When the product doesn't need a rewrite, new work just has to fit in well. I learn the existing architecture, adapt to the project's structure and build new features without breaking what already works.",
+         ["I learn the existing architecture",
+          "I build to the project's structure",
+          "I don't break what already works"],
          ["New modules", "Frontend features", "Backend features", "New API endpoints", "Integrations", "AI agents and LLMs"]),
     ],
 }
@@ -675,11 +707,9 @@ def nav_items(lang):
 
 
 def brand(lang):
-    return (f'<a class="brand" href="{url("home", lang)}" aria-label="Gabrielė Tamaševičiūtė · Codeart, '
-            f'{C[lang]["home"].lower()}">'
-            '<span class="brand__mark" aria-hidden="true">GT</span>'
-            '<span class="brand__text"><span class="brand__name">Gabrielė <span class="brand__surname">'
-            'Tamaševičiūtė</span></span><span class="brand__co">Codeart</span></span></a>')
+    return (f'<a class="brand" href="{url("home", lang)}" aria-label="Codeart, {C[lang]["home"].lower()}">'
+            '<span class="brand__mark" aria-hidden="true">CA</span>'
+            '<span class="brand__text"><span class="brand__name">Codeart</span></span></a>')
 
 
 def site_header(lang, key, current=None):
@@ -814,20 +844,59 @@ def page_intro(eyebrow, h1, lead):
 def service_cards(lang, *, long=False):
     c = C[lang]
     cards = []
-    for i, (ico, tone, h, fit, short, longtext, tags) in enumerate(SERVICES[lang]):
+    for i, (ico, tone, h, fit, short, steps, tags) in enumerate(SERVICES[lang]):
         tag_li = "".join(f"<li>{x}</li>" for x in tags)
+        body = ('<ul class="checklist service-card__list">'
+                + "".join(f"<li>{icon('check', 18)}{x}</li>" for x in steps) + "</ul>"
+                if long else f'<p class="service-card__text">{short}</p>')
         link = (f'<a class="link service-card__link" href="{url("contact", lang)}">{c["svc_cta"]}</a>'
                 if long else "")
         cards.append(f"""<article class="service-card{(' d' + str(i)) if i else ''}" data-reveal>
 {icon_blob(ico, tone)}
 <h3>{h}</h3>
 <p class="small service-card__fit">{fit}</p>
-<p class="service-card__text">{longtext if long else short}</p>
+{body}
 <p class="label-mono service-card__inc">{c["includes"]}</p>
 <ul class="tags service-card__tags">{tag_li}</ul>
 {link}
 </article>""")
     return '<div class="service-cards">' + "\n".join(cards) + "</div>"
+
+
+def project_card(key, lang, text):
+    """A project with its screenshot, the same card as in the home page's work list,
+    laid out wide for a single example."""
+    _, _, _, image, dark, title, _, tags, alt = next(w for w in T[lang]["works"] if w[0] == key)
+    return f"""<article class="work-card work-card--wide" data-reveal>
+{framed(image, alt, "(max-width: 759px) 92vw, 520px", dark=dark)}
+<div class="work-card__body">
+<h3 class="work-card__title"><a href="{url(key, lang)}">{title}</a></h3>
+<p class="work-card__desc">{text}</p>
+<p class="mono work-card__tags">{tags}</p>
+<span class="work-card__more" aria-hidden="true">{SVC_L[lang]["project_link"]}</span>
+</div>
+</article>"""
+
+
+def solution_cards(lang):
+    """Home page: the service pages as cards with a "from" price. Until any service
+    page is published, the general service cards stand in."""
+    pages = [(k, s) for k, s in SERVICE_PAGES.items() if visible(s)]
+    if not pages:
+        return service_cards(lang)
+    more = SVC_L[lang]["more"]
+    cards = "\n".join(f"""<article class="solution-card{(' d' + str(i % 2)) if i % 2 else ''}" data-reveal>
+{solution_media(s)}<h3><a href="{url(k, lang)}">{s[lang]["name"]}</a></h3>
+<p>{s[lang]["card"]}</p>
+<div class="solution-card__foot">
+<span class="solution-card__price">{todo(s[lang]["price"])}</span>
+<span class="solution-card__more" aria-hidden="true">{more}</span>
+</div>
+</article>""" for i, (k, s) in enumerate(pages))
+    return f"""<p class="lead solution-intro" data-reveal>{C[lang]["services_intro"]}</p>
+<div class="solution-cards">
+{cards}
+</div>"""
 
 
 def timeline(steps, *, cols=4):
@@ -856,8 +925,8 @@ def sec_head(num, title, hid, extra=""):
 
 
 def assemble(lang, key, title, desc, body, *, jsonld=None, og_type="website", body_class="", current=None, cta=False,
-             draft=False):
-    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type, noindex=draft)
+             draft=False, og_image="/img/og-cover.jpg"):
+    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type, noindex=draft, og_image=og_image)
     if draft:
         body_class = (body_class + " is-draft").strip()
         body = f'<p class="draft-banner">{DRAFT_NOTE[lang]}</p>\n' + body
@@ -884,7 +953,7 @@ def home(lang):
 <p class="lead hero__lead d1" data-reveal>{t["lead"]}</p>
 <div class="hero__ctas d2" data-reveal>
 <a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
-<a class="link-underline" href="#{ids["work"]}">{t["see_work"]}</a>
+<a class="link-underline" href="#{ids["services"]}">{t["see_work"]}</a>
 </div>
 <p class="small hero__note d3" data-reveal>{t["hero_note"]}</p>
 </div>
@@ -899,32 +968,28 @@ def home(lang):
 </div>
 </section>"""
 
-    rows = []
-    for key, shape, tone, image, dark, title, desc, tags, alt in t["works"]:
-        rows.append(f"""<article class="grid work work--{shape}">
-<div class="work__text" data-reveal>
-<h3 class="work__title"><a href="{url(key, lang)}">{title}</a></h3>
-<p class="work__desc">{desc}</p>
-<p class="mono work__tags">{tags}</p>
-<a class="link" href="{url(key, lang)}" aria-label="{t["read_more"]}: {title}">{t["read_more"]} →</a>
-</div>
-<div class="work__media d1" data-reveal="far">
-{blob(shape, tone)}
-{framed(image, alt, "(max-width: 759px) 92vw, 680px", dark=dark)}
-</div>
+    cards = []
+    for i, (key, shape, tone, image, dark, title, desc, tags, alt) in enumerate(t["works"]):
+        cards.append(f"""<article class="work-card{(' d' + str(i)) if i else ''}" data-reveal>
+{framed(image, alt, "(max-width: 599px) 92vw, (max-width: 1099px) 46vw, 360px", dark=dark)}
+<h3 class="work-card__title"><a href="{url(key, lang)}">{title}</a></h3>
+<p class="work-card__desc">{desc}</p>
+<p class="mono work-card__tags">{tags}</p>
 </article>""")
-    works = f"""<section class="section section--raised" id="{ids["work"]}" aria-labelledby="work-title">
+    works = f"""<section class="section" id="{ids["work"]}" aria-labelledby="work-title">
 <div class="container">
-{sec_head("01", t["work_h"], "work-title")}
-{chr(10).join(rows)}
+{sec_head("02", t["work_h"], "work-title")}
+<div class="work-cards">
+{chr(10).join(cards)}
+</div>
 <div class="work-all"><a class="link" href="{url("portfolio", lang)}">{t["all_projects"]}</a></div>
 </div>
 </section>"""
 
-    services = f"""<section class="section" id="{ids["services"]}" aria-labelledby="services-title">
+    services = f"""<section class="section section--raised" id="{ids["services"]}" aria-labelledby="services-title">
 <div class="container">
-{sec_head("02", t["services_h"], "services-title")}
-{service_cards(lang)}
+{sec_head("01", t["services_h"], "services-title")}
+{solution_cards(lang)}
 <div class="work-all"><a class="link" href="{url("services", lang)}">{c["services_more"]}</a></div>
 </div>
 </section>"""
@@ -1009,7 +1074,7 @@ def home(lang):
         person_ld(lang),
     ]
     assemble(lang, "home", t["home_title"], t["home_desc"],
-             "\n".join([hero, works, services, steps, about, faq, contact]), jsonld=jsonld)
+             "\n".join([hero, services, works, steps, about, faq, contact]), jsonld=jsonld)
 
 
 # --------------------------------------------------------------------------
@@ -1200,7 +1265,7 @@ P = {
         "cv_dl": "Atsisiųsti CV (PDF)",
         "facts_label": "Trumpai",
         "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "3+ m. profesionaliai"),
-                  ("Fokusas", "Vidinės verslo sistemos"), ("Stackas", "React, TypeScript, Next.js")],
+                  ("Fokusas", "Vidinės verslo sistemos"), ("Stackas", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
         "works_h": "Atrinkti darbai",
         "what": "Kas tai:", "role_l": "Rolė:", "fact": "Faktas:",
         "tags_label": "Technologijos",
@@ -1287,7 +1352,7 @@ P = {
         "cv_dl": "Download CV (PDF)",
         "facts_label": "In short",
         "facts": [("Now", "Developer (Mid), UVS"), ("Experience", "3+ years professionally"),
-                  ("Focus", "Internal business systems"), ("Stack", "React, TypeScript, Next.js")],
+                  ("Focus", "Internal business systems"), ("Stack", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
         "works_h": "Selected work",
         "what": "What:", "role_l": "Role:", "fact": "Fact:",
         "tags_label": "Technologies",
@@ -1787,10 +1852,10 @@ PROJECTS = {
 }
 
 PL = {
-    "lt": {"back": "← Visi darbai", "what": "Kas tai", "status": "Būsena", "tech": "Techninė dalis",
+    "lt": {"what": "Kas tai", "status": "Būsena", "tech": "Techninė dalis",
            "role": "Rolė", "decisions": "Sprendimai", "scale": "Mastas", "stack": "Stackas",
            "next": "Kitas darbas", "suffix": "projektas | Gabrielė Tamaševičiūtė"},
-    "en": {"back": "← All work", "what": "What it is", "status": "Status", "tech": "Technical side",
+    "en": {"what": "What it is", "status": "Status", "tech": "Technical side",
            "role": "Role", "decisions": "Decisions", "scale": "Scale", "stack": "Stack",
            "next": "Next project", "suffix": "project | Gabrielė Tamaševičiūtė"},
 }
@@ -1833,9 +1898,10 @@ def project(key, lang):
         dec = "".join(f"<li>{b}</li>" for a, b in d["decisions"])
     note = f'<p class="lead p-tech__note">{d["note"]}</p>' if d.get("note") else ""
 
+    crumbs = [("home", "Pradžia" if lang == "lt" else "Home"), ("portfolio", "Portfolio"), (key, d["title"])]
     body = f"""<section class="p-intro">
 <div class="container">
-<a class="back" href="{url("portfolio", lang)}">{l["back"]}</a>
+{breadcrumbs(lang, crumbs)}
 <h1>{d["title"]}</h1>
 <p class="p-meta">{todo(d["meta"])}</p>
 <dl class="p-summary">
@@ -1883,11 +1949,7 @@ def project(key, lang):
         "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": i, "name": name, "item": SITE + url(k, lang)}
-            for i, (k, name) in enumerate([
-                ("home", "Pradžia" if lang == "lt" else "Home"),
-                ("portfolio", "Portfolio"),
-                (key, d["title"]),
-            ], 1)
+            for i, (k, name) in enumerate(crumbs, 1)
         ],
     }]
     assemble(lang, key, title, d["desc"], body, jsonld=jsonld, og_type="article",
@@ -1934,6 +1996,30 @@ def load_articles():
 
 ARTICLES = load_articles()
 
+ART_IMG = "img/site/straipsniai"
+
+
+def article_img(a, sizes, lazy=True, priority=False):
+    """The article's cover picture, or "" when img/site/straipsniai/<slug>.webp is missing.
+    The .webp, -800.webp and -og.jpg files are made from <slug>.png (1672x941)."""
+    if not (ROOT / ART_IMG / f'{a["slug"]}.webp').exists():
+        return ""
+    base = f'/{ART_IMG}/{a["slug"]}'
+    attrs = [f'src="{base}.webp"', f'srcset="{base}-800.webp 800w, {base}.webp 1672w"', f'sizes="{sizes}"',
+             'width="1672" height="941"', 'alt=""', 'decoding="async"',
+             'fetchpriority="high"' if priority else "", 'loading="lazy"' if lazy else ""]
+    return "<img " + " ".join(x for x in attrs if x) + ">"
+
+
+def article_og(a):
+    og = f'{ART_IMG}/{a["slug"]}-og.jpg'
+    return "/" + og if (ROOT / og).exists() else "/img/og-cover.jpg"
+
+
+def teaser_media(a):
+    pic = article_img(a, "(max-width: 759px) 88vw, 400px")
+    return f'<span class="art-media" aria-hidden="true">{pic}</span>\n' if pic else ""
+
 for _key, _svc in SERVICE_PAGES.items():
     ROUTES[_key] = {"lt": _svc["lt"]["path"], "en": _svc["en"]["path"]}
 ROUTES["articles"] = {"lt": "lt/straipsniai/index.html"}
@@ -1954,13 +2040,16 @@ def date_lt(iso):
     return f"{y} m. {MONTHS_LT[m - 1]} {d} d."
 
 
-def reading_minutes(body):
-    words = len(re.sub(r"<[^>]+>", " ", body).split())
-    return max(1, round(words / 200))
-
-
 def plain(text):
     return html.unescape(re.sub(r"<[^>]+>", "", text))
+
+
+def breadcrumbs(lang, trail):
+    """The visible trail at the top of a page; the same trail goes into breadcrumb_ld."""
+    items = [f'<li><a href="{url(k, lang)}">{name}</a></li>' for k, name in trail[:-1]]
+    items.append(f'<li aria-current="page">{trail[-1][1]}</li>')
+    label = "Naršymo kelias" if lang == "lt" else "Breadcrumb"
+    return f'<nav class="crumbs" aria-label="{label}"><ol>{"".join(items)}</ol></nav>'
 
 
 def breadcrumb_ld(lang, trail):
@@ -1975,39 +2064,63 @@ def breadcrumb_ld(lang, trail):
 
 
 SVC_L = {
-    "lt": {"back": "← Visos paslaugos", "crumb_home": "Pradžia", "crumb_svc": "Paslaugos",
+    "lt": {"crumb_home": "Pradžia", "crumb_svc": "Paslaugos",
            "price_l": "Kaina", "time_l": "Terminas", "get_h": "Ką gaunate", "price_h": "Kaina ir terminai",
            "price_p": "Fiksuota kaina, sutarta raštu prieš pradedant. Tiksli suma priklauso nuo apimties ir integracijų.",
            "time_p": "Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus.",
            "warranty_h": "3 mėn. garantija",
            "warranty_p": "Jei per 3 mėnesius po paleidimo paaiškėja klaida dėl mano įgyvendinto sprendimo, ją ištaisau nemokamai.",
            "example_h": "Pavyzdys iš mano darbų", "project_link": "Žiūrėti projektą →",
-           "articles_h": "Daugiau šia tema", "subpages_h": "Konkretūs sprendimai", "more": "Plačiau →",
+           "get_common": ["Kodą, kuris priklauso jums", "Naudojimo instrukcijas, o jei reikia, ir vaizdo instrukcijas",
+                          "3 mėn. garantiją po paleidimo"],
+           "build_note": "Tai tik pavyzdžiai: sukurti galima ir tai, ko čia nėra. Papasakokite savo idėją.",
+           "articles_h": "Naudingi straipsniai", "subpages_h": "Konkretūs sprendimai", "more": "Plačiau →",
            "country": "Lietuva"},
-    "en": {"back": "← All services", "crumb_home": "Home", "crumb_svc": "Services",
+    "en": {"crumb_home": "Home", "crumb_svc": "Services",
            "price_l": "Price", "time_l": "Timeline", "get_h": "What you get", "price_h": "Price and timeline",
            "price_p": "A fixed price, agreed in writing before we start. The exact amount depends on the scope and integrations.",
            "time_p": "I give the exact timeline in the plan, together with the price, before any work starts.",
            "warranty_h": "3-month warranty",
            "warranty_p": "If a bug caused by my work shows up within 3 months of launch, I fix it free of charge.",
            "example_h": "An example from my work", "project_link": "View the project →",
+           "get_common": ["Code that belongs to you", "User guides, plus video guides if needed",
+                          "A 3-month warranty after launch"],
+           "build_note": "These are just examples: I can build what isn't listed too. Tell me about your idea.",
            "articles_h": "More on this topic", "subpages_h": "Specific solutions", "more": "Read more →",
            "country": "Lithuania"},
 }
 
 FIT_ICONS = [("target", "sand"), ("clock", "rose"), ("list", "lavender"), ("spark", "apricot")]
+TILE_TONES = ["sand", "rose", "lavender", "apricot"]
 
 
-def card_grid(items, *, icons=False):
+def card_grid(items, *, icons=False, tiles=None):
+    """icons: blob icons for the "who it's for" cards; tiles: one icon name per card
+    for the "what I can build" cards."""
     cards = []
     for i, (h, p) in enumerate(items):
-        ico = icon_blob(*FIT_ICONS[i % len(FIT_ICONS)]) + "\n" if icons else ""
-        cls = "info-card" if icons else "info-card info-card--list"
+        if tiles:
+            ico = (f'<span class="tile-ico tile-ico--{TILE_TONES[i % len(TILE_TONES)]}" aria-hidden="true">'
+                   f'{icon(tiles[i], 22)}</span>\n')
+            cls = "info-card info-card--tile"
+        else:
+            ico = icon_blob(*FIT_ICONS[i % len(FIT_ICONS)]) + "\n" if icons else ""
+            cls = "info-card" if icons else "info-card info-card--list"
         cards.append(f"""<article class="{cls}{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
 {ico}<h3>{h}</h3>
 <p>{p}</p>
 </article>""")
-    return '<div class="info-cards">\n' + "\n".join(cards) + "\n</div>"
+    grid = "info-cards info-cards--4" if len(items) == 4 else "info-cards"
+    return f'<div class="{grid}">\n' + "\n".join(cards) + "\n</div>"
+
+
+def solution_media(svc):
+    """The picture on top of a "Specific solutions" card: the screenshot set on a blob."""
+    if not svc.get("card_image"):
+        return ""
+    key, shape, tone = svc["card_image"]
+    return (f'<div class="info-card__media" aria-hidden="true">{blob(shape, tone)}'
+            f'{img(key, "", "(max-width: 759px) 88vw, 520px")}</div>\n')
 
 
 def service_page_cards(lang):
@@ -2015,8 +2128,8 @@ def service_page_cards(lang):
     if not pages:
         return ""
     l = SVC_L[lang]
-    cards = "\n".join(f"""<article class="info-card info-card--list{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
-<h3>{s[lang]["name"]}</h3>
+    cards = "\n".join(f"""<article class="info-card info-card--list info-card--link{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
+{solution_media(s)}<h3>{s[lang]["name"]}</h3>
 <p>{s[lang]["card"]}</p>
 <a class="link" href="{url(k, lang)}">{l["more"]}</a>
 </article>""" for i, (k, s) in enumerate(pages))
@@ -2029,9 +2142,18 @@ def service_page_cards(lang):
 
 
 def article_links(items):
-    return '<ul class="article-links">' + "".join(
-        f'<li><a href="{url("a_" + a["slug"], "lt")}">{a["title_short"]}</a>'
-        f'<span class="mono">{reading_minutes(a["body"])} min.</span></li>' for a in items) + "</ul>"
+    cards = "\n".join(f"""<li class="art-teaser{(' d' + str(i % 3)) if i % 3 else ''}" data-reveal>
+<a href="{url("a_" + a["slug"], "lt")}">
+{teaser_media(a)}<span class="art-teaser__label">{icon("file", 16)}Straipsnis</span>
+<h3>{a["title_short"]}</h3>
+<p>{a["lead"]}</p>
+<span class="art-teaser__more">Skaityti →</span>
+</a>
+</li>""" for i, a in enumerate(items))
+    return f"""<ul class="art-teasers">
+{cards}
+</ul>
+<a class="link art-teasers__all" href="{url("articles", "lt")}">Visi straipsniai →</a>"""
 
 
 def service_page(key, lang):
@@ -2039,16 +2161,20 @@ def service_page(key, lang):
     d, l, t = svc[lang], SVC_L[lang], T[lang]
     num = iter(f"{i:02d}" for i in range(1, 10))
 
-    get = "".join(f"<li>{icon('check', 18)}{todo(x)}</li>" for x in d["get"])
-    sections = [f"""<section class="section section--raised" aria-labelledby="svc-fit">
+    get = "".join(f"<li>{icon('check', 18)}{todo(x)}</li>" for x in d["get"] + l["get_common"])
+    sections = []
+    if d.get("fit"):
+        sections.append(f"""<section class="section section--raised" aria-labelledby="svc-fit">
 <div class="container">
 {sec_head(next(num), d["fit_h"], "svc-fit")}
 {card_grid(d["fit"], icons=True)}
 </div>
-</section>""", f"""<section class="section" aria-labelledby="svc-build">
+</section>""")
+    sections += [f"""<section class="section" aria-labelledby="svc-build">
 <div class="container">
 {sec_head(next(num), d["build_h"], "svc-build")}
-{card_grid(d["build"])}
+{card_grid(d["build"], tiles=svc.get("build_icons"))}
+<p class="build-note" data-reveal>{l["build_note"]} <a class="link" href="{url("contact", lang)}">{t["cta"]} →</a></p>
 </div>
 </section>""", f"""<section class="section section--raised" aria-labelledby="svc-price">
 <div class="container">
@@ -2082,11 +2208,7 @@ def service_page(key, lang):
         sections.append(f"""<section class="section section--raised" aria-labelledby="svc-example">
 <div class="container">
 {sec_head(next(num), l["example_h"], "svc-example")}
-<article class="info-card info-card--list svc-example" data-reveal>
-<h3>{PROJECTS[pkey][lang]["title"]}</h3>
-<p>{text}</p>
-<a class="link" href="{url(pkey, lang)}">{l["project_link"]}</a>
-</article>
+{project_card(pkey, lang, text)}
 </div>
 </section>""")
 
@@ -2108,15 +2230,26 @@ def service_page(key, lang):
 </div>
 </section>""")
 
-    body = f"""<section class="page-intro">
-<div class="container">
-<a class="back" href="{url("services", lang)}">{l["back"]}</a>
+    crumbs = [("home", l["crumb_home"]), ("services", l["crumb_svc"]), (key, d["name"])]
+    intro = f"""{breadcrumbs(lang, crumbs)}
 <h1 data-reveal>{d["h1"]}</h1>
 <p class="lead page-intro__lead d1" data-reveal>{d["lead"]}</p>
 <div class="svc-intro__cta d2" data-reveal>
 <a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
 <span class="mono">{l["price_l"]}: {todo(d["price"])} · {l["time_l"]}: {todo(d["time"])}</span>
+</div>"""
+    if svc.get("hero_image"):
+        intro = f"""<div class="grid svc-intro">
+<div class="svc-intro__copy">
+{intro}
 </div>
+<div class="svc-intro__media d2" data-reveal="far">
+{img(svc["hero_image"], d["hero_alt"], "(max-width: 1023px) 100vw, 700px", lazy=False, priority=True)}
+</div>
+</div>"""
+    body = f"""<section class="page-intro">
+<div class="container">
+{intro}
 </div>
 </section>
 """ + "\n".join(sections)
@@ -2135,7 +2268,7 @@ def service_page(key, lang):
         "@type": "FAQPage",
         "mainEntity": [{"@type": "Question", "name": plain(q),
                         "acceptedAnswer": {"@type": "Answer", "text": plain(a)}} for q, a in d["faq"]],
-    }, breadcrumb_ld(lang, [("home", l["crumb_home"]), ("services", l["crumb_svc"]), (key, d["name"])])]
+    }, breadcrumb_ld(lang, crumbs)]
     assemble(lang, key, d["title"], d["desc"], body, jsonld=jsonld, current="services", cta=True,
              draft=is_draft(svc))
 
@@ -2156,12 +2289,17 @@ def article_page(a):
     svc_key = a.get("service")
     aside = ""
     if svc_key and visible(SERVICE_PAGES[svc_key]):
-        s = SERVICE_PAGES[svc_key]["lt"]
-        aside = f"""<aside class="article-aside" aria-label="Susijusi paslauga">
-<p class="mono">Susijusi paslauga</p>
-<h2>{s["name"]}</h2>
+        # a small ad for the service, for readers who land on the article from search
+        svc = SERVICE_PAGES[svc_key]
+        s = svc["lt"]
+        tone = svc["card_image"][2] if svc.get("card_image") else "sand"
+        pic = (f'<div class="promo__media" aria-hidden="true">{img(svc["card_image"][0], "", "300px")}</div>\n'
+               if svc.get("card_image") else "")
+        aside = f"""<aside class="article-aside promo promo--{tone}" aria-label="{s["name"]}">
+{pic}<h2>{s["promo"]}</h2>
 <p>{s["card"]}</p>
-<a class="link" href="{url(svc_key, lang)}">Plačiau apie paslaugą →</a>
+<a class="btn promo__btn" href="{url("contact", lang)}">Aptarti projektą</a>
+<a class="link promo__more" href="{url(svc_key, lang)}">Plačiau apie paslaugą →</a>
 </aside>"""
     related = [b for b in ARTICLES if b is not a and visible(b) and b.get("service") == svc_key][:3]
     more = ""
@@ -2173,19 +2311,23 @@ def article_page(a):
 </div>
 </section>"""
     modified = lastmod(ROUTES[key][lang])
+    crumbs = [("home", "Pradžia"), ("articles", "Straipsniai"), (key, a["title_short"])]
+    pic = article_img(a, "(max-width: 1279px) 92vw, 1232px", lazy=False, priority=True)
+    cover = f'<div class="article-cover">{pic}</div>\n' if pic else ""
     body = f"""<article>
 <header class="page-intro article-head">
 <div class="container">
-<a class="back" href="{url("articles", lang)}">← Visi straipsniai</a>
-<p class="mono page-intro__eyebrow">{date_lt(a["date"])} · {reading_minutes(a["body"])} min. skaitymo</p>
+{breadcrumbs(lang, crumbs)}
+<p class="mono page-intro__eyebrow">Straipsnis · {date_lt(a["date"])}</p>
 <h1>{a["h1"]}</h1>
 <p class="lead page-intro__lead">{a["lead"]}</p>
-</div>
+{cover}</div>
 </header>
 <div class="section article-body">
 <div class="container article-grid">
 <div class="prose">
 {todo(live_links(a["body"]))}
+<p class="article-cta">Norite aptarti savo idėją? <a href="{url("contact", lang)}">Susisiekite</a>, atsakau per 24 val.</p>
 </div>
 {aside}
 </div>
@@ -2202,12 +2344,12 @@ def article_page(a):
         "inLanguage": lang,
         "datePublished": a["date"],
         "dateModified": max(a["date"], modified),
-        "image": SITE + "/img/og-cover.jpg",
+        "image": SITE + article_og(a),
         "author": {"@id": SITE + "/#person"},
         "publisher": {"@id": SITE + "/#business"},
-    }, breadcrumb_ld(lang, [("home", "Pradžia"), ("articles", "Straipsniai"), (key, a["title_short"])])]
+    }, breadcrumb_ld(lang, crumbs)]
     assemble(lang, key, a["title"], a["desc"], body, jsonld=jsonld, og_type="article",
-             current="articles", cta=True, draft=is_draft(a))
+             current="articles", cta=True, draft=is_draft(a), og_image=article_og(a))
 
 
 def articles_index():
@@ -2219,7 +2361,7 @@ def articles_index():
             continue
         name = SERVICE_PAGES[svc_key]["lt"]["name"] if svc_key else "Kita"
         cards = "\n".join(f"""<li class="info-card info-card--list article-card" data-reveal>
-<p class="mono">{date_lt(a["date"])} · {reading_minutes(a["body"])} min.{" · juodraštis" if is_draft(a) else ""}</p>
+{teaser_media(a)}<p class="mono">{date_lt(a["date"])}{" · juodraštis" if is_draft(a) else ""}</p>
 <h3><a href="{url("a_" + a["slug"], "lt")}">{a["title_short"]}</a></h3>
 <p>{a["desc"]}</p>
 </li>""" for a in items)
@@ -2241,6 +2383,18 @@ def articles_index():
              "Kiek kainuoja verslo sistema ar programėlė, ką rinktis ir kaip AI gali padėti verslui: praktiški straipsniai iš programuotojos Gabrielės Tamaševičiūtės.",
              body, jsonld=jsonld, current="articles", cta=True,
              draft=not any(a["status"] == "published" for a in ARTICLES))
+
+
+def texts_in(value):
+    """Every string inside nested dicts, lists and tuples."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for v in value.values():
+            yield from texts_in(v)
+    elif isinstance(value, (list, tuple)):
+        for v in value:
+            yield from texts_in(v)
 
 
 def remove(path):
@@ -2272,7 +2426,7 @@ def build_extras():
     for key, svc in SERVICE_PAGES.items():
         if not is_draft(svc):
             for lang in ("lt", "en"):
-                if "[" in json.dumps(svc[lang], ensure_ascii=False):
+                if any(re.search(r"\[[^\]]+\]", t) for t in texts_in(svc[lang])):
                     print(f"WARNING: published service page {ROUTES[key][lang]} still has [placeholders]")
     for a in ARTICLES:
         if not is_draft(a) and re.search(r"\[[^\]]+\]", a["body"]):

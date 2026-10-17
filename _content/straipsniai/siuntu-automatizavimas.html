@@ -1,0 +1,114 @@
+<!--
+{
+  "status": "published",
+  "order": 10,
+  "date": "2026-10-16",
+  "service": "s_integrations",
+  "title": "Siuntų automatizavimas: Omniva, DPD ir LP EXPRESS | Codeart",
+  "title_short": "Automatinis siuntų formavimas",
+  "h1": "Automatinis siuntų formavimas: Omniva, DPD ir LP EXPRESS integracijos",
+  "lead": "Jeigu jūsų el. parduotuvė kasdien išsiunčia dešimtis siuntų, rankinis jų formavimas gali užimti nemažai darbuotojų laiko. Gavėjo duomenų kopijavimas, paštomato pasirinkimas, siuntos registravimas ir lipdukų spausdinimas – pasikartojantys veiksmai, kuriuos galima automatizuoti.",
+  "desc": "Kaip automatizuoti Omniva, DPD ir LP EXPRESS siuntų formavimą? API integracijos, lipdukų generavimas, praktinis pavyzdys ir laiko sutaupymas."
+}
+-->
+<p>Omniva, DPD ir LP EXPRESS siūlo integravimo galimybes, leidžiančias perduoti siuntų informaciją tiesiai iš el. parduotuvės ar užsakymų valdymo sistemos.</p>
+<p>Šiame straipsnyje aptarsime, kaip veikia siuntų automatizavimas, kokius procesus galima automatizuoti ir kada verta rinktis individualų sprendimą.</p>
+
+<h2>Kaip veikia automatinis siuntų formavimas?</h2>
+<p>Įsivaizduokite el. parduotuvę, kuri per dieną gauna 30 užsakymų.</p>
+<p><strong>Be automatizavimo</strong></p>
+<p>Darbuotojas atidaro užsakymą, nukopijuoja kliento vardą, telefono numerį, adresą ar pasirinktą paštomatą ir suveda šiuos duomenis į kurjerių tarnybos savitarną. Tuomet suformuoja siuntą, atsisiunčia lipduką, jį atspausdina ir, jei reikia, rankiniu būdu įkelia sekimo numerį į užsakymą.</p>
+<p>Šie veiksmai kartojami kiekvienam užsakymui.</p>
+<p><strong>Su automatizavimu</strong></p>
+<p>Darbuotojas savo sistemoje pažymi užsakymus kaip paruoštus siuntimui. Sistema automatiškai perduoda reikiamus duomenis pasirinktai kurjerių tarnybai, užregistruoja siuntas ir gauna jų lipdukus.</p>
+<p>Siuntų sekimo numeriai išsaugomi prie atitinkamų užsakymų, o klientams, jei taip sukonfigūruota, išsiunčiami pranešimai. Darbuotojui lieka fiziškai supakuoti prekes, priklijuoti lipdukus ir perduoti siuntas vežėjui.</p>
+<p>Tokiam automatizavimui naudojama API integracija – būdas dviem skirtingoms sistemoms automatiškai apsikeisti duomenimis.</p>
+
+<h2>Kokius siuntų procesus galima automatizuoti?</h2>
+
+<h3>Siuntų registravimas</h3>
+<p>Užsakymo duomenys automatiškai perduodami kurjerių tarnybai. Nereikia pakartotinai įvesti gavėjo vardo, telefono numerio, adreso ir kitų siuntimui reikalingų duomenų.</p>
+<p>Siuntos gali būti kuriamos automatiškai pasikeitus užsakymo būsenai arba darbuotojui patvirtinus pasirinktus užsakymus.</p>
+
+<h3>Siuntų lipdukų generavimas</h3>
+<p>Sistema gali gauti paruoštus siuntų lipdukus ir leisti juos atsisiųsti ar atspausdinti. Pavyzdžiui, darbuotojas pažymi 20 užsakymų ir vienu veiksmu paruošia jų lipdukus spausdinimui.</p>
+
+<h3>Paštomatų pasirinkimo perdavimas</h3>
+<p>Klientas el. parduotuvėje pasirenka jam patogų paštomatą. Užsakymo duomenyse išsaugomas pasirinkto paštomato identifikatorius, kuris vėliau perduodamas kurjerių tarnybai. Taip nereikia paštomato iš naujo ieškoti ir pasirinkti rankiniu būdu.</p>
+
+<h3>Siuntų sekimas</h3>
+<p>Sukūrus siuntą, jos sekimo numeris gali būti išsaugotas el. parduotuvėje. Sistema taip pat gali gauti naujausią siuntos būseną, pavyzdžiui, ar ji perduota vežėjui, pristatoma arba jau atsiimta.</p>
+<p>Pranešimai klientams gali būti siunčiami automatiškai, tačiau svarbu suderinti juos su pačios kurjerių tarnybos siunčiamais pranešimais, kad klientas negautų dubliuojamos informacijos.</p>
+
+<h3>Kurjerio iškvietimas</h3>
+<p>Kai kuriose integracijose galima automatiškai užregistruoti kurjerio atvykimo užklausą. Tokiu atveju darbuotojui nereikia kiekvieną kartą atskirai prisijungti prie kurjerių savitarnos ir pateikti iškvietimo.</p>
+<p>Konkrečių funkcijų prieinamumas priklauso nuo pasirinktos tarnybos, paslaugų sutarties ir naudojamos API versijos.</p>
+
+<h2>Omniva, DPD ir LP EXPRESS: integravimo galimybės</h2>
+<p>Lietuvoje veikiančios kurjerių tarnybos siūlo skirtingus automatizavimo būdus.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Kurjerių tarnyba</th><th>Integravimo galimybės</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Omniva</strong></td><td>Siuntų duomenų perdavimas, lipdukų gavimas, siuntų būsenų stebėjimas, paštomatų sąrašo gavimas, kurjerio iškvietimas</td></tr>
+    <tr><td><strong>DPD</strong></td><td>Siuntų registravimas, lipdukų formavimas, siuntų valdymo funkcijos, kurjerio iškvietimo galimybės</td></tr>
+    <tr><td><strong>LP EXPRESS</strong></td><td>Siuntų formavimas, lipdukų gavimas, siuntų būsenų informacija, kurjerio iškvietimo galimybės</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Visos trys tarnybos turi API dokumentaciją, tačiau ne kiekviena funkcija automatiškai prieinama visiems klientams. Prieš pradedant integraciją reikia patikrinti turimos sutarties sąlygas ir konkrečios paslaugos galimybes.</p>
+<p>Oficiali informacija apie integracijas:</p>
+<ul>
+  <li><a href="https://www.omniva.lt/en/business/api/" target="_blank" rel="noopener">Omniva API verslo klientams</a></li>
+  <li><a href="https://www.dpd.com/lt/lt/siusti-siunta/moduliai-el-komercijai/" target="_blank" rel="noopener">DPD Lietuva: el. parduotuvių moduliai ir esiunta.lt API</a></li>
+  <li><a href="https://www.post.lt/lt/api-verslui" target="_blank" rel="noopener">LP EXPRESS API verslui</a></li>
+</ul>
+
+<h2>Ar būtina kurti individualią integraciją?</h2>
+<p>Ne visada. Sprendimas priklauso nuo jūsų naudojamos el. parduotuvės ir užsakymų apdorojimo proceso.</p>
+
+<h3>1. Paruoštas el. parduotuvės įskiepis</h3>
+<p>Jeigu naudojate WooCommerce, Shopify ar kitą populiarią platformą, pirmiausia verta patikrinti, ar yra tinkamas kurjerių integracijos įskiepis. Toks sprendimas gali leisti pasirinkti pristatymo būdą, formuoti siuntas ir spausdinti lipdukus be individualaus programavimo.</p>
+<p><strong>Kam tinka:</strong> el. parduotuvėms, kurių užsakymų apdorojimo procesas standartinis.</p>
+
+<h3>2. Siuntų importas iš Excel ar CSV</h3>
+<p>Kai kurios siuntų savitarnos leidžia importuoti užsakymų duomenis iš failo. Pavyzdžiui, vietoj 50 užsakymų suvedimo atskirai galima paruošti vieną failą su gavėjų informacija ir jį importuoti.</p>
+<p>Tai nėra visiškas automatizavimas, tačiau gali reikšmingai sumažinti rankinio darbo kiekį.</p>
+<p><strong>Kam tinka:</strong> įmonėms, kurios dar neturi galimybės prijungti sistemų per API arba nori paprasto tarpinio sprendimo.</p>
+
+<h3>3. Individuali API integracija</h3>
+<p>Individualus sprendimas naudingas, kai standartiniai įskiepiai nepalaiko jūsų darbo proceso. Pavyzdžiui, jeigu užsakymai gaunami iš kelių parduotuvių, didmeninių klientų ir vidinės užsakymų valdymo sistemos, juos galima sujungti į vieną siuntų formavimo procesą.</p>
+<p>Sistema galėtų automatiškai pasirinkti pristatymo tarnybą pagal šalį, pristatymo būdą, siuntos parametrus ir jūsų nustatytas taisykles.</p>
+<p><strong>Kam tinka:</strong> įmonėms, turinčioms nestandartinius užsakymų procesus, kelis pardavimo kanalus arba naudojančioms individualiai sukurtą verslo valdymo sistemą.</p>
+
+<h2>Kiek laiko galima sutaupyti?</h2>
+<p>Tarkime, kad įmonė per mėnesį išsiunčia 400 siuntų, o vienos siuntos duomenų suvedimas ir registravimas užtrunka vidutiniškai 3 minutes.</p>
+<p class="note"><strong>400 siuntų × 3 minutės = 1 200 minučių, arba 20 darbo valandų per mėnesį.</strong></p>
+<p>Automatizavus duomenų perdavimą, didelės dalies šio darbo galima atsisakyti. Tačiau tai nereiškia, kad visas 20 valandų pavyks sutaupyti. Darbuotojui vis tiek reikės supakuoti prekes, patikrinti neteisingus užsakymų duomenis ir pasirūpinti fiziniu siuntų perdavimu.</p>
+<p>Realus sutaupymas priklausys nuo to, kurios užduotys automatizuojamos ir kiek laiko jos dabar užima.</p>
+
+<h2>Į ką svarbu atsižvelgti prieš automatizuojant?</h2>
+<p>Kad sistema veiktų patikimai, neužtenka vien perduoti užsakymo duomenis kurjeriui. Reikia numatyti ir nestandartines situacijas.</p>
+<ul>
+  <li><strong>Neteisingi gavėjo duomenys.</strong> Jei trūksta telefono numerio arba pasirinktas paštomatas nebegalioja, sistema turi parodyti klaidą ir leisti ją ištaisyti.</li>
+  <li><strong>Pakartotinis siuntos kūrimas.</strong> Jei darbuotojas netyčia du kartus paspaudžia siuntos formavimo mygtuką, sistema neturėtų sukurti dviejų identiškų siuntų.</li>
+  <li><strong>Kurjerių sistemos sutrikimai.</strong> Jei API laikinai neveikia, užsakymas neturi dingti. Turi būti galima matyti nepavykusią operaciją ir saugiai ją pakartoti.</li>
+  <li><strong>Siuntos atšaukimas ar pakeitimas.</strong> Svarbu numatyti, kaip bus taisomi užsakymo duomenys, jei siunta jau užregistruota kurjerių sistemoje.</li>
+</ul>
+<p>Šie atvejai ypač svarbūs didesnį siuntų kiekį apdorojančioms įmonėms.</p>
+
+<h2>Nuo ko pradėti siuntų automatizavimą?</h2>
+<p>Pirmiausia įvertinkite, kaip šiuo metu apdorojate užsakymus:</p>
+<ul>
+  <li>Kiek siuntų paruošiate per dieną ar mėnesį?</li>
+  <li>Kokias kurjerių tarnybas naudojate?</li>
+  <li>Iš kur gaunate užsakymus: el. parduotuvės, Excel ar vidinės sistemos?</li>
+  <li>Kurie veiksmai užima daugiausia laiko?</li>
+  <li>Ar turite veikiančius pristatymo įskiepius, o gal viską suvedate rankiniu būdu?</li>
+</ul>
+<p>Pagal šiuos atsakymus galima įvertinti, ar jums pakaktų esamo įskiepio, failų importo, ar būtų naudinga individuali integracija.</p>
+<p>Jeigu norite automatizuoti ne tik siuntų formavimą, bet ir finansinių dokumentų perdavimą, skaitykite <a href="/lt/straipsniai/parduotuve-ir-apskaita.html">Kaip sujungti el. parduotuvę su apskaita</a>.</p>
+
+<h2>Reikia individualios siuntų integracijos?</h2>
+<p>Kuriu automatizavimo sprendimus ir verslo sistemas, kurios padeda sumažinti pasikartojančius rankinius darbus.</p>
+<p>Jei naudojate Omniva, DPD ar LP EXPRESS ir norite juos sujungti su savo el. parduotuve ar vidine sistema, trumpai aprašykite dabartinį užsakymų apdorojimo procesą. Įvertinsime, kokius veiksmus verta automatizuoti ir ar tam reikalingas individualus sprendimas.</p>

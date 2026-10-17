@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siuntų automatizavimas: Omniva, DPD ir LP EXPRESS | Codeart</title>
+<meta name="description" content="Kaip automatizuoti Omniva, DPD ir LP EXPRESS siuntų formavimą? API integracijos, lipdukų generavimas, praktinis pavyzdys ir laiko sutaupymas.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://codeart.lt/lt/straipsniai/siuntu-automatizavimas.html">
+<meta name="theme-color" content="#F6F0E6">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Codeart">
+<meta property="og:locale" content="lt_LT">
+<meta property="og:title" content="Siuntų automatizavimas: Omniva, DPD ir LP EXPRESS | Codeart">
+<meta property="og:description" content="Kaip automatizuoti Omniva, DPD ir LP EXPRESS siuntų formavimą? API integracijos, lipdukų generavimas, praktinis pavyzdys ir laiko sutaupymas.">
+<meta property="og:url" content="https://codeart.lt/lt/straipsniai/siuntu-automatizavimas.html">
+<meta property="og:image" content="https://codeart.lt/img/site/straipsniai/siuntu-automatizavimas-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/schibsted-grotesk/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css?v=88b77eb1">
+<script>
+  /* Hide reveal-on-scroll content only once we know JS runs. If site.js
+     never arrives, put everything back after a moment. */
+  document.documentElement.classList.add("js");
+  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("js"); }, 3000);
+</script>
+<script src="/js/site.js?v=5741e463" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Automatinis siuntų formavimas: Omniva, DPD ir LP EXPRESS integracijos",
+  "description": "Kaip automatizuoti Omniva, DPD ir LP EXPRESS siuntų formavimą? API integracijos, lipdukų generavimas, praktinis pavyzdys ir laiko sutaupymas.",
+  "url": "https://codeart.lt/lt/straipsniai/siuntu-automatizavimas.html",
+  "mainEntityOfPage": "https://codeart.lt/lt/straipsniai/siuntu-automatizavimas.html",
+  "inLanguage": "lt",
+  "datePublished": "2026-10-16",
+  "dateModified": "2026-10-17",
+  "image": "https://codeart.lt/img/site/straipsniai/siuntu-automatizavimas-og.jpg",
+  "author": {
+    "@id": "https://codeart.lt/#person"
+  },
+  "publisher": {
+    "@id": "https://codeart.lt/#business"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Pradžia",
+      "item": "https://codeart.lt/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Straipsniai",
+      "item": "https://codeart.lt/lt/straipsniai/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Automatinis siuntų formavimas",
+      "item": "https://codeart.lt/lt/straipsniai/siuntu-automatizavimas.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Pereiti prie turinio</a>
+<header class="site-header">
+<div class="container site-header__in">
+<a class="brand" href="/" aria-label="Codeart, pagrindinis"><span class="brand__mark" aria-hidden="true">CA</span><span class="brand__text"><span class="brand__name">Codeart</span></span></a>
+<nav class="site-nav" aria-label="Pagrindinė navigacija">
+<div class="site-nav__links">
+<a href="/lt/portfolio.html">Portfolio</a>
+<a href="/lt/services.html">Paslaugos</a>
+<a href="/lt/about.html">Apie</a>
+<a href="/lt/straipsniai/" aria-current="page">Straipsniai</a>
+<a href="/lt/contact.html">Kontaktai</a>
+</div>
+<a class="lang" href="/en/" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a>
+<a class="btn" href="/lt/contact.html">Aptarti projektą</a>
+</nav>
+<button class="menu-toggle" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Atidaryti meniu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h16M3 15h16"/></svg></button>
+</div>
+</header>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meniu" hidden>
+<div class="mobile-menu__bar">
+<a class="brand" href="/" aria-label="Codeart, pagrindinis"><span class="brand__mark" aria-hidden="true">CA</span><span class="brand__text"><span class="brand__name">Codeart</span></span></a>
+<button class="menu-toggle" type="button" data-menu-close aria-label="Uždaryti meniu"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5l12 12M17 5L5 17"/></svg></button>
+</div>
+<nav class="mobile-menu__nav" aria-label="Pagrindinė navigacija">
+<a href="/lt/portfolio.html"><span class="mono" aria-hidden="true">01</span>Portfolio</a>
+<a href="/lt/services.html"><span class="mono" aria-hidden="true">02</span>Paslaugos</a>
+<a href="/lt/about.html"><span class="mono" aria-hidden="true">03</span>Apie</a>
+<a href="/lt/straipsniai/" aria-current="page"><span class="mono" aria-hidden="true">04</span>Straipsniai</a>
+<a href="/lt/contact.html"><span class="mono" aria-hidden="true">05</span>Kontaktai</a>
+</nav>
+<div class="mobile-menu__foot">
+<a class="lang" href="/en/" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a>
+<a class="btn" href="/lt/contact.html">Aptarti projektą</a>
+</div>
+</div>
+<main id="main">
+<article>
+<header class="page-intro article-head">
+<div class="container">
+<nav class="crumbs" aria-label="Naršymo kelias"><ol><li><a href="/">Pradžia</a></li><li><a href="/lt/straipsniai/">Straipsniai</a></li><li aria-current="page">Automatinis siuntų formavimas</li></ol></nav>
+<p class="mono page-intro__eyebrow">Straipsnis · 2026 m. spalio 16 d.</p>
+<h1>Automatinis siuntų formavimas: Omniva, DPD ir LP EXPRESS integracijos</h1>
+<p class="lead page-intro__lead">Jeigu jūsų el. parduotuvė kasdien išsiunčia dešimtis siuntų, rankinis jų formavimas gali užimti nemažai darbuotojų laiko. Gavėjo duomenų kopijavimas, paštomato pasirinkimas, siuntos registravimas ir lipdukų spausdinimas – pasikartojantys veiksmai, kuriuos galima automatizuoti.</p>
+<div class="article-cover"><img src="/img/site/straipsniai/siuntu-automatizavimas.webp" srcset="/img/site/straipsniai/siuntu-automatizavimas-800.webp 800w, /img/site/straipsniai/siuntu-automatizavimas.webp 1672w" sizes="(max-width: 1279px) 92vw, 1232px" width="1672" height="941" alt="" decoding="async" fetchpriority="high"></div>
+</div>
+</header>
+<div class="section article-body">
+<div class="container article-grid">
+<div class="prose">
+<p>Omniva, DPD ir LP EXPRESS siūlo integravimo galimybes, leidžiančias perduoti siuntų informaciją tiesiai iš el. parduotuvės ar užsakymų valdymo sistemos.</p>
+<p>Šiame straipsnyje aptarsime, kaip veikia siuntų automatizavimas, kokius procesus galima automatizuoti ir kada verta rinktis individualų sprendimą.</p>
+
+<h2>Kaip veikia automatinis siuntų formavimas?</h2>
+<p>Įsivaizduokite el. parduotuvę, kuri per dieną gauna 30 užsakymų.</p>
+<p><strong>Be automatizavimo</strong></p>
+<p>Darbuotojas atidaro užsakymą, nukopijuoja kliento vardą, telefono numerį, adresą ar pasirinktą paštomatą ir suveda šiuos duomenis į kurjerių tarnybos savitarną. Tuomet suformuoja siuntą, atsisiunčia lipduką, jį atspausdina ir, jei reikia, rankiniu būdu įkelia sekimo numerį į užsakymą.</p>
+<p>Šie veiksmai kartojami kiekvienam užsakymui.</p>
+<p><strong>Su automatizavimu</strong></p>
+<p>Darbuotojas savo sistemoje pažymi užsakymus kaip paruoštus siuntimui. Sistema automatiškai perduoda reikiamus duomenis pasirinktai kurjerių tarnybai, užregistruoja siuntas ir gauna jų lipdukus.</p>
+<p>Siuntų sekimo numeriai išsaugomi prie atitinkamų užsakymų, o klientams, jei taip sukonfigūruota, išsiunčiami pranešimai. Darbuotojui lieka fiziškai supakuoti prekes, priklijuoti lipdukus ir perduoti siuntas vežėjui.</p>
+<p>Tokiam automatizavimui naudojama API integracija – būdas dviem skirtingoms sistemoms automatiškai apsikeisti duomenimis.</p>
+
+<h2>Kokius siuntų procesus galima automatizuoti?</h2>
+
+<h3>Siuntų registravimas</h3>
+<p>Užsakymo duomenys automatiškai perduodami kurjerių tarnybai. Nereikia pakartotinai įvesti gavėjo vardo, telefono numerio, adreso ir kitų siuntimui reikalingų duomenų.</p>
+<p>Siuntos gali būti kuriamos automatiškai pasikeitus užsakymo būsenai arba darbuotojui patvirtinus pasirinktus užsakymus.</p>
+
+<h3>Siuntų lipdukų generavimas</h3>
+<p>Sistema gali gauti paruoštus siuntų lipdukus ir leisti juos atsisiųsti ar atspausdinti. Pavyzdžiui, darbuotojas pažymi 20 užsakymų ir vienu veiksmu paruošia jų lipdukus spausdinimui.</p>
+
+<h3>Paštomatų pasirinkimo perdavimas</h3>
+<p>Klientas el. parduotuvėje pasirenka jam patogų paštomatą. Užsakymo duomenyse išsaugomas pasirinkto paštomato identifikatorius, kuris vėliau perduodamas kurjerių tarnybai. Taip nereikia paštomato iš naujo ieškoti ir pasirinkti rankiniu būdu.</p>
+
+<h3>Siuntų sekimas</h3>
+<p>Sukūrus siuntą, jos sekimo numeris gali būti išsaugotas el. parduotuvėje. Sistema taip pat gali gauti naujausią siuntos būseną, pavyzdžiui, ar ji perduota vežėjui, pristatoma arba jau atsiimta.</p>
+<p>Pranešimai klientams gali būti siunčiami automatiškai, tačiau svarbu suderinti juos su pačios kurjerių tarnybos siunčiamais pranešimais, kad klientas negautų dubliuojamos informacijos.</p>
+
+<h3>Kurjerio iškvietimas</h3>
+<p>Kai kuriose integracijose galima automatiškai užregistruoti kurjerio atvykimo užklausą. Tokiu atveju darbuotojui nereikia kiekvieną kartą atskirai prisijungti prie kurjerių savitarnos ir pateikti iškvietimo.</p>
+<p>Konkrečių funkcijų prieinamumas priklauso nuo pasirinktos tarnybos, paslaugų sutarties ir naudojamos API versijos.</p>
+
+<h2>Omniva, DPD ir LP EXPRESS: integravimo galimybės</h2>
+<p>Lietuvoje veikiančios kurjerių tarnybos siūlo skirtingus automatizavimo būdus.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Kurjerių tarnyba</th><th>Integravimo galimybės</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Omniva</strong></td><td>Siuntų duomenų perdavimas, lipdukų gavimas, siuntų būsenų stebėjimas, paštomatų sąrašo gavimas, kurjerio iškvietimas</td></tr>
+    <tr><td><strong>DPD</strong></td><td>Siuntų registravimas, lipdukų formavimas, siuntų valdymo funkcijos, kurjerio iškvietimo galimybės</td></tr>
+    <tr><td><strong>LP EXPRESS</strong></td><td>Siuntų formavimas, lipdukų gavimas, siuntų būsenų informacija, kurjerio iškvietimo galimybės</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Visos trys tarnybos turi API dokumentaciją, tačiau ne kiekviena funkcija automatiškai prieinama visiems klientams. Prieš pradedant integraciją reikia patikrinti turimos sutarties sąlygas ir konkrečios paslaugos galimybes.</p>
+<p>Oficiali informacija apie integracijas:</p>
+<ul>
+  <li><a href="https://www.omniva.lt/en/business/api/" target="_blank" rel="noopener">Omniva API verslo klientams</a></li>
+  <li><a href="https://www.dpd.com/lt/lt/siusti-siunta/moduliai-el-komercijai/" target="_blank" rel="noopener">DPD Lietuva: el. parduotuvių moduliai ir esiunta.lt API</a></li>
+  <li><a href="https://www.post.lt/lt/api-verslui" target="_blank" rel="noopener">LP EXPRESS API verslui</a></li>
+</ul>
+
+<h2>Ar būtina kurti individualią integraciją?</h2>
+<p>Ne visada. Sprendimas priklauso nuo jūsų naudojamos el. parduotuvės ir užsakymų apdorojimo proceso.</p>
+
+<h3>1. Paruoštas el. parduotuvės įskiepis</h3>
+<p>Jeigu naudojate WooCommerce, Shopify ar kitą populiarią platformą, pirmiausia verta patikrinti, ar yra tinkamas kurjerių integracijos įskiepis. Toks sprendimas gali leisti pasirinkti pristatymo būdą, formuoti siuntas ir spausdinti lipdukus be individualaus programavimo.</p>
+<p><strong>Kam tinka:</strong> el. parduotuvėms, kurių užsakymų apdorojimo procesas standartinis.</p>
+
+<h3>2. Siuntų importas iš Excel ar CSV</h3>
+<p>Kai kurios siuntų savitarnos leidžia importuoti užsakymų duomenis iš failo. Pavyzdžiui, vietoj 50 užsakymų suvedimo atskirai galima paruošti vieną failą su gavėjų informacija ir jį importuoti.</p>
+<p>Tai nėra visiškas automatizavimas, tačiau gali reikšmingai sumažinti rankinio darbo kiekį.</p>
+<p><strong>Kam tinka:</strong> įmonėms, kurios dar neturi galimybės prijungti sistemų per API arba nori paprasto tarpinio sprendimo.</p>
+
+<h3>3. Individuali API integracija</h3>
+<p>Individualus sprendimas naudingas, kai standartiniai įskiepiai nepalaiko jūsų darbo proceso. Pavyzdžiui, jeigu užsakymai gaunami iš kelių parduotuvių, didmeninių klientų ir vidinės užsakymų valdymo sistemos, juos galima sujungti į vieną siuntų formavimo procesą.</p>
+<p>Sistema galėtų automatiškai pasirinkti pristatymo tarnybą pagal šalį, pristatymo būdą, siuntos parametrus ir jūsų nustatytas taisykles.</p>
+<p><strong>Kam tinka:</strong> įmonėms, turinčioms nestandartinius užsakymų procesus, kelis pardavimo kanalus arba naudojančioms individualiai sukurtą verslo valdymo sistemą.</p>
+
+<h2>Kiek laiko galima sutaupyti?</h2>
+<p>Tarkime, kad įmonė per mėnesį išsiunčia 400 siuntų, o vienos siuntos duomenų suvedimas ir registravimas užtrunka vidutiniškai 3 minutes.</p>
+<p class="note"><strong>400 siuntų × 3 minutės = 1 200 minučių, arba 20 darbo valandų per mėnesį.</strong></p>
+<p>Automatizavus duomenų perdavimą, didelės dalies šio darbo galima atsisakyti. Tačiau tai nereiškia, kad visas 20 valandų pavyks sutaupyti. Darbuotojui vis tiek reikės supakuoti prekes, patikrinti neteisingus užsakymų duomenis ir pasirūpinti fiziniu siuntų perdavimu.</p>
+<p>Realus sutaupymas priklausys nuo to, kurios užduotys automatizuojamos ir kiek laiko jos dabar užima.</p>
+
+<h2>Į ką svarbu atsižvelgti prieš automatizuojant?</h2>
+<p>Kad sistema veiktų patikimai, neužtenka vien perduoti užsakymo duomenis kurjeriui. Reikia numatyti ir nestandartines situacijas.</p>
+<ul>
+  <li><strong>Neteisingi gavėjo duomenys.</strong> Jei trūksta telefono numerio arba pasirinktas paštomatas nebegalioja, sistema turi parodyti klaidą ir leisti ją ištaisyti.</li>
+  <li><strong>Pakartotinis siuntos kūrimas.</strong> Jei darbuotojas netyčia du kartus paspaudžia siuntos formavimo mygtuką, sistema neturėtų sukurti dviejų identiškų siuntų.</li>
+  <li><strong>Kurjerių sistemos sutrikimai.</strong> Jei API laikinai neveikia, užsakymas neturi dingti. Turi būti galima matyti nepavykusią operaciją ir saugiai ją pakartoti.</li>
+  <li><strong>Siuntos atšaukimas ar pakeitimas.</strong> Svarbu numatyti, kaip bus taisomi užsakymo duomenys, jei siunta jau užregistruota kurjerių sistemoje.</li>
+</ul>
+<p>Šie atvejai ypač svarbūs didesnį siuntų kiekį apdorojančioms įmonėms.</p>
+
+<h2>Nuo ko pradėti siuntų automatizavimą?</h2>
+<p>Pirmiausia įvertinkite, kaip šiuo metu apdorojate užsakymus:</p>
+<ul>
+  <li>Kiek siuntų paruošiate per dieną ar mėnesį?</li>
+  <li>Kokias kurjerių tarnybas naudojate?</li>
+  <li>Iš kur gaunate užsakymus: el. parduotuvės, Excel ar vidinės sistemos?</li>
+  <li>Kurie veiksmai užima daugiausia laiko?</li>
+  <li>Ar turite veikiančius pristatymo įskiepius, o gal viską suvedate rankiniu būdu?</li>
+</ul>
+<p>Pagal šiuos atsakymus galima įvertinti, ar jums pakaktų esamo įskiepio, failų importo, ar būtų naudinga individuali integracija.</p>
+<p>Jeigu norite automatizuoti ne tik siuntų formavimą, bet ir finansinių dokumentų perdavimą, skaitykite Kaip sujungti el. parduotuvę su apskaita.</p>
+
+<h2>Reikia individualios siuntų integracijos?</h2>
+<p>Kuriu automatizavimo sprendimus ir verslo sistemas, kurios padeda sumažinti pasikartojančius rankinius darbus.</p>
+<p>Jei naudojate Omniva, DPD ar LP EXPRESS ir norite juos sujungti su savo el. parduotuve ar vidine sistema, trumpai aprašykite dabartinį užsakymų apdorojimo procesą. Įvertinsime, kokius veiksmus verta automatizuoti ir ar tam reikalingas individualus sprendimas.</p>
+<p class="article-cta">Norite aptarti savo idėją? <a href="/lt/contact.html">Susisiekite</a>, atsakau per 24 val.</p>
+</div>
+<aside class="article-aside promo promo--rose" aria-label="Sistemų integracijos">
+<div class="promo__media" aria-hidden="true"><img src="/img/site/solution-integrations.webp" srcset="/img/site/solution-integrations-560.webp 560w, /img/site/solution-integrations.webp 1448w" sizes="300px" width="1448" height="1053" alt="" decoding="async" loading="lazy"></div>
+<h2>Norite sujungti savo programas?</h2>
+<p>El. parduotuvė ir apskaita, kurjeriai, mokėjimai, CRM, užklausų formos, savas API ir daugiau.</p>
+<a class="btn promo__btn" href="/lt/contact.html">Aptarti projektą</a>
+<a class="link promo__more" href="/lt/paslaugos/integracijos.html">Plačiau apie paslaugą →</a>
+</aside>
+</div>
+</div>
+</article>
+
+</main>
+<section class="cta-band" aria-labelledby="cta-title">
+<div class="container cta-band__in" data-reveal>
+<div class="cta-band__blob"><div class="blob blob--apricot" aria-hidden="true"><svg viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><path d="M94.6 48.5C94.5 53.7 94.0 61.9 92.6 67.3C91.3 72.7 89.5 77.3 86.6 80.8C83.7 84.2 80.1 86.4 75.2 88.2C70.2 90.0 62.5 91.5 56.9 91.7C51.3 91.9 45.6 90.9 41.6 89.3C37.6 87.6 37.2 84.2 32.9 81.9C28.7 79.5 21.0 78.0 16.2 75.1C11.4 72.2 6.7 68.1 4.3 64.3C1.9 60.6 1.8 57.9 1.8 52.7C1.8 47.5 1.7 39.0 4.1 33.3C6.5 27.6 12.2 21.4 16.1 18.3C20.0 15.2 23.4 15.8 27.6 14.6C31.8 13.4 36.4 12.2 41.3 11.2C46.3 10.2 52.3 8.2 57.1 8.6C61.9 8.9 66.1 11.3 70.2 13.4C74.3 15.5 77.9 17.4 81.8 21.2C85.7 25.0 91.4 31.7 93.5 36.3C95.6 40.8 94.8 43.3 94.6 48.5Z"/></svg></div></div>
+<div class="cta-band__text">
+<h2 class="h2" id="cta-title">Turite projekto idėją?</h2>
+<p class="lead">Trumpai papasakokite apie projektą. Atsakau per 24 val. su darbų planu ir kaina.</p>
+</div>
+<a class="btn btn--lg" href="/lt/contact.html">Susisiekti <svg class="ico" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+</section>
+<footer class="footer">
+<div class="container footer__grid">
+<div class="footer__brand">
+<a class="brand" href="/" aria-label="Codeart, pagrindinis"><span class="brand__mark" aria-hidden="true">CA</span><span class="brand__text"><span class="brand__name">Codeart</span></span></a>
+<div class="socials"><a class="social" href="mailto:gt1230112301@gmail.com" aria-label="El. paštas" title="El. paštas"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></a><a class="social" href="https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-3.5a2.5 2.5 0 0 1 5 0V17M12 10.5V17"/></svg></a><a class="social" href="https://github.com/gabwowce" target="_blank" rel="me noopener" aria-label="GitHub" title="GitHub"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 19 3.8 5.1 5.1 0 0 0 18.9 1S17.7.7 15 2.5a13.4 13.4 0 0 0-6 0C6.3.7 5.1 1 5.1 1A5.1 5.1 0 0 0 5 3.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></svg></a><a class="social" href="https://www.tiktok.com/@gabiebuilds" target="_blank" rel="me noopener" aria-label="TikTok" title="TikTok"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.4 4.6 5 5"/></svg></a></div>
+</div>
+<nav class="footer__links" aria-label="Nuorodos">
+<h2 class="footer__h">Nuorodos</h2>
+<ul><li><a href="/">Pagrindinis</a></li><li><a href="/lt/portfolio.html">Portfolio</a></li><li><a href="/lt/services.html">Paslaugos</a></li><li><a href="/lt/about.html">Apie</a></li><li><a href="/lt/straipsniai/">Straipsniai</a></li><li><a href="/lt/contact.html">Kontaktai</a></li></ul>
+</nav>
+<div class="footer__contact">
+<h2 class="footer__h">Tiesiogiai</h2>
+<ul class="contact-list contact-list--compact"><li><span class="contact-list__ico"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></span><span class="contact-list__body"><span class="contact-list__label">El. paštas</span><a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a></span></li><li><span class="contact-list__ico"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.5l2 5-2.4 1.6a11 11 0 0 0 5.3 5.3L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span class="contact-list__body"><span class="contact-list__label">Telefonas</span><a href="tel:+37067270403">+370 672 70403</a></span></li><li><span class="contact-list__ico"><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span class="contact-list__body"><span class="contact-list__label">Vieta</span><span>Vilnius, Lietuva</span></span></li></ul>
+</div>
+</div>
+<div class="container">
+<div class="footer__bottom">
+<span>© 2026 Gabrielė Tamaševičiūtė · Codeart. Visos teisės saugomos.</span>
+<span class="footer__bottom-links"><a href="mailto:gt1230112301@gmail.com">gt1230112301@gmail.com</a><a class="lang" href="/en/" hreflang="en" aria-label="Kalba: lietuvių. Perjungti į anglų"><span><b>LT</b> / EN</span></a></span>
+</div>
+</div>
+</footer>
+</body>
+</html>

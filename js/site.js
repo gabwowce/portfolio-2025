@@ -196,6 +196,97 @@
   })();
 
   /* ---------------------------------------------------------------- */
+  /* Project brief template (article) – copy, download or send it     */
+  /* through the contact form. Nothing leaves the browser until the   */
+  /* visitor sends the contact form themselves.                       */
+  /* ---------------------------------------------------------------- */
+  var BRIEF_KEY = "codeart-brief";
+
+  function store(kind) {
+    try { return window[kind]; } catch (e) { return null; }
+  }
+
+  document.querySelectorAll("form[data-brief]").forEach(function (form) {
+    var fields = Array.prototype.slice.call(form.querySelectorAll("input, textarea"));
+    var status = form.querySelector(".brief__status");
+    var draftKey = BRIEF_KEY + "-draft";
+    var local = store("localStorage");
+
+    function say(text, isError) {
+      status.textContent = text;
+      status.classList.toggle("is-error", !!isError);
+    }
+
+    /* keep what was typed if the visitor leaves and comes back */
+    try {
+      var saved = JSON.parse((local && local.getItem(draftKey)) || "{}");
+      fields.forEach(function (f) { if (saved[f.name]) f.value = saved[f.name]; });
+    } catch (e) { /* no saved draft */ }
+    form.addEventListener("input", function () {
+      var data = {};
+      fields.forEach(function (f) { data[f.name] = f.value; });
+      try { if (local) local.setItem(draftKey, JSON.stringify(data)); } catch (e) { /* storage off */ }
+    });
+
+    function text() {
+      return fields
+        .filter(function (f) { return f.value.trim(); })
+        .map(function (f) { return f.name + ":\n" + f.value.trim(); })
+        .join("\n\n");
+    }
+
+    function withText(fn) {
+      var t = text();
+      if (!t) { say(form.getAttribute("data-msg-empty"), true); return; }
+      fn(t);
+    }
+
+    form.querySelector("[data-brief-copy]").addEventListener("click", function () {
+      withText(function (t) {
+        var ok = function () { say(form.getAttribute("data-msg-copied"), false); };
+        var fail = function () { say(form.getAttribute("data-msg-copy-fail"), true); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(ok, fail);
+        } else {
+          fail();
+        }
+      });
+    });
+
+    form.querySelector("[data-brief-download]").addEventListener("click", function () {
+      withText(function (t) {
+        var url = URL.createObjectURL(new Blob([t], { type: "text/plain;charset=utf-8" }));
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = form.getAttribute("data-file");
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+    });
+
+    form.querySelector("[data-brief-send]").addEventListener("click", function () {
+      withText(function (t) {
+        var session = store("sessionStorage");
+        try { if (session) session.setItem(BRIEF_KEY, t); } catch (e) { /* storage off */ }
+        window.location.href = form.getAttribute("data-contact-url");
+      });
+    });
+  });
+
+  /* Contact page: pick up a brief sent from the template above. */
+  (function () {
+    var session = store("sessionStorage");
+    var brief = null;
+    try { brief = session && session.getItem(BRIEF_KEY); } catch (e) { /* storage off */ }
+    var box = brief && document.querySelector('form[data-contact] textarea[name="message"]');
+    if (!box) return;
+    if (!box.value.trim()) box.value = brief;
+    try { session.removeItem(BRIEF_KEY); } catch (e) { /* storage off */ }
+  })();
+
+  /* ---------------------------------------------------------------- */
   /* Contact form – posts to Formspree, reports inline                */
   /* ---------------------------------------------------------------- */
   document.querySelectorAll("form[data-contact]").forEach(function (form) {
