@@ -35,7 +35,6 @@ SITE = "https://codeart.lt"
 EMAIL = "gt1230112301@gmail.com"
 GITHUB = "https://github.com/gabwowce"
 LINKEDIN = "https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/"
-TIKTOK = "https://www.tiktok.com/@gabiebuilds"
 FORMSPREE = "https://formspree.io/f/xeorkyne"
 YEAR = "2026"
 
@@ -397,7 +396,6 @@ ICONS = {
     "phone": '<path d="M5 4h3.5l2 5-2.4 1.6a11 11 0 0 0 5.3 5.3L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
     "linkedin": '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-3.5a2.5 2.5 0 0 1 5 0V17M12 10.5V17"/>',
     "github": '<path d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 19 3.8 5.1 5.1 0 0 0 18.9 1S17.7.7 15 2.5a13.4 13.4 0 0 0-6 0C6.3.7 5.1 1 5.1 1A5.1 5.1 0 0 0 5 3.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/>',
-    "tiktok": '<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.4 4.6 5 5"/>',
     "pin": '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
     "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     "layers": '<path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/>',
@@ -470,7 +468,6 @@ C = {
             ("phone", "Telefonas", PHONE, PHONE_HREF),
             ("linkedin", "LinkedIn", "Gabrielė Tamaševičiūtė", LINKEDIN),
             ("github", "GitHub", "github.com/gabwowce", GITHUB),
-            ("tiktok", "TikTok", "@gabiebuilds", TIKTOK),
             ("pin", "Vieta", "Vilnius, Lietuva", None),
         ],
         "reply": "Paprastai atsakau per 24 val.",
@@ -566,7 +563,6 @@ C = {
             ("phone", "Phone", PHONE, PHONE_HREF),
             ("linkedin", "LinkedIn", "Gabrielė Tamaševičiūtė", LINKEDIN),
             ("github", "GitHub", "github.com/gabwowce", GITHUB),
-            ("tiktok", "TikTok", "@gabiebuilds", TIKTOK),
             ("pin", "Location", "Vilnius, Lithuania", None),
         ],
         "reply": "I usually reply within 24 hours.",
@@ -783,7 +779,7 @@ def contact_list(lang, keys=None, cls="contact-list"):
 def socials(lang):
     out = []
     for ico, label, value, href in C[lang]["contact_items"]:
-        if ico in ("github", "linkedin", "tiktok", "mail"):
+        if ico in ("github", "linkedin", "mail"):
             ext = ' target="_blank" rel="me noopener"' if href.startswith("http") else ""
             out.append(f'<a class="social" href="{href}"{ext} aria-label="{label}" title="{label}">{icon(ico)}</a>')
     return '<div class="socials">' + "".join(out) + "</div>"
@@ -1069,7 +1065,7 @@ def home(lang):
             "areaServed": [{"@type": "Country", "name": "Lietuva" if lang == "lt" else "Lithuania"}],
             "availableLanguage": ["lt", "en"],
             "founder": {"@id": SITE + "/#person"},
-            "sameAs": [GITHUB, TIKTOK, LINKEDIN],
+            "sameAs": [GITHUB, LINKEDIN],
         },
         person_ld(lang),
     ]
@@ -1241,7 +1237,7 @@ def person_ld(lang):
         "email": EMAIL,
         "knowsLanguage": ["lt", "en"],
         "address": {"@type": "PostalAddress", "addressLocality": "Vilnius", "addressCountry": "LT"},
-        "sameAs": [GITHUB, LINKEDIN, TIKTOK],
+        "sameAs": [GITHUB, LINKEDIN],
         "knowsAbout": ["React", "TypeScript", "Next.js", "Web application development",
                        "Internal business systems", "API integration", "Supabase", ".NET"],
     }
