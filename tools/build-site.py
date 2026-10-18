@@ -95,25 +95,25 @@ IMAGES = {
     "kalbos": ("kalbos-mokinys", 1663, 880, 840),
     "kalbos_admin": ("kalbos-admin", 1664, 878, 840),
     "kalbos_task": ("kalbos-uzduotis", 1662, 879, 840),
-    "tik": ("tikmaker-editor", 1400, 812, 760),
+    "tik": ("tikmaker-editor", 1703, 1010, 760),
     "loy_cards": ("loyalty-cards", 1400, 773, 760),
     "loy_promo": ("loyalty-promotions", 1400, 774, 760),
     "about": ("about-photo", 1122, 1402, 600),
     "kalbos_import": ("kalbos-import", 1100, 600, 760),
-    "tik_library": ("tikmaker-library", 1000, 525, 760),
-    "tik_voice": ("tikmaker-voice", 840, 530, 760),
-    "sol_systems": ("solution-systems", 1447, 1069, 560),
-    "sol_apps": ("solution-apps", 1447, 1055, 560),
-    "sol_integrations": ("solution-integrations", 1448, 1053, 560),
-    "sol_ai": ("solution-ai", 1448, 1003, 560),
+    "tik_library": ("tikmaker-library", 1623, 1014, 760),
+    "tik_voice": ("tikmaker-voice", 1602, 752, 760),
+    "sol_systems": ("solution-systems", 1550, 980, 560),
+    "sol_apps": ("solution-apps", 1535, 903, 560),
+    "sol_integrations": ("solution-integrations", 1585, 971, 560),
+    "sol_ai": ("solution-ai", 1585, 992, 560),
 }
 
 
 def img(key, alt, sizes, lazy=True, priority=False):
     name, w, h, small = IMAGES[key]
     attrs = [
-        f'src="/img/site/{name}.webp"',
-        f'srcset="/img/site/{name}-{small}.webp {small}w, /img/site/{name}.webp {w}w"',
+        f'src="{asset(f"/img/site/{name}.webp")}"',
+        f'srcset="{asset(f"/img/site/{name}-{small}.webp")} {small}w, {asset(f"/img/site/{name}.webp")} {w}w"',
         f'sizes="{sizes}"',
         f'width="{w}" height="{h}"',
         f'alt="{esc(alt)}"',
@@ -130,11 +130,11 @@ def frame_bar():
     return '<div class="frame__bar" aria-hidden="true"><span></span><span></span><span></span></div>'
 
 
-def framed(key, alt, sizes, dark=False, crop=True):
+def framed(key, alt, sizes, dark=False, crop=True, bar=True):
     cls = "frame frame--dark" if dark else "frame"
     image = img(key, alt, sizes)
     body = f'<div class="frame__screen">{image}</div>' if crop else image
-    return f'<div class="{cls}">{frame_bar()}{body}</div>'
+    return f'<div class="{cls}">{frame_bar() if bar else ""}{body}</div>'
 
 
 # --------------------------------------------------------------------------
@@ -170,7 +170,8 @@ def asset(path):
     return f"{path}?v={digest}"
 
 
-def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website", og_image="/img/og-cover.jpg"):
+def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website", og_image="/img/og-cover.jpg",
+         preload=""):
     canonical = SITE + url(key, lang)
     alts = ""
     if not noindex and all(ROUTES[key].get(l) for l in ("lt", "en")):
@@ -204,7 +205,7 @@ def head(lang, key, title, desc, *, noindex=False, jsonld=None, og_type="website
 <meta property="og:image" content="{SITE}{og_image}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/schibsted-grotesk/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{asset("/css/site.css")}">
+{preload}<link rel="stylesheet" href="{asset("/css/site.css")}">
 <script>
   /* Hide reveal-on-scroll content only once we know JS runs. If site.js
      never arrives, put everything back after a moment. */
@@ -238,8 +239,8 @@ T = {
         "read_more": "Skaityti plačiau",
         "ids": {"work": "darbai", "services": "paslaugos", "about": "apie", "faq": "duk", "contact": "kontaktai"},
         "nav": {"work": "Darbai", "services": "Paslaugos", "about": "Apie", "faq": "DUK"},
-        "home_title": "Verslo sistemų ir web aplikacijų kūrimas | Programuotoja Vilniuje",
-        "home_desc": "Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant. Programuotoja Vilniuje.",
+        "home_title": "Verslo sistemų ir web aplikacijų kūrimas | Codeart, Vilnius",
+        "home_desc": "Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant. Codeart, Vilnius.",
         "h1": "Verslo sistemų ir web aplikacijų kūrimas",
         "lead": "Vidiniai įrankiai, valdymo skydeliai ir web aplikacijos nuo idėjos iki paleidimo. Fiksuota kaina, sutarta prieš pradedant.",
         "see_work": "Peržiūrėti paslaugas",
@@ -261,38 +262,38 @@ T = {
              "React · Remotion · ElevenLabs",
              "TikMaker redaktorius: scenos, peržiūra ir laiko juosta su keliomis eilėmis"),
         ],
-        "services_h": "Su kuo galiu padėti",
+        "services_h": "Su kuo galime padėti",
         "services": [
             ("Nauja sistema nuo nulio", "Tinka, kai reikia ne puslapio, o veikiančio produkto.",
-             "Padedu išgryninti sprendimą, suprojektuoju sąsają ir sukuriu sistemą nuo frontendo iki API ir duomenų bazės."),
+             "Padedame išgryninti sprendimą, suprojektuojame sąsają ir sukuriame sistemą nuo frontendo iki API ir duomenų bazės."),
             ("Esamos sistemos gerinimas", "Tinka, kai sistema veikia, bet lėta ar sunkiai vystoma.",
-             "Pirmiausia randu, kur problema, tada tvarkau tai, kas iš tikrųjų trukdo."),
+             "Pirmiausia randame, kur problema, tada tvarkome tai, kas iš tikrųjų trukdo."),
             ("Naujos funkcijos esamai sistemai", "Tinka, kai produkto nereikia perrašyti.",
-             "Perprantu esamą kodą ir kuriu naujas funkcijas, negriaudama to, kas jau veikia."),
+             "Perprantame esamą kodą ir kuriame naujas funkcijas, negriaudami to, kas jau veikia."),
         ],
         "steps_h": "Kaip vyksta darbas",
         "steps": [
             ("Parašote", "Aprašote idėją ar problemą."),
             ("Planas ir kaina", "Kai išsiaiškiname poreikį, per 24 val. gaunate planą ir fiksuotą kainą raštu."),
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
-            ("Paleidimas", "Įdiegiu sistemą ir paruošiu instrukcijas, kaip ja naudotis. Mano darbui taikoma 3 mėn. garantija."),
+            ("Paleidimas", "Įdiegiame sistemą ir paruošiame instrukcijas, kaip ja naudotis. Darbams taikoma 3 mėn. garantija."),
         ],
-        "about_h": "Apie mane",
+        "about_h": "Kas veda projektus",
         "about_alt": "Gabrielė Tamaševičiūtė",
-        "about_text": "Esu Gabrielė. Man patinka kurti sistemas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano darbu žmonės naudojasi kasdien ir yra juo patenkinti.",
+        "about_text": "Codeart kuria verslo sistemas ir web aplikacijas, kurios iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Projektus veda įkūrėja Gabrielė Tamaševičiūtė, o pagal poreikį prisijungia patikrinti dizaino, backend ar mobiliųjų programėlių specialistai.",
         "facts": ["3+ metai kuriant sistemas", "Frontend, backend, API ir AI", "Nuo idėjos iki paleidimo"],
-        "about_more": "Daugiau apie mane →",
+        "about_more": "Daugiau apie mus →",
         "faq_h": "Dažni klausimai",
         "faq": [
-            ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Kai išsiaiškiname poreikį (dažniausiai užtenka kelių laiškų), per 24 val. atsiunčiu darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
-            ("Kiek laiko trunka?", "Priklauso nuo apimties: nedidelis patobulinimas gali užtrukti kelias dienas, nauja sistema – nuo kelių savaičių. Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus."),
-            ("Ar galite perimti jau veikiančią sistemą?", "Taip. Nebūtina visko kurti iš naujo: galiu tęsti darbą su jūsų esama sistema, sutvarkyti tai, kas neveikia ar trukdo, ir pridėti naujų funkcijų."),
-            ("Ar kaina gali pasikeisti eigoje?", "Ne, sutarta kaina nesikeičia. Jei darbo eigoje sugalvojate ką nors naujo ir didesnio, tai aptariame atskirai. Smulkius pageidavimus dažniausiai tiesiog įtraukiu: man svarbu, kad sistema jums tiktų."),
-            ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip. Pavyzdžiui, galiu sukurti pokalbių asistentą, kuris atsako klientams į klausimus pagal jūsų informaciją, automatiškai rašyti tekstus ar produktų aprašymus, apibendrinti dokumentus ir laiškus, išversti turinį į kitas kalbas ar padėti greičiau rasti reikiamą informaciją. Jei turite savo idėją, kaip AI galėtų palengvinti jūsų darbą, parašykite: kartu įvertinsime, kaip ją įgyvendinti."),
-            ("Ar paruošiate instrukcijas, kaip naudotis sistema?", "Taip. Kartu su sistema paruošiu naudojimo instrukcijas, o jei reikia, ir trumpas vaizdo instrukcijas, kad visi greitai perprastų naują sistemą."),
+            ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Kai išsiaiškiname poreikį (dažniausiai užtenka kelių laiškų), per 24 val. atsiunčiame darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
+            ("Kiek laiko trunka?", "Priklauso nuo apimties: nedidelis patobulinimas gali užtrukti kelias dienas, nauja sistema – nuo kelių savaičių. Tikslų terminą nurodome plane kartu su kaina, dar prieš pradedant darbus."),
+            ("Ar galite perimti jau veikiančią sistemą?", "Taip. Nebūtina visko kurti iš naujo: galime tęsti darbą su jūsų esama sistema, sutvarkyti tai, kas neveikia ar trukdo, ir pridėti naujų funkcijų."),
+            ("Ar kaina gali pasikeisti eigoje?", "Ne, sutarta kaina nesikeičia. Jei darbo eigoje sugalvojate ką nors naujo ir didesnio, tai aptariame atskirai. Smulkius pageidavimus dažniausiai tiesiog įtraukiame: mums svarbu, kad sistema jums tiktų."),
+            ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip. Pavyzdžiui, galime sukurti pokalbių asistentą, kuris atsako klientams į klausimus pagal jūsų informaciją, automatiškai rašyti tekstus ar produktų aprašymus, apibendrinti dokumentus ir laiškus, išversti turinį į kitas kalbas ar padėti greičiau rasti reikiamą informaciją. Jei turite savo idėją, kaip AI galėtų palengvinti jūsų darbą, parašykite: kartu įvertinsime, kaip ją įgyvendinti."),
+            ("Ar paruošiate instrukcijas, kaip naudotis sistema?", "Taip. Kartu su sistema paruošiame naudojimo instrukcijas, o jei reikia, ir trumpas vaizdo instrukcijas, kad visi greitai perprastų naują sistemą."),
         ],
         "contact_h": "Turite projekto idėją?",
-        "contact_lead": "Parašykite kelis sakinius apie savo projektą. Paprastai atsakau per 24 val.",
+        "contact_lead": "Parašykite kelis sakinius apie savo projektą. Paprastai atsakome per 24 val.",
         "f_name": "Vardas",
         "f_email": "El. paštas",
         "f_msg": "Žinutė",
@@ -300,7 +301,7 @@ T = {
         "f_hp": "Šio lauko nepildykite",
         "f_subject": "Nauja žinutė iš codeart.lt",
         "f_sending": "Siunčiama…",
-        "f_ok": "Ačiū! Žinutė išsiųsta, atsakysiu el. paštu.",
+        "f_ok": "Ačiū! Žinutė išsiųsta, atsakysime el. paštu.",
         "f_fail": "Nepavyko išsiųsti. Parašykite tiesiai el. paštu: " + EMAIL,
         "f_invalid": "Užpildykite visus laukus ir patikrinkite el. pašto adresą.",
         "footer_cv": "CV ir portfolio",
@@ -316,8 +317,8 @@ T = {
         "read_more": "Read more",
         "ids": {"work": "work", "services": "services", "about": "about", "faq": "faq", "contact": "contact"},
         "nav": {"work": "Work", "services": "Services", "about": "About", "faq": "FAQ"},
-        "home_title": "Business systems and web app development | Developer in Vilnius",
-        "home_desc": "Internal tools, admin dashboards and web applications from idea to launch. Fixed price, agreed before we start. Developer based in Vilnius.",
+        "home_title": "Business systems and web app development | Codeart, Vilnius",
+        "home_desc": "Internal tools, admin dashboards and web applications from idea to launch. Fixed price, agreed before we start. Codeart, Vilnius.",
         "h1": "Business systems and web application development",
         "lead": "Internal tools, admin dashboards and web applications from idea to launch. Fixed price, agreed before we start.",
         "see_work": "See services",
@@ -339,38 +340,38 @@ T = {
              "React · Remotion · ElevenLabs",
              "The TikMaker editor: scenes, preview and a multi-row timeline"),
         ],
-        "services_h": "How I can help",
+        "services_h": "How we can help",
         "services": [
             ("A new system from scratch", "When you need a working product, not a web page.",
-             "I help pin down the solution, design the interface and build the system from frontend to API and database."),
+             "We help pin down the solution, design the interface and build the system from frontend to API and database."),
             ("Improving an existing system", "When the system works but is slow or hard to develop further.",
-             "First I find where the problem is, then I fix what actually gets in the way."),
+             "First we find where the problem is, then we fix what actually gets in the way."),
             ("New features for an existing system", "When the product doesn't need a rewrite.",
-             "I get to know the existing code and build new features without breaking what already works."),
+             "We get to know the existing code and build new features without breaking what already works."),
         ],
         "steps_h": "How the work goes",
         "steps": [
             ("You write", "You describe the idea or problem."),
             ("Plan and price", "Once we've pinned down the need, you get a plan and a fixed price in writing within 24 hours."),
             ("Building", "You see progress all along, not only at the end."),
-            ("Launch", "I deploy the system and prepare guides on how to use it. My work comes with a 3-month warranty."),
+            ("Launch", "We deploy the system and prepare guides on how to use it. The work comes with a 3-month warranty."),
         ],
-        "about_h": "About me",
+        "about_h": "Who runs your project",
         "about_alt": "Gabrielė Tamaševičiūtė",
-        "about_text": "I'm Gabrielė. I love building systems that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing people use my work every day and be glad they have it.",
+        "about_text": "Codeart builds business systems and web applications that genuinely help: they save time, cut down the chaos and let people focus on what matters. Projects are run by founder Gabrielė Tamaševičiūtė, and vetted design, backend or mobile specialists join as the project needs.",
         "facts": ["3+ years building systems", "Frontend, backend, APIs and AI", "From idea to launch"],
-        "about_more": "More about me →",
+        "about_more": "More about us →",
         "faq_h": "Frequently asked questions",
         "faq": [
-            ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. Once we've pinned down the need (a few emails are usually enough), I send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
-            ("How long does it take?", "It depends on the scope: a small improvement can take a few days, a new system from a few weeks. I give the exact timeline in the plan, together with the price, before any work starts."),
-            ("Can you take over a system that's already running?", "Yes. There's no need to start from scratch: I can keep working on your existing system, fix what doesn't work or gets in the way, and add new features."),
-            ("Can the price change along the way?", "No, the agreed price doesn't change. If you come up with something new and bigger along the way, we discuss it separately. Small requests I usually just include: what matters to me is that the system suits you."),
-            ("Can you add AI features to the system?", "Yes. For example, I can build a chat assistant that answers your customers' questions from your own information, write texts or product descriptions automatically, summarise documents and emails, translate content into other languages, or help people find what they need faster. If you have your own idea of how AI could make your work easier, get in touch and we'll work out how to make it happen."),
-            ("Do you prepare guides on how to use the system?", "Yes. Along with the system I prepare user guides and, if needed, short video guides, so everyone gets comfortable with the new system quickly."),
+            ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. Once we've pinned down the need (a few emails are usually enough), we send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
+            ("How long does it take?", "It depends on the scope: a small improvement can take a few days, a new system from a few weeks. We give the exact timeline in the plan, together with the price, before any work starts."),
+            ("Can you take over a system that's already running?", "Yes. There's no need to start from scratch: we can keep working on your existing system, fix what doesn't work or gets in the way, and add new features."),
+            ("Can the price change along the way?", "No, the agreed price doesn't change. If you come up with something new and bigger along the way, we discuss it separately. Small requests we usually just include: what matters to us is that the system suits you."),
+            ("Can you add AI features to the system?", "Yes. For example, we can build a chat assistant that answers your customers' questions from your own information, write texts or product descriptions automatically, summarise documents and emails, translate content into other languages, or help people find what they need faster. If you have your own idea of how AI could make your work easier, get in touch and we'll work out how to make it happen."),
+            ("Do you prepare guides on how to use the system?", "Yes. Along with the system we prepare user guides and, if needed, short video guides, so everyone gets comfortable with the new system quickly."),
         ],
         "contact_h": "Have a project idea?",
-        "contact_lead": "Write a few sentences about your project. I usually reply within 24 hours.",
+        "contact_lead": "Write a few sentences about your project. We usually reply within 24 hours.",
         "f_name": "Name",
         "f_email": "Email",
         "f_msg": "Message",
@@ -378,8 +379,8 @@ T = {
         "f_hp": "Leave this field empty",
         "f_subject": "New message from codeart.lt (EN)",
         "f_sending": "Sending…",
-        "f_ok": "Thank you! Your message has been sent, I'll reply by email.",
-        "f_fail": "Sending failed. Please email me directly: " + EMAIL,
+        "f_ok": "Thank you! Your message has been sent, we'll reply by email.",
+        "f_fail": "Sending failed. Please email us directly: " + EMAIL,
         "f_invalid": "Please fill in all fields and check the email address.",
         "footer_cv": "CV and portfolio",
         "menu_nums": {"work": "01", "services": "02", "about": "04", "faq": "05"},
@@ -461,7 +462,7 @@ C = {
         "links_h": "Nuorodos",
         "rights": "Visos teisės saugomos",
         "cta_h": "Turite projekto idėją?",
-        "cta_p": "Trumpai papasakokite apie projektą. Atsakau per 24 val. su darbų planu ir kaina.",
+        "cta_p": "Trumpai papasakokite apie projektą. Atsakome per 24 val. su darbų planu ir kaina.",
         "cta_btn": "Susisiekti",
         "contact_items": [
             ("mail", "El. paštas", EMAIL, "mailto:" + EMAIL),
@@ -470,54 +471,54 @@ C = {
             ("github", "GitHub", "github.com/gabwowce", GITHUB),
             ("pin", "Vieta", "Vilnius, Lietuva", None),
         ],
-        "reply": "Paprastai atsakau per 24 val.",
+        "reply": "Paprastai atsakome per 24 val.",
         "services_more": "Visos paslaugos →",
-        "services_intro": "Kuriu nuo nulio, tobulinu esamas sistemas ir pridedu naujų funkcijų.",
+        "services_intro": "Kuriame sistemas nuo nulio, tobuliname esamas ir pridedame naujų funkcijų.",
         "svc_cta": "Aptarti projektą →",
         "includes": "Apima",
         "steps_cta_note": "Kai išsiaiškiname poreikį, planą ir fiksuotą kainą raštu gaunate per 24 val.",
         # services page
-        "svc_title": "Paslaugos | Gabrielė Tamaševičiūtė · Codeart",
+        "svc_title": "Paslaugos | Codeart",
         "svc_desc": "Naujos sistemos nuo nulio, esamų sistemų gerinimas ir naujos funkcijos. Fiksuota kaina, sutarta prieš pradedant, ir 3 mėn. garantija.",
         "svc_eyebrow": "Paslaugos",
-        "svc_h1": "Su kuo galiu padėti",
-        "svc_lead": "Pradedate nuo nulio ar jau turite sistemą? Padedu ją sukurti, sutvarkyti arba išplėsti.",
-        "svc_list_h": "Ką darau",
+        "svc_h1": "Su kuo galime padėti",
+        "svc_lead": "Pradedate nuo nulio ar jau turite sistemą? Padedame ją sukurti, sutvarkyti arba išplėsti.",
+        "svc_list_h": "Ką darome",
         "price_h": "Kaina ir garantija",
         "price": [
-            ("tag", "Fiksuota kaina", "Kiekvienam projektui pateikiu fiksuotą kainos pasiūlymą, sutartą prieš pradedant: perkate rezultatą, ne valandas, ir sąskaitoje nebūna netikėtumų. Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti."),
-            ("shield", "3 mėn. garantija", "Jei per 3 mėnesius po paleidimo paaiškėja klaida, atsiradusi dėl mano įgyvendinto sprendimo, ją ištaisau be papildomo mokesčio."),
+            ("tag", "Fiksuota kaina", "Kiekvienam projektui pateikiame fiksuotą kainos pasiūlymą, sutartą prieš pradedant: perkate rezultatą, ne valandas, ir sąskaitoje nebūna netikėtumų. Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti."),
+            ("shield", "3 mėn. garantija", "Jei per 3 mėnesius po paleidimo paaiškėja klaida, atsiradusi dėl mūsų įgyvendinto sprendimo, ją ištaisome be papildomo mokesčio."),
         ],
         "expect_h": "Ko galite tikėtis",
         "expect": ["Fiksuota sutarta kaina", "Jokių netikėtų papildomų darbų", "Nuolat matomas progresas",
-                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "Instrukcijos, o jei reikia, ir vaizdo įrašai", "3 mėn. garantija mano darbui"],
+                   "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "Instrukcijos, o jei reikia, ir vaizdo įrašai", "3 mėn. garantija atliktiems darbams"],
         # about page
-        "about_title": "Apie mane | Gabrielė Tamaševičiūtė · Codeart",
-        "about_desc": "Gabrielė Tamaševičiūtė, programuotoja iš Vilniaus: kaip dirbu, vertybės, patirtis ir išsilavinimas.",
-        "about_eyebrow": "Apie mane",
-        "about_h1": "Esu Gabrielė",
+        "about_title": "Apie mus | Codeart",
+        "about_desc": "Codeart – verslo sistemų ir web aplikacijų kūrimas Vilniuje: kaip dirbame, vertybės ir kas veda projektus.",
+        "about_eyebrow": "Apie mus",
+        "about_h1": "Kuriame sistemas, kuriomis naudojamasi kasdien",
         "about_paras": [
-            "Man patinka kurti sistemas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano darbu žmonės naudojasi kasdien ir yra juo patenkinti.",
-            "Kuriu web ir mobilias sistemas nuo idėjos iki veikiančio produkto ir dirbu per visą jų grandinę: projektuoju vartotojo sąsajas, sistemos architektūrą, API sąveikas ir duomenų struktūras.",
-            "Šiuo metu nuo nulio vystau vidinę verslo sistemą kaip vienintelė frontend programuotoja. Pati išsigryninau poreikius, suprojektavau architektūrą ir vartotojo patirtį, aprašau backend funkcionalumą bei derinu techninius sprendimus su backend programuotoju.",
+            "Codeart kuria verslo sistemas ir web aplikacijas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Geriausias įvertinimas mums – kai sistema naudojamasi kasdien.",
+            "Dirbame per visą grandinę: nuo poreikio išgryninimo ir sąsajos projektavimo iki architektūros, API, duomenų bazės ir paleidimo.",
+            "Studiją įkūrė programuotoja Gabrielė Tamaševičiūtė. Ji veda kiekvieną projektą ir yra jūsų pagrindinis kontaktas, o pagal projekto apimtį komandą papildo patikrinti dizaino, backend ar mobiliųjų programėlių specialistai.",
         ],
-        "about_cv": "CV ir portfolio",
-        "about_pdf": "Atsisiųsti CV (PDF)",
-        "how_h": "Kaip dirbu",
+        "about_cv": "Peržiūrėti darbus",
+        "about_pdf": "Įkūrėjos CV (PDF)",
+        "how_h": "Kaip dirbame",
         "how": [
-            ("system", "Galvoju apie visą sistemą", "Žiūriu ne tik į ekraną, kurį tuo metu kuriu. Vertinu duomenų srautą, API, būsenas, naudotojų teises ir tai, kaip sprendimas paveiks kitas sistemos dalis."),
-            ("search", "Pirma suprantu problemą", "Kai kažkas neveikia ar veikia blogai, pirmiausia ieškau priežasties. Tik tada keičiu kodą. Tai ypač svarbu dirbant su jau veikiančiomis ir didesnėmis sistemomis."),
-            ("code", "Galiu dirbti su esamu kodu", "Nebūtina visko pradėti iš naujo. Galiu perprasti svetimą kodą, esamą architektūrą ir palaipsniui sistemą gerinti ar papildyti."),
-            ("spark", "Seku šiuolaikines technologijas", "Naudoju AI įrankius kūrimo procese ir integruoju AI funkcijas į pačius produktus: nuo paprastų LLM funkcijų iki agentų, galinčių naudotis sistemos API."),
+            ("system", "Galvojame apie visą sistemą", "Žiūrime ne tik į ekraną, kurį tuo metu kuriame. Vertiname duomenų srautą, API, būsenas, naudotojų teises ir tai, kaip sprendimas paveiks kitas sistemos dalis."),
+            ("search", "Pirma suprantame problemą", "Kai kažkas neveikia ar veikia blogai, pirmiausia ieškome priežasties. Tik tada keičiame kodą. Tai ypač svarbu dirbant su jau veikiančiomis ir didesnėmis sistemomis."),
+            ("code", "Dirbame ir su esamu kodu", "Nebūtina visko pradėti iš naujo. Galime perprasti svetimą kodą, esamą architektūrą ir palaipsniui sistemą gerinti ar papildyti."),
+            ("spark", "Sekame šiuolaikines technologijas", "Naudojame AI įrankius kūrimo procese ir integruojame AI funkcijas į pačius produktus: nuo paprastų LLM funkcijų iki agentų, galinčių naudotis sistemos API."),
         ],
         "values_h": "Vertybės",
         "values": [
             ("eye", "Aiškumas", "Jokių dviprasmybių, iš karto aišku, ko reikia."),
             ("list", "Struktūra", "Darbas žingsniais, ne chaosu."),
-            ("shield", "Patikimumas", "Ką pažadu, tą ir padarau."),
+            ("shield", "Patikimumas", "Ką pažadame, tą ir padarome."),
             ("chat", "Komunikacija", "Greiti atsakymai, visada aiškus statusas."),
             ("code", "Kodo kokybė", "Švarus, testuotas, pernaudojamas kodas."),
-            ("target", "Atsakomybė", "Man rūpi rezultatas, ne tik užduotis."),
+            ("target", "Atsakomybė", "Mums rūpi rezultatas, ne tik užduotis."),
         ],
         "exp_h": "Patirtis",
         "exp": [
@@ -535,8 +536,8 @@ C = {
         "lang_h": "Kalbos",
         "langs": [("Lietuvių", "gimtoji"), ("Anglų", "B2"), ("Rusų", "B2")],
         # contact page
-        "contact_title": "Kontaktai | Gabrielė Tamaševičiūtė · Codeart",
-        "contact_desc": "Parašykite apie savo projektą: el. paštas, telefonas ir kontaktų forma. Paprastai atsakau per 24 val.",
+        "contact_title": "Kontaktai | Codeart",
+        "contact_desc": "Parašykite apie savo projektą: el. paštas, telefonas ir kontaktų forma. Paprastai atsakome per 24 val.",
         "contact_eyebrow": "Kontaktai",
         "contact_h1": "Turite projekto idėją?",
         "contact_lead": "Papasakokite apie savo projektą: ką norite sukurti ar kokią problemą išspręsti.",
@@ -545,8 +546,8 @@ C = {
         "next_h": "Kas bus toliau",
         "next": [
             ("Parašote", "Trumpai papasakojate apie savo projektą ar idėją."),
-            ("Keli klausimai", "Jei ko nors trūksta, paklausiu el. paštu. Taip išsigryniname poreikį, apimtį ir ar galiu būti tinkamas žmogus jūsų projektui."),
-            ("Aiškus planas ir kaina", "Per 24 val. po to atsiunčiu darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
+            ("Keli klausimai", "Jei ko nors trūksta, paklausime el. paštu. Taip išsigryniname poreikį, apimtį ir ar esame tinkama komanda jūsų projektui."),
+            ("Aiškus planas ir kaina", "Per 24 val. po to atsiunčiame darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
         ],
     },
     "en": {
@@ -556,7 +557,7 @@ C = {
         "links_h": "Links",
         "rights": "All rights reserved",
         "cta_h": "Have a project idea?",
-        "cta_p": "Tell me briefly about your project. I reply within 24 hours with a work plan and a price.",
+        "cta_p": "Tell us briefly about your project. We reply within 24 hours with a work plan and a price.",
         "cta_btn": "Get in touch",
         "contact_items": [
             ("mail", "Email", EMAIL, "mailto:" + EMAIL),
@@ -565,52 +566,52 @@ C = {
             ("github", "GitHub", "github.com/gabwowce", GITHUB),
             ("pin", "Location", "Vilnius, Lithuania", None),
         ],
-        "reply": "I usually reply within 24 hours.",
+        "reply": "We usually reply within 24 hours.",
         "services_more": "All services →",
-        "services_intro": "I build from scratch, improve existing systems and add new features.",
+        "services_intro": "We build from scratch, improve existing systems and add new features.",
         "svc_cta": "Discuss a project →",
         "includes": "Includes",
         "steps_cta_note": "Once we've pinned down the need, you get a plan and a fixed price in writing within 24 hours.",
-        "svc_title": "Services | Gabrielė Tamaševičiūtė · Codeart",
+        "svc_title": "Services | Codeart",
         "svc_desc": "New systems from scratch, improving existing systems and new features. A fixed price agreed before we start, and a 3-month warranty.",
         "svc_eyebrow": "Services",
-        "svc_h1": "How I can help",
-        "svc_lead": "I work on systems, not one-off pages. I can start from scratch or take over what's already running.",
-        "svc_list_h": "What I do",
+        "svc_h1": "How we can help",
+        "svc_lead": "We work on systems, not one-off pages. We can start from scratch or take over what's already running.",
+        "svc_list_h": "What we do",
         "price_h": "Price and warranty",
         "price": [
-            ("tag", "Fixed price", "For every project I give a fixed price, agreed before we start: you pay for the result, not for hours, and there are no surprises on the invoice. The price depends on the scope, the integrations and what the system needs to do."),
-            ("shield", "3-month warranty", "If within 3 months of launch a bug turns up that comes from my implementation, I fix it at no extra cost."),
+            ("tag", "Fixed price", "For every project we give a fixed price, agreed before we start: you pay for the result, not for hours, and there are no surprises on the invoice. The price depends on the scope, the integrations and what the system needs to do."),
+            ("shield", "3-month warranty", "If within 3 months of launch a bug turns up that comes from our implementation, we fix it at no extra cost."),
         ],
         "expect_h": "What you can expect",
         "expect": ["A fixed, agreed price", "No unexpected extra work", "Progress you can always see",
-                   "Decisions with a purpose", "UX that's comfortable to use", "User guides, plus video guides if needed", "A 3-month warranty on my work"],
-        "about_title": "About me | Gabrielė Tamaševičiūtė · Codeart",
-        "about_desc": "Gabrielė Tamaševičiūtė, a developer in Vilnius: how I work, values, experience and education.",
-        "about_eyebrow": "About me",
-        "about_h1": "I'm Gabrielė",
+                   "Decisions with a purpose", "UX that's comfortable to use", "User guides, plus video guides if needed", "A 3-month warranty on the work"],
+        "about_title": "About us | Codeart",
+        "about_desc": "Codeart builds business systems and web applications in Vilnius: how we work, our values and who runs your project.",
+        "about_eyebrow": "About us",
+        "about_h1": "We build systems people use every day",
         "about_paras": [
-            "I love building systems that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing people use my work every day and be glad they have it.",
-            "I build web and mobile systems from idea to a working product and work across the whole chain: user interfaces, system architecture, API interactions and data structures.",
-            "I'm currently building an internal business system from scratch as the sole frontend developer. I worked out the requirements myself, designed the architecture and user experience, spec out backend functionality, and align technical decisions with the backend developer.",
+            "Codeart builds business systems and web applications that genuinely help people: they save time, cut down the chaos and let people focus on what matters. The best measure of our work is a system people use every day.",
+            "We work across the whole chain: from pinning down the need and designing the interface to architecture, APIs, the database and launch.",
+            "The studio was founded by developer Gabrielė Tamaševičiūtė. She runs every project and is your main contact, and vetted design, backend or mobile specialists join the team as the project's scope requires.",
         ],
-        "about_cv": "CV and portfolio",
-        "about_pdf": "Download CV (PDF)",
-        "how_h": "How I work",
+        "about_cv": "See our work",
+        "about_pdf": "Founder's CV (PDF)",
+        "how_h": "How we work",
         "how": [
-            ("system", "I think about the whole system", "I look beyond the screen I'm building. I consider the data flow, the API, states, user permissions and how a decision will affect other parts of the system."),
-            ("search", "I understand the problem first", "When something doesn't work or works badly, I look for the cause first. Only then do I change the code. This matters most with existing and larger systems."),
-            ("code", "I can work with existing code", "Not everything has to start from scratch. I can get to grips with someone else's code and existing architecture, and improve or extend the system step by step."),
-            ("spark", "I keep up with modern technology", "I use AI tools in development and build AI features into products themselves, from simple LLM features to agents that can use the system's API."),
+            ("system", "We think about the whole system", "We look beyond the screen we're building. We consider the data flow, the API, states, user permissions and how a decision will affect other parts of the system."),
+            ("search", "We understand the problem first", "When something doesn't work or works badly, we look for the cause first. Only then do we change the code. This matters most with existing and larger systems."),
+            ("code", "We work with existing code too", "Not everything has to start from scratch. We can get to grips with someone else's code and existing architecture, and improve or extend the system step by step."),
+            ("spark", "We keep up with modern technology", "We use AI tools in development and build AI features into products themselves, from simple LLM features to agents that can use the system's API."),
         ],
         "values_h": "Values",
         "values": [
             ("eye", "Clarity", "No ambiguity, clear on what's needed from the start."),
             ("list", "Structure", "Work broken into steps, not chaos."),
-            ("shield", "Reliability", "I do what I say I will."),
+            ("shield", "Reliability", "We do what we say we will."),
             ("chat", "Communication", "Quick replies, status always clear."),
             ("code", "Code quality", "Clean, tested, reusable code."),
-            ("target", "Ownership", "I care about the outcome, not just the task."),
+            ("target", "Ownership", "We care about the outcome, not just the task."),
         ],
         "exp_h": "Experience",
         "exp": [
@@ -627,18 +628,18 @@ C = {
         "edu": ("Vilnius University of Applied Sciences", "Software Systems", "2023–2027 · in progress"),
         "lang_h": "Languages",
         "langs": [("Lithuanian", "native"), ("English", "B2"), ("Russian", "B2")],
-        "contact_title": "Contact | Gabrielė Tamaševičiūtė · Codeart",
-        "contact_desc": "Tell me about your project: email, phone and a contact form. I usually reply within 24 hours.",
+        "contact_title": "Contact | Codeart",
+        "contact_desc": "Tell us about your project: email, phone and a contact form. We usually reply within 24 hours.",
         "contact_eyebrow": "Contact",
         "contact_h1": "Have a project idea?",
-        "contact_lead": "Tell me about your project: what you'd like to build or which problem you want to solve.",
+        "contact_lead": "Tell us about your project: what you'd like to build or which problem you want to solve.",
         "direct_h": "Directly",
         "f_phone": "Phone (optional)",
         "next_h": "What happens next",
         "next": [
-            ("You write", "You tell me briefly about your project or idea."),
-            ("A few questions", "If anything is missing, I ask by email. That way we pin down the need, the scope and whether I'm the right person for your project."),
-            ("A clear plan and price", "Within 24 hours after that I send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
+            ("You write", "You tell us briefly about your project or idea."),
+            ("A few questions", "If anything is missing, we ask by email. That way we pin down the need, the scope and whether we're the right team for your project."),
+            ("A clear plan and price", "Within 24 hours after that we send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
         ],
     },
 }
@@ -646,42 +647,42 @@ C = {
 SERVICES = {
     "lt": [
         ("layers", "sand", "Sistemos kūrimas nuo nulio", "Kai reikia ne puslapio, o veikiančio produkto.",
-         "Išgryninu sprendimą, suprojektuoju visą sistemą ir sukuriu ją nuo frontendo iki API ir duomenų bazės.",
-         ["Išgryninu, ką sistema turi daryti",
-          "Suprojektuoju visą sprendimą: architektūrą, duomenis ir sąsają",
-          "Sukuriu ją nuo frontendo iki API ir duomenų bazės"],
+         "Išgryniname sprendimą, suprojektuojame visą sistemą ir sukuriame ją nuo frontendo iki API ir duomenų bazės.",
+         ["Išgryniname, ką sistema turi daryti",
+          "Suprojektuojame visą sprendimą: architektūrą, duomenis ir sąsają",
+          "Sukuriame ją nuo frontendo iki API ir duomenų bazės"],
          ["React / TypeScript", "API ir backend", "Autentifikacija ir teisės", "Duomenų modelis", "Integracijos", "AI funkcijos"]),
         ("wrench", "rose", "Esamos sistemos tobulinimas", "Kai sistema veikia, bet lėta ar sunkiai vystoma.",
-         "Pirmiausia randu, kur problema, tada tvarkau tai, kas iš tikrųjų trukdo.",
-         ["Randu, kas iš tikrųjų stabdo",
-          "Sutvarkau painų, pasikartojantį kodą ir pagerinu našumą",
-          "Neliečiu to, kas veikia gerai"],
+         "Pirmiausia randame, kur problema, tada tvarkome tai, kas iš tikrųjų trukdo.",
+         ["Randame, kas iš tikrųjų stabdo",
+          "Sutvarkome painų, pasikartojantį kodą ir pageriname našumą",
+          "Neliečiame to, kas veikia gerai"],
          ["Našumo gerinimas", "Kodo refaktoringas", "Bug'ų paieška ir taisymas", "UX problemos", "API optimizavimas", "AI integracijos"]),
         ("plus", "lavender", "Naujų funkcijų kūrimas", "Kai produkto perrašyti nereikia, tik jį išplėsti.",
-         "Perprantu esamą kodą ir kuriu naujas funkcijas, negriaudama to, kas jau veikia.",
-         ["Perprantu esamą architektūrą",
-          "Kuriu pagal projekto struktūrą",
-          "Negriaunu to, kas jau veikia"],
+         "Perprantame esamą kodą ir kuriame naujas funkcijas, negriaudami to, kas jau veikia.",
+         ["Perprantame esamą architektūrą",
+          "Kuriame pagal projekto struktūrą",
+          "Negriauname to, kas jau veikia"],
          ["Nauji moduliai", "Frontend funkcijos", "Backend funkcijos", "Nauji API endpointai", "Integracijos", "AI agentai ir LLM"]),
     ],
     "en": [
         ("layers", "sand", "A new system from scratch", "When you need a working product, not a web page.",
-         "I pin down the solution, design the whole system and build it from frontend to API and database.",
-         ["I pin down what the system needs to do",
-          "I design the whole solution: architecture, data and interface",
-          "I build it from frontend to API and database"],
+         "We pin down the solution, design the whole system and build it from frontend to API and database.",
+         ["We pin down what the system needs to do",
+          "We design the whole solution: architecture, data and interface",
+          "We build it from frontend to API and database"],
          ["React / TypeScript", "API and backend", "Authentication and permissions", "Data model", "Integrations", "AI features"]),
         ("wrench", "rose", "Improving an existing system", "When the system works but is slow or hard to develop further.",
-         "First I find where the problem is, then I fix what actually gets in the way.",
-         ["I find what actually slows it down",
-          "I clean up tangled, repeated code and improve performance",
-          "I leave what works well alone"],
+         "First we find where the problem is, then we fix what actually gets in the way.",
+         ["We find what actually slows it down",
+          "We clean up tangled, repeated code and improve performance",
+          "We leave what works well alone"],
          ["Performance", "Refactoring", "Finding and fixing bugs", "UX problems", "API optimisation", "AI integrations"]),
         ("plus", "lavender", "New features for an existing system", "When the product needs extending, not rewriting.",
-         "I get to know the existing code and build new features without breaking what already works.",
-         ["I learn the existing architecture",
-          "I build to the project's structure",
-          "I don't break what already works"],
+         "We get to know the existing code and build new features without breaking what already works.",
+         ["We learn the existing architecture",
+          "We build to the project's structure",
+          "We don't break what already works"],
          ["New modules", "Frontend features", "Backend features", "New API endpoints", "Integrations", "AI agents and LLMs"]),
     ],
 }
@@ -820,7 +821,7 @@ def site_footer(lang, key):
 </div>
 <div class="container">
 <div class="footer__bottom">
-<span>© {YEAR} Gabrielė Tamaševičiūtė · Codeart. {c["rights"]}.</span>
+<span>© {YEAR} Codeart. {c["rights"]}.</span>
 <span class="footer__bottom-links"><a href="mailto:{EMAIL}">{EMAIL}</a>{lang_link(lang, key)}</span>
 </div>
 </div>
@@ -864,7 +865,7 @@ def project_card(key, lang, text):
     laid out wide for a single example."""
     _, _, _, image, dark, title, _, tags, alt = next(w for w in T[lang]["works"] if w[0] == key)
     return f"""<article class="work-card work-card--wide" data-reveal>
-{framed(image, alt, "(max-width: 759px) 92vw, 520px", dark=dark)}
+{framed(image, alt, "(max-width: 759px) 92vw, 520px", dark=dark, bar=False)}
 <div class="work-card__body">
 <h3 class="work-card__title"><a href="{url(key, lang)}">{title}</a></h3>
 <p class="work-card__desc">{text}</p>
@@ -921,8 +922,9 @@ def sec_head(num, title, hid, extra=""):
 
 
 def assemble(lang, key, title, desc, body, *, jsonld=None, og_type="website", body_class="", current=None, cta=False,
-             draft=False, og_image="/img/og-cover.jpg"):
-    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type, noindex=draft, og_image=og_image)
+             draft=False, og_image="/img/og-cover.jpg", preload=""):
+    page = head(lang, key, title, desc, jsonld=jsonld, og_type=og_type, noindex=draft, og_image=og_image,
+                preload=preload)
     if draft:
         body_class = (body_class + " is-draft").strip()
         body = f'<p class="draft-banner">{DRAFT_NOTE[lang]}</p>\n' + body
@@ -942,7 +944,9 @@ def home(lang):
     t, c = T[lang], C[lang]
     ids = t["ids"]
 
-    hero = f"""<section class="hero" aria-labelledby="hero-title">
+    # The hero is a full-bleed photo for now; the laptop mockup and plant
+    # (hero_stage) are kept but not rendered while that is tried out.
+    hero = f"""<section class="hero hero--photo" aria-labelledby="hero-title">
 <div class="container grid hero__grid">
 <div class="hero__copy">
 <h1 class="hero__title" id="hero-title" data-reveal>{t["h1"]}</h1>
@@ -953,21 +957,21 @@ def home(lang):
 </div>
 <p class="small hero__note d3" data-reveal>{t["hero_note"]}</p>
 </div>
-<div class="hero__stage d1" data-reveal="far">
+</div>
+</section>"""
+    hero_stage = f"""<div class="hero__stage d1" data-reveal="far">
 {blob("hero", "hero")}
 <img class="hero__plant" src="/img/site/plant.webp" width="760" height="857" alt="" decoding="async">
 <div class="laptop">
 <div class="laptop__lid">{img("hero", t["hero_alt"], "(max-width: 759px) 92vw, 600px", lazy=False, priority=True)}</div>
 <div class="laptop__base" aria-hidden="true"></div>
 </div>
-</div>
-</div>
-</section>"""
+</div>"""
 
     cards = []
     for i, (key, shape, tone, image, dark, title, desc, tags, alt) in enumerate(t["works"]):
         cards.append(f"""<article class="work-card{(' d' + str(i)) if i else ''}" data-reveal>
-{framed(image, alt, "(max-width: 599px) 92vw, (max-width: 1099px) 46vw, 360px", dark=dark)}
+{framed(image, alt, "(max-width: 599px) 92vw, (max-width: 1099px) 46vw, 360px", dark=dark, bar=False)}
 <h3 class="work-card__title"><a href="{url(key, lang)}">{title}</a></h3>
 <p class="work-card__desc">{desc}</p>
 <p class="mono work-card__tags">{tags}</p>
@@ -1046,7 +1050,7 @@ def home(lang):
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "Codeart — Gabrielė Tamaševičiūtė",
+            "name": "Codeart",
             "url": SITE + url("home", lang),
             "inLanguage": lang,
         },
@@ -1054,7 +1058,7 @@ def home(lang):
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "@id": SITE + "/#business",
-            "name": "Codeart — Gabrielė Tamaševičiūtė",
+            "name": "Codeart",
             "description": t["home_desc"],
             "url": SITE + url("home", lang),
             "image": SITE + "/img/og-cover.jpg",
@@ -1070,7 +1074,11 @@ def home(lang):
         person_ld(lang),
     ]
     assemble(lang, "home", t["home_title"], t["home_desc"],
-             "\n".join([hero, services, works, steps, about, faq, contact]), jsonld=jsonld)
+             "\n".join([hero, services, works, steps, about, faq, contact]), jsonld=jsonld,
+             body_class="has-photo-hero",
+             preload='<link rel="preload" as="image" href="/img/site/hero-finance-2400.webp" '
+                     'imagesrcset="/img/site/hero-finance-1200.webp 1200w, /img/site/hero-finance-2400.webp 2400w" '
+                     'imagesizes="100vw" fetchpriority="high">\n')
 
 
 # --------------------------------------------------------------------------
@@ -1134,16 +1142,6 @@ def about_page(lang):
 <span class="value__ico">{icon(ico)}</span>
 <div><h3>{h}</h3><p>{p}</p></div>
 </li>""" for i, (ico, h, p) in enumerate(c["values"]))
-    exp = "\n".join(f"""<li class="job" data-reveal>
-<div class="job__when"><span class="mono">{when}</span></div>
-<div class="job__body">
-<h3>{role} <span class="job__org">· {org}</span></h3>
-<p class="mono job__meta">{meta}</p>
-{f'<p class="job__text">{text}</p>' if text else ''}
-</div>
-</li>""" for role, org, when, meta, text in c["exp"])
-    uni, prog, years = c["edu"]
-    langs = "".join(f"<li><span>{a}</span><span class=\"mono\">{b}</span></li>" for a, b in c["langs"])
     body = f"""<section class="page-intro page-intro--about">
 <div class="container grid about">
 <div class="about__media" data-reveal="far">
@@ -1156,7 +1154,8 @@ def about_page(lang):
 <div class="about__paras">{paras}</div>
 <ul class="facts">{facts}</ul>
 <div class="about__links">
-<a class="btn btn--lg" href="{url("portfolio", lang)}">{c["about_cv"]}</a>
+<a class="btn btn--lg" href="{url("contact", lang)}">{t["cta"]}</a>
+<a class="link" href="{url("home", lang)}#{t["ids"]["work"]}">{c["about_cv"]}</a>
 <a class="link" href="{pdf(lang)}">{icon("file", 18)} {c["about_pdf"]}</a>
 </div>
 </div>
@@ -1178,26 +1177,9 @@ def about_page(lang):
 </ul>
 </div>
 </section>
-<section class="section section--raised" aria-labelledby="exp-title">
-<div class="container">
-{sec_head("03", c["exp_h"], "exp-title")}
-<ol class="jobs">
-{exp}
-</ol>
-<div class="edu" data-reveal>
-<div class="edu__block">
-<span class="edu__ico">{icon("cap")}</span>
-<div><h3>{c["edu_h"]}</h3><p><strong>{uni}</strong> · {prog}</p><p class="mono">{years}</p></div>
-</div>
-<div class="edu__block">
-<span class="edu__ico">{icon("globe")}</span>
-<div><h3>{c["lang_h"]}</h3><ul class="langs">{langs}</ul></div>
-</div>
-</div>
-</div>
-</section>"""
+"""
     assemble(lang, "about", c["about_title"], c["about_desc"], body, current="about", cta=True,
-             jsonld=[person_ld(lang)], og_type="profile")
+             jsonld=[person_ld(lang)])
 
 
 def contact_page(lang):
@@ -1633,29 +1615,26 @@ PROJECTS = {
             "features": [
                 ("b", ("kalbos_admin", "Turinio valdymas: kairėje turinio medis, dešinėje pamokos užduočių sąrašas"),
                  "Užduotys iš žodyno automatiškai",
-                 "Administratorius žodį įveda vieną kartą, o sistema iš jo pati sudaro iki aštuonių tipų užduočių.",
-                 ["Užduočių tipai: kortelė, žodis su sakiniu, klausyk ir pasirink, porų sujungimas, praleistas žodis, sakinio dėliojimas, vertimas abiem kryptimis, paveikslėlio parinkimas ir rankinis klausimas.",
-                  "Prieš kuriant matosi, kiek užduočių atsiras ir kurioms trūksta duomenų (pvz. garso).",
-                  "Klaidingi atsakymų variantai parenkami iš tos pačios temos žodžių.",
-                  "Pakartotinai sudėliojus užduotys nesidubliuoja, o rankinės išlieka.",
-                  "„Išmaišyti“ sumaišo užduotis taip, kad žodžio kortelė visada eitų prieš to žodžio tikrinimą."]),
+                 "Žodis įvedamas vieną kartą, o užduotis iš jo sistema sudaro pati.",
+                 ["9 užduočių tipai: kortelės, porų jungimas, sakinio dėliojimas, vertimas ir kiti.",
+                  "Prieš kuriant matosi, kam trūksta duomenų, pvz. garso.",
+                  "Klaidingi variantai parenkami iš tos pačios temos.",
+                  "Perkūrus užduotys nesidubliuoja, rankinės išlieka."]),
                 ("c", ("kalbos_task", "Vykstanti pamoka: progreso juosta ir sakinio dėliojimo užduotis"),
                  "Mokymosi kelias mokiniui",
-                 "Mokinys eina aiškiu keliu: pamokos, testai, kartojimas ir sertifikatas. Progresas saugomas serveryje ir nedingsta pakeitus įrenginį.",
-                 ["Atsakymas patikrinamas iš karto; raidžių dydis ir skyryba nesvarbūs, o praleistos lietuviškos raidės ar viena rašybos klaida įskaitomos su pastaba.",
-                  "Temos ir testai atsirakina nuosekliai, pagal progresą.",
-                  "Testai vertinami serveryje pagal praėjimo ribą.",
-                  "Žodžiai kartojami intervalais 1 → 3 → 7 → 21 diena.",
-                  "Baigus lygį išduodamas PDF sertifikatas su unikaliu numeriu."]),
+                 "Pamokos, testai, kartojimas ir sertifikatas vienu aiškiu keliu.",
+                 ["Atsakymai tikrinami iš karto, smulkios rašybos klaidos atleidžiamos.",
+                  "Temos ir testai atsirakina pagal progresą.",
+                  "Žodžiai kartojami po 1, 3, 7 ir 21 dienos.",
+                  "Baigus lygį – PDF sertifikatas su unikaliu numeriu."]),
                 ("a", ("kalbos_import", "Turinio valdymas: turinio medis ir mygtukas „Importuoti iš Excel“"),
                  "Visas kursas iš vieno Excel failo",
-                 "Visą kursą galima įkelti vienu Excel failu, o sistema prieš įrašydama parodo, kas bus sukurta.",
-                 ["Tuščias ir pavyzdinis šablonas atsisiunčiami iš sistemos.",
-                  "Prieš importą tikrinami stulpeliai, ieškoma dublikatų ir parodoma, kur turinys bus įdėtas.",
-                  "Trūkstamas garsas ar paveikslėlis susiejamas automatiškai, kai vėliau įkeliamas tokiu pačiu pavadinimu.",
-                  "Importuotos pamokos gali būti iškart paskelbtos."]),
+                 "Kursas įkeliamas vienu failu, o prieš įrašant matosi, kas bus sukurta.",
+                 ["Šabloną galima atsisiųsti iš sistemos.",
+                  "Tikrinami stulpeliai ir dublikatai.",
+                  "Vėliau įkelti garsai ir paveikslėliai susiejami automatiškai."]),
             ],
-            "role": "Viena kūriau visą sistemą: duomenų bazę, serverio logiką, mokinio platformą, turinio valdymą ir testus.",
+            "role": "Visas kūrimo ciklas: duomenų bazė, serverio logika, mokinio platforma, turinio valdymas ir testai.",
             "decisions": [
                 ("Užduočių variklis iš grynų funkcijų:", "kiekvienas užduoties tipas yra viena taisyklė registre, todėl naujas tipas nereikalauja keisti variklio. Atsitiktinumas perduodamas kaip parametras, todėl logika testuojama deterministiškai. Tas pats variklis veikia pamokose, testuose ir kartojime."),
                 ("Saugumas trijuose sluoksniuose:", "sąsajoje, serverio veiksmuose ir duomenų bazėje (Row Level Security kiekvienai lentelei). RLS taisyklės patikrintos atskirais integraciniais testais, nes sąsajos apsaugą galima apeiti kreipiantis tiesiai į API."),
@@ -1674,29 +1653,26 @@ PROJECTS = {
             "features": [
                 ("b", ("kalbos_admin", "Content management: the content tree on the left, the lesson's exercise list on the right"),
                  "Exercises generated from the vocabulary",
-                 "The admin enters a word once, and the system builds up to eight types of exercises from it.",
-                 ["Exercise types: flashcard, word in a sentence, listen and choose, match the pairs, missing word, sentence building, translation in both directions, picture choice and a manual question.",
-                  "Before generating, you see how many exercises will be created and which are missing data (e.g. audio).",
-                  "Wrong answer options are picked from words of the same topic.",
-                  "Regenerating doesn't duplicate exercises, and manual ones are kept.",
-                  "“Shuffle” mixes the exercises so a word's flashcard always comes before that word is tested."]),
+                 "A word is entered once, and the system builds the exercises from it.",
+                 ["9 exercise types: flashcards, matching pairs, sentence building, translation and more.",
+                  "Before generating, you see what's missing, such as audio.",
+                  "Wrong answer options come from the same topic.",
+                  "Regenerating doesn't duplicate exercises, and manual ones are kept."]),
                 ("c", ("kalbos_task", "A lesson in progress: the progress bar and a sentence-building exercise"),
                  "A learning path for the learner",
-                 "The learner follows a clear path: lessons, tests, review and a certificate. Progress is stored on the server and isn't lost when switching devices.",
-                 ["Answers are checked instantly; letter case and punctuation don't matter, and missing Lithuanian diacritics or a single typo are accepted with a note.",
-                  "Topics and tests unlock in order, based on progress.",
-                  "Tests are graded on the server against a pass mark.",
-                  "Words are reviewed at intervals of 1 → 3 → 7 → 21 days.",
-                  "Completing a level issues a PDF certificate with a unique number."]),
+                 "Lessons, tests, review and a certificate along one clear path.",
+                 ["Answers are checked instantly, and small typos are forgiven.",
+                  "Topics and tests unlock with progress.",
+                  "Words come back for review after 1, 3, 7 and 21 days.",
+                  "A PDF certificate with a unique number at the end of each level."]),
                 ("a", ("kalbos_import", "Content management: the content tree and the “Import from Excel” button"),
                  "A whole course from one Excel file",
-                 "A whole course can be uploaded as a single Excel file, and before saving the system shows what will be created.",
-                 ["A blank and a sample template can be downloaded from the system.",
-                  "Before import, columns are checked, duplicates are found and the target location is shown.",
-                  "Missing audio or images are linked automatically when uploaded later under the same name.",
-                  "Imported lessons can be published right away."]),
+                 "A course is uploaded as one file, and you see what will be created before saving.",
+                 ["The template can be downloaded from the system.",
+                  "Columns and duplicates are checked.",
+                  "Audio and images uploaded later are linked automatically."]),
             ],
-            "role": "I built the whole system on my own: the database, server logic, learner platform, content management and tests.",
+            "role": "The full build: the database, server logic, learner platform, content management and tests.",
             "decisions": [
                 ("Exercise engine built from pure functions:", "each exercise type is a single rule in a registry, so a new type doesn't require changing the engine. Randomness is passed in as a parameter, so the logic is tested deterministically. The same engine powers lessons, tests and review."),
                 ("Security in three layers:", "in the interface, in server actions and in the database (Row Level Security on every table). RLS policies are covered by separate integration tests, because interface protection can be bypassed by calling the API directly."),
@@ -1715,7 +1691,7 @@ PROJECTS = {
         "lt": {
             "title": "TikMaker", "meta": "vaizdo redaktorius · asmeninis projektas · 2026",
             "what": "Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau.",
-            "status": "Darbo įrankis, kurį naudoju savo turiniui.",
+            "status": "Vidinis įrankis, kurį naudojame savo turiniui.",
             "features": [
                 ("b", ("tik", "TikMaker redaktorius: scenų sąrašas, peržiūra, nustatymai ir laiko juosta su keliomis eilėmis"),
                  "Laiko juosta kaip montavimo programoje",
@@ -1731,8 +1707,7 @@ PROJECTS = {
                  ["7 scenų tipai, 25 vizualų tipai (terminalas, kodo pakeitimai, naršyklės ir telefono maketai, diagramos, statistika) ir 7 fonai.",
                   "Scenos trukmė apskaičiuojama automatiškai iš balso teksto ir ekrane rodomo teksto skaitymo laiko.",
                   "Išdėstymo šablonai vizualą pritaiko saugiai zonai, kurios neuždengia TikTok sąsaja.",
-                  "Elementas gali sklandžiai „keliauti“ iš scenos į sceną.",
-                  "Redaktorius įspėja apie per trumpą sceną, perpildytą kadrą ar per ilgas kodo eilutes."]),
+                  "Elementas gali sklandžiai „keliauti“ iš scenos į sceną."]),
                 ("a", ("tik_voice", "TikMaker: peržiūra, „Render MP4“ mygtukas ir scenos įgarsinimo tekstas inspektoriuje"),
                  "Iš teksto į balsą, subtitrus ir MP4",
                  "Iš parašyto teksto sistema pati sukuria įgarsinimą ir TikTok stiliaus subtitrus, o galutinį video atvaizduoja vienu mygtuku.",
@@ -1741,9 +1716,9 @@ PROJECTS = {
                   "Perkėlus ar apkarpius garso klipą, subtitrai pasislenka kartu.",
                   "MP4 atvaizduojamas fone, matosi eigos procentai."]),
             ],
-            "role": "Viena kūriau visą įrankį: redaktorių, video variklį, serverį ir testus.",
+            "role": "Visas įrankis: redaktorius, video variklis, serveris ir testai.",
             "decisions": [
-                ("Video kaip duomenys:", "visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami, ne atmetami. AI agentas gali sugeneruoti projekto scenarijų, ir jis patikrinamas iš karto."),
+                ("Video kaip duomenys:", "visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami. AI agentas gali sugeneruoti projekto scenarijų, ir jis patikrinamas iš karto."),
                 ("Tipų saugus API:", "tRPC tarp serverio ir kliento, todėl pakeitus API klaida matoma kompiliuojant. Serverio duomenys – TanStack Query, redaguojama būsena – Zustand su atšaukimo istorija. Automatinis išsaugojimas tik tada, kai projektas pasikeitė."),
                 ("Išdėstymas, kurio negalima perpildyti:", "kiekvienas vizualas žino savo natūralų dydį, o šablonai pritaiko mastelį saugiai zonai."),
                 ("Viena animacijų sistema:", "įėjimai, išėjimai, keyframe'ai ir perėjimai turi po vieną įgyvendinimą, o scenų laikas skaičiuojamas vienoje vietoje."),
@@ -1756,7 +1731,7 @@ PROJECTS = {
         "en": {
             "title": "TikMaker", "meta": "video editor · personal project · 2026",
             "what": "A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster.",
-            "status": "A working tool I use for my own content.",
+            "status": "An in-house tool we use for our own content.",
             "features": [
                 ("b", ("tik", "The TikMaker editor: scene list, preview, settings and a multi-row timeline"),
                  "A timeline like in an editing app",
@@ -1772,8 +1747,7 @@ PROJECTS = {
                  ["7 scene types, 25 visual types (terminal, code diffs, browser and phone mockups, diagrams, statistics) and 7 backgrounds.",
                   "Scene length is calculated automatically from the voice-over text and the reading time of on-screen text.",
                   "Layout templates fit each visual into the safe zone that TikTok's interface doesn't cover.",
-                  "An element can travel smoothly from one scene to the next.",
-                  "The editor warns about a scene that's too short, an overcrowded frame or code lines that are too long."]),
+                  "An element can travel smoothly from one scene to the next."]),
                 ("a", ("tik_voice", "TikMaker: the preview, the “Render MP4” button and the scene's voice-over text in the inspector"),
                  "From text to voice, subtitles and MP4",
                  "From written text the system creates the voice-over and TikTok-style subtitles itself, and renders the final video with one button.",
@@ -1782,9 +1756,9 @@ PROJECTS = {
                   "When an audio clip is moved or trimmed, the subtitles move with it.",
                   "MP4 renders in the background, with progress shown in percent."]),
             ],
-            "role": "I built the whole tool on my own: the editor, the video engine, the server and the tests.",
+            "role": "The whole tool: the editor, the video engine, the server and the tests.",
             "decisions": [
-                ("Video as data:", "the whole project is JSON validated with Zod schemas. The same schemas are used in the editor, the server API and on import, and old project files are upgraded automatically rather than rejected. An AI agent can generate a project script, and it's validated straight away."),
+                ("Video as data:", "the whole project is JSON validated with Zod schemas. The same schemas are used in the editor, the server API and on import, and old project files are upgraded automatically. An AI agent can generate a project script, and it's validated straight away."),
                 ("Type-safe API:", "tRPC between server and client, so an API change shows up as a compile error. Server data lives in TanStack Query, editable state in Zustand with undo history. Autosave runs only when the project has actually changed."),
                 ("Layout that can't overflow:", "every visual knows its natural size, and templates scale it to the safe zone."),
                 ("One animation system:", "entrances, exits, keyframes and transitions each have one implementation, and scene timing is calculated in one place."),
@@ -1818,7 +1792,6 @@ PROJECTS = {
             ],
             "scale": "3 kalbos · ~730 frontend testų",
             "stack": "React, TypeScript, RTK Query, AG Grid, Tailwind CSS, shadcn/ui · .NET, SQL Server · Vitest, Playwright",
-            "note": "Daugiau apie šį projektą galiu papasakoti pokalbio metu.",
             "desc": "Lojalumo valdymo sistema: B2B administravimo sistema lojalumo programoms. Komandinis projektas, React, TypeScript ir .NET.",
         },
         "en": {
@@ -1841,7 +1814,6 @@ PROJECTS = {
             ],
             "scale": "3 languages · ~730 frontend tests",
             "stack": "React, TypeScript, RTK Query, AG Grid, Tailwind CSS, shadcn/ui · .NET, SQL Server · Vitest, Playwright",
-            "note": "I can tell you more about this project in an interview.",
             "desc": "Loyalty management system: a B2B admin system for loyalty programmes. A team project built with React, TypeScript and .NET.",
         },
     },
@@ -1849,11 +1821,11 @@ PROJECTS = {
 
 PL = {
     "lt": {"what": "Kas tai", "status": "Būsena", "tech": "Techninė dalis",
-           "role": "Rolė", "decisions": "Sprendimai", "scale": "Mastas", "stack": "Stackas",
-           "next": "Kitas darbas", "suffix": "projektas | Gabrielė Tamaševičiūtė"},
+           "role": "Ką darėme", "decisions": "Sprendimai", "scale": "Mastas", "stack": "Stackas",
+           "next": "Kitas darbas", "suffix": "projektas | Codeart"},
     "en": {"what": "What it is", "status": "Status", "tech": "Technical side",
-           "role": "Role", "decisions": "Decisions", "scale": "Scale", "stack": "Stack",
-           "next": "Next project", "suffix": "project | Gabrielė Tamaševičiūtė"},
+           "role": "What we did", "decisions": "Decisions", "scale": "Scale", "stack": "Stack",
+           "next": "Next project", "suffix": "project | Codeart"},
 }
 
 
@@ -2063,10 +2035,10 @@ SVC_L = {
     "lt": {"crumb_home": "Pradžia", "crumb_svc": "Paslaugos",
            "price_l": "Kaina", "time_l": "Terminas", "get_h": "Ką gaunate", "price_h": "Kaina ir terminai",
            "price_p": "Fiksuota kaina, sutarta raštu prieš pradedant. Tiksli suma priklauso nuo apimties ir integracijų.",
-           "time_p": "Tikslų terminą nurodau plane kartu su kaina, dar prieš pradedant darbus.",
+           "time_p": "Tikslų terminą nurodome plane kartu su kaina, dar prieš pradedant darbus.",
            "warranty_h": "3 mėn. garantija",
-           "warranty_p": "Jei per 3 mėnesius po paleidimo paaiškėja klaida dėl mano įgyvendinto sprendimo, ją ištaisau nemokamai.",
-           "example_h": "Pavyzdys iš mano darbų", "project_link": "Žiūrėti projektą →",
+           "warranty_p": "Jei per 3 mėnesius po paleidimo paaiškėja klaida dėl mūsų įgyvendinto sprendimo, ją ištaisome nemokamai.",
+           "example_h": "Pavyzdys iš mūsų darbų", "project_link": "Žiūrėti projektą →",
            "get_common": ["Kodą, kuris priklauso jums", "Naudojimo instrukcijas, o jei reikia, ir vaizdo instrukcijas",
                           "3 mėn. garantiją po paleidimo"],
            "build_note": "Tai tik pavyzdžiai: sukurti galima ir tai, ko čia nėra. Papasakokite savo idėją.",
@@ -2075,13 +2047,13 @@ SVC_L = {
     "en": {"crumb_home": "Home", "crumb_svc": "Services",
            "price_l": "Price", "time_l": "Timeline", "get_h": "What you get", "price_h": "Price and timeline",
            "price_p": "A fixed price, agreed in writing before we start. The exact amount depends on the scope and integrations.",
-           "time_p": "I give the exact timeline in the plan, together with the price, before any work starts.",
+           "time_p": "We give the exact timeline in the plan, together with the price, before any work starts.",
            "warranty_h": "3-month warranty",
-           "warranty_p": "If a bug caused by my work shows up within 3 months of launch, I fix it free of charge.",
-           "example_h": "An example from my work", "project_link": "View the project →",
+           "warranty_p": "If a bug caused by our work shows up within 3 months of launch, we fix it free of charge.",
+           "example_h": "An example from our work", "project_link": "View the project →",
            "get_common": ["Code that belongs to you", "User guides, plus video guides if needed",
                           "A 3-month warranty after launch"],
-           "build_note": "These are just examples: I can build what isn't listed too. Tell me about your idea.",
+           "build_note": "These are just examples: we can build what isn't listed too. Tell us about your idea.",
            "articles_h": "More on this topic", "subpages_h": "Specific solutions", "more": "Read more →",
            "country": "Lithuania"},
 }
@@ -2116,7 +2088,7 @@ def solution_media(svc):
         return ""
     key, shape, tone = svc["card_image"]
     return (f'<div class="info-card__media" aria-hidden="true">{blob(shape, tone)}'
-            f'{img(key, "", "(max-width: 759px) 88vw, 520px")}</div>\n')
+            f'{img(key, "", "(max-width: 599px) 88vw, 600px")}</div>\n')
 
 
 def service_page_cards(lang):
@@ -2323,7 +2295,7 @@ def article_page(a):
 <div class="container article-grid">
 <div class="prose">
 {todo(live_links(a["body"]))}
-<p class="article-cta">Norite aptarti savo idėją? <a href="{url("contact", lang)}">Susisiekite</a>, atsakau per 24 val.</p>
+<p class="article-cta">Norite aptarti savo idėją? <a href="{url("contact", lang)}">Susisiekite</a>, atsakome per 24 val.</p>
 </div>
 {aside}
 </div>
@@ -2376,7 +2348,7 @@ def articles_index():
 </section>"""
     jsonld = [breadcrumb_ld("lt", [("home", "Pradžia"), ("articles", "Straipsniai")])]
     assemble("lt", "articles", "Straipsniai apie verslo sistemas, programėles ir AI | Codeart",
-             "Kiek kainuoja verslo sistema ar programėlė, ką rinktis ir kaip AI gali padėti verslui: praktiški straipsniai iš programuotojos Gabrielės Tamaševičiūtės.",
+             "Kiek kainuoja verslo sistema ar programėlė, ką rinktis ir kaip AI gali padėti verslui: praktiški Codeart straipsniai.",
              body, jsonld=jsonld, current="articles", cta=True,
              draft=not any(a["status"] == "published" for a in ARTICLES))
 
