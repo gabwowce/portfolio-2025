@@ -509,7 +509,7 @@ C = {
         "about_paras": [
             "Codeart kuria verslo sistemas ir web aplikacijas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Geriausias įvertinimas mums – kai sistema naudojamasi kasdien.",
             "Dirbame per visą grandinę: nuo poreikio išgryninimo ir sąsajos projektavimo iki architektūros, API, duomenų bazės ir paleidimo.",
-            "Studiją įkūrė programuotoja Gabrielė Tamaševičiūtė. Ji veda kiekvieną projektą ir yra jūsų pagrindinis kontaktas, o pagal projekto apimtį komandą papildo patikrinti dizaino, backend ar mobiliųjų programėlių specialistai.",
+            "Codeart įkūrė programuotoja Gabrielė Tamaševičiūtė. Ji pati veda kiekvieną projektą, todėl bendraujate tiesiogiai su žmogumi, kuris kuria jūsų sistemą.",
         ],
         "about_cv": "Peržiūrėti darbus",
         "about_pdf": "Įkūrėjos CV (PDF)",
@@ -555,7 +555,7 @@ C = {
         "next_h": "Kas bus toliau",
         "next": [
             ("Parašote", "Trumpai papasakojate apie savo projektą ar idėją."),
-            ("Keli klausimai", "Jei ko nors trūksta, paklausime el. paštu. Taip išsigryniname poreikį, apimtį ir ar esame tinkama komanda jūsų projektui."),
+            ("Keli klausimai", "Jei ko nors trūksta, paklausime el. paštu. Taip išsigryniname poreikį, apimtį ir ar galime padėti jūsų projektui."),
             ("Aiškus planas ir kaina", "Per 24 val. po to atsiunčiame darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
         ],
     },
@@ -603,7 +603,7 @@ C = {
         "about_paras": [
             "Codeart builds business systems and web applications that genuinely help people: they save time, cut down the chaos and let people focus on what matters. The best measure of our work is a system people use every day.",
             "We work across the whole chain: from pinning down the need and designing the interface to architecture, APIs, the database and launch.",
-            "The studio was founded by developer Gabrielė Tamaševičiūtė. She runs every project and is your main contact, and vetted design, backend or mobile specialists join the team as the project's scope requires.",
+            "Codeart was founded by developer Gabrielė Tamaševičiūtė. She runs every project herself, so you talk directly to the person who builds your system.",
         ],
         "about_cv": "See our work",
         "about_pdf": "Founder's CV (PDF)",
@@ -648,7 +648,7 @@ C = {
         "next_h": "What happens next",
         "next": [
             ("You write", "You tell us briefly about your project or idea."),
-            ("A few questions", "If anything is missing, we ask by email. That way we pin down the need, the scope and whether we're the right team for your project."),
+            ("A few questions", "If anything is missing, we ask by email. That way we pin down the need, the scope and whether we're a good fit for your project."),
             ("A clear plan and price", "Within 24 hours after that we send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
         ],
     },
