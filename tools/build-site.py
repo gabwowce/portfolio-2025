@@ -166,7 +166,12 @@ def asset(path):
     """Root-relative URL with a content hash, so a new deploy is never
     hidden behind a stylesheet or script the browser has cached."""
     import hashlib
-    digest = hashlib.md5((ROOT / path.lstrip("/")).read_bytes()).hexdigest()[:8]
+    # Hash with LF line endings, so a Windows checkout (CRLF) gives the same
+    # version as Linux and builds on both machines don't keep flipping it.
+    data = (ROOT / path.lstrip("/")).read_bytes()
+    if path.endswith((".css", ".js")):
+        data = data.replace(b"\r\n", b"\n")
+    digest = hashlib.md5(data).hexdigest()[:8]
     return f"{path}?v={digest}"
 
 
@@ -278,11 +283,11 @@ T = {
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
             ("Paleidimas", "Įdiegiame sistemą ir paruošiame instrukcijas, kaip ja naudotis. Darbams taikoma 3 mėn. garantija."),
         ],
-        "about_h": "Kas veda projektus",
+        "about_h": "Apie mane",
         "about_alt": "Gabrielė Tamaševičiūtė",
-        "about_text": "Codeart kuria verslo sistemas ir web aplikacijas, kurios iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Projektus veda įkūrėja Gabrielė Tamaševičiūtė, o pagal poreikį prisijungia patikrinti dizaino, backend ar mobiliųjų programėlių specialistai.",
+        "about_text": "Esu Gabrielė. Man patinka kurti sistemas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano darbu žmonės naudojasi kasdien ir yra juo patenkinti.",
         "facts": ["3+ metai kuriant sistemas", "Frontend, backend, API ir AI", "Nuo idėjos iki paleidimo"],
-        "about_more": "Daugiau apie mus →",
+        "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
             ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Kai išsiaiškiname poreikį (dažniausiai užtenka kelių laiškų), per 24 val. atsiunčiame darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
@@ -356,11 +361,11 @@ T = {
             ("Building", "You see progress all along, not only at the end."),
             ("Launch", "We deploy the system and prepare guides on how to use it. The work comes with a 3-month warranty."),
         ],
-        "about_h": "Who runs your project",
+        "about_h": "About me",
         "about_alt": "Gabrielė Tamaševičiūtė",
-        "about_text": "Codeart builds business systems and web applications that genuinely help: they save time, cut down the chaos and let people focus on what matters. Projects are run by founder Gabrielė Tamaševičiūtė, and vetted design, backend or mobile specialists join as the project needs.",
+        "about_text": "I'm Gabrielė. I love building systems that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing people use my work every day and be glad they have it.",
         "facts": ["3+ years building systems", "Frontend, backend, APIs and AI", "From idea to launch"],
-        "about_more": "More about us →",
+        "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
             ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. Once we've pinned down the need (a few emails are usually enough), we send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
