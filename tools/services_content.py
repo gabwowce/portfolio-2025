@@ -284,7 +284,7 @@ SERVICE_PAGES = {
             "lead": "Chatbot svetainei, AI asistentas darbuotojams, užklausų rūšiavimas, dokumentų apdorojimas ir visa kita, ką galima perduoti dirbtiniam intelektui.",
             "hero_alt": "Pavyzdinis AI asistentas atsako, kiek užsakymų gauta šį mėnesį, ir rodo, ką dar gali: atsakyti klientams, analizuoti duomenis, atlikti pasikartojančias užduotis",
             "promo": "Norite pritaikyti AI savo versle?",
-            "card": "Chatbot svetainei, asistentas darbuotojams, užklausų rūšiavimas, dokumentų apdorojimas ir daugiau.",
+            "card": "Mažiau rutinos, daugiau laiko svarbiems darbams. Padėsime rasti, kur AI jūsų versle duos daugiausia naudos.",
             "build_h": "Pavyzdžiui, galime sukurti",
             "build": [
                 ("AI chatbot svetainei", "Atsako į klientų klausimus pagal jūsų DUK, kainas ir taisykles. Nežinodamas atsakymo, pasiūlo susisiekti su jumis."),
@@ -320,7 +320,7 @@ SERVICE_PAGES = {
             "h1": "AI chatbots and AI solutions for business",
             "lead": "A website chatbot, an AI assistant for your staff, enquiry triage, document processing and anything else AI can take off your hands.",
             "hero_alt": "An example AI assistant answers how many orders came in this month and shows what else it does: answers clients, analyses data, handles repetitive tasks",
-            "card": "A website chatbot, an assistant for staff, enquiry triage, document processing and more.",
+            "card": "Less routine, more time for the work that matters. We'll help you find where AI brings your business the most value.",
             "build_h": "For example, we can build",
             "build": [
                 ("An AI chatbot for your website", "Answers customer questions from your FAQ, prices and policies. When it doesn't know, it offers to put them in touch with you."),
