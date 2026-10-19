@@ -460,6 +460,8 @@ PHONE = "+370 672 70403"
 # The legal entity behind Codeart, as registered in the Register of Legal Entities.
 COMPANY = "Code art, MB"
 COMPANY_CODE = "307111383"
+# Google Business Profile "write a review" link; codeart.lt/atsiliepimas forwards here.
+REVIEW_URL = "https://g.page/r/Cbi_eOT7pCx8EBM/review"
 PHONE_HREF = "tel:+37067270403"
 
 C = {
@@ -2458,6 +2460,26 @@ def lastmod(path):
     return datetime.date.today().isoformat()
 
 
+def review_redirect():
+    """codeart.lt/atsiliepimas: a short address on our own domain that clients
+    trust more than g.page. Forwards straight to the Google review form."""
+    write("atsiliepimas/index.html", f"""<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atsiliepimas apie Codeart</title>
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0; url={REVIEW_URL}">
+<script>location.replace("{REVIEW_URL}");</script>
+</head>
+<body>
+<p>Nukreipiame į Google atsiliepimų formą. <a href="{REVIEW_URL}">Rašyti atsiliepimą apie Codeart →</a></p>
+</body>
+</html>
+""")
+
+
 def sitemap():
     # The old game pages are not linked from the site and carry noindex, so they stay out.
     rows = []
@@ -2485,6 +2507,7 @@ def main():
             project(key, lang)
 
     build_extras()
+    review_redirect()
 
     redirect("portfolio/index.html", "/lt/portfolio.html", "lt")
     # Google picked codeart.lt/ over /lt/ as the LT home page, so / is the home page now.
