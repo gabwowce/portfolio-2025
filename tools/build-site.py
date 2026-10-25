@@ -281,7 +281,7 @@ T = {
             ("Parašote", "Aprašote idėją ar problemą."),
             ("Planas ir kaina", "Kai išsiaiškiname poreikį, per 24 val. gaunate planą ir fiksuotą kainą raštu."),
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
-            ("Paleidimas", "Įdiegiame sistemą ir paruošiame instrukcijas, kaip ja naudotis. Darbams taikoma 3 mėn. garantija."),
+            ("Paleidimas", "Įdiegiame sistemą ir paruošiame instrukcijas, kaip ja naudotis. Darbams taikoma 3 mėn. garantija, o jei reikia, sistemą prižiūrime ir vystome toliau."),
         ],
         "about_h": "Apie mane",
         "about_alt": "Gabrielė Tamaševičiūtė",
@@ -293,6 +293,7 @@ T = {
             ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Kai išsiaiškiname poreikį (dažniausiai užtenka kelių laiškų), per 24 val. atsiunčiame darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
             ("Kiek laiko trunka?", "Priklauso nuo apimties: nedidelis patobulinimas gali užtrukti kelias dienas, nauja sistema – nuo kelių savaičių. Tikslų terminą nurodome plane kartu su kaina, dar prieš pradedant darbus."),
             ("Ar galite perimti jau veikiančią sistemą?", "Taip. Nebūtina visko kurti iš naujo: galime tęsti darbą su jūsų esama sistema, sutvarkyti tai, kas neveikia ar trukdo, ir pridėti naujų funkcijų."),
+            ("Ar prižiūrite sistemą po paleidimo?", "Taip, jei reikia. Po garantijos galime susitarti dėl tolesnės priežiūros: atnaujinimų, klaidų taisymo, smulkių pakeitimų ir naujų funkcijų. Galima nuolatinė priežiūra arba darbai pagal poreikį, kaip jums patogiau. Įsipareigoti nebūtina: kodas priklauso jums."),
             ("Ar kaina gali pasikeisti eigoje?", "Ne, sutarta kaina nesikeičia. Jei darbo eigoje sugalvojate ką nors naujo ir didesnio, tai aptariame atskirai. Smulkius pageidavimus dažniausiai tiesiog įtraukiame: mums svarbu, kad sistema jums tiktų."),
             ("Ar galite į sistemą įdiegti AI funkcijas?", "Taip. Pavyzdžiui, galime sukurti pokalbių asistentą, kuris atsako klientams į klausimus pagal jūsų informaciją, automatiškai rašyti tekstus ar produktų aprašymus, apibendrinti dokumentus ir laiškus, išversti turinį į kitas kalbas ar padėti greičiau rasti reikiamą informaciją. Jei turite savo idėją, kaip AI galėtų palengvinti jūsų darbą, parašykite: kartu įvertinsime, kaip ją įgyvendinti."),
             ("Ar paruošiate instrukcijas, kaip naudotis sistema?", "Taip. Kartu su sistema paruošiame naudojimo instrukcijas, o jei reikia, ir trumpas vaizdo instrukcijas, kad visi greitai perprastų naują sistemą."),
@@ -359,7 +360,7 @@ T = {
             ("You write", "You describe the idea or problem."),
             ("Plan and price", "Once we've pinned down the need, you get a plan and a fixed price in writing within 24 hours."),
             ("Building", "You see progress all along, not only at the end."),
-            ("Launch", "We deploy the system and prepare guides on how to use it. The work comes with a 3-month warranty."),
+            ("Launch", "We deploy the system and prepare guides on how to use it. The work comes with a 3-month warranty, and if you need it, we keep maintaining and developing the system."),
         ],
         "about_h": "About me",
         "about_alt": "Gabrielė Tamaševičiūtė",
@@ -371,6 +372,7 @@ T = {
             ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. Once we've pinned down the need (a few emails are usually enough), we send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
             ("How long does it take?", "It depends on the scope: a small improvement can take a few days, a new system from a few weeks. We give the exact timeline in the plan, together with the price, before any work starts."),
             ("Can you take over a system that's already running?", "Yes. There's no need to start from scratch: we can keep working on your existing system, fix what doesn't work or gets in the way, and add new features."),
+            ("Do you maintain the system after launch?", "Yes, if you need it. After the warranty we can agree on ongoing maintenance: updates, bug fixes, small changes and new features. It can be a regular arrangement or work as needed, whichever suits you. There's no lock-in: the code belongs to you."),
             ("Can the price change along the way?", "No, the agreed price doesn't change. If you come up with something new and bigger along the way, we discuss it separately. Small requests we usually just include: what matters to us is that the system suits you."),
             ("Can you add AI features to the system?", "Yes. For example, we can build a chat assistant that answers your customers' questions from your own information, write texts or product descriptions automatically, summarise documents and emails, translate content into other languages, or help people find what they need faster. If you have your own idea of how AI could make your work easier, get in touch and we'll work out how to make it happen."),
             ("Do you prepare guides on how to use the system?", "Yes. Along with the system we prepare user guides and, if needed, short video guides, so everyone gets comfortable with the new system quickly."),
@@ -495,10 +497,11 @@ C = {
         "svc_h1": "Su kuo galime padėti",
         "svc_lead": "Pradedate nuo nulio ar jau turite sistemą? Padedame ją sukurti, sutvarkyti arba išplėsti.",
         "svc_list_h": "Ką darome",
-        "price_h": "Kaina ir garantija",
+        "price_h": "Kaina, garantija ir priežiūra",
         "price": [
             ("tag", "Fiksuota kaina", "Kiekvienam projektui pateikiame fiksuotą kainos pasiūlymą, sutartą prieš pradedant: perkate rezultatą, ne valandas, ir sąskaitoje nebūna netikėtumų. Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti."),
             ("shield", "3 mėn. garantija", "Jei per 3 mėnesius po paleidimo paaiškėja klaida, atsiradusi dėl mūsų įgyvendinto sprendimo, ją ištaisome be papildomo mokesčio."),
+            ("wrench", "Priežiūra po paleidimo", "Jei reikia, sistemą prižiūrime ir vystome toliau: atnaujinimai, klaidų taisymas, nauji pakeitimai. Galima nuolatinė priežiūra arba darbai pagal poreikį."),
         ],
         "expect_h": "Ko galite tikėtis",
         "expect": ["Fiksuota sutarta kaina", "Jokių netikėtų papildomų darbų", "Nuolat matomas progresas",
@@ -590,10 +593,11 @@ C = {
         "svc_h1": "How we can help",
         "svc_lead": "We work on systems, not one-off pages. We can start from scratch or take over what's already running.",
         "svc_list_h": "What we do",
-        "price_h": "Price and warranty",
+        "price_h": "Price, warranty and maintenance",
         "price": [
             ("tag", "Fixed price", "For every project we give a fixed price, agreed before we start: you pay for the result, not for hours, and there are no surprises on the invoice. The price depends on the scope, the integrations and what the system needs to do."),
             ("shield", "3-month warranty", "If within 3 months of launch a bug turns up that comes from our implementation, we fix it at no extra cost."),
+            ("wrench", "Maintenance after launch", "If you need it, we keep maintaining and developing the system: updates, bug fixes, new changes. It can be a regular arrangement or work as needed."),
         ],
         "expect_h": "What you can expect",
         "expect": ["A fixed, agreed price", "No unexpected extra work", "Progress you can always see",
@@ -1102,7 +1106,7 @@ def home(lang):
 def services_page(lang):
     t, c = T[lang], C[lang]
     price = "\n".join(f"""<article class="info-card{(' d' + str(i)) if i else ''}" data-reveal>
-{icon_blob(ico, "sand" if i == 0 else "rose")}
+{icon_blob(ico, ("sand", "rose", "lavender")[i % 3])}
 <h3>{h}</h3>
 <p>{p}</p>
 </article>""" for i, (ico, h, p) in enumerate(c["price"]))
@@ -1124,9 +1128,9 @@ def services_page(lang):
 <section class="section section--raised" aria-labelledby="svc-price">
 <div class="container">
 {sec_head("03", c["price_h"], "svc-price")}
-<div class="info-cards">
+<div class="info-cards info-cards--4">
 {price}
-<article class="info-card info-card--list d2" data-reveal>
+<article class="info-card info-card--list d3" data-reveal>
 <h3>{c["expect_h"]}</h3>
 <ul class="checklist">{expect}</ul>
 </article>
@@ -2051,7 +2055,7 @@ SVC_L = {
            "price_p": "Fiksuota kaina, sutarta raštu prieš pradedant. Tiksli suma priklauso nuo apimties ir integracijų.",
            "time_p": "Tikslų terminą nurodome plane kartu su kaina, dar prieš pradedant darbus.",
            "warranty_h": "3 mėn. garantija",
-           "warranty_p": "Jei per 3 mėnesius po paleidimo paaiškėja klaida dėl mūsų įgyvendinto sprendimo, ją ištaisome nemokamai.",
+           "warranty_p": "Jei per 3 mėnesius po paleidimo paaiškėja klaida dėl mūsų įgyvendinto sprendimo, ją ištaisome nemokamai. Vėliau, jei reikia, sistemą galime prižiūrėti ir vystyti toliau.",
            "example_h": "Pavyzdys iš mūsų darbų", "project_link": "Žiūrėti projektą →",
            "get_common": ["Kodą, kuris priklauso jums", "Naudojimo instrukcijas, o jei reikia, ir vaizdo instrukcijas",
                           "3 mėn. garantiją po paleidimo"],
@@ -2063,7 +2067,7 @@ SVC_L = {
            "price_p": "A fixed price, agreed in writing before we start. The exact amount depends on the scope and integrations.",
            "time_p": "We give the exact timeline in the plan, together with the price, before any work starts.",
            "warranty_h": "3-month warranty",
-           "warranty_p": "If a bug caused by our work shows up within 3 months of launch, we fix it free of charge.",
+           "warranty_p": "If a bug caused by our work shows up within 3 months of launch, we fix it free of charge. After that, if you need it, we can keep maintaining and developing the system.",
            "example_h": "An example from our work", "project_link": "View the project →",
            "get_common": ["Code that belongs to you", "User guides, plus video guides if needed",
                           "A 3-month warranty after launch"],
