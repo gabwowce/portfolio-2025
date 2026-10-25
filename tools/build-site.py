@@ -166,7 +166,12 @@ def asset(path):
     """Root-relative URL with a content hash, so a new deploy is never
     hidden behind a stylesheet or script the browser has cached."""
     import hashlib
-    digest = hashlib.md5((ROOT / path.lstrip("/")).read_bytes()).hexdigest()[:8]
+    # Hash with LF line endings, so a Windows checkout (CRLF) gives the same
+    # version as Linux and builds on both machines don't keep flipping it.
+    data = (ROOT / path.lstrip("/")).read_bytes()
+    if path.endswith((".css", ".js")):
+        data = data.replace(b"\r\n", b"\n")
+    digest = hashlib.md5(data).hexdigest()[:8]
     return f"{path}?v={digest}"
 
 
@@ -278,11 +283,11 @@ T = {
             ("Kūrimas", "Progresą matote nuolat, ne tik pabaigoje."),
             ("Paleidimas", "Įdiegiame sistemą ir paruošiame instrukcijas, kaip ja naudotis. Darbams taikoma 3 mėn. garantija."),
         ],
-        "about_h": "Kas veda projektus",
+        "about_h": "Apie mane",
         "about_alt": "Gabrielė Tamaševičiūtė",
-        "about_text": "Codeart kuria verslo sistemas ir web aplikacijas, kurios iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Projektus veda įkūrėja Gabrielė Tamaševičiūtė, o pagal poreikį prisijungia patikrinti dizaino, backend ar mobiliųjų programėlių specialistai.",
+        "about_text": "Esu Gabrielė. Man patinka kurti sistemas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano darbu žmonės naudojasi kasdien ir yra juo patenkinti.",
         "facts": ["3+ metai kuriant sistemas", "Frontend, backend, API ir AI", "Nuo idėjos iki paleidimo"],
-        "about_more": "Daugiau apie mus →",
+        "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
             ("Kiek kainuoja projektas?", "Kaina priklauso nuo apimties, integracijų ir to, ką sistema turi mokėti. Kai išsiaiškiname poreikį (dažniausiai užtenka kelių laiškų), per 24 val. atsiunčiame darbų planą ir fiksuotą kainą raštu: perkate rezultatą, ne valandas."),
@@ -356,11 +361,11 @@ T = {
             ("Building", "You see progress all along, not only at the end."),
             ("Launch", "We deploy the system and prepare guides on how to use it. The work comes with a 3-month warranty."),
         ],
-        "about_h": "Who runs your project",
+        "about_h": "About me",
         "about_alt": "Gabrielė Tamaševičiūtė",
-        "about_text": "Codeart builds business systems and web applications that genuinely help: they save time, cut down the chaos and let people focus on what matters. Projects are run by founder Gabrielė Tamaševičiūtė, and vetted design, backend or mobile specialists join as the project needs.",
+        "about_text": "I'm Gabrielė. I love building systems that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing people use my work every day and be glad they have it.",
         "facts": ["3+ years building systems", "Frontend, backend, APIs and AI", "From idea to launch"],
-        "about_more": "More about us →",
+        "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
             ("How much does a project cost?", "It depends on the scope, the integrations and what the system needs to do. Once we've pinned down the need (a few emails are usually enough), we send a work plan and a fixed price in writing within 24 hours: you pay for the result, not for hours."),
@@ -455,6 +460,8 @@ PHONE = "+370 672 70403"
 # The legal entity behind Codeart, as registered in the Register of Legal Entities.
 COMPANY = "Code art, MB"
 COMPANY_CODE = "307111383"
+# Google Business Profile "write a review" link; codeart.lt/atsiliepimas forwards here.
+REVIEW_URL = "https://g.page/r/Cbi_eOT7pCx8EBM/review"
 PHONE_HREF = "tel:+37067270403"
 
 C = {
@@ -497,32 +504,32 @@ C = {
         "expect": ["Fiksuota sutarta kaina", "Jokių netikėtų papildomų darbų", "Nuolat matomas progresas",
                    "Sprendimai, kurie turi tikslą", "UX, kuriuo patogu naudotis", "Instrukcijos, o jei reikia, ir vaizdo įrašai", "3 mėn. garantija atliktiems darbams"],
         # about page
-        "about_title": "Apie mus | Codeart",
-        "about_desc": "Codeart – verslo sistemų ir web aplikacijų kūrimas Vilniuje: kaip dirbame, vertybės ir kas veda projektus.",
-        "about_eyebrow": "Apie mus",
-        "about_h1": "Kuriame sistemas, kuriomis naudojamasi kasdien",
+        "about_title": "Apie mane | Gabrielė Tamaševičiūtė · Codeart",
+        "about_desc": "Gabrielė Tamaševičiūtė, programuotoja ir Codeart įkūrėja: kaip dirbu, mano vertybės ir patirtis kuriant verslo sistemas ir web aplikacijas.",
+        "about_eyebrow": "Apie mane",
+        "about_h1": "Kuriu sistemas, kuriomis naudojamasi kasdien",
         "about_paras": [
-            "Codeart kuria verslo sistemas ir web aplikacijas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Geriausias įvertinimas mums – kai sistema naudojamasi kasdien.",
-            "Dirbame per visą grandinę: nuo poreikio išgryninimo ir sąsajos projektavimo iki architektūros, API, duomenų bazės ir paleidimo.",
-            "Studiją įkūrė programuotoja Gabrielė Tamaševičiūtė. Ji veda kiekvieną projektą ir yra jūsų pagrindinis kontaktas, o pagal projekto apimtį komandą papildo patikrinti dizaino, backend ar mobiliųjų programėlių specialistai.",
+            "Esu Gabrielė, programuotoja ir Codeart įkūrėja. Kuriu verslo sistemas ir web aplikacijas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano sukurta sistema naudojamasi kasdien.",
+            "Dirbu per visą grandinę: nuo poreikio išgryninimo ir sąsajos projektavimo iki architektūros, API, duomenų bazės ir paleidimo.",
+            "Kiekvieną projektą vedu pati, todėl bendraujate tiesiogiai su manimi, žmogumi, kuris kuria jūsų sistemą.",
         ],
         "about_cv": "Peržiūrėti darbus",
-        "about_pdf": "Įkūrėjos CV (PDF)",
-        "how_h": "Kaip dirbame",
+        "about_pdf": "Mano CV (PDF)",
+        "how_h": "Kaip dirbu",
         "how": [
-            ("system", "Galvojame apie visą sistemą", "Žiūrime ne tik į ekraną, kurį tuo metu kuriame. Vertiname duomenų srautą, API, būsenas, naudotojų teises ir tai, kaip sprendimas paveiks kitas sistemos dalis."),
-            ("search", "Pirma suprantame problemą", "Kai kažkas neveikia ar veikia blogai, pirmiausia ieškome priežasties. Tik tada keičiame kodą. Tai ypač svarbu dirbant su jau veikiančiomis ir didesnėmis sistemomis."),
-            ("code", "Dirbame ir su esamu kodu", "Nebūtina visko pradėti iš naujo. Galime perprasti svetimą kodą, esamą architektūrą ir palaipsniui sistemą gerinti ar papildyti."),
-            ("spark", "Sekame šiuolaikines technologijas", "Naudojame AI įrankius kūrimo procese ir integruojame AI funkcijas į pačius produktus: nuo paprastų LLM funkcijų iki agentų, galinčių naudotis sistemos API."),
+            ("system", "Galvoju apie visą sistemą", "Žiūriu ne tik į ekraną, kurį tuo metu kuriu. Vertinu duomenų srautą, API, būsenas, naudotojų teises ir tai, kaip sprendimas paveiks kitas sistemos dalis."),
+            ("search", "Pirma suprantu problemą", "Kai kažkas neveikia ar veikia blogai, pirmiausia ieškau priežasties. Tik tada keičiu kodą. Tai ypač svarbu dirbant su jau veikiančiomis ir didesnėmis sistemomis."),
+            ("code", "Dirbu ir su esamu kodu", "Nebūtina visko pradėti iš naujo. Galiu perprasti svetimą kodą, esamą architektūrą ir palaipsniui sistemą gerinti ar papildyti."),
+            ("spark", "Seku šiuolaikines technologijas", "Naudoju AI įrankius kūrimo procese ir integruoju AI funkcijas į pačius produktus: nuo paprastų LLM funkcijų iki agentų, galinčių naudotis sistemos API."),
         ],
         "values_h": "Vertybės",
         "values": [
             ("eye", "Aiškumas", "Jokių dviprasmybių, iš karto aišku, ko reikia."),
             ("list", "Struktūra", "Darbas žingsniais, ne chaosu."),
-            ("shield", "Patikimumas", "Ką pažadame, tą ir padarome."),
+            ("shield", "Patikimumas", "Ką pažadu, tą ir padarau."),
             ("chat", "Komunikacija", "Greiti atsakymai, visada aiškus statusas."),
             ("code", "Kodo kokybė", "Švarus, testuotas, pernaudojamas kodas."),
-            ("target", "Atsakomybė", "Mums rūpi rezultatas, ne tik užduotis."),
+            ("target", "Atsakomybė", "Man rūpi rezultatas, ne tik užduotis."),
         ],
         "exp_h": "Patirtis",
         "exp": [
@@ -550,7 +557,7 @@ C = {
         "next_h": "Kas bus toliau",
         "next": [
             ("Parašote", "Trumpai papasakojate apie savo projektą ar idėją."),
-            ("Keli klausimai", "Jei ko nors trūksta, paklausime el. paštu. Taip išsigryniname poreikį, apimtį ir ar esame tinkama komanda jūsų projektui."),
+            ("Keli klausimai", "Jei ko nors trūksta, paklausime el. paštu. Taip išsigryniname poreikį, apimtį ir ar galime padėti jūsų projektui."),
             ("Aiškus planas ir kaina", "Per 24 val. po to atsiunčiame darbų planą, terminus ir fiksuotą kainą. Pradedame tik tada, kai viskas aišku abiem pusėms."),
         ],
     },
@@ -591,32 +598,32 @@ C = {
         "expect_h": "What you can expect",
         "expect": ["A fixed, agreed price", "No unexpected extra work", "Progress you can always see",
                    "Decisions with a purpose", "UX that's comfortable to use", "User guides, plus video guides if needed", "A 3-month warranty on the work"],
-        "about_title": "About us | Codeart",
-        "about_desc": "Codeart builds business systems and web applications in Vilnius: how we work, our values and who runs your project.",
-        "about_eyebrow": "About us",
-        "about_h1": "We build systems people use every day",
+        "about_title": "About me | Gabrielė Tamaševičiūtė · Codeart",
+        "about_desc": "Gabrielė Tamaševičiūtė, developer and founder of Codeart: how I work, my values and my experience building business systems and web applications.",
+        "about_eyebrow": "About me",
+        "about_h1": "I build systems people use every day",
         "about_paras": [
-            "Codeart builds business systems and web applications that genuinely help people: they save time, cut down the chaos and let people focus on what matters. The best measure of our work is a system people use every day.",
-            "We work across the whole chain: from pinning down the need and designing the interface to architecture, APIs, the database and launch.",
-            "The studio was founded by developer Gabrielė Tamaševičiūtė. She runs every project and is your main contact, and vetted design, backend or mobile specialists join the team as the project's scope requires.",
+            "I'm Gabrielė, a developer and the founder of Codeart. I build business systems and web applications that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing a system I built used every day.",
+            "I work across the whole chain: from pinning down the need and designing the interface to architecture, APIs, the database and launch.",
+            "I run every project myself, so you talk directly to me, the person who builds your system.",
         ],
-        "about_cv": "See our work",
-        "about_pdf": "Founder's CV (PDF)",
-        "how_h": "How we work",
+        "about_cv": "See my work",
+        "about_pdf": "My CV (PDF)",
+        "how_h": "How I work",
         "how": [
-            ("system", "We think about the whole system", "We look beyond the screen we're building. We consider the data flow, the API, states, user permissions and how a decision will affect other parts of the system."),
-            ("search", "We understand the problem first", "When something doesn't work or works badly, we look for the cause first. Only then do we change the code. This matters most with existing and larger systems."),
-            ("code", "We work with existing code too", "Not everything has to start from scratch. We can get to grips with someone else's code and existing architecture, and improve or extend the system step by step."),
-            ("spark", "We keep up with modern technology", "We use AI tools in development and build AI features into products themselves, from simple LLM features to agents that can use the system's API."),
+            ("system", "I think about the whole system", "I look beyond the screen I'm building. I consider the data flow, the API, states, user permissions and how a decision will affect other parts of the system."),
+            ("search", "I understand the problem first", "When something doesn't work or works badly, I look for the cause first. Only then do I change the code. This matters most with existing and larger systems."),
+            ("code", "I work with existing code too", "Not everything has to start from scratch. I can get to grips with someone else's code and existing architecture, and improve or extend the system step by step."),
+            ("spark", "I keep up with modern technology", "I use AI tools in development and build AI features into products themselves, from simple LLM features to agents that can use the system's API."),
         ],
         "values_h": "Values",
         "values": [
             ("eye", "Clarity", "No ambiguity, clear on what's needed from the start."),
             ("list", "Structure", "Work broken into steps, not chaos."),
-            ("shield", "Reliability", "We do what we say we will."),
+            ("shield", "Reliability", "I do what I say I will."),
             ("chat", "Communication", "Quick replies, status always clear."),
             ("code", "Code quality", "Clean, tested, reusable code."),
-            ("target", "Ownership", "We care about the outcome, not just the task."),
+            ("target", "Ownership", "I care about the outcome, not just the task."),
         ],
         "exp_h": "Experience",
         "exp": [
@@ -643,7 +650,7 @@ C = {
         "next_h": "What happens next",
         "next": [
             ("You write", "You tell us briefly about your project or idea."),
-            ("A few questions", "If anything is missing, we ask by email. That way we pin down the need, the scope and whether we're the right team for your project."),
+            ("A few questions", "If anything is missing, we ask by email. That way we pin down the need, the scope and whether we're a good fit for your project."),
             ("A clear plan and price", "Within 24 hours after that we send a work plan, timeline and a fixed price. We start only once everything is clear to both sides."),
         ],
     },
@@ -2453,6 +2460,26 @@ def lastmod(path):
     return datetime.date.today().isoformat()
 
 
+def review_redirect():
+    """codeart.lt/atsiliepimas: a short address on our own domain that clients
+    trust more than g.page. Forwards straight to the Google review form."""
+    write("atsiliepimas/index.html", f"""<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atsiliepimas apie Codeart</title>
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0; url={REVIEW_URL}">
+<script>location.replace("{REVIEW_URL}");</script>
+</head>
+<body>
+<p>Nukreipiame į Google atsiliepimų formą. <a href="{REVIEW_URL}">Rašyti atsiliepimą apie Codeart →</a></p>
+</body>
+</html>
+""")
+
+
 def sitemap():
     # The old game pages are not linked from the site and carry noindex, so they stay out.
     rows = []
@@ -2480,6 +2507,7 @@ def main():
             project(key, lang)
 
     build_extras()
+    review_redirect()
 
     redirect("portfolio/index.html", "/lt/portfolio.html", "lt")
     # Google picked codeart.lt/ over /lt/ as the LT home page, so / is the home page now.
