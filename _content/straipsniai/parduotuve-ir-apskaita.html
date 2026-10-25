@@ -4,50 +4,69 @@
   "order": 9,
   "date": "2026-10-16",
   "service": "s_integrations",
-  "title": "Kaip sujungti el. parduotuvę su apskaita ir nebeperrašinėti sąskaitų | Codeart",
+  "title": "El. parduotuvės ir apskaitos integracija | Codeart",
   "title_short": "El. parduotuvės ir apskaitos sujungimas",
-  "h1": "Kaip sujungti el. parduotuvę su apskaita ir nebeperrašinėti sąskaitų",
-  "lead": "Jei kiekvieną užsakymą iš WooCommerce ar Shopify rankomis suvedate į apskaitos programą, šį darbą galima automatizuoti. Paaiškiname, kaip tai veikia ir nuo ko pradėti.",
-  "desc": "WooCommerce ar Shopify integracija su apskaitos programa (pvz. Rivilė, B1.lt): kaip automatiškai perkelti užsakymus, sąskaitas ir likučius, ką reikia žinoti ir nuo ko pradėti."
+  "h1": "Kaip sujungti el. parduotuvę su apskaita ir automatizuoti sąskaitas",
+  "lead": "Jei kiekvieną el. parduotuvės užsakymą rankomis perkeliate į apskaitos programą, dalį šio darbo galima automatizuoti. Sujungus sistemas, užsakymų duomenys gali būti perduodami automatiškai, o darbuotojams lieka mažiau pasikartojančio darbo.",
+  "desc": "Kaip sujungti WooCommerce ar Shopify su apskaitos programa: ką galima automatizuoti, ką suderinti prieš pradedant ir kada užtenka paruošto papildinio."
 }
 -->
-<p>Daugelis el. parduotuvių pradeda nuo paprasto proceso: gavus užsakymą, kažkas jį perrašo į apskaitos programą ir išrašo sąskaitą. Kol užsakymų keli per dieną, tai pakenčiama. Kai jų dešimtys, tai tampa atskiru darbu ir nuolatiniu klaidų šaltiniu.</p>
+<p>Tačiau vien tik sujungti dvi programas nepakanka. Svarbu suderinti prekių kodus, PVM, nuolaidas, apmokėjimus ir tai, kada konkrečiai turi būti kuriami apskaitos dokumentai.</p>
 
-<h2>Ką galima automatizuoti</h2>
+<h2>Ką galima automatizuoti?</h2>
+<p>Priklausomai nuo naudojamų programų ir jūsų verslo procesų, integracija gali apimti kelias užduotis:</p>
 <ul>
-  <li><strong>Užsakymai → apskaita.</strong> Apmokėtas užsakymas parduotuvėje automatiškai sukuria pardavimo dokumentą apskaitos programoje.</li>
-  <li><strong>Sąskaitos klientui.</strong> Sąskaita sugeneruojama ir išsiunčiama klientui be rankinio darbo.</li>
-  <li><strong>Likučiai atgal į parduotuvę.</strong> Kai prekė parduodama kitu kanalu ar atvežama nauja siunta, likutis parduotuvėje atsinaujina pats.</li>
-  <li><strong>Prekės ir kainos.</strong> Nauji produktai ar kainų pakeitimai apskaitoje persikelia į parduotuvę.</li>
-  <li><strong>Grąžinimai.</strong> Grąžintas užsakymas sukuria kreditinę sąskaitą.</li>
+  <li><strong>Užsakymų perkėlimą į apskaitą.</strong> El. parduotuvės užsakymo duomenys perduodami į apskaitos programą, kad nereikėtų jų suvesti iš naujo.</li>
+  <li><strong>Sąskaitų generavimą.</strong> Pagal užsakymo duomenis gali būti automatiškai paruošiama sąskaita ir, jei sistema tai palaiko, išsiunčiama klientui.</li>
+  <li><strong>Prekių likučių sinchronizavimą.</strong> Pardavus prekę ar gavus naują siuntą, likučiai gali būti atnaujinami tiek el. parduotuvėje, tiek apskaitos ar sandėlio sistemoje.</li>
+  <li><strong>Prekių ir kainų atnaujinimą.</strong> Prekių informacija gali būti perduodama iš vienos sistemos į kitą, kad nereikėtų tų pačių pakeitimų atlikti keliose vietose.</li>
+  <li><strong>Grąžinimų apdorojimą.</strong> Integracija gali perduoti grąžinimo informaciją ir padėti paruošti reikiamus apskaitos dokumentus.</li>
 </ul>
+<p>Ne visos integracijos apima visas šias funkcijas. Prieš pradedant svarbu nuspręsti, kuri sistema bus pagrindinis prekių, kainų ir likučių informacijos šaltinis.</p>
 
-<h2>Kaip tai veikia</h2>
-<p>Dauguma šiuolaikinių programų turi API – sąsają, per kurią kitos programos gali saugiai skaityti ir siųsti duomenis. WooCommerce ir Shopify turi gerai dokumentuotus API. Apskaitos programos tai daro skirtingai: vienos turi API, kitos leidžia importuoti failus, kai kurios jungiasi per partnerių sprendimus.</p>
-<p>Integracija yra nedidelė programa tarp jūsų sistemų. Ji „klausosi“, kas vyksta parduotuvėje, paverčia duomenis į apskaitos programos formatą ir juos perduoda. Jei kas nors nepavyksta, pavyzdžiui, trūksta prekės kodo, ji tai užfiksuoja ir praneša jums.</p>
-
-<h2>Dažniausios kliūtys</h2>
-<ul>
-  <li><strong>Nesutampantys prekių kodai.</strong> Jei parduotuvėje ir apskaitoje ta pati prekė vadinasi skirtingai ar turi skirtingus kodus, juos pirmiausia reikia suderinti. Tai dažnai didžiausia darbo dalis.</li>
-  <li><strong>PVM ir nuolaidos.</strong> Kuponai, nemokamas pristatymas ir skirtingi PVM tarifai turi būti perkelti teisingai.</li>
-  <li><strong>Prieigos.</strong> Kai kurioms apskaitos programoms API prieiga reikalauja papildomo modulio ar licencijos. Tai verta pasitikrinti iš anksto.</li>
-  <li><strong>Seni duomenys.</strong> Integracija dažniausiai veikia nuo paleidimo dienos, o istorinius užsakymus, jei reikia, perkeliame atskirai.</li>
-</ul>
-
-<h2>Standartinis papildinys ar integracija pagal užsakymą?</h2>
-<p>Populiarioms programų poroms kartais jau yra sukurti papildiniai. Jei toks yra ir tinka jūsų procesui, rinkitės jį: tai pigiau. Integracija pagal užsakymą verta, kai:</p>
-<ul>
-  <li>papildinio jūsų programoms nėra;</li>
-  <li>jūsų procesas turi išimčių, kurių papildinys nepalaiko (pvz. keli sandėliai, rinkiniai, didmeninės kainos);</li>
-  <li>reikia sujungti daugiau nei dvi sistemas, pavyzdžiui, parduotuvę, apskaitą ir kurjerį.</li>
-</ul>
-
-<h2>Nuo ko pradėti</h2>
+<h2>Kaip veikia el. parduotuvės ir apskaitos integracija?</h2>
+<p>Tarkime, klientas jūsų WooCommerce parduotuvėje užsako prekę ir už ją sumoka.</p>
 <ol>
-  <li>Užrašykite, kokius duomenis dabar perrašote ir kiek laiko tai užtrunka per savaitę.</li>
-  <li>Pasitikrinkite, kokią apskaitos programos versiją naudojate ir ar ji turi API arba importą.</li>
-  <li>Suderinkite prekių kodus parduotuvėje ir apskaitoje.</li>
-  <li>Pradėkite nuo vienos krypties, pavyzdžiui, užsakymai → apskaita. Likučius galima pridėti antru etapu.</li>
+  <li>El. parduotuvė užregistruoja užsakymą ir jo būseną.</li>
+  <li>Integracija perduoda reikiamus duomenis į apskaitos programą.</li>
+  <li>Apskaitos programa pagal nustatytas taisykles sukuria atitinkamą dokumentą arba paruošia duomenis jo sukūrimui.</li>
+  <li>Jei integracija apima atsakymų ir klaidų apdorojimą, nepavykęs perdavimas užfiksuojamas, kad jį būtų galima patikrinti ir pakartoti.</li>
 </ol>
-<p>Kartu su apskaita dažnai verta automatizuoti ir siuntas. Apie tai rašėme straipsnyje <a href="/lt/straipsniai/siuntu-automatizavimas.html">Automatinis siuntų generavimas</a>.</p>
-<p>[Tavo patirtis ar pavyzdys su konkrečia apskaitos programa, kai turėsi.]</p>
+<p>Toks procesas sumažina rankinio duomenų suvedimo poreikį, tačiau jo veikimas priklauso nuo abiejų sistemų galimybių ir konkrečių apskaitos taisyklių.</p>
+<p>Techniniu požiūriu duomenys dažnai perduodami per API – programinę sąsają, leidžiančią sistemoms keistis informacija. Kai kurios programos palaiko ir duomenų importą iš failų arba siūlo paruoštus integracijos sprendimus.</p>
+<p>Pavyzdžiui, WooCommerce ir Shopify turi API, tačiau konkrečios apskaitos programos integravimo galimybės, prieigos sąlygos ir licencijos gali skirtis. Todėl prieš planuojant darbus verta patikrinti, kokią programos versiją naudojate ir kokie integravimo būdai jai prieinami.</p>
+
+<h2>Kokias problemas reikia išspręsti prieš integraciją?</h2>
+<h3>1. Prekių kodai ir duomenų struktūra</h3>
+<p>Jei ta pati prekė el. parduotuvėje ir apskaitos programoje turi skirtingus kodus, integracija gali neatpažinti, kurią prekę reikia susieti su užsakymu. Prieš pradedant darbą svarbu suderinti kodus ir kitus identifikatorius.</p>
+<h3>2. PVM, nuolaidos ir pristatymas</h3>
+<p>Kuponai, dalinės nuolaidos, skirtingi PVM tarifai ir pristatymo mokesčiai turi būti perduodami pagal sutartas taisykles. Priešingu atveju dokumentuose gali atsirasti sumų neatitikimų.</p>
+<h3>3. Užsakymo ir apmokėjimo būsenos</h3>
+<p>Ne kiekvienas užsakymas iš karto būna apmokėtas ar paruoštas vykdyti. Reikia nuspręsti, kada perduoti duomenis į apskaitą, kaip elgtis atšaukus užsakymą ir kaip apdoroti dalinius grąžinimus.</p>
+<h3>4. Prieigos ir licencijos</h3>
+<p>Kai kurioms apskaitos programoms integruoti reikia papildomo modulio, API prieigos ar partnerio paslaugų. Šias sąlygas verta išsiaiškinti dar prieš vertinant projekto kainą.</p>
+<h3>5. Klaidų stebėjimas</h3>
+<p>Integracija turi numatyti, kas nutiks, jei duomenų nepavyks perduoti, trūks privalomo lauko ar sistema laikinai neveiks. Svarbu ne tik automatiškai perduoti informaciją, bet ir pastebėti, kai procesas nutrūksta.</p>
+
+<h2>Paruoštas papildinys ar individuali integracija?</h2>
+<p>Jei jūsų naudojamai el. parduotuvei ir apskaitos programai yra patikimas papildinys, kuris atitinka jūsų procesus, tai dažnai būna paprasčiausias ir ekonomiškiausias pasirinkimas.</p>
+<p>Individuali integracija gali būti tinkamesnė, kai:</p>
+<ul>
+  <li>reikiamoms programoms nėra tinkamo paruošto sprendimo;</li>
+  <li>reikia nestandartinių kainodaros, nuolaidų ar užsakymų apdorojimo taisyklių;</li>
+  <li>naudojami keli sandėliai arba skirtingi pardavimo kanalai;</li>
+  <li>reikia sujungti el. parduotuvę, apskaitą, sandėlio valdymą ir kurjerių sistemas;</li>
+  <li>būtina kontroliuoti duomenų perdavimo procesą ir klaidų apdorojimą pagal konkrečius verslo poreikius.</li>
+</ul>
+<p>Daugiau apie individualių sistemų sujungimą skaitykite puslapyje apie <a href="/lt/paslaugos/integracijos.html">programų integracijas</a>.</p>
+
+<h2>Nuo ko pradėti?</h2>
+<p>Prieš užsakant integraciją, atlikite keturis žingsnius:</p>
+<ol>
+  <li><strong>Įvertinkite dabartinį procesą.</strong> Kokius duomenis darbuotojai perrašo rankomis ir kiek laiko tam skiria?</li>
+  <li><strong>Patikrinkite programų galimybes.</strong> Užsirašykite tikslius el. parduotuvės ir apskaitos programos pavadinimus bei versijas.</li>
+  <li><strong>Suderinkite duomenis ir taisykles.</strong> Patikrinkite prekių kodus, PVM, nuolaidas, apmokėjimus ir grąžinimus.</li>
+  <li><strong>Pradėkite nuo svarbiausio proceso.</strong> Pavyzdžiui, pirmiausia automatizuokite užsakymų perdavimą į apskaitą, o likučių sinchronizavimą ir kitas funkcijas pridėkite vėliau, jei jų reikia.</li>
+</ol>
+<p class="note">Kartu su apskaitos integracija gali būti naudinga automatizuoti ir siuntų kūrimą. Apie tai skaitykite straipsnyje <a href="/lt/straipsniai/siuntu-automatizavimas.html">Automatinis siuntų generavimas</a>.</p>
+<p>Norite sužinoti, ar jūsų el. parduotuvę galima sujungti su apskaitos programa? Aptarkime jūsų naudojamas sistemas ir procesą, kurį norėtumėte automatizuoti.</p>
