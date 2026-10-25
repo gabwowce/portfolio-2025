@@ -147,7 +147,7 @@ SERVICE_PAGES = {
                 "Veikiančią aplikaciją su duomenų baze ir prisijungimu",
                 "Paleidimą jūsų domene",
             ],
-            "price": "nuo 2 500 €",
+            "price": "nuo 1 000 €",
             "time": "4–8 sav.",
             "project": ("p_lang", "Kalbų mokymosi platforma iš trijų dalių: vieša svetainė, mokinio platforma ir turinio valdymo sistema, kurioje užduotys sudaromos automatiškai iš žodyno. Visą sistemą sukūrėme nuo nulio: duomenų bazę, serverio logiką, abi platformas ir testus."),
             "faq": [
@@ -181,7 +181,7 @@ SERVICE_PAGES = {
                 "A working application with a database and login",
                 "Launch on your domain",
             ],
-            "price": "from €2,500",
+            "price": "from €1,000",
             "time": "4–8 weeks",
             "project": ("p_lang", "A language learning platform in three parts: a public website, a learner platform and a content management system that generates exercises from the vocabulary. We built the whole system from scratch: the database, server logic, both platforms and the tests."),
             "faq": [
