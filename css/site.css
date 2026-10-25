@@ -818,7 +818,8 @@ textarea {
 
 /* Photo hero: the photo runs up behind the header, which stays clear
    until the page scrolls (site.js adds .is-scrolled). A light wash on the
-   left keeps the copy readable over the wall. */
+   left keeps the copy readable over the wall, and one along the top keeps
+   the menu readable over the plant. */
 .has-photo-hero .site-header:not(.is-scrolled) {
   background: transparent;
   border-bottom-color: transparent;
@@ -835,6 +836,7 @@ textarea {
   align-items: center;
   background-color: #e9dccd;
   background-image:
+    linear-gradient(180deg, rgba(246, 240, 230, 0.82) 0, rgba(246, 240, 230, 0.5) 72px, rgba(246, 240, 230, 0) 150px),
     linear-gradient(90deg, rgba(246, 240, 230, 0.78) 0%, rgba(246, 240, 230, 0.45) 32%, rgba(246, 240, 230, 0) 52%),
     image-set(url("/img/site/hero-finance-1200.webp") 1x, url("/img/site/hero-finance-2400.webp") 2x);
   background-size: cover;
@@ -848,6 +850,7 @@ textarea {
 @media (min-width: 1300px) {
   .hero--photo {
     background-image:
+      linear-gradient(180deg, rgba(246, 240, 230, 0.82) 0, rgba(246, 240, 230, 0.5) 72px, rgba(246, 240, 230, 0) 150px),
       linear-gradient(90deg, rgba(246, 240, 230, 0.78) 0%, rgba(246, 240, 230, 0.45) 32%, rgba(246, 240, 230, 0) 52%),
       url("/img/site/hero-finance-2400.webp");
   }
