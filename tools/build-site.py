@@ -32,7 +32,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://codeart.lt"
-EMAIL = "gt1230112301@gmail.com"
+EMAIL = "info@codeart.lt"
 GITHUB = "https://github.com/gabwowce"
 LINKEDIN = "https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/"
 FORMSPREE = "https://formspree.io/f/xeorkyne"
