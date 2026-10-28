@@ -197,7 +197,7 @@ SERVICE_PAGES = {
     },
     # ------------------------------------------------------------------
     "s_web": {
-        "status": "draft",
+        "status": "published",
         # Not shown as a card: the four service cards keep their grid. The page is
         # reached from the app and systems pages and from search.
         "listed": False,
@@ -232,7 +232,7 @@ SERVICE_PAGES = {
             "project": ("p_lang", "Kalbų mokymosi platforma iš trijų dalių: vieša svetainė, mokinio platforma ir turinio valdymo sistema, kurioje užduotys sudaromos automatiškai iš žodyno. Visą sistemą sukūrėme nuo nulio: duomenų bazę, serverio logiką, abi platformas ir testus."),
             "faq": [
                 ("Kuo web programavimas skiriasi nuo svetainės kūrimo?", "Svetainė dažniausiai pateikia informaciją, o web programavimas kuria tai, kas su ta informacija dirba: paskyras, skaičiavimus, užsakymus, ryšius su kitomis sistemomis. Jei jums reikia tik pristatomosios svetainės, užteks šablono ar svetainių kūrėjo."),
-                ("Kokias technologijas naudojate?", "Renkamės pagal projektą: dažniausiai React, Next.js ir TypeScript, duomenims Supabase (PostgreSQL), o didesnėms verslo sistemoms ir .NET. Svarbiausia, kad sistemą ateityje galėtų prižiūrėti ir kiti programuotojai."),
+                ("Kokias technologijas naudojate?", "Renkamės pagal projektą: dažniausiai React, Next.js ir TypeScript sąsajai, Node.js (Express) ar Python serveriui, o duomenims Supabase (PostgreSQL). Svarbiausia, kad sistemą ateityje galėtų prižiūrėti ir kiti programuotojai."),
                 ("Ar galite tobulinti jau veikiančią svetainę ar sistemą?", "Taip. Pirmiausia peržiūrime esamą kodą ir pasakome, ką verta palikti, o ką geriau perdaryti. Tik tada sutariame kainą."),
                 ("Kam priklausys kodas?", "Jums. Perduodame visą kodą ir prieigas, todėl ateityje galite tęsti su mumis arba su kita komanda."),
                 ("Kiek tai kainuoja?", "Nedidelė funkcija esamai svetainei kainuoja nuo kelių šimtų eurų, platforma su paskyromis ir administravimu nuo kelių tūkstančių. Tikslią fiksuotą kainą pateikiame raštu, kai išsiaiškiname poreikį."),
@@ -267,7 +267,7 @@ SERVICE_PAGES = {
             "project": ("p_lang", "A language-learning platform in three parts: a public website, a student platform and a content system where exercises are generated from the vocabulary. We built the whole system from scratch: the database, the server logic, both platforms and the tests."),
             "faq": [
                 ("How is web development different from building a website?", "A website mostly presents information; web development builds what works with that information: accounts, calculations, orders, links to other systems. If you only need a brochure site, a template or site builder will do."),
-                ("Which technologies do you use?", "We choose per project: usually React, Next.js and TypeScript, Supabase (PostgreSQL) for data, and .NET for larger business systems. What matters most is that other developers can maintain the system later."),
+                ("Which technologies do you use?", "We choose per project: usually React, Next.js and TypeScript for the interface, Node.js (Express) or Python for the server, and Supabase (PostgreSQL) for data. What matters most is that other developers can maintain the system later."),
                 ("Can you improve a website or system that already runs?", "Yes. We first review the existing code and tell you what is worth keeping and what is better rebuilt. Only then do we agree on a price."),
                 ("Who owns the code?", "You do. We hand over all the code and access, so you can continue with us or with another team."),
                 ("How much does it cost?", "A small feature for an existing site starts at a few hundred euros, a platform with accounts and an admin area at a few thousand. We give a fixed price in writing once we understand what you need."),
