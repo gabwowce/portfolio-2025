@@ -4274,6 +4274,30 @@ textarea {
   color: var(--text-muted);
 }
 
+.prose .brief__send {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--text-muted);
+}
+
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--ca-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--ca-accent-hover);
+}
+
 @media (max-width: 599px) {
   .brief {
     padding: 20px;

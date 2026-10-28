@@ -196,7 +196,7 @@
   })();
 
   /* ---------------------------------------------------------------- */
-  /* Project brief template (article) – copy, download or send it     */
+  /* Project brief template (article) – PDF, copy, or send it         */
   /* through the contact form. Nothing leaves the browser until the   */
   /* visitor sends the contact form themselves.                       */
   /* ---------------------------------------------------------------- */
@@ -253,16 +253,16 @@
       });
     });
 
-    form.querySelector("[data-brief-download]").addEventListener("click", function () {
-      withText(function (t) {
-        var url = URL.createObjectURL(new Blob([t], { type: "text/plain;charset=utf-8" }));
-        var a = document.createElement("a");
-        a.href = url;
-        a.download = form.getAttribute("data-file");
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    form.querySelector("[data-brief-pdf]").addEventListener("click", function () {
+      var btn = this;
+      withText(function () {
+        btn.disabled = true;
+        say(form.getAttribute("data-msg-pdf-busy"), false);
+        briefPdf(form).then(function () {
+          say(form.getAttribute("data-msg-pdf-done"), false);
+        }, function () {
+          say(form.getAttribute("data-msg-pdf-fail"), true);
+        }).then(function () { btn.disabled = false; });
       });
     });
 
@@ -274,6 +274,126 @@
       });
     });
   });
+
+  /* ---------------------------------------------------------------- */
+  /* Brief as a PDF. pdfmake and the font load only on the first click */
+  /* and the file is made in the browser, so nothing is sent anywhere. */
+  /* ---------------------------------------------------------------- */
+  var PDFMAKE = "/js/vendor/pdfmake-0.2.10.min.js";
+  var PDF_FONTS = { "sg-regular.ttf": "/fonts/pdf/schibsted-grotesk-Regular.ttf",
+                    "sg-semibold.ttf": "/fonts/pdf/schibsted-grotesk-SemiBold.ttf" };
+  var MONTHS = ["sausio", "vasario", "kovo", "balandžio", "gegužės", "birželio", "liepos",
+                "rugpjūčio", "rugsėjo", "spalio", "lapkričio", "gruodžio"];
+  var C = { accent: "#a9502f", text: "#1c1a17", body: "#36322d", muted: "#6a635a",
+            line: "#ddd2c1", sand: "#f6f0e6" };
+  var pdfReady = null;
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var tag = document.createElement("script");
+      tag.src = src;
+      tag.onload = resolve;
+      tag.onerror = reject;
+      document.head.appendChild(tag);
+    });
+  }
+
+  function toBase64(buffer) {
+    var bytes = new Uint8Array(buffer), out = "";
+    for (var i = 0; i < bytes.length; i += 0x8000) {
+      out += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    }
+    return btoa(out);
+  }
+
+  function pdfLib() {
+    if (!pdfReady) {
+      var names = Object.keys(PDF_FONTS);
+      pdfReady = Promise.all([loadScript(PDFMAKE)].concat(names.map(function (n) {
+        return fetch(PDF_FONTS[n]).then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          return r.arrayBuffer();
+        });
+      }))).then(function (res) {
+        var vfs = {};
+        names.forEach(function (n, i) { vfs[n] = toBase64(res[i + 1]); });
+        window.pdfMake.vfs = vfs;
+        window.pdfMake.fonts = { SG: { normal: "sg-regular.ttf", bold: "sg-semibold.ttf",
+                                       italics: "sg-regular.ttf", bolditalics: "sg-semibold.ttf" } };
+        return window.pdfMake;
+      });
+      pdfReady.catch(function () { pdfReady = null; });
+    }
+    return pdfReady;
+  }
+
+  function briefPdf(form) {
+    var items = Array.prototype.map.call(form.querySelectorAll(".brief__field"), function (el) {
+      var input = el.querySelector("input, textarea");
+      return { q: el.querySelector(".brief__q").textContent.trim(),
+               hint: (el.querySelector(".brief__hint") || {}).textContent || "",
+               a: input.value.trim() };
+    });
+    var title = items[0].a || "Naujas projektas";
+    var d = new Date();
+    var date = d.getFullYear() + " m. " + MONTHS[d.getMonth()] + " " + d.getDate() + " d.";
+
+    var body = [
+      { text: "PROJEKTO APRAŠYMAS", fontSize: 8.5, bold: true, color: C.accent, characterSpacing: 1.6 },
+      { text: title, fontSize: 24, bold: true, color: C.text, lineHeight: 1.1, margin: [0, 8, 0, 6] },
+      { text: "Parengta " + date, fontSize: 9, color: C.muted },
+      { canvas: [{ type: "line", x1: 0, y1: 0, x2: 483, y2: 0, lineWidth: 1, lineColor: C.line }],
+        margin: [0, 18, 0, 6] }
+    ];
+    items.slice(1).forEach(function (it, i) {
+      /* the name became the title, so the rest are numbered from 1 */
+      body.push({ text: (i + 1) + ". " + it.q.replace(/^\d+\.\s*/, ""), fontSize: 12, bold: true, color: C.text, margin: [0, 16, 0, 2],
+                  headlineLevel: 1 });
+      body.push({ text: it.hint.trim(), fontSize: 8.5, color: C.muted, margin: [0, 0, 0, 6] });
+      body.push(it.a
+        ? { text: it.a, fontSize: 10.5, color: C.body, lineHeight: 1.35 }
+        : { text: "Neužpildyta. Galima aptarti vėliau.", fontSize: 10, color: C.muted });
+    });
+    body.push({
+      margin: [0, 28, 0, 0], unbreakable: true,
+      table: { widths: ["*"], body: [[{
+        fillColor: C.sand, margin: [16, 14, 16, 14], border: [false, false, false, false],
+        stack: [
+          { text: "Ką daryti toliau?", bold: true, fontSize: 11, color: C.text, margin: [0, 0, 0, 4] },
+          { text: [
+            "Parodykite šį aprašymą programuotojui arba atsiųskite jį mums ",
+            { text: "info@codeart.lt", color: C.accent, link: "mailto:info@codeart.lt" },
+            ". Per 24 val. atsiųsime darbų planą ir fiksuotą kainą."
+          ], fontSize: 10, color: C.body, lineHeight: 1.35 }
+        ]
+      }]] },
+      layout: "noBorders"
+    });
+
+    return pdfLib().then(function (pdfMake) {
+      pdfMake.createPdf({
+        info: { title: "Projekto aprašymas: " + title, author: "Codeart šablonas" },
+        pageSize: "A4",
+        pageMargins: [56, 72, 56, 64],
+        defaultStyle: { font: "SG", fontSize: 10.5, color: C.body },
+        header: { margin: [56, 30, 56, 0], columns: [
+          { text: "Codeart", bold: true, fontSize: 11, color: C.accent },
+          { text: "codeart.lt", fontSize: 9, color: C.muted, alignment: "right", margin: [0, 2, 0, 0] }
+        ] },
+        footer: function (page, count) {
+          return { margin: [56, 24, 56, 0], columns: [
+            { text: "Šablonas: codeart.lt/lt/straipsniai/uzduotis-programuotojui.html", fontSize: 7.5, color: C.muted },
+            { text: page + " / " + count, fontSize: 7.5, color: C.muted, alignment: "right", width: 40 }
+          ] };
+        },
+        /* never leave a question at the foot of a page without room for its answer */
+        pageBreakBefore: function (node) {
+          return node.headlineLevel === 1 && node.startPosition.top > 842 - 64 - 90;
+        },
+        content: body
+      }).download(form.getAttribute("data-file"));
+    });
+  }
 
   /* Contact page: pick up a brief sent from the template above. */
   (function () {
