@@ -894,7 +894,7 @@ def project_card(key, lang, text):
 def solution_cards(lang):
     """Home page: the service pages as cards with a "from" price. Until any service
     page is published, the general service cards stand in."""
-    pages = [(k, s) for k, s in SERVICE_PAGES.items() if visible(s)]
+    pages = [(k, s) for k, s in SERVICE_PAGES.items() if visible(s) and s.get("listed", True)]
     if not pages:
         return service_cards(lang)
     more = SVC_L[lang]["more"]
@@ -2060,7 +2060,7 @@ SVC_L = {
            "get_common": ["Kodą, kuris priklauso jums", "Naudojimo instrukcijas, o jei reikia, ir vaizdo instrukcijas",
                           "3 mėn. garantiją po paleidimo"],
            "build_note": "Tai tik pavyzdžiai: sukurti galima ir tai, ko čia nėra. Papasakokite savo idėją.",
-           "articles_h": "Naudingi straipsniai", "subpages_h": "Konkretūs sprendimai", "more": "Plačiau →",
+           "articles_h": "Naudingi straipsniai", "see_also": "Taip pat žiūrėkite", "subpages_h": "Konkretūs sprendimai", "more": "Plačiau →",
            "country": "Lietuva"},
     "en": {"crumb_home": "Home", "crumb_svc": "Services",
            "price_l": "Price", "time_l": "Timeline", "get_h": "What you get", "price_h": "Price and timeline",
@@ -2072,7 +2072,7 @@ SVC_L = {
            "get_common": ["Code that belongs to you", "User guides, plus video guides if needed",
                           "A 3-month warranty after launch"],
            "build_note": "These are just examples: we can build what isn't listed too. Tell us about your idea.",
-           "articles_h": "More on this topic", "subpages_h": "Specific solutions", "more": "Read more →",
+           "articles_h": "More on this topic", "see_also": "See also", "subpages_h": "Specific solutions", "more": "Read more →",
            "country": "Lithuania"},
 }
 
@@ -2110,7 +2110,7 @@ def solution_media(svc):
 
 
 def service_page_cards(lang):
-    pages = [(k, s) for k, s in SERVICE_PAGES.items() if visible(s)]
+    pages = [(k, s) for k, s in SERVICE_PAGES.items() if visible(s) and s.get("listed", True)]
     if not pages:
         return ""
     l = SVC_L[lang]
@@ -2161,7 +2161,7 @@ def service_page(key, lang):
 {sec_head(next(num), d["build_h"], "svc-build")}
 {card_grid(d["build"], tiles=svc.get("build_icons"))}
 <p class="build-note" data-reveal>{l["build_note"]} <a class="link" href="{url("contact", lang)}">{t["cta"]} →</a></p>
-</div>
+{see_also(svc, lang)}</div>
 </section>""", f"""<section class="section section--raised" aria-labelledby="svc-price">
 <div class="container">
 {sec_head(next(num), l["price_h"], "svc-price")}
@@ -2257,6 +2257,15 @@ def service_page(key, lang):
     }, breadcrumb_ld(lang, crumbs)]
     assemble(lang, key, d["title"], d["desc"], body, jsonld=jsonld, current="services", cta=True,
              draft=is_draft(svc))
+
+
+def see_also(svc, lang):
+    """Links to related service pages, for pages that are not shown as cards."""
+    keys = [k for k in svc.get("see_also", []) if visible(SERVICE_PAGES[k])]
+    if not keys:
+        return ""
+    links = ", ".join(f'<a class="link" href="{url(k, lang)}">{SERVICE_PAGES[k][lang]["name"]}</a>' for k in keys)
+    return f'<p class="build-note" data-reveal>{SVC_L[lang]["see_also"]}: {links}</p>\n'
 
 
 def live_links(body):
