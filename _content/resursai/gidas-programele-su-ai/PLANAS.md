@@ -34,7 +34,7 @@ Po vieną skyrių, ne visą gidą iš karto. Kiekvienam skyriui:
 2. **Šaltiniai.** Kiekvienas faktas, skaičius, kaina ar data turi šaltinį. Pirmenybė oficialiems puslapiams (Apple, Google, įrankių dokumentacija) ir tyrimams. Antriniai šaltiniai (tinklaraščiai, žiniasklaida) žymimi kaip antriniai.
 3. **Juodraštis** šiame aplanke (`NN-pavadinimas.md`), su šaltinių sąrašu skyriaus gale.
 4. **Faktų patikra.** Šaltinių lentelė skyriaus faile: kas patvirtinta, iš kur, kada tikrinta.
-5. **Peržiūra.** Skyrius keliamas į Claude Docs dokumentą, Gabrielė komentuoja.
+5. **Peržiūra.** Skyrius keliamas į Claude Docs dokumentą „Gidas: programėlė su AI (juodraštis)“ (https://claude.ai/artifact/Stp6wHq1AKjponC3rQu7pL), Gabrielė komentuoja.
 6. **Galutinis tekstas.** Komentarai perkeliami į `.md` failą, skyrius pažymimas „baigtas“.
 
 Pastaba apie šaltinius: šios darbo sesijos tinklas neleidžia atidaryti kai kurių svetainių (pvz. support.google.com, webkit.org, veracode.com). Tokiais atvejais faktas patikrintas per paiešką, kuri cituoja oficialų puslapį, o skyriaus šaltinių lentelėje tai pažymėta. Prieš maketuojant PDF šiuos šaltinius reikia atsidaryti ir patikrinti dar kartą.

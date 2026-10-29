@@ -134,7 +134,7 @@ AI įrankis yra kaip labai greitas, bet nepatyręs padėjėjas. Jis padarys daug
 
 Užpildykite penkias eilutes. Jei kurios nors nežinote, palikite tuščią ir grįžkite po pokalbio su būsimais vartotojais.
 
-| | |
+| Klausimas | Jūsų atsakymas |
 |---|---|
 | **Problema** (vienu sakiniu) | |
 | **Kam ji aktuali** (kas tie žmonės, kiek jų) | |
