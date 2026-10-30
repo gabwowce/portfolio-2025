@@ -4,7 +4,7 @@ Brangiausia klaida kuriant programėlę yra sukurti ne tą dalyką. Su AI įrank
 
 Šis skyrius padės per pusvalandį atsakyti į tris klausimus:
 
-1. Ar jūsų idėjai reikia programėlės, ar užtenka gatavo įrankio?
+1. Ar jūsų idėjai reikia savos programėlės, ar užtenka esamų įrankių?
 2. Jei reikia, kokios: web aplikacijos, PWA ar mobiliosios programėlės?
 3. Ko tikėtis iš AI įrankių ir ko iš jų nesitikėti?
 
@@ -14,42 +14,56 @@ Skyriaus pabaigoje užpildysite **idėjos kortelę**. Ją naudosite 2 skyriuje, 
 
 ## 1.1. Trys klausimai prieš pradedant
 
-### Kokią problemą sprendžiate ir kam?
+Šiandien kuriamos programėlės nebėra vien verslo įrankiai. Žmonės kuria AI asistentus, mokymų ir kursų platformas, žaidimus, bendruomenes, įrankius sau. Nesvarbu, ką kuriate, prieš pradedant verta atsakyti į tris klausimus.
 
-Pabandykite ją aprašyti vienu sakiniu pagal šį pavyzdį:
+### Kam ir kokią vertę kuriate?
 
-> **[Kas]** negali **[ko padaryti]**, todėl **[kokia pasekmė]**.
+Aprašykite vienu sakiniu pagal šį pavyzdį:
 
-Pavyzdžiui: „Gėlių parduotuvės floristės nemato visų dienos užsakymų vienoje vietoje, todėl kartais pamirštamas pristatymas ir klientai skambina teirautis.“
+> **[Kas]** galės **[ką padaryti ar patirti]**, nors dabar **[kas trukdo ar ko trūksta]**.
 
-Jei sakinio parašyti nepavyksta, problemos dar nežinote pakankamai gerai. Tai normalu, bet tada pirmiausia verta pasikalbėti su keliais žmonėmis, kurie su ja susiduria, o ne kurti.
+Pavyzdžiai:
 
-### Kaip žmonės ją sprendžia dabar?
+- **AI įrankis:** „Smulkių el. parduotuvių savininkai galės per minutę sukurti prekių aprašymus lietuviškai, nors dabar kiekvienam aprašymui sugaišta po pusvalandį.“
+- **Mokymai:** „Pradedantieji fotografai galės mokytis trumpomis užduotimis telefone ir gauti atsiliepimą apie savo nuotraukas, nors dabar kursai yra ilgi vaizdo įrašai be grįžtamojo ryšio.“
+- **Pramoga:** „Draugų kompanijos galės žaisti lietuvišką viktoriną vakarėlyje iš savo telefonų, be jokios registracijos.“
+- **Verslo įrankis:** „Gėlių parduotuvės floristės matys visus dienos užsakymus vienoje vietoje, nors dabar pristatymai kartais pamirštami.“
 
-Beveik kiekviena problema jau kaip nors sprendžiama: Excel lentele, sąsiuviniu, Messenger grupe, skambučiais. Užsirašykite, kaip tai daroma dabar ir kas tame nepatogu.
+Jei sakinio parašyti nepavyksta, dar nežinote, kam kuriate. Tai normalu: pirmiausia pasikalbėkite su keliais žmonėmis, kuriems produktas skirtas.
 
-Tai svarbu dėl paprastos priežasties: naujas įrankis turi būti **gerokai** patogesnis už esamą. Jei Excel lentelė veikia „pakankamai gerai“, žmonės ja ir toliau naudosis, net jei jūsų programėlė bus gražesnė.
+### Ką jie naudoja dabar?
 
-### Ar jau yra gatavas įrankis?
+Jūsų produktas visada su kažkuo konkuruoja, net jei tai ne kita programėlė:
 
-Daugeliui įprastų poreikių jau yra sukurtų paslaugų, kurios kainuoja kelis ar keliasdešimt eurų per mėnesį ir veikia iš karto:
+- AI įrankis konkuruoja su ChatGPT ar Claude, kuriuos žmonės jau naudoja;
+- kursai – su YouTube ir nemokamais straipsniais;
+- žaidimas ar pramoga – su viskuo, kas telefone kovoja dėl dėmesio;
+- verslo įrankis – su Excel lentele ir Messenger grupe.
 
-| Poreikis | Ko ieškoti |
+Užsirašykite, ką jūsų žmonės naudoja dabar ir kodėl jie turėtų pereiti prie jūsų produkto. Jei atsakymas tik „mano gražesnis“, to neužteks: žmonės lieka prie to, prie ko pripratę.
+
+### Ar jau yra panašių sprendimų?
+
+Panašūs produktai nėra blogas ženklas. Atvirkščiai, jie įrodo, kad žmonėms to reikia. Klausimas kitas: ką galite pasiūlyti, ko jie neturi? Dažnai tai lietuvių kalba, siauresnė auditorija (pvz. tik kirpykloms), paprastesnis naudojimas arba kitokia kaina.
+
+Taip pat pasitikrinkite, ar idėjos negalima įgyvendinti visai be programavimo:
+
+| Idėja | Ką patikrinti pirmiausia |
 |---|---|
-| Klientų registracija laikui | rezervacijų sistemos (paieškoje: „rezervacijų sistema“, „online booking“) |
-| Formos, apklausos, paraiškos | formų kūrimo įrankiai (pvz. Google Forms, Tally) |
-| Vidiniai sąrašai, užduotys, duomenų bazė komandai | Notion, Airtable, Google Sheets |
+| AI asistentas konkrečiai temai | ar užtenka savo GPT ChatGPT aplinkoje ar Claude projekto su gerai parašytais nurodymais ir jūsų dokumentais [13], [14] |
+| Kursai ar mokymai | kursų platformos (pvz. Teachable, Thinkific) arba uždara Notion erdvė |
+| Bendruomenė | Discord, Facebook ar Skool grupė |
+| Registracija, formos, apklausos | Google Forms, Tally, rezervacijų sistemos |
 | El. parduotuvė | Shopify, WooCommerce |
-| Sąskaitos ir apskaita | apskaitos programos |
 
 Savo programėlę verta kurti, kai:
 
-- jūsų procesas neįtelpa į gatavą įrankį ir tenka jį laužyti ar dubliuoti rankomis;
-- reikia sujungti kelias sistemas taip, kaip gatavi įrankiai neleidžia;
+- idėja neįtelpa į esamus įrankius ir tenka juos laužyti ar dubliuoti darbą rankomis;
+- norite sujungti kelis dalykus į vieną patirtį (pvz. mokymus su AI grįžtamuoju ryšiu);
 - programėlė pati yra jūsų produktas, už kurį mokės kiti;
-- gatavo įrankio prenumerata per kelerius metus kainuotų daugiau nei savas sprendimas.
+- esamų įrankių prenumeratos per kelerius metus kainuotų daugiau nei savas sprendimas.
 
-Jei nė vienas punktas netinka, pradėkite nuo gatavo įrankio. Tai ne pralaimėjimas: po kelių mėnesių tiksliai žinosite, ko jam trūksta, o tai ir bus geriausia užduotis savai programėlei.
+Jei nė vienas punktas netinka, pradėkite nuo esamo įrankio ir patikrinkite, ar žmonės juo naudosis. Tai ne pralaimėjimas: po kelių mėnesių tiksliai žinosite, ko trūksta, ir tai bus geriausia užduotis savai programėlei.
 
 ---
 
@@ -60,6 +74,18 @@ Jei nė vienas punktas netinka, pradėkite nuo gatavo įrankio. Tai ne pralaimė
 - **Web aplikacija** veikia naršyklėje, atidaroma nuoroda. Nieko diegti nereikia, veikia ir kompiuteryje, ir telefone.
 - **PWA** (angl. *progressive web app*) yra web aplikacija, kurią galima „įdiegti“ į telefono pagrindinį ekraną. Ji atsidaro kaip atskira programėlė, be naršyklės juostos, ir gali siųsti pranešimus.
 - **Mobilioji programėlė** kuriama atskirai iPhone ir Android telefonams ir platinama per App Store bei Google Play.
+
+### Kas yra PWA, paprastai
+
+PWA yra svetainė, kuri elgiasi kaip programėlė. Ją kuriate vieną kartą, kaip web aplikaciją, o vartotojas gali ją „įsidėti“ į telefoną be App Store ar Google Play.
+
+Kaip tai atrodo vartotojui:
+
+1. Telefone atsidaro jūsų nuorodą, kaip įprastą svetainę.
+2. iPhone Safari naršyklėje paspaudžia „Bendrinti“ ir pasirenka pridėjimą prie pagrindinio ekrano. Android telefone Chrome gali pats pasiūlyti įdiegti programėlę.
+3. Telefono ekrane atsiranda jūsų ikona. Paspaudus programėlė atsidaro per visą ekraną, be naršyklės adreso juostos, kaip įprasta programėlė.
+
+Kodėl tai patogu: nereikia parduotuvių patvirtinimo ir mokesčių, o atnaujinus svetainę visi vartotojai iš karto gauna naują versiją. Trūkumas: vartotojas pats turi žinoti, kad programėlę galima įsidiegti, todėl tai tenka paaiškinti, pavyzdžiui, trumpa instrukcija pirmą kartą atsidarius.
 
 ### Kuo jos skiriasi praktiškai
 
@@ -139,14 +165,14 @@ Užpildykite penkias eilutes. Jei kurios nors nežinote, palikite tuščią ir g
 | **Problema** (vienu sakiniu) | |
 | **Kam ji aktuali** (kas tie žmonės, kiek jų) | |
 | **Kaip sprendžiama dabar** | |
-| **Kodėl gatavas įrankis netinka** | |
+| **Kodėl esami įrankiai netinka** | |
 | **Formatas** (web, PWA ar mobilioji) ir kodėl | |
 
 ## Skyriaus kontrolinis sąrašas
 
 - [ ] Problemą galiu aprašyti vienu sakiniu.
 - [ ] Žinau, kaip ji sprendžiama dabar ir kas tame nepatogu.
-- [ ] Patikrinau, ar nėra gatavo įrankio, kuris tiktų.
+- [ ] Patikrinau, ar idėjos neužtenka įgyvendinti esamais įrankiais.
 - [ ] Pasirinkau formatą: web aplikacija, PWA ar mobilioji programėlė.
 - [ ] Suprantu, kad AI pagreitina darbą, bet už saugumą atsakau pats.
 
@@ -167,6 +193,9 @@ Užpildykite penkias eilutes. Jei kurios nors nežinote, palikite tuščią ir g
 11. CVE-2025-48757 aprašymas (NVD). https://nvd.nist.gov/vuln/detail/CVE-2025-48757
 12. Superblocks, „Lovable Vulnerability Explained: How 170+ Apps Were Exposed“ (antrinis šaltinis, apibendrina tyrėjo Matt Palmer duomenis). https://www.superblocks.com/blog/lovable-vulnerabilities
 
+13. OpenAI, „Introducing GPTs“, 2023-11-06. https://openai.com/index/introducing-gpts/ (patikrinta pagal žiniasklaidos aprašymus)
+14. Simon Willison, „Claude Projects“, 2024-06-25. https://simonwillison.net/2024/Jun/25/claude-projects/ (antrinis šaltinis)
+
 ### Faktų patikra
 
 | Faktas | Šaltinis | Kaip patikrinta | Data |
@@ -183,5 +212,7 @@ Užpildykite penkias eilutes. Jei kurios nors nežinote, palikite tuščią ir g
 | Veracode spalio atnaujinimas: kai kurie modeliai pagerėjo | [10] | paieška cituoja Veracode puslapį | 2026-10-29 |
 | CVE-2025-48757: nepakankamos RLS taisyklės Lovable programėlėse | [11] | paieška cituoja CVE aprašymą keliose CVE duomenų bazėse; NVD atidaryti nepavyko | 2026-10-29 |
 | 170 iš 1 645 programėlių | [12] | tik antriniai šaltiniai; prieš maketuojant rasti pirminį tyrėjo įrašą | 2026-10-29 |
+| Savo GPT galima susikurti be programavimo | [13] | paieška: keli žiniasklaidos aprašymai, OpenAI puslapio atidaryti nepavyko | 2026-10-30 |
+| Claude Projects: dokumentai ir nurodymai projektui | [14] | antriniai šaltiniai | 2026-10-30 |
 
 Prieš maketuojant PDF: atsidaryti [1], [4], [5], [9], [11] tiesiogiai ir rasti pirminį šaltinį skaičiui „170 iš 1 645“.
