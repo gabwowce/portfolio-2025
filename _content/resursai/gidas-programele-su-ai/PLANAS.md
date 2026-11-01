@@ -43,8 +43,8 @@ Pastaba apie šaltinius: šios darbo sesijos tinklas neleidžia atidaryti kai ku
 
 | # | Skyrius | Būsena |
 |---|---|---|
-| 1 | Prieš pradedant: ar jums tikrai reikia programėlės | juodraštis, laukia peržiūros |
-| 2 | Planas: problema, vartotojas, MVP | neparašytas |
+| 1 | Prieš pradedant: ar jums tikrai reikia programėlės | peržiūrėtas, pataisytas pagal komentarus |
+| 2 | Planas: vartotojai, MVP, ekranai ir duomenys, patikrinimas | juodraštis, laukia peržiūros |
 | 3 | Įrankiai: kurį rinktis | neparašytas |
 | 4 | Kūrimas žingsnis po žingsnio | neparašytas |
 | 5 | Saugumas ir kokybė prieš paleidžiant | neparašytas |
@@ -101,7 +101,7 @@ Pastaba apie šaltinius: šios darbo sesijos tinklas neleidžia atidaryti kai ku
 
 | Darbas | Kas daro | Būsena |
 |---|---|---|
-| Gido skyriai 1–7 ir priedai | Claude rašo, Gabrielė peržiūri | 1 skyrius juodraštis |
+| Gido skyriai 1–7 ir priedai | Claude rašo, Gabrielė peržiūri | 1 peržiūrėtas, 2 juodraštis |
 | PDF maketas | Claude | nepradėta |
 | Notion versija | Claude paruošia tekstą, Gabrielė įkelia į savo Notion | nepradėta |
 | Gido puslapis svetainėje (`/lt/resursai/…`) su el. pašto forma | Claude | nepradėta |
