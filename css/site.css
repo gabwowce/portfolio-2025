@@ -4363,3 +4363,32 @@ textarea {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* service page: the free offer within 24 hours */
+.offer-card {
+  max-width: 920px;
+}
+
+.info-card p.offer-card__lead {
+  margin-top: 0;
+}
+
+.offer-card__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 32px;
+}
+
+.offer-card__cta {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+@media (max-width: 759px) {
+  .offer-card__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

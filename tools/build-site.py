@@ -2182,12 +2182,31 @@ def service_page(key, lang):
 </article>
 </div>
 </div>
-</section>""", f"""<section class="section" aria-labelledby="svc-steps">
+</section>"""]
+
+    if d.get("offer"):
+        o = d["offer"]
+        items = "".join(f"<li>{icon('check', 18)}{todo(x)}</li>" for x in o["items"])
+        sections.append(f"""<section class="section" aria-labelledby="svc-offer">
+<div class="container">
+{sec_head(next(num), o["h"], "svc-offer")}
+<div class="info-card info-card--list offer-card" data-reveal>
+<p class="offer-card__lead">{o["lead"]}</p>
+<ul class="checklist offer-card__list">{items}</ul>
+<div class="offer-card__cta">
+<a class="btn btn--lg" href="{url("contact", lang)}">{o["cta"]}</a>
+<span class="mono">{o["note"]}</span>
+</div>
+</div>
+</div>
+</section>""")
+
+    sections.append(f"""<section class="section" aria-labelledby="svc-steps">
 <div class="container">
 {sec_head(next(num), t["steps_h"], "svc-steps")}
 {timeline(t["steps"])}
 </div>
-</section>"""]
+</section>""")
 
     if d.get("project"):
         pkey, text = d["project"]
@@ -2215,6 +2234,12 @@ def service_page(key, lang):
 {article_links(related)}
 </div>
 </section>""")
+
+    # Backgrounds alternate; a page with "fit" starts with a raised section.
+    first = 0 if d.get("fit") else 1
+    sections = [re.sub(r'^<section class="section( section--raised)?"',
+                       '<section class="section section--raised"' if i % 2 == first else '<section class="section"', sec)
+                for i, sec in enumerate(sections)]
 
     crumbs = [("home", l["crumb_home"]), ("services", l["crumb_svc"]), (key, d["name"])]
     intro = f"""{breadcrumbs(lang, crumbs)}

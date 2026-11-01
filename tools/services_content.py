@@ -22,6 +22,7 @@ Per language:
   get         what the client gets on this service (checklist); code ownership, guides and
               the warranty are added to every page from SVC_L["get_common"]
   price, time "from" price and typical timeline
+  offer       optional block about the free offer within 24 hours: h, lead, items, note, cta
   project     (project key, how that project relates) or None
   faq         (question, answer)
 """
@@ -229,6 +230,21 @@ SERVICE_PAGES = {
             ],
             "price": "nuo 1 000 €",
             "time": "3–8 sav.",
+            "offer": {
+                "h": "Pasiūlymas jūsų verslui per 24 valandas",
+                "lead": "Parašykite, kuo užsiimate, ir per parą atsiųsime pasiūlymą, paruoštą būtent jums. Jame rasite:",
+                "items": [
+                    "Kelis variantus su kainomis, kad galėtumėte pasirinkti pagal biudžetą",
+                    "Lentelę, kurioje matyti, kas įeina į kiekvieną variantą",
+                    "Panašių jūsų srities svetainių pavyzdžius, kad iškart matytumėte, kaip galėtų atrodyti jūsų svetainė",
+                    "Terminus ir papildomas išlaidas: domeną, talpinimą, el. paštą",
+                    "Ką darysime, kad jus rastų Google paieškoje",
+                    "Garantiją: 3 mėnesius po paleidimo klaidas taisome nemokamai",
+                    "Sąrašą, ką paruošti pradžiai",
+                ],
+                "note": "Pasiūlymas nemokamas ir niekuo jūsų neįpareigoja.",
+                "cta": "Gauti pasiūlymą per 24 h",
+            },
             "project": ("p_lang", "Kalbų mokymosi platforma iš trijų dalių: vieša svetainė, mokinio platforma ir turinio valdymo sistema, kurioje užduotys sudaromos automatiškai iš žodyno. Visą sistemą sukūrėme nuo nulio: duomenų bazę, serverio logiką, abi platformas ir testus."),
             "faq": [
                 ("Kuo web programavimas skiriasi nuo svetainės kūrimo?", "Svetainė dažniausiai pateikia informaciją, o web programavimas kuria tai, kas su ta informacija dirba: paskyras, skaičiavimus, užsakymus, ryšius su kitomis sistemomis. Jei jums reikia tik pristatomosios svetainės, užteks šablono ar svetainių kūrėjo."),
@@ -264,6 +280,21 @@ SERVICE_PAGES = {
             ],
             "price": "from €1,000",
             "time": "3–8 weeks",
+            "offer": {
+                "h": "An offer for your business within 24 hours",
+                "lead": "Tell us what your business does, and within a day we'll send an offer prepared for you. It includes:",
+                "items": [
+                    "Several options with prices, so you can choose by budget",
+                    "A table showing what each option includes",
+                    "Examples of similar websites in your field, so you can see right away what yours could look like",
+                    "Timelines and extra costs: domain, hosting, email",
+                    "What we'll do so people find you on Google",
+                    "The warranty: for 3 months after launch we fix bugs free of charge",
+                    "A list of what to prepare to get started",
+                ],
+                "note": "The offer is free and doesn't commit you to anything.",
+                "cta": "Get an offer within 24 h",
+            },
             "project": ("p_lang", "A language-learning platform in three parts: a public website, a student platform and a content system where exercises are generated from the vocabulary. We built the whole system from scratch: the database, the server logic, both platforms and the tests."),
             "faq": [
                 ("How is web development different from building a website?", "A website mostly presents information; web development builds what works with that information: accounts, calculations, orders, links to other systems. If you only need a brochure site, a template or site builder will do."),
