@@ -36,7 +36,7 @@ Po vieną skyrių. Kiekvienam:
 1. **Analizė:** ko skaitytojui reikia šiame žingsnyje, kur dažniausiai suklystama.
 2. **Šaltiniai:** kiekvienas faktas, kaina, komanda ar nustatymas tikrinamas oficialioje dokumentacijoje (MDN, Claude Code, GitHub, Vercel dokumentacija ir pan.). Puslapis atsidaromas ir perskaitomas, ne cituojamas iš paieškos. Kainos ir sąlygos žymimos tikrinimo data.
 3. **Juodraštis** šiame aplanke (`NN-pavadinimas.md`) su šaltiniais ir faktų patikros lentele.
-4. **Peržiūra** Claude Docs dokumente, Gabrielė komentuoja.
+4. **Peržiūra** Claude Docs dokumente „Gidas: svetainė su AI (juodraštis)“ (https://claude.ai/artifact/RmEug4JxdAkFsKZDBoCPT8), Gabrielė komentuoja.
 5. **Galutinis tekstas:** komentarai perkeliami į `.md` failą.
 
 Komandos ir nustatymai (instaliavimas, Vercel, domenas) prieš maketuojant PDF dar kartą išbandomi realiame projekte.
