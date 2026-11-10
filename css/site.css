@@ -4461,38 +4461,6 @@ textarea {
   }
 }
 
-.auto-list {
-  list-style: none;
-  padding: 0;
-}
-
-.auto-list li {
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px 24px;
-}
-
-.auto-list li:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.auto-list strong {
-  flex: 0 1 300px;
-  font-weight: 600;
-}
-
-.auto-list span {
-  flex: 1 1 420px;
-  min-width: 0;
-  color: var(--text-body);
-}
-
-.auto-list .link {
-  white-space: nowrap;
-}
-
 /* ------------------------------------------------------------------ */
 /* Project page: the AI agent section                                 */
 /* ------------------------------------------------------------------ */
@@ -4745,7 +4713,6 @@ textarea {
   .card__agent,
   .rows > li,
   .timeline li,
-  .auto-list li,
   .stack-list > div,
   .agent-flow li,
   .p-agent__list li,
@@ -4924,8 +4891,7 @@ textarea {
     gap: 4px;
   }
 
-  .timeline li,
-  .auto-list li {
+  .timeline li {
     padding: 6pt 0;
   }
 }

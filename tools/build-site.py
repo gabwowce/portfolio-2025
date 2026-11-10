@@ -1326,14 +1326,6 @@ P = {
             ("ConvertClimb", "Laipiojimo sudėtingumo laipsnių konverteris, veikia be interneto",
              "React Native · Expo", "2025", [("GitHub", "https://github.com/gabwowce/ConvertClimb")]),
         ],
-        "auto_h": "Ką automatizavau",
-        "auto": [
-            ("Vaizdo įrašų gamyba", "TikMaker DI agentas iš idėjos parengia scenarijų, kadrus, judesį, įgarsinimą ir subtitrus. Žmogus pasirenka kabliuką ir patvirtina scenarijų.", None),
-            ("Tyrimo duomenys baigiamajam darbui", "Skriptas 88 populiarius vaizdo įrašus išanalizuoja su Gemini pagal vieną promptą ir išsaugo struktūrizuotą JSON. Iš analizių sudaromas agento žinių bazės juodraštis.", None),
-            ("Kursų kūrimas", "Kalbų platformoje užduotys sudaromos iš žodyno pačios, visas kursas įkeliamas iš vieno patikrinto Excel failo, sertifikatai išduodami automatiškai.", None),
-            ("Viktorinos atsakymai", "LTSA viktorinos atsakymai patys suvedami į Google Sheets.", None),
-            ("Duomenų rinkimas analizei", "Butų skelbimų duomenys surenkami į MySQL duomenų bazę (Scrapy), automobilių kainos – su Selenium. 2023–2024 m.", ("GitHub", "https://github.com/gabwowce/scraping")),
-        ],
         "exp_h": "Patirtis",
         "exp": [
             ("2026 kov. – dabar", "Programuotoja (Mid), UVS", "Vidinė verslo sistema nuo nulio, pagrindinė frontend programuotoja komandoje: poreikių analizė, architektūra ir sąsaja, specifikacijos ir užduotys backend programuotojui, rezultato tikrinimas", False),
@@ -1449,14 +1441,6 @@ P = {
             ("ConvertClimb", "A climbing grade converter that works offline",
              "React Native · Expo", "2025", [("GitHub", "https://github.com/gabwowce/ConvertClimb")]),
         ],
-        "auto_h": "What I've automated",
-        "auto": [
-            ("Video production", "The TikMaker AI agent turns an idea into a script, frames, motion, voice-over and subtitles. A human picks the hook and approves the script.", None),
-            ("Research data for my thesis", "A script analyses 88 popular videos with Gemini using one prompt and saves structured JSON. The analyses become a first draft of the agent's knowledge base.", None),
-            ("Course creation", "On the language platform, exercises are built from the vocabulary automatically, a whole course is uploaded from one validated Excel file, and certificates are issued automatically.", None),
-            ("Quiz answers", "The LTSA quiz answers go into Google Sheets on their own.", None),
-            ("Data collection for analysis", "Flat listing data is collected into a MySQL database (Scrapy), car prices with Selenium. 2023–2024.", ("GitHub", "https://github.com/gabwowce/scraping")),
-        ],
         "exp_h": "Experience",
         "exp": [
             ("Mar 2026 – present", "Developer (Mid), UVS", "Internal business system from scratch, lead frontend developer in the team: requirements analysis, architecture and interface, specifications and tasks for the backend developer, reviewing the result", False),
@@ -1564,13 +1548,6 @@ def portfolio(lang):
                  f'<span class="visually-hidden">{p["enlarge"]}: {name}</span></button>')
         others.append(f"""<li>{thumb}<span class="r-name">{name}</span><span class="r-desc">{desc}</span><span class="r-stack">{stack}</span><span class="r-links">{ls}</span></li>""")
 
-    autos = []
-    for name, text, link in p["auto"]:
-        ln = ""
-        if link:
-            ln = f' <a class="link" href="{link[1]}" target="_blank" rel="noopener" aria-label="{name}: {link[0]}">{link[0]} ↗</a>'
-        autos.append(f"<li><strong>{name}</strong><span>{text}{ln}</span></li>")
-
     exp = "\n".join(
         f'<li{" class=\"is-past\"" if past else ""}><span class="t-date">{d}</span><span class="t-role">{r}</span><span class="t-what">{w}</span></li>'
         for d, r, w, past in p["exp"])
@@ -1629,26 +1606,20 @@ def portfolio(lang):
 </ul>
 </div>
 </section>
-<section class="cv-sec" aria-labelledby="auto-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">02 —</span><h2 id="auto-title">{p["auto_h"]}</h2></div>
-<ul class="auto-list">
-{chr(10).join(autos)}
-</ul>
-</section>
 <section class="cv-sec" aria-labelledby="exp-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">03 —</span><h2 id="exp-title">{p["exp_h"]}</h2></div>
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">02 —</span><h2 id="exp-title">{p["exp_h"]}</h2></div>
 <ol class="timeline">
 {exp}
 </ol>
 </section>
 <section class="cv-sec" aria-labelledby="tech-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">04 —</span><h2 id="tech-title">{p["tech_h"]}</h2></div>
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">03 —</span><h2 id="tech-title">{p["tech_h"]}</h2></div>
 <dl class="stack-list">
 {tech}
 </dl>
 </section>
 <section class="cv-sec cv-edu" aria-labelledby="edu-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">05 —</span><h2 id="edu-title">{p["edu_l"]}</h2></div>
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">04 —</span><h2 id="edu-title">{p["edu_l"]}</h2></div>
 <p class="cv-edu__line">{icon("cap")}<span>{p["edu"]}<br>{p["thesis"]}</span></p>
 </section>
 </div>
