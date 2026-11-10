@@ -57,7 +57,9 @@ def url(key, lang):
 
 
 def pdf(lang):
-    return f"/{lang}/cv.pdf"
+    # With a content hash, so a browser that has an old CV cached downloads the new one.
+    # Run this build again after tools/build-cv-pdf.mjs so the hash follows the new PDF.
+    return asset(f"/{lang}/cv.pdf")
 
 
 def esc(s):
