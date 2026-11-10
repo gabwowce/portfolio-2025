@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://codeart.lt"
 EMAIL = "info@codeart.lt"
 GITHUB = "https://github.com/gabwowce"
+TIKTOK = "https://www.tiktok.com/@gabiebuilds"
 LINKEDIN = "https://www.linkedin.com/in/gabriel%C4%97-tama%C5%A1evi%C4%8Di%C5%ABt%C4%97-06712526b/"
 FORMSPREE = "https://formspree.io/f/xeorkyne"
 YEAR = "2026"
@@ -286,7 +287,7 @@ T = {
         "about_h": "Apie mane",
         "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "Esu Gabrielė. Man patinka kurti sistemas, kurios žmonėms iš tikrųjų padeda: sutaupo laiko, sumažina chaosą ir leidžia susitelkti į tai, kas svarbu. Labiausiai džiaugiuosi, kai matau, kad mano darbu žmonės naudojasi kasdien ir yra juo patenkinti.",
-        "facts": ["3+ metai kuriant sistemas", "Frontend, backend, API ir AI", "Nuo idėjos iki paleidimo"],
+        "facts": ["~2,5 m. komercinio programavimo", "Frontend, backend, API ir AI", "Nuo idėjos iki paleidimo"],
         "about_more": "Daugiau apie mane →",
         "faq_h": "Dažni klausimai",
         "faq": [
@@ -365,7 +366,7 @@ T = {
         "about_h": "About me",
         "about_alt": "Gabrielė Tamaševičiūtė",
         "about_text": "I'm Gabrielė. I love building systems that genuinely help people: they save time, cut down the chaos and let people focus on what matters. What makes me happiest is seeing people use my work every day and be glad they have it.",
-        "facts": ["3+ years building systems", "Frontend, backend, APIs and AI", "From idea to launch"],
+        "facts": ["~2.5 years of commercial development", "Frontend, backend, APIs and AI", "From idea to launch"],
         "about_more": "More about me →",
         "faq_h": "Frequently asked questions",
         "faq": [
@@ -437,6 +438,7 @@ ICONS = {
     "filter": '<path d="M3 5h18l-7 8v6l-4 2v-8z"/>',
     "mobile": '<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/>',
     "calc": '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>',
+    "tiktok": '<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.4 4.6 5 5"/>',
     "bot": '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/>',
 }
 
@@ -537,7 +539,7 @@ C = {
         "exp_h": "Patirtis",
         "exp": [
             ("Programuotoja (Mid)", "UVS", "2026 kov. – dabar", "Vilnius · React, TypeScript, C#/.NET",
-             "Kuriu vidinę verslo sistemą nuo nulio kaip vienintelė frontend programuotoja komandoje: pati suprojektavau architektūrą ir sąsają, išsiaiškinau poreikius ir suplanavau backend struktūrą. Deleguoju užduotis backend kolegai, tikrinu rezultatą ir atsakau už visą frontend dalį."),
+             "Kuriu vidinę verslo sistemą nuo nulio kaip pagrindinė frontend programuotoja komandoje: pati suprojektavau architektūrą ir sąsają, išsiaiškinau poreikius ir suplanavau backend struktūrą. Deleguoju užduotis backend kolegai, tikrinu rezultatą ir atsakau už visą frontend dalį."),
             ("Web ir mobile app programuotoja", "Laisvai samdoma", "2025 kov. – dabar", "Vilnius · React, Next.js, TypeScript, Tailwind, WordPress, Figma",
              "Kuriu web ir mobiliąsias aplikacijas nuo idėjos iki veikiančio produkto: projektuoju architektūrą ir duomenų struktūrą, kuriu frontend, backend ir API, autentifikaciją bei duomenų bazės logiką. Esu kūrusi „Kibinukai“ užsakymų sistemą ir kelionių aplikaciją, kuriose buvau atsakinga už techninę architektūrą ir pilną funkcionalumo įgyvendinimą. Projektus savarankiškai vedu nuo poreikių išgryninimo iki paleidimo."),
             ("Jaunesnioji programuotoja", "UVS", "2024 birž. – 2026 vas.", "Vilnius · C#/.NET, WPF (XAML), UI prieinamumas",
@@ -632,7 +634,7 @@ C = {
         "exp_h": "Experience",
         "exp": [
             ("Developer (Mid)", "UVS", "Mar 2026 – present", "Vilnius · React, TypeScript, C#/.NET",
-             "Building an internal business system from scratch as the sole frontend developer on the team: I designed the architecture and interface myself, worked out the requirements and planned the backend structure. I hand off tasks to a backend colleague, review the result, and own the frontend end to end."),
+             "Building an internal business system from scratch as the lead frontend developer on the team: I designed the architecture and interface myself, worked out the requirements and planned the backend structure. I hand off tasks to a backend colleague, review the result, and own the frontend end to end."),
             ("Web & mobile app developer", "Self-employed", "Mar 2025 – present", "Vilnius · React, Next.js, TypeScript, Tailwind, WordPress, Figma",
              "Building web and mobile apps from idea to working product: I design the architecture and data structure, and build the frontend, backend and API, authentication and database logic. I built the “Kibinukai” ordering system and a travel app, where I owned the technical architecture and the full implementation. I run projects independently, from scoping the requirements to launch."),
             ("Junior developer", "UVS", "Jun 2024 – Feb 2026", "Vilnius · C#/.NET, WPF (XAML), UI accessibility",
@@ -1087,7 +1089,7 @@ def home(lang):
             "areaServed": [{"@type": "Country", "name": "Lietuva" if lang == "lt" else "Lithuania"}],
             "availableLanguage": ["lt", "en"],
             "founder": {"@id": SITE + "/#person"},
-            "sameAs": [GITHUB, LINKEDIN],
+            "sameAs": [GITHUB, LINKEDIN, TIKTOK],
         },
         person_ld(lang),
     ]
@@ -1232,13 +1234,13 @@ def person_ld(lang):
         "@type": "Person",
         "@id": SITE + "/#person",
         "name": "Gabrielė Tamaševičiūtė",
-        "jobTitle": "Full-stack programuotoja" if lang == "lt" else "Full-stack developer",
+        "jobTitle": "Programuotoja ir sistemų projektuotoja" if lang == "lt" else "Developer and systems designer",
         "url": SITE + url("portfolio", lang),
         "email": EMAIL,
         "knowsLanguage": ["lt", "en"],
         "address": {"@type": "PostalAddress", "addressLocality": "Vilnius", "addressCountry": "LT"},
-        "sameAs": [GITHUB, LINKEDIN],
-        "knowsAbout": ["React", "TypeScript", "Next.js", "Web application development",
+        "sameAs": [GITHUB, LINKEDIN, TIKTOK],
+        "knowsAbout": ["AI agents", "LLM structured output", "Automation", "Requirements analysis", "React", "TypeScript", "Next.js", "Web application development",
                        "Internal business systems", "API integration", "Supabase", ".NET"],
     }
 
@@ -1249,39 +1251,64 @@ def person_ld(lang):
 
 P = {
     "lt": {
-        "title": "Gabrielė Tamaševičiūtė – CV ir portfolio | Full-stack programuotoja",
-        "desc": "Full-stack programuotoja, daugiausia dirbanti su frontend: atrinkti darbai, patirtis, technologijos ir CV.",
+        "title": "Gabrielė Tamaševičiūtė – CV ir portfolio | Programuotoja, DI agentai ir automatizavimas",
+        "desc": "Gabrielė Tamaševičiūtė – programuotoja ir sistemų projektuotoja: DI agentai, automatizavimas, poreikių analizė, architektūra ir techninės specifikacijos. Darbai, patirtis ir CV.",
         "eyebrow": "CV ir portfolio",
         "enlarge": "Padidinti nuotrauką",
         "close": "Uždaryti",
-        "role": "Full-stack programuotoja, daugiausia dirbanti su frontend",
+        "role": "Programuotoja ir sistemų projektuotoja · DI agentai ir automatizavimas",
         "where": "Vilnius",
         "contacts_label": "Kontaktai",
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Atsisiųsti CV (PDF)",
         "facts_label": "Trumpai",
-        "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "3+ m. profesionaliai"),
-                  ("Fokusas", "Vidinės verslo sistemos"), ("Stackas", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
+        "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "~2,5 m. komercinio programavimo"),
+                  ("Fokusas", "DI agentai ir automatizavimas"), ("Stackas", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
+        "about_h": "Apie mane",
+        # {tiktok} and {codeart} become links on the page and plain text on the A4 sheet.
+        "about": [
+            "Laisvalaikiu kuriu automatizuotą trumpų vaizdo įrašų kūrimo ir publikavimo sistemą ({tiktok}). "
+            "Jau veikia DI agentas, kuris iš idėjos parengia vaizdo įrašą: scenarijų, scenas, įgarsinimą ir subtitrus. "
+            "Jo darbą tikrina kodas, o svarbiausius sprendimus priima žmogus. "
+            "Kitas žingsnis – agentas, kuris siūlys aktualias temas, ir socialinių tinklų API, kad paruoštus įrašus būtų galima iškart suplanuoti publikuoti. "
+            "Šis agentas yra ir mano baigiamasis darbas Vilniaus kolegijoje.",
+            "Automatizuoti man patiko visada: dar prieš komercinį darbą rašiau Python skriptus, kurie analizei rinko butų ir automobilių skelbimų duomenis. "
+            "Programuoju apie 2,5 metų (React, TypeScript, C# .NET). "
+            "Su savo įmone {codeart} kuriu sistemas užsakovams nuo poreikių išsiaiškinimo iki paleidimo. "
+            "Prieš IT dirbau transporto planuotoja „Girteka“, todėl suprantu darbą su KPI ir skirtingais padaliniais.",
+        ],
         "works_h": "Atrinkti darbai",
-        "what": "Kas tai:", "role_l": "Rolė:", "fact": "Faktas:",
+        "what": "Kas tai:", "role_l": "Rolė:", "work_l": "Darbas:", "fact": "Faktas:",
+        "agent_l": "Kaip veikia DI agentas",
         "tags_label": "Technologijos",
         "read_more": "Skaityti plačiau",
         "cards": [
-            ("p_lang", "a", "rose", "kalbos", "Kalbų mokymosi platforma",
-             "kalbų mokymosi platforma su turinio valdymo sistema", "viena, visa sistema",
-             "9 užduočių tipai iš vieno žodyno · 433 testai",
-             ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-             "Kalbų platformos mokinio pradžios ekranas su kurso žemėlapiu"),
-            ("p_tik", "b", "lavender", "tik", "TikMaker",
-             "vaizdo redaktorius ir dizaino sistema TikTok / Reels įrašams", "viena, visas įrankis",
-             "laiko juosta su keyframe'ais · AI balsas su žodžių subtitrais",
-             ["React", "TypeScript", "Remotion", "tRPC", "ElevenLabs"],
-             "TikMaker redaktorius su laiko juosta"),
-            ("p_loy", "c", "sand", "loy_cards", "Lojalumo valdymo sistema",
-             "B2B administravimo sistema lojalumo programoms", "pagrindinė frontend programuotoja komandoje",
-             "komandinis projektas · ~730 frontend testų",
-             ["React", "TypeScript", "RTK Query", ".NET", "SQL Server"],
-             "Lojalumo sistema: kortelių sąrašas, duomenys uždengti"),
+            {"key": "p_tik", "shape": "b", "tone": "lavender", "image": "tik", "title": "TikMaker: DI agentas ir vaizdo redaktorius",
+             "what": "DI agentas, kuris iš idėjos parengia redaguojamą trumpo vertikalaus vaizdo įrašo projektą, ir redaktorius jam peržiūrėti",
+             "role": "viena, visas projektas; baigiamasis darbas",
+             "work": "analizė (88 vaizdo įrašai, 7 panašios sistemos), reikalavimai, architektūra ir UML, dokumentacija, testavimas",
+             "agent": ["Gauna idėją, kanalą ir trukmę; šabloną ir pradžios kabliuką galima nurodyti ir patiems.",
+                       "Žingsniais kviečia LLM (Gemini arba Claude): šablonas, kabliukai, scenarijus, vaizdiniai blokai, judesys.",
+                       "Kiekvienas atsakymas tikrinamas Zod schema ir dizaino taisyklėmis kodu, rastos klaidos grąžinamos modeliui pataisyti.",
+                       "Projekto JSON sudaro kodas, ne modelis. Žmogus pasirenka kabliuką ir patvirtina scenarijų, balsą ir subtitrus kuria ElevenLabs, MP4 atvaizduoja Remotion."],
+             "cv_agent": "Agentas žingsniais kviečia LLM (Gemini / Claude), kiekvieną atsakymą tikrina Zod schema ir taisyklėmis kodu, o projektą sudaro kodas; kabliuką ir scenarijų tvirtina žmogus.",
+             "fact": "dizaino taisyklės tikrinamos kodu · savikontrolė pagal kadrus · kiekvienas DI kvietimas žurnale",
+             "tags": ["React", "TypeScript", "Remotion", "tRPC", "Zod", "Gemini / Claude", "ElevenLabs"],
+             "alt": "TikMaker redaktorius su laiko juosta", "wide": True},
+            {"key": "p_lang", "shape": "a", "tone": "rose", "image": "kalbos", "title": "Kalbų mokymosi platforma",
+             "what": "kalbų mokymosi platforma su turinio valdymo sistema",
+             "role": "viena, visa sistema",
+             "work": "visas projektas: poreikių analizė su užsakovu, reikalavimai, architektūra ir duomenų bazės modelis, testavimas",
+             "fact": "9 užduočių tipai iš vieno žodyno · 433 testai",
+             "tags": ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
+             "alt": "Kalbų platformos mokinio pradžios ekranas su kurso žemėlapiu"},
+            {"key": "p_loy", "shape": "c", "tone": "sand", "image": "loy_cards", "title": "Lojalumo valdymo sistema",
+             "what": "B2B administravimo sistema lojalumo programoms",
+             "role": "pagrindinė frontend programuotoja komandoje",
+             "work": "poreikių išgryninimas, architektūros ir sąsajos projektavimas, užduotys backend programuotojui, integraciniai testai",
+             "fact": "komandinis projektas · ~730 frontend testų",
+             "tags": ["React", "TypeScript", "RTK Query", ".NET", "SQL Server"],
+             "alt": "Lojalumo sistema: kortelių sąrašas, duomenys uždengti"},
         ],
         "others_h": "Kiti darbai",
         "others": [
@@ -1301,74 +1328,111 @@ P = {
             ("ConvertClimb", "Laipiojimo sudėtingumo laipsnių konverteris, veikia be interneto",
              "React Native · Expo", "2025", [("GitHub", "https://github.com/gabwowce/ConvertClimb")]),
         ],
+        "auto_h": "Ką automatizavau",
+        "auto": [
+            ("Vaizdo įrašų gamyba", "TikMaker DI agentas iš idėjos parengia scenarijų, kadrus, judesį, įgarsinimą ir subtitrus. Žmogus pasirenka kabliuką ir patvirtina scenarijų.", None),
+            ("Tyrimo duomenys baigiamajam darbui", "Skriptas 88 populiarius vaizdo įrašus išanalizuoja su Gemini pagal vieną promptą ir išsaugo struktūrizuotą JSON. Iš analizių sudaromas agento žinių bazės juodraštis.", None),
+            ("Kursų kūrimas", "Kalbų platformoje užduotys sudaromos iš žodyno pačios, visas kursas įkeliamas iš vieno patikrinto Excel failo, sertifikatai išduodami automatiškai.", None),
+            ("Viktorinos atsakymai", "LTSA viktorinos atsakymai patys suvedami į Google Sheets.", None),
+            ("Duomenų rinkimas analizei", "Butų skelbimų duomenys surenkami į MySQL duomenų bazę (Scrapy), automobilių kainos – su Selenium. 2023–2024 m.", ("GitHub", "https://github.com/gabwowce/scraping")),
+        ],
         "exp_h": "Patirtis",
         "exp": [
-            ("2026 kov. – dabar", "Programuotoja (Mid), UVS", "Vidinė verslo sistema nuo nulio, vienintelė frontend programuotoja", False),
-            ("2025 kov. – dabar", "Laisvai samdoma programuotoja", "Web ir mobile aplikacijos nuo idėjos iki paleidimo", False),
-            ("2024 birž. – 2026 vas.", "Jaunesnioji programuotoja, UVS", "C#/.NET, WPF sistemos ekranai ir funkcionalumas", False),
-            ("2021–2023", "Ankstesnė patirtis", "Planuotoja (Girteka), administratorė (Jarinta)", True),
+            ("2026 kov. – dabar", "Programuotoja (Mid), UVS", "Vidinė verslo sistema nuo nulio, pagrindinė frontend programuotoja komandoje: poreikių analizė, architektūra ir sąsaja, specifikacijos ir užduotys backend programuotojui, rezultato tikrinimas", False),
+            ("2025 kov. – dabar", "Laisvai samdoma programuotoja (Code art)", "Sistemos užsakovams nuo poreikių išsiaiškinimo iki paleidimo: reikalavimai, architektūra, programavimas, naudotojų instrukcijos", False),
+            ("2024 birž. – 2026 vas.", "Jaunesnioji programuotoja, UVS", "C#/.NET, WPF: ekranai ir funkcionalumas, klaidų analizė pagal logus, ekranų dizainas ir prieinamumas", False),
+            ("2021–2023", "Ankstesnė patirtis", "Transporto planuotoja (Girteka): prioritetai, KPI, darbas su skirtingais padaliniais; administratorė (Jarinta)", True),
         ],
         "tech_h": "Technologijos",
         "tech": [
+            ("Analizė ir dokumentavimas", ["Poreikių analizė", "Reikalavimai (FR / NFR)", "UML (PlantUML)",
+                                           "Techninės specifikacijos", "Naudotojų instrukcijos", "Figma prototipai"]),
+            ("DI ir automatizavimas", ["DI agentai su žmogaus patvirtinimu", "Struktūrizuota LLM išvestis (Zod)",
+                                       "Gemini API (Vercel AI SDK)", "Claude / Claude Code", "Paieška su šaltiniais",
+                                       "Kadrų vertinimas multimodaliniu modeliu", "ElevenLabs TTS su žodžių laikais",
+                                       "Promptai ir žinių bazė", "Tokenų ir kainos žurnalas", "Python: Scrapy, Selenium"]),
             ("Frontend", ["React", "TypeScript", "JavaScript", "Next.js", "HTML / CSS", "Tailwind CSS", "shadcn/ui",
                           "Redux Toolkit / RTK Query", "TanStack Query", "Zustand", "React Hook Form + Zod",
                           "AG Grid", "Recharts / ECharts", "Remotion"]),
             ("Backend ir API", ["C# / .NET (ASP.NET Core)", "Entity Framework Core", "Node.js", "Express", "tRPC",
                                 "REST API / OpenAPI", "Next.js Server Actions", "FastAPI"]),
-            ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "Supabase (Auth, Storage, RLS)"]),
+            ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)"]),
             ("Mobile ir desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
             ("Testavimas ir kokybė", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
-            ("AI", ["LLM integracijos", "AI agentai", "ElevenLabs API"]),
-            ("Įrankiai ir dizainas", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "Figma"]),
+            ("Įrankiai", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)"]),
         ],
         "tech_cv": [
-            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand", "AG Grid"]),
-            ("Backend ir API", ["C# / .NET", "Node.js", "Express", "tRPC", "REST API / OpenAPI"]),
-            ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "Supabase", "EF Core"]),
-            ("Mobile ir desktop", ["React Native", "Expo", "WPF"]),
-            ("Testavimas", ["Vitest", "Playwright", "Testing Library", "xUnit"]),
-            ("AI ir įrankiai", ["LLM integracijos", "AI agentai", "Git", "Figma", "Vercel"]),
+            ("Analizė", ["Reikalavimai", "UML", "Techninės specifikacijos", "Naudotojų instrukcijos", "Figma"]),
+            ("DI ir automatizavimas", ["DI agentai", "LLM išvestis su Zod", "Gemini", "Claude Code", "ElevenLabs", "Python (Scrapy, Selenium)"]),
+            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand"]),
+            ("Backend ir DB", ["C# / .NET", "Node.js", "tRPC", "REST / OpenAPI", "PostgreSQL", "SQL Server", "Supabase"]),
+            ("Kita", ["React Native", "WPF", "Vitest", "Playwright", "xUnit", "Git"]),
         ],
         "edu_l": "Išsilavinimas",
         "edu": "Vilniaus kolegija, Programų sistemos, 2023–2027 (studijuoju)",
-        "more": "Daugiau darbų (Kidcan, Kibinai Vilnius, AutoRent ir kt.) ir išsamūs aprašymai: codeart.lt/portfolio",
+        "thesis": "Baigiamasis darbas (rengiamas): „Dirbtinio intelekto agentas trumpiems vertikaliems vaizdo įrašams kurti, remiantis žinių baze ir dizaino taisyklėmis“",
+        "more": "Daugiau darbų ir išsamūs aprašymai: codeart.lt/portfolio",
         "sheet_title": "Gabrielė Tamaševičiūtė – CV",
         "sheet_foot": "Gabrielė Tamaševičiūtė · CV",
     },
     "en": {
-        "title": "Gabrielė Tamaševičiūtė – CV and portfolio | Full-stack developer",
-        "desc": "Full-stack developer with a frontend focus: selected work, experience, technologies and CV.",
+        "title": "Gabrielė Tamaševičiūtė – CV and portfolio | Developer, AI agents and automation",
+        "desc": "Gabrielė Tamaševičiūtė – developer and systems designer: AI agents, automation, requirements analysis, architecture and technical specifications. Work, experience and CV.",
         "eyebrow": "CV and portfolio",
         "enlarge": "Enlarge image",
         "close": "Close",
-        "role": "Full-stack developer with a frontend focus",
+        "role": "Developer and systems designer · AI agents and automation",
         "where": "Vilnius",
         "contacts_label": "Contacts",
         "cv_pdf": "CV (PDF)",
         "cv_dl": "Download CV (PDF)",
         "facts_label": "In short",
-        "facts": [("Now", "Developer (Mid), UVS"), ("Experience", "3+ years professionally"),
-                  ("Focus", "Internal business systems"), ("Stack", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
+        "facts": [("Now", "Developer (Mid), UVS"), ("Experience", "~2.5 years of commercial development"),
+                  ("Focus", "AI agents and automation"), ("Stack", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
+        "about_h": "About me",
+        "about": [
+            "In my free time I'm building an automated system for creating and publishing short vertical videos ({tiktok}). "
+            "An AI agent that turns an idea into a video – script, scenes, voice-over and subtitles – already works. "
+            "Its output is checked by code, and a human makes the key decisions. "
+            "Next come an agent that suggests timely topics and social media APIs, so finished videos can be scheduled for publishing right away. "
+            "The agent is also my final thesis at Vilnius University of Applied Sciences.",
+            "I've always enjoyed automating things: before my first commercial job I wrote Python scripts that collected flat and car listing data for analysis. "
+            "I've been programming for about 2.5 years (React, TypeScript, C# .NET). "
+            "With my company {codeart} I build systems for clients, from working out the requirements to launch. "
+            "Before IT I worked as a transport planner at Girteka, so I understand working with KPIs and across departments.",
+        ],
         "works_h": "Selected work",
-        "what": "What:", "role_l": "Role:", "fact": "Fact:",
+        "what": "What:", "role_l": "Role:", "work_l": "Work:", "fact": "Fact:",
+        "agent_l": "How the AI agent works",
         "tags_label": "Technologies",
         "read_more": "Read more",
         "cards": [
-            ("p_lang", "a", "rose", "kalbos", "Language learning platform",
-             "language learning platform with a content management system", "solo, the whole system",
-             "9 exercise types from one vocabulary · 433 tests",
-             ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
-             "The learner home screen of the language platform with the course map"),
-            ("p_tik", "b", "lavender", "tik", "TikMaker",
-             "video editor and design system for TikTok / Reels videos", "solo, the whole tool",
-             "timeline with keyframes · AI voice with word-level subtitles",
-             ["React", "TypeScript", "Remotion", "tRPC", "ElevenLabs"],
-             "The TikMaker editor with its timeline"),
-            ("p_loy", "c", "sand", "loy_cards", "Loyalty management system",
-             "B2B admin system for loyalty programmes", "lead frontend developer in a team",
-             "team project · ~730 frontend tests",
-             ["React", "TypeScript", "RTK Query", ".NET", "SQL Server"],
-             "Loyalty system: the card list, data masked"),
+            {"key": "p_tik", "shape": "b", "tone": "lavender", "image": "tik", "title": "TikMaker: AI agent and video editor",
+             "what": "an AI agent that turns an idea into an editable short vertical video project, and an editor to review it",
+             "role": "solo, the whole project; final thesis",
+             "work": "analysis (88 videos, 7 similar systems), requirements, architecture and UML, documentation, testing",
+             "agent": ["Takes an idea, a channel and a length; the template and the opening hook can also be set by hand.",
+                       "Calls an LLM step by step (Gemini or Claude): template, hooks, script, visual blocks, motion.",
+                       "Every answer is checked against a Zod schema and by design rules in code, and the problems found go back to the model to fix.",
+                       "The project JSON is built by code, not by the model. A human picks the hook and approves the script, ElevenLabs makes the voice and subtitles, Remotion renders the MP4."],
+             "cv_agent": "The agent calls an LLM (Gemini / Claude) step by step, checks every answer with a Zod schema and rules in code, and code builds the project; a human approves the hook and the script.",
+             "fact": "design rules checked in code · self-review of the frames · every AI call logged",
+             "tags": ["React", "TypeScript", "Remotion", "tRPC", "Zod", "Gemini / Claude", "ElevenLabs"],
+             "alt": "The TikMaker editor with its timeline", "wide": True},
+            {"key": "p_lang", "shape": "a", "tone": "rose", "image": "kalbos", "title": "Language learning platform",
+             "what": "language learning platform with a content management system",
+             "role": "solo, the whole system",
+             "work": "the whole project: requirements analysis with the client, requirements, architecture and data model, testing",
+             "fact": "9 exercise types from one vocabulary · 433 tests",
+             "tags": ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
+             "alt": "The learner home screen of the language platform with the course map"},
+            {"key": "p_loy", "shape": "c", "tone": "sand", "image": "loy_cards", "title": "Loyalty management system",
+             "what": "B2B admin system for loyalty programmes",
+             "role": "lead frontend developer in a team",
+             "work": "working out the requirements, architecture and interface design, tasks for the backend developer, integration tests",
+             "fact": "team project · ~730 frontend tests",
+             "tags": ["React", "TypeScript", "RTK Query", ".NET", "SQL Server"],
+             "alt": "Loyalty system: the card list, data masked"},
         ],
         "others_h": "Other work",
         "others": [
@@ -1388,42 +1452,54 @@ P = {
             ("ConvertClimb", "A climbing grade converter that works offline",
              "React Native · Expo", "2025", [("GitHub", "https://github.com/gabwowce/ConvertClimb")]),
         ],
+        "auto_h": "What I've automated",
+        "auto": [
+            ("Video production", "The TikMaker AI agent turns an idea into a script, frames, motion, voice-over and subtitles. A human picks the hook and approves the script.", None),
+            ("Research data for my thesis", "A script analyses 88 popular videos with Gemini using one prompt and saves structured JSON. The analyses become a first draft of the agent's knowledge base.", None),
+            ("Course creation", "On the language platform, exercises are built from the vocabulary automatically, a whole course is uploaded from one validated Excel file, and certificates are issued automatically.", None),
+            ("Quiz answers", "The LTSA quiz answers go into Google Sheets on their own.", None),
+            ("Data collection for analysis", "Flat listing data is collected into a MySQL database (Scrapy), car prices with Selenium. 2023–2024.", ("GitHub", "https://github.com/gabwowce/scraping")),
+        ],
         "exp_h": "Experience",
         "exp": [
-            ("Mar 2026 – present", "Developer (Mid), UVS", "Internal business system from scratch, the only frontend developer", False),
-            ("Mar 2025 – present", "Freelance developer", "Web and mobile apps from idea to launch", False),
-            ("Jun 2024 – Feb 2026", "Junior developer, UVS", "C#/.NET, WPF system screens and features", False),
-            ("2021–2023", "Earlier experience", "Planner (Girteka), administrator (Jarinta)", True),
+            ("Mar 2026 – present", "Developer (Mid), UVS", "Internal business system from scratch, lead frontend developer in the team: requirements analysis, architecture and interface, specifications and tasks for the backend developer, reviewing the result", False),
+            ("Mar 2025 – present", "Freelance developer (Code art)", "Systems for clients from working out the requirements to launch: requirements, architecture, development, user guides", False),
+            ("Jun 2024 – Feb 2026", "Junior developer, UVS", "C#/.NET, WPF: screens and features, bug analysis from logs, screen design and accessibility", False),
+            ("2021–2023", "Earlier experience", "Transport planner (Girteka): priorities, KPIs, work across departments; administrator (Jarinta)", True),
         ],
         "tech_h": "Technologies",
         "tech": [
+            ("Analysis and documentation", ["Requirements analysis", "Requirements (FR / NFR)", "UML (PlantUML)",
+                                            "Technical specifications", "User guides", "Figma prototypes"]),
+            ("AI and automation", ["AI agents with human approval", "Structured LLM output (Zod)",
+                                   "Gemini API (Vercel AI SDK)", "Claude / Claude Code", "Search with sources",
+                                   "Frame review with a multimodal model", "ElevenLabs TTS with word timings",
+                                   "Prompts and knowledge base", "Token and cost logging", "Python: Scrapy, Selenium"]),
             ("Frontend", ["React", "TypeScript", "JavaScript", "Next.js", "HTML / CSS", "Tailwind CSS", "shadcn/ui",
                           "Redux Toolkit / RTK Query", "TanStack Query", "Zustand", "React Hook Form + Zod",
                           "AG Grid", "Recharts / ECharts", "Remotion"]),
             ("Backend and APIs", ["C# / .NET (ASP.NET Core)", "Entity Framework Core", "Node.js", "Express", "tRPC",
                                   "REST API / OpenAPI", "Next.js Server Actions", "FastAPI"]),
-            ("Databases", ["SQL", "PostgreSQL", "SQL Server", "Supabase (Auth, Storage, RLS)"]),
+            ("Databases", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)"]),
             ("Mobile and desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
             ("Testing and quality", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
-            ("AI", ["LLM integrations", "AI agents", "ElevenLabs API"]),
-            ("Tools and design", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "Figma"]),
+            ("Tools", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)"]),
         ],
         "tech_cv": [
-            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand", "AG Grid"]),
-            ("Backend and APIs", ["C# / .NET", "Node.js", "Express", "tRPC", "REST API / OpenAPI"]),
-            ("Databases", ["SQL", "PostgreSQL", "SQL Server", "Supabase", "EF Core"]),
-            ("Mobile and desktop", ["React Native", "Expo", "WPF"]),
-            ("Testing", ["Vitest", "Playwright", "Testing Library", "xUnit"]),
-            ("AI and tools", ["LLM integrations", "AI agents", "Git", "Figma", "Vercel"]),
+            ("Analysis", ["Requirements", "UML", "Technical specifications", "User guides", "Figma"]),
+            ("AI and automation", ["AI agents", "LLM output with Zod", "Gemini", "Claude Code", "ElevenLabs", "Python (Scrapy, Selenium)"]),
+            ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand"]),
+            ("Backend and DB", ["C# / .NET", "Node.js", "tRPC", "REST / OpenAPI", "PostgreSQL", "SQL Server", "Supabase"]),
+            ("Other", ["React Native", "WPF", "Vitest", "Playwright", "xUnit", "Git"]),
         ],
         "edu_l": "Education",
         "edu": "Vilnius University of Applied Sciences (Vilniaus kolegija), Software Systems, 2023–2027 (in progress)",
-        "more": "More work (Kidcan, Kibinai Vilnius, AutoRent and others) and full write-ups: codeart.lt/en/portfolio.html",
+        "thesis": "Final thesis (in progress): “AI Agent for Creating Short-Form Vertical Videos Based on a Knowledge Base and Design Rules”",
+        "more": "More work and full write-ups: codeart.lt/en/portfolio.html",
         "sheet_title": "Gabrielė Tamaševičiūtė – CV",
         "sheet_foot": "Gabrielė Tamaševičiūtė · CV",
     },
 }
-
 
 # Screenshot files for "Other work": name -> (file stem, large w, h, thumb w, h)
 OTHER_SHOTS = {
@@ -1436,26 +1512,48 @@ OTHER_SHOTS = {
 }
 
 
+def about_text(lang, links=True):
+    """The "About me" paragraphs: links on the page, plain text on the A4 sheet."""
+    p = P[lang]
+    if links:
+        tiktok = f'<a href="{TIKTOK}" target="_blank" rel="me noopener">TikTok: @gabiebuilds</a>'
+        codeart = f'<a href="{url("home", lang)}">Code art</a>'
+    else:
+        tiktok = "TikTok: @gabiebuilds"
+        codeart = "Code art (codeart.lt)"
+    return [para.format(tiktok=tiktok, codeart=codeart) for para in p["about"]]
+
+
 def portfolio(lang):
     p = P[lang]
     facts = "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["facts"])
+    about = "\n".join(f"<p>{x}</p>" for x in about_text(lang))
 
     cards = []
-    for key, shape, tone, image, title, what, role, fact, tags, alt in p["cards"]:
-        tag_li = "".join(f"<li>{x}</li>" for x in tags)
-        cards.append(f"""<article class="card card--{shape}">
+    for c in p["cards"]:
+        tag_li = "".join(f"<li>{x}</li>" for x in c["tags"])
+        agent = ""
+        if c.get("agent"):
+            agent = (f'<div class="card__agent"><p class="card__agent-h">{icon("bot", 18)}{p["agent_l"]}</p>'
+                     f'<ol>{"".join(f"<li>{x}</li>" for x in c["agent"])}</ol></div>')
+        wide = " card--wide" if c.get("wide") else ""
+        cards.append(f"""<article class="card card--{c["shape"]}{wide}">
 <div class="card__media">
-{blob(shape, tone)}
-{framed(image, alt, "(max-width: 759px) 88vw, 380px", dark=(image == "tik"))}
+{blob(c["shape"], c["tone"])}
+{framed(c["image"], c["alt"], "(max-width: 759px) 88vw, 560px" if wide else "(max-width: 759px) 88vw, 380px", dark=(c["image"] == "tik"))}
 </div>
-<h3>{title}</h3>
+<div class="card__body">
+<h3>{c["title"]}</h3>
 <dl class="card__facts">
-<div><dt>{p["what"]}</dt><dd>{what}</dd></div>
-<div><dt>{p["role_l"]}</dt><dd>{role}</dd></div>
-<div><dt>{p["fact"]}</dt><dd>{fact}</dd></div>
+<div><dt>{p["what"]}</dt><dd>{c["what"]}</dd></div>
+<div><dt>{p["role_l"]}</dt><dd>{c["role"]}</dd></div>
+<div><dt>{p["work_l"]}</dt><dd>{c["work"]}</dd></div>
+<div><dt>{p["fact"]}</dt><dd>{c["fact"]}</dd></div>
 </dl>
+{agent}
 <ul class="tags" aria-label="{p["tags_label"]}">{tag_li}</ul>
-<div class="card__links"><a class="link" href="{url(key, lang)}" aria-label="{p["read_more"]}: {title}">{p["read_more"]} →</a></div>
+<div class="card__links"><a class="link" href="{url(c["key"], lang)}" aria-label="{p["read_more"]}: {c["title"]}">{p["read_more"]} →</a></div>
+</div>
 </article>""")
 
     others = []
@@ -1468,6 +1566,13 @@ def portfolio(lang):
                  f'<img src="/img/site/others/{shot}-thumb.webp" width="{tw}" height="{th}" alt="" loading="lazy" decoding="async">'
                  f'<span class="visually-hidden">{p["enlarge"]}: {name}</span></button>')
         others.append(f"""<li>{thumb}<span class="r-name">{name}</span><span class="r-desc">{desc}</span><span class="r-stack">{stack}</span><span class="r-links">{ls}</span></li>""")
+
+    autos = []
+    for name, text, link in p["auto"]:
+        ln = ""
+        if link:
+            ln = f' <a class="link" href="{link[1]}" target="_blank" rel="noopener" aria-label="{name}: {link[0]}">{link[0]} ↗</a>'
+        autos.append(f"<li><strong>{name}</strong><span>{text}{ln}</span></li>")
 
     exp = "\n".join(
         f'<li{" class=\"is-past\"" if past else ""}><span class="t-date">{d}</span><span class="t-role">{r}</span><span class="t-what">{w}</span></li>'
@@ -1494,6 +1599,7 @@ def portfolio(lang):
 <a href="{pdf(lang)}">{icon("file", 18)}{p["cv_pdf"]}</a>
 <a href="{GITHUB}" target="_blank" rel="me noopener">{icon("github", 18)}GitHub</a>
 <a href="{LINKEDIN}" target="_blank" rel="me noopener">{icon("linkedin", 18)}LinkedIn</a>
+<a href="{TIKTOK}" target="_blank" rel="me noopener">{icon("tiktok", 18)}TikTok</a>
 <a href="mailto:{EMAIL}">{icon("mail", 18)}{EMAIL}</a>
 </nav>
 </div>
@@ -1503,6 +1609,12 @@ def portfolio(lang):
 </div>
 </section>
 <div class="container">
+<section class="cv-about" aria-labelledby="about-title">
+<h2 id="about-title">{p["about_h"]}</h2>
+<div class="cv-about__text">
+{about}
+</div>
+</section>
 <section class="cv-facts" aria-label="{p["facts_label"]}">
 <dl>
 {facts}
@@ -1520,21 +1632,27 @@ def portfolio(lang):
 </ul>
 </div>
 </section>
+<section class="cv-sec" aria-labelledby="auto-title">
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">02 —</span><h2 id="auto-title">{p["auto_h"]}</h2></div>
+<ul class="auto-list">
+{chr(10).join(autos)}
+</ul>
+</section>
 <section class="cv-sec" aria-labelledby="exp-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">02 —</span><h2 id="exp-title">{p["exp_h"]}</h2></div>
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">03 —</span><h2 id="exp-title">{p["exp_h"]}</h2></div>
 <ol class="timeline">
 {exp}
 </ol>
 </section>
 <section class="cv-sec" aria-labelledby="tech-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">03 —</span><h2 id="tech-title">{p["tech_h"]}</h2></div>
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">04 —</span><h2 id="tech-title">{p["tech_h"]}</h2></div>
 <dl class="stack-list">
 {tech}
 </dl>
 </section>
 <section class="cv-sec cv-edu" aria-labelledby="edu-title">
-<div class="cv-sec__head"><span class="mono" aria-hidden="true">04 —</span><h2 id="edu-title">{p["edu_l"]}</h2></div>
-<p class="cv-edu__line">{icon("cap")}<span>{p["edu"]}</span></p>
+<div class="cv-sec__head"><span class="mono" aria-hidden="true">05 —</span><h2 id="edu-title">{p["edu_l"]}</h2></div>
+<p class="cv-edu__line">{icon("cap")}<span>{p["edu"]}<br>{p["thesis"]}</span></p>
 </section>
 </div>
 <dialog class="lightbox" id="lightbox" aria-label="{p["enlarge"]}">
@@ -1551,16 +1669,21 @@ def portfolio(lang):
 
 def cv_sheet(lang):
     p = P[lang]
-    facts = "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["facts"])
+    # The stack is listed under Technologies, so the sheet keeps the first three facts.
+    facts = "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["facts"][:3])
+    intro = " ".join(about_text(lang, links=False))
     works = []
-    for key, shape, tone, image, title, what, role, fact, tags, alt in p["cards"]:
-        sentence = what[0].upper() + what[1:] + "."
-        works.append(f"""<article>
-<h3>{title}</h3>
+    for c in p["cards"]:
+        sentence = c["what"][0].upper() + c["what"][1:] + "."
+        agent = f'<p class="gap">{c["cv_agent"]}</p>' if c.get("cv_agent") else ""
+        wide = ' class="wide"' if c.get("wide") else ""
+        works.append(f"""<article{wide}>
+<h3>{c["title"]}</h3>
 <p>{sentence}</p>
-<p class="gap"><span class="lbl">{p["role_l"]}</span> {role}</p>
-<p><span class="lbl">{p["fact"]}</span> {fact}</p>
-<p class="gap m">{" · ".join(tags)}</p>
+{agent}
+<p class="gap"><span class="lbl">{p["role_l"]}</span> {c["role"]}</p>
+<p><span class="lbl">{p["work_l"]}</span> {c["work"]}</p>
+<p class="gap m">{" · ".join(c["tags"])}</p>
 </article>""")
     rows = "\n".join(
         f'<tr{" class=\"is-past\"" if past else ""}><td class="d">{d}</td><td class="r">{r}</td><td>{w}</td></tr>'
@@ -1581,9 +1704,10 @@ def cv_sheet(lang):
 <div><a href="mailto:{EMAIL}">{EMAIL}</a></div>
 <div><a href="{GITHUB}">github.com/gabwowce</a></div>
 <div><a href="{SITE + url("portfolio", lang)}">{site_cv}</a></div>
-<div><a href="{LINKEDIN}">LinkedIn</a></div>
+<div><a href="{LINKEDIN}">LinkedIn</a> · <a href="{TIKTOK}">TikTok</a></div>
 </div>
 </header>
+<p class="sheet__intro">{intro}</p>
 <dl class="sheet__facts">
 {facts}
 </dl>
@@ -1607,7 +1731,7 @@ def cv_sheet(lang):
 </dl>
 </section>
 <section class="sheet__edu">
-<p><strong>{p["edu_l"]}</strong> · {p["edu"]}</p>
+<p><strong>{p["edu_l"]}</strong> · {p["edu"]}. {p["thesis"]}</p>
 </section>
 <footer class="sheet__foot"><span>{p["sheet_foot"]}</span><span>{site_cv}</span></footer>
 </main>
@@ -1618,13 +1742,9 @@ def cv_sheet(lang):
     write(ROUTES["cv"][lang], page + body)
 
 
-# --------------------------------------------------------------------------
-# Project pages
-# --------------------------------------------------------------------------
-
 PROJECTS = {
     "p_lang": {
-        "next": "p_tik",
+        "next": "p_loy",
         "tone": "rose",
         "lt": {
             "title": "Kalbų mokymosi platforma", "meta": "web platforma · klientinis projektas · 2026",
@@ -1704,11 +1824,11 @@ PROJECTS = {
         },
     },
     "p_tik": {
-        "next": "p_loy",
+        "next": "p_lang",
         "tone": "lavender",
         "lt": {
-            "title": "TikMaker", "meta": "vaizdo redaktorius · asmeninis projektas · 2026",
-            "what": "Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau.",
+            "title": "TikMaker", "meta": "DI agentas ir vaizdo redaktorius · asmeninis projektas, baigiamasis darbas · 2026",
+            "what": "Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau. DI agentas iš idėjos parengia visą projektą, o kūrėjas jį peržiūri ir pataiso redaktoriuje.",
             "status": "Vidinis įrankis, kurį naudojame savo turiniui.",
             "features": [
                 ("b", ("tik", "TikMaker redaktorius: scenų sąrašas, peržiūra, nustatymai ir laiko juosta su keliomis eilėmis"),
@@ -1734,9 +1854,9 @@ PROJECTS = {
                   "Perkėlus ar apkarpius garso klipą, subtitrai pasislenka kartu.",
                   "MP4 atvaizduojamas fone, matosi eigos procentai."]),
             ],
-            "role": "Visas įrankis: redaktorius, video variklis, serveris ir testai.",
+            "role": "Visas projektas: analizė, reikalavimai, architektūra, redaktorius, video variklis, DI agentas, serveris ir testai.",
             "decisions": [
-                ("Video kaip duomenys:", "visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami. AI agentas gali sugeneruoti projekto scenarijų, ir jis patikrinamas iš karto."),
+                ("Video kaip duomenys:", "visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami. Tomis pačiomis schemomis remiasi ir DI agentas."),
                 ("Tipų saugus API:", "tRPC tarp serverio ir kliento, todėl pakeitus API klaida matoma kompiliuojant. Serverio duomenys – TanStack Query, redaguojama būsena – Zustand su atšaukimo istorija. Automatinis išsaugojimas tik tada, kai projektas pasikeitė."),
                 ("Išdėstymas, kurio negalima perpildyti:", "kiekvienas vizualas žino savo natūralų dydį, o šablonai pritaiko mastelį saugiai zonai."),
                 ("Viena animacijų sistema:", "įėjimai, išėjimai, keyframe'ai ir perėjimai turi po vieną įgyvendinimą, o scenų laikas skaičiuojamas vienoje vietoje."),
@@ -1744,11 +1864,11 @@ PROJECTS = {
             ],
             "scale": "113 komponentų · 7 scenų ir 25 vizualų tipai · 44 vizualų šablonai · 109 testai · 27 API procedūros",
             "stack": "React, TypeScript, Vite, Mantine, Tailwind CSS, Zustand, TanStack Query · Remotion · Node.js, Express, tRPC, Zod · Vitest, supertest · ffmpeg · ElevenLabs",
-            "desc": "TikMaker: vaizdo redaktorius ir dizaino sistema trumpiems vertikaliems vaizdo įrašams, su laiko juosta, AI įgarsinimu ir žodžių subtitrais. React, Remotion, tRPC.",
+            "desc": "TikMaker: DI agentas, kuris iš idėjos parengia trumpo vertikalaus vaizdo įrašo projektą, ir vaizdo redaktorius su laiko juosta, įgarsinimu ir žodžių subtitrais. Zod, Remotion, ElevenLabs.",
         },
         "en": {
-            "title": "TikMaker", "meta": "video editor · personal project · 2026",
-            "what": "A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster.",
+            "title": "TikMaker", "meta": "AI agent and video editor · personal project, final thesis · 2026",
+            "what": "A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster. An AI agent prepares the whole project from an idea, and the creator reviews and adjusts it in the editor.",
             "status": "An in-house tool we use for our own content.",
             "features": [
                 ("b", ("tik", "The TikMaker editor: scene list, preview, settings and a multi-row timeline"),
@@ -1774,9 +1894,9 @@ PROJECTS = {
                   "When an audio clip is moved or trimmed, the subtitles move with it.",
                   "MP4 renders in the background, with progress shown in percent."]),
             ],
-            "role": "The whole tool: the editor, the video engine, the server and the tests.",
+            "role": "The whole project: analysis, requirements, architecture, the editor, the video engine, the AI agent, the server and the tests.",
             "decisions": [
-                ("Video as data:", "the whole project is JSON validated with Zod schemas. The same schemas are used in the editor, the server API and on import, and old project files are upgraded automatically. An AI agent can generate a project script, and it's validated straight away."),
+                ("Video as data:", "the whole project is JSON validated with Zod schemas. The same schemas are used in the editor, the server API and on import, and old project files are upgraded automatically. The AI agent relies on the same schemas."),
                 ("Type-safe API:", "tRPC between server and client, so an API change shows up as a compile error. Server data lives in TanStack Query, editable state in Zustand with undo history. Autosave runs only when the project has actually changed."),
                 ("Layout that can't overflow:", "every visual knows its natural size, and templates scale it to the safe zone."),
                 ("One animation system:", "entrances, exits, keyframes and transitions each have one implementation, and scene timing is calculated in one place."),
@@ -1784,11 +1904,11 @@ PROJECTS = {
             ],
             "scale": "113 components · 7 scene and 25 visual types · 44 visual templates · 109 tests · 27 API procedures",
             "stack": "React, TypeScript, Vite, Mantine, Tailwind CSS, Zustand, TanStack Query · Remotion · Node.js, Express, tRPC, Zod · Vitest, supertest · ffmpeg · ElevenLabs",
-            "desc": "TikMaker: a video editor and design system for short vertical videos, with a timeline, AI voice-over and word-level subtitles. React, Remotion, tRPC.",
+            "desc": "TikMaker: an AI agent that turns an idea into a short vertical video project, and a video editor with a timeline, voice-over and word-level subtitles. Zod, Remotion, ElevenLabs.",
         },
     },
     "p_loy": {
-        "next": "p_lang",
+        "next": "p_tik",
         "tone": "sand",
         "lt": {
             "title": "Lojalumo valdymo sistema", "meta": "B2B backoffice · komandinis projektas · 2026",
@@ -1836,6 +1956,131 @@ PROJECTS = {
         },
     },
 }
+
+AGENT = {
+    "lt": {
+        "h": "DI agentas",
+        "lead": "TikMaker turi DI agentą, kuris iš idėjos aprašo parengia redaguojamą vaizdo įrašo projektą. Čia aprašyta, kaip jis veikia iš tikrųjų: ką daro modelis, ką tikrina kodas ir kur sprendžia žmogus.",
+        "problem_h": "Kokią problemą sprendžia",
+        "problem": "Informacinis trumpas vaizdo įrašas su judesio grafika kuriamas scena po scenos: scenarijus, pradžios kabliukas, išdėstymas, animacija, įgarsinimas ir subtitrai. Esami DI įrankiai arba generuoja šabloniškus vaizdus, arba netikrina rezultato pagal dizaino taisykles. Agentas perima pasikartojantį darbą, o kūrėjui palieka sprendimus: apie ką ir kaip kalbėti.",
+        "flow_h": "Kaip veikia",
+        "human": "Žmogus",
+        "flow": [
+            ("Idėjos aprašas", "Idėja, kanalas ir trukmė (15–90 s). Šabloną ir kabliuką galima nurodyti patiems.", False),
+            ("LLM žingsniais", "Šablonas, trys kabliukai, scenarijus, vaizdiniai blokai, judesys. Gemini arba Claude, modelis keičiamas konfigūracijoje.", False),
+            ("Struktūrizuotas JSON", "Kiekvienas atsakymas turi atitikti Zod schemą. Neatitikus klausiama iš naujo, iš viso iki 3 kartų.", False),
+            ("Patikra kodu", "Trukmė, žodžiai ekrane, ar komponentas yra bibliotekoje. Rastos problemos grąžinamos modeliui vienam pataisymui.", False),
+            ("Kabliukas ir scenarijus", "Kūrėjas pasirenka kabliuką ir patvirtina scenarijų. Kol scenarijus nepatvirtintas, vaizdas nekuriamas.", True),
+            ("Projektas", "Projekto JSON iš patikrintų sprendimų sudaro programos kodas, ne modelis.", False),
+            ("Balsas ir subtitrai", "ElevenLabs įgarsinimas su kiekvieno žodžio laiku; subtitrai ir scenų trukmės pritaikomi prie tikro balso.", False),
+            ("Kadrų savikontrolė", "Remotion atvaizduoja kiekvienos scenos kadrą, modelis jį vertina pagal 8 punktų rubriką ir taiso, daugiausia 3 ratai.", False),
+            ("Redaktorius ir MP4", "Kūrėjas peržiūri, keičia ir mygtuku atvaizduoja MP4 (Remotion).", True),
+        ],
+        "decisions_h": "Mano projektavimo sprendimai ir kodėl",
+        "decisions": [
+            ("Modelis sprendžia, kodas sudaro.", "Modelis renkasi tik iš žinomos komponentų bibliotekos, o pozicijas, dydžius ir laiką nustato kodas. Todėl rezultatas nuspėjamas, o neegzistuojantis komponentas atmetamas."),
+            ("Kiekvienas atsakymas pagal schemą.", "Kiekvienas žingsnis turi Zod schemą. Netinkamos formos atsakymas į projektą nepatenka: jo klausiama iš naujo arba paleidimas sustoja su aiškia priežastimi."),
+            ("Taisyklės duomenyse, ne kode.", "Ribos (žodžių kiekis ekrane, scenos trukmė, kalbos tempas, garso efektų tankis, vaizdo kaita) laikomos žinių bazės faile, todėl jas galima keisti neprogramuojant."),
+            ("Žinių bazė iš analizės.", "20 scenarijų šablonų ir kabliukų formulės sudaryti išanalizavus 88 populiarius vaizdo įrašus."),
+            ("Modelis keičiamas konfigūracijoje.", "Gemini arba Claude; kiekvienam žingsniui galima nurodyti savą modelį, pigesnį ten, kur rezultatą vis tiek tikrina kodas."),
+            ("Žmogus ten, kur sprendimas brangus.", "Vaizdas kuriamas tik patvirtinus scenarijų, o vėlesni agento pasiūlymai pokalbyje vykdomi tik naudotojui juos patvirtinus."),
+        ],
+        "limits_h": "Apribojimai ir kaip tikrinu kokybę",
+        "limits": [
+            "Kodu tikrinama tik tai, ką galima išmatuoti. Vizualinę kokybę vertina modelis pagal rubriką ir pavyzdinius kadrus, bet tai irgi modelis, todėl galutinis sprendimas lieka kūrėjui redaktoriuje.",
+            "Taisymai riboti: po kodo patikros vienas pataisymas, savikontrolė daugiausia 3 ratai ir sustoja, jei ratas nepagerina. Likusios problemos neslepiamos, o parodomos naudotojui.",
+            "Modelis gali klysti faktuose, todėl trūkstamo fakto agentas klausia, o ne spėja, ir pokalbyje parašo, ką prielaidavo. Paieškos rezultatai naudojami tik kaip tekstas promptui ir išsaugomi su šaltiniais.",
+            "Kiekvienas DI kvietimas registruojamas: promptas, atsakymas, modelis, bandymų skaičius, tokenai ir trukmė. Todėl kiekvieną rezultatą galima atsekti.",
+            "Pasiekus modelio naudojimo limitą, paleidimas ne sustoja, o pristabdomas, ir jį galima pratęsti nuo tos vietos.",
+            "DI ir balso paslaugų API raktai laikomi tik serveryje ir į naršyklę nepatenka.",
+        ],
+        "thesis_h": "Ryšys su baigiamuoju darbu",
+        "thesis": "Agentas yra mano baigiamasis darbas Vilniaus kolegijoje (Programų sistemos, rengiamas): „Dirbtinio intelekto agentas trumpiems vertikaliems vaizdo įrašams kurti, remiantis žinių baze ir dizaino taisyklėmis“. Darbe atlikau panašių sistemų analizę, suformulavau funkcinius ir nefunkcinius reikalavimus, suprojektavau architektūrą (UML diagramos) ir agentą realizavau esamame TikMaker redaktoriuje.",
+    },
+    "en": {
+        "h": "AI agent",
+        "lead": "TikMaker has an AI agent that turns an idea into an editable video project. This is how it really works: what the model does, what code checks and where a human decides.",
+        "problem_h": "The problem it solves",
+        "problem": "An informative short video with motion graphics is made scene by scene: the script, the opening hook, the layout, the animation, the voice-over and the subtitles. Existing AI tools either generate generic visuals or don't check the result against design rules. The agent takes over the repetitive work and leaves the creator the decisions: what to say and how.",
+        "flow_h": "How it works",
+        "human": "Human",
+        "flow": [
+            ("Idea", "An idea, a channel and a length (15–90 s). The template and the hook can be set by hand.", False),
+            ("LLM, step by step", "Template, three hooks, script, visual blocks, motion. Gemini or Claude, switched in configuration.", False),
+            ("Structured JSON", "Every answer must match a Zod schema. If it doesn't, the model is asked again, up to 3 times in all.", False),
+            ("Checks in code", "Length, words on screen, whether a component is in the library. Problems go back to the model for one fix.", False),
+            ("Hook and script", "The creator picks the hook and approves the script. Nothing visual is built before the script is approved.", True),
+            ("Project", "The project JSON is built from the checked decisions by code, not by the model.", False),
+            ("Voice and subtitles", "ElevenLabs voice-over with each word's timing; subtitles and scene lengths follow the real voice.", False),
+            ("Frame self-review", "Remotion renders a frame of each scene, the model judges it against an 8-point rubric and fixes it, 3 rounds at most.", False),
+            ("Editor and MP4", "The creator reviews, edits and renders the MP4 with one button (Remotion).", True),
+        ],
+        "decisions_h": "My design decisions and why",
+        "decisions": [
+            ("The model decides, code builds.", "The model only picks from a known component library, and code sets positions, sizes and timing. So the result is predictable, and a component that doesn't exist is rejected."),
+            ("Every answer follows a schema.", "Every step has a Zod schema. An answer of the wrong shape never reaches the project: the model is asked again, or the run stops with a clear reason."),
+            ("Rules in data, not in code.", "Limits (words on screen, scene length, speech rate, sound effect density, visual change) live in the knowledge base file, so they can be changed without programming."),
+            ("A knowledge base from analysis.", "20 script templates and the hook formulas come from analysing 88 popular videos."),
+            ("The model is a configuration choice.", "Gemini or Claude; each step can have its own model, a cheaper one where code checks the result anyway."),
+            ("A human where the decision is costly.", "Visuals are built only after the script is approved, and the agent's later suggestions in the chat run only once the user approves them."),
+        ],
+        "limits_h": "Limitations and how I check quality",
+        "limits": [
+            "Code checks only what can be measured. Visual quality is judged by the model against a rubric and example frames, but that is a model too, so the final call stays with the creator in the editor.",
+            "Fixes are limited: one fix after the code checks, at most 3 self-review rounds, stopping when a round doesn't help. What's left isn't hidden but shown to the user.",
+            "The model can get facts wrong, so when a fact is missing the agent asks instead of guessing and says in the chat what it assumed. Search results only feed a prompt as text and are saved with their sources.",
+            "Every AI call is logged: the prompt, the answer, the model, the number of attempts, tokens and time. So every result can be traced.",
+            "When the model's usage limit is hit, the run is paused, not stopped, and can be continued from where it was.",
+            "AI and voice API keys are kept on the server only and never reach the browser.",
+        ],
+        "thesis_h": "Link to my final thesis",
+        "thesis": "The agent is my final thesis at Vilnius University of Applied Sciences (Software Systems, in progress): “AI Agent for Creating Short-Form Vertical Videos Based on a Knowledge Base and Design Rules”. In it I analysed similar systems, wrote the functional and non-functional requirements, designed the architecture (UML diagrams) and built the agent into the existing TikMaker editor.",
+    },
+}
+
+
+AGENT_PAGES = {"p_tik"}
+
+
+def agent_section(lang):
+    a = AGENT[lang]
+    steps = "".join(
+        f'<li class="{"is-human" if human else ""}"><span class="mono">{i:02d}</span>'
+        f'<strong>{h}</strong><span>{txt}</span>'
+        f'{f"<em>{a["human"]}</em>" if human else ""}</li>'
+        for i, (h, txt, human) in enumerate(a["flow"], 1))
+    dec = "".join(f"<li><strong>{x}</strong> {y}</li>" for x, y in a["decisions"])
+    lim = "".join(f"<li>{x}</li>" for x in a["limits"])
+    return f"""<section class="p-agent" aria-labelledby="agent-title">
+<div class="container">
+<div class="p-agent__head">{icon_blob("bot", "lavender")}<h2 id="agent-title">{a["h"]}</h2></div>
+<p class="lead p-agent__lead">{a["lead"]}</p>
+<div class="p-agent__block">
+<h3>{a["problem_h"]}</h3>
+<p>{a["problem"]}</p>
+</div>
+<div class="p-agent__block">
+<h3>{a["flow_h"]}</h3>
+<ol class="agent-flow">{steps}</ol>
+</div>
+<div class="p-agent__cols">
+<div class="p-agent__block">
+<h3>{a["decisions_h"]}</h3>
+<ul class="p-agent__list">{dec}</ul>
+</div>
+<div class="p-agent__block">
+<h3>{a["limits_h"]}</h3>
+<ul class="p-agent__list">{lim}</ul>
+</div>
+</div>
+<div class="p-agent__block p-agent__thesis">
+<h3>{icon("cap")}{a["thesis_h"]}</h3>
+<p>{a["thesis"]}</p>
+</div>
+</div>
+</section>
+"""
+
 
 PL = {
     "lt": {"what": "Kas tai", "status": "Būsena", "tech": "Techninė dalis",
@@ -1896,7 +2141,7 @@ def project(key, lang):
 </dl>
 </div>
 </section>
-<section class="p-features" aria-label="{d["title"]}">
+{agent_section(lang) if key in AGENT_PAGES else ""}<section class="p-features" aria-label="{d["title"]}">
 <div class="container">
 {chr(10).join(feats)}
 </div>

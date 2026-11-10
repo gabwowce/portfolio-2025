@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TikMaker – project | Codeart</title>
-<meta name="description" content="TikMaker: a video editor and design system for short vertical videos, with a timeline, AI voice-over and word-level subtitles. React, Remotion, tRPC.">
+<meta name="description" content="TikMaker: an AI agent that turns an idea into a short vertical video project, and a video editor with a timeline, voice-over and word-level subtitles. Zod, Remotion, ElevenLabs.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://codeart.lt/en/projects/tikmaker.html">
 <link rel="alternate" hreflang="lt" href="https://codeart.lt/lt/projektai/tikmaker.html">
@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="Codeart">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="TikMaker – project | Codeart">
-<meta property="og:description" content="TikMaker: a video editor and design system for short vertical videos, with a timeline, AI voice-over and word-level subtitles. React, Remotion, tRPC.">
+<meta property="og:description" content="TikMaker: an AI agent that turns an idea into a short vertical video project, and a video editor with a timeline, voice-over and word-level subtitles. Zod, Remotion, ElevenLabs.">
 <meta property="og:url" content="https://codeart.lt/en/projects/tikmaker.html">
 <meta property="og:image" content="https://codeart.lt/img/og-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/schibsted-grotesk/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=376b44c8">
+<link rel="stylesheet" href="/css/site.css?v=2b26ab0c">
 <script>
   /* Hide reveal-on-scroll content only once we know JS runs. If site.js
      never arrives, put everything back after a moment. */
@@ -35,7 +35,7 @@
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   "name": "TikMaker",
-  "description": "TikMaker: a video editor and design system for short vertical videos, with a timeline, AI voice-over and word-level subtitles. React, Remotion, tRPC.",
+  "description": "TikMaker: an AI agent that turns an idea into a short vertical video project, and a video editor with a timeline, voice-over and word-level subtitles. Zod, Remotion, ElevenLabs.",
   "url": "https://codeart.lt/en/projects/tikmaker.html",
   "inLanguage": "en",
   "creator": {
@@ -109,11 +109,39 @@
 <div class="container">
 <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/portfolio.html">Portfolio</a></li><li aria-current="page">TikMaker</li></ol></nav>
 <h1>TikMaker</h1>
-<p class="p-meta">video editor · personal project · 2026</p>
+<p class="p-meta">AI agent and video editor · personal project, final thesis · 2026</p>
 <dl class="p-summary">
-<div><dt class="mono">What it is</dt><dd>A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster.</dd></div>
+<div><dt class="mono">What it is</dt><dd>A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster. An AI agent prepares the whole project from an idea, and the creator reviews and adjusts it in the editor.</dd></div>
 <div><dt class="mono">Status</dt><dd>An in-house tool we use for our own content.</dd></div>
 </dl>
+</div>
+</section>
+<section class="p-agent" aria-labelledby="agent-title">
+<div class="container">
+<div class="p-agent__head"><span class="ico-blob ico-blob--lavender" aria-hidden="true"><svg class="ico-blob__shape" viewBox="-2 -2 104 104" preserveAspectRatio="none"><path d="M88.0 51.1C87.3 55.3 88.4 56.6 87.3 61.2C86.2 65.9 84.1 74.6 81.2 79.2C78.4 83.8 73.8 86.0 70.0 88.9C66.2 91.9 63.2 95.6 58.4 96.8C53.7 98.0 46.3 97.5 41.6 96.1C37.0 94.7 35.1 91.1 30.6 88.6C26.2 86.1 18.8 85.1 15.0 81.0C11.2 76.8 9.1 69.2 8.0 63.8C6.9 58.4 8.0 53.3 8.5 48.5C9.0 43.7 9.6 39.0 11.0 35.2C12.3 31.3 13.6 28.2 16.7 25.3C19.9 22.4 25.3 21.6 29.9 17.9C34.6 14.2 39.9 6.0 44.5 3.1C49.1 0.2 52.4 -0.2 57.4 0.5C62.5 1.2 69.9 4.7 74.9 7.3C79.9 10.0 84.5 11.7 87.2 16.5C89.9 21.3 90.9 30.3 91.1 36.1C91.2 41.9 88.6 46.9 88.0 51.1Z"/></svg><svg class="ico" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg></span><h2 id="agent-title">AI agent</h2></div>
+<p class="lead p-agent__lead">TikMaker has an AI agent that turns an idea into an editable video project. This is how it really works: what the model does, what code checks and where a human decides.</p>
+<div class="p-agent__block">
+<h3>The problem it solves</h3>
+<p>An informative short video with motion graphics is made scene by scene: the script, the opening hook, the layout, the animation, the voice-over and the subtitles. Existing AI tools either generate generic visuals or don't check the result against design rules. The agent takes over the repetitive work and leaves the creator the decisions: what to say and how.</p>
+</div>
+<div class="p-agent__block">
+<h3>How it works</h3>
+<ol class="agent-flow"><li class=""><span class="mono">01</span><strong>Idea</strong><span>An idea, a channel and a length (15–90 s). The template and the hook can be set by hand.</span></li><li class=""><span class="mono">02</span><strong>LLM, step by step</strong><span>Template, three hooks, script, visual blocks, motion. Gemini or Claude, switched in configuration.</span></li><li class=""><span class="mono">03</span><strong>Structured JSON</strong><span>Every answer must match a Zod schema. If it doesn't, the model is asked again, up to 3 times in all.</span></li><li class=""><span class="mono">04</span><strong>Checks in code</strong><span>Length, words on screen, whether a component is in the library. Problems go back to the model for one fix.</span></li><li class="is-human"><span class="mono">05</span><strong>Hook and script</strong><span>The creator picks the hook and approves the script. Nothing visual is built before the script is approved.</span><em>Human</em></li><li class=""><span class="mono">06</span><strong>Project</strong><span>The project JSON is built from the checked decisions by code, not by the model.</span></li><li class=""><span class="mono">07</span><strong>Voice and subtitles</strong><span>ElevenLabs voice-over with each word's timing; subtitles and scene lengths follow the real voice.</span></li><li class=""><span class="mono">08</span><strong>Frame self-review</strong><span>Remotion renders a frame of each scene, the model judges it against an 8-point rubric and fixes it, 3 rounds at most.</span></li><li class="is-human"><span class="mono">09</span><strong>Editor and MP4</strong><span>The creator reviews, edits and renders the MP4 with one button (Remotion).</span><em>Human</em></li></ol>
+</div>
+<div class="p-agent__cols">
+<div class="p-agent__block">
+<h3>My design decisions and why</h3>
+<ul class="p-agent__list"><li><strong>The model decides, code builds.</strong> The model only picks from a known component library, and code sets positions, sizes and timing. So the result is predictable, and a component that doesn't exist is rejected.</li><li><strong>Every answer follows a schema.</strong> Every step has a Zod schema. An answer of the wrong shape never reaches the project: the model is asked again, or the run stops with a clear reason.</li><li><strong>Rules in data, not in code.</strong> Limits (words on screen, scene length, speech rate, sound effect density, visual change) live in the knowledge base file, so they can be changed without programming.</li><li><strong>A knowledge base from analysis.</strong> 20 script templates and the hook formulas come from analysing 88 popular videos.</li><li><strong>The model is a configuration choice.</strong> Gemini or Claude; each step can have its own model, a cheaper one where code checks the result anyway.</li><li><strong>A human where the decision is costly.</strong> Visuals are built only after the script is approved, and the agent's later suggestions in the chat run only once the user approves them.</li></ul>
+</div>
+<div class="p-agent__block">
+<h3>Limitations and how I check quality</h3>
+<ul class="p-agent__list"><li>Code checks only what can be measured. Visual quality is judged by the model against a rubric and example frames, but that is a model too, so the final call stays with the creator in the editor.</li><li>Fixes are limited: one fix after the code checks, at most 3 self-review rounds, stopping when a round doesn't help. What's left isn't hidden but shown to the user.</li><li>The model can get facts wrong, so when a fact is missing the agent asks instead of guessing and says in the chat what it assumed. Search results only feed a prompt as text and are saved with their sources.</li><li>Every AI call is logged: the prompt, the answer, the model, the number of attempts, tokens and time. So every result can be traced.</li><li>When the model's usage limit is hit, the run is paused, not stopped, and can be continued from where it was.</li><li>AI and voice API keys are kept on the server only and never reach the browser.</li></ul>
+</div>
+</div>
+<div class="p-agent__block p-agent__thesis">
+<h3><svg class="ico" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>Link to my final thesis</h3>
+<p>The agent is my final thesis at Vilnius University of Applied Sciences (Software Systems, in progress): “AI Agent for Creating Short-Form Vertical Videos Based on a Knowledge Base and Design Rules”. In it I analysed similar systems, wrote the functional and non-functional requirements, designed the architecture (UML diagrams) and built the agent into the existing TikMaker editor.</p>
+</div>
 </div>
 </section>
 <section class="p-features" aria-label="TikMaker">
@@ -158,8 +186,8 @@
 <div class="p-tech__title"><h2 id="tech-title">Technical side</h2></div>
 <div class="p-tech__body">
 <dl class="tech-list">
-<div><dt>What we did</dt><dd>The whole tool: the editor, the video engine, the server and the tests.</dd></div>
-<div><dt>Decisions</dt><dd><ul><li><strong>Video as data:</strong> the whole project is JSON validated with Zod schemas. The same schemas are used in the editor, the server API and on import, and old project files are upgraded automatically. An AI agent can generate a project script, and it's validated straight away.</li><li><strong>Type-safe API:</strong> tRPC between server and client, so an API change shows up as a compile error. Server data lives in TanStack Query, editable state in Zustand with undo history. Autosave runs only when the project has actually changed.</li><li><strong>Layout that can't overflow:</strong> every visual knows its natural size, and templates scale it to the safe zone.</li><li><strong>One animation system:</strong> entrances, exits, keyframes and transitions each have one implementation, and scene timing is calculated in one place.</li><li><strong>Automation:</strong> dropped-in files appear in the editor immediately, uploaded screen recordings are transcoded for frame-accurate scrubbing, and the API is covered by tests.</li></ul></dd></div>
+<div><dt>What we did</dt><dd>The whole project: analysis, requirements, architecture, the editor, the video engine, the AI agent, the server and the tests.</dd></div>
+<div><dt>Decisions</dt><dd><ul><li><strong>Video as data:</strong> the whole project is JSON validated with Zod schemas. The same schemas are used in the editor, the server API and on import, and old project files are upgraded automatically. The AI agent relies on the same schemas.</li><li><strong>Type-safe API:</strong> tRPC between server and client, so an API change shows up as a compile error. Server data lives in TanStack Query, editable state in Zustand with undo history. Autosave runs only when the project has actually changed.</li><li><strong>Layout that can't overflow:</strong> every visual knows its natural size, and templates scale it to the safe zone.</li><li><strong>One animation system:</strong> entrances, exits, keyframes and transitions each have one implementation, and scene timing is calculated in one place.</li><li><strong>Automation:</strong> dropped-in files appear in the editor immediately, uploaded screen recordings are transcoded for frame-accurate scrubbing, and the API is covered by tests.</li></ul></dd></div>
 <div><dt>Scale</dt><dd>113 components · 7 scene and 25 visual types · 44 visual templates · 109 tests · 27 API procedures</dd></div>
 <div><dt>Stack</dt><dd class="tech-stack">React, TypeScript, Vite, Mantine, Tailwind CSS, Zustand, TanStack Query · Remotion · Node.js, Express, tRPC, Zod · Vitest, supertest · ffmpeg · ElevenLabs</dd></div>
 </dl>
@@ -169,7 +197,7 @@
 </section>
 <section class="p-foot">
 <div class="container">
-<a class="next" href="/en/projects/loyalty-system.html"><span class="mono">Next project</span><strong>Loyalty management system →</strong></a>
+<a class="next" href="/en/projects/language-platform.html"><span class="mono">Next project</span><strong>Language learning platform →</strong></a>
 <a class="btn btn--lg" href="/en/contact.html">Discuss a project</a>
 </div>
 </section>
