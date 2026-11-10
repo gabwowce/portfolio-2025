@@ -2472,9 +2472,19 @@ textarea {
   color: var(--text-muted);
 }
 
+/* The CV sheet fills its page edge to edge; every other page prints with margins. */
 @page {
   size: A4;
+  margin: 14mm 13mm 16mm;
+}
+
+@page cvsheet {
+  size: A4;
   margin: 0;
+}
+
+.sheet {
+  page: cvsheet;
 }
 
 @media print {
@@ -4361,5 +4371,571 @@ textarea {
 @media (max-width: 599px) {
   .article-list {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Portfolio: about, featured card, automation list                   */
+/* ------------------------------------------------------------------ */
+
+.cv-about {
+  padding: 32px 0 28px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+}
+
+.cv-about h2 {
+  flex: 0 0 200px;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.cv-about__text {
+  flex: 1 1 520px;
+  min-width: 0;
+  max-width: 46em;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text-body);
+}
+
+.cv-about__text a {
+  color: var(--ca-accent);
+  text-underline-offset: 3px;
+}
+
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card__agent {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--blob-lavender);
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--text-body);
+}
+
+.card__agent-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card__agent ol {
+  margin-top: 8px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (min-width: 900px) {
+  .card--wide {
+    flex-basis: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .card--wide h3 {
+    margin-top: 0;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .card--wide .card__media {
+    margin-top: 20px;
+  }
+}
+
+.auto-list {
+  list-style: none;
+  padding: 0;
+}
+
+.auto-list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 24px;
+}
+
+.auto-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.auto-list strong {
+  flex: 0 1 300px;
+  font-weight: 600;
+}
+
+.auto-list span {
+  flex: 1 1 420px;
+  min-width: 0;
+  color: var(--text-body);
+}
+
+.auto-list .link {
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Project page: the AI agent section                                 */
+/* ------------------------------------------------------------------ */
+
+.p-agent {
+  padding: clamp(56px, 7vw, 104px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.p-agent .container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.p-agent__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.p-agent__head h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.p-agent__lead {
+  max-width: 44em;
+  margin-top: -16px;
+}
+
+.p-agent__block h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.p-agent__block > p {
+  margin-top: 10px;
+  max-width: 46em;
+  color: var(--text-body);
+}
+
+.agent-flow {
+  margin-top: 16px;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  counter-reset: none;
+}
+
+.agent-flow li {
+  position: relative;
+  padding: 14px 16px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--text-body);
+}
+
+.agent-flow li .mono {
+  font-size: 12px;
+  color: var(--text-meta);
+}
+
+.agent-flow li strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.agent-flow li.is-human {
+  border-color: var(--ca-accent);
+  background: var(--blob-apricot);
+}
+
+.agent-flow li em {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--ca-accent);
+}
+
+.p-agent__cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 48px;
+}
+
+.p-agent__cols > div {
+  flex: 1 1 380px;
+  min-width: 0;
+}
+
+.p-agent__list {
+  margin-top: 12px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-body);
+}
+
+.p-agent__list strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.p-agent__thesis {
+  padding-top: 24px;
+  border-top: 1px solid var(--line-strong);
+}
+
+/* ------------------------------------------------------------------ */
+/* CV sheet: intro and thesis                                         */
+/* ------------------------------------------------------------------ */
+
+.sheet__intro {
+  margin-top: 14px;
+  color: var(--text-body);
+}
+
+.sheet__edu p + p {
+  margin-top: 2px;
+  color: var(--text-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Printing the portfolio and project pages on A4                     */
+/* ------------------------------------------------------------------ */
+
+@media print {
+  .page-cv,
+  .page-project {
+    background: #fff;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  .page-cv .site-header,
+  .page-project .site-header,
+  .page-cv .mobile-menu,
+  .page-project .mobile-menu,
+  .page-cv .skip-link,
+  .page-project .skip-link,
+  .page-cv .footer,
+  .page-project .footer,
+  .page-cv .lightbox,
+  .page-cv .cv-head .btn,
+  .page-cv .card__links,
+  .page-project .crumbs,
+  .page-project .p-foot,
+  .page-cv .blob,
+  .page-project .blob {
+    display: none !important;
+  }
+
+  .page-cv .container,
+  .page-project .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .cv-head,
+  .p-intro,
+  .p-agent,
+  .p-features,
+  .p-tech,
+  .cv-sec,
+  .cv-sec--works,
+  .cv-facts,
+  .cv-about {
+    padding-top: 14pt;
+    padding-bottom: 14pt;
+    background: #fff;
+  }
+
+  .cv-head {
+    padding-top: 0;
+  }
+
+  .cv-head__photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cv-head__links a {
+    min-height: 0;
+  }
+
+  .cv-sec--works .cv-sec__head {
+    margin-bottom: 14pt;
+  }
+
+  .cards {
+    gap: 18pt 16pt;
+  }
+
+  .card {
+    flex: 1 1 45%;
+  }
+
+  .card--wide {
+    flex-basis: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 16pt;
+    align-items: start;
+  }
+
+  .card h3 {
+    margin-top: 10pt;
+  }
+
+  .card--wide h3 {
+    margin-top: 0;
+  }
+
+  .card .frame,
+  .feature .frame {
+    box-shadow: none;
+  }
+
+  .card__agent {
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+
+  .card,
+  .card__agent,
+  .rows > li,
+  .timeline li,
+  .auto-list li,
+  .stack-list > div,
+  .agent-flow li,
+  .p-agent__list li,
+  .tech-list > div,
+  .feature,
+  .p-summary > div,
+  .p-agent__thesis,
+  .cv-edu__line {
+    break-inside: avoid;
+  }
+
+  h2,
+  h3,
+  .cv-sec__head,
+  .p-agent__head,
+  .p-agent__block h3 {
+    break-after: avoid;
+  }
+
+  .agent-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8pt;
+  }
+
+  .agent-flow li {
+    padding: 8pt 10pt;
+    font-size: 9.5pt;
+    line-height: 1.4;
+  }
+
+  .agent-flow li.is-human {
+    background: #fff;
+    border-width: 1.5px;
+  }
+
+  .p-agent .container {
+    gap: 16pt;
+  }
+
+  .p-agent__lead {
+    margin-top: 0;
+  }
+
+  .p-features .container {
+    gap: 24pt;
+  }
+
+  .feature {
+    gap: 16pt;
+  }
+
+  .feature__media {
+    max-width: 70%;
+  }
+
+  .p-intro h1,
+  .p-agent__head h2 {
+    font-size: 26pt;
+  }
+
+  a[href^="http"]:not(.link)::after {
+    content: none;
+  }
+}
+
+/* CV sheet: TikMaker across the full width in two columns, the other works below it */
+.sheet {
+  padding: 40px 50px 32px;
+}
+
+.sheet section {
+  margin-top: 18px;
+}
+
+.sheet__facts {
+  margin-top: 14px;
+  padding: 9px 0;
+}
+
+.sheet__works {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+}
+
+.sheet__works article.wide {
+  grid-column: 1 / -1;
+  column-count: 2;
+  column-gap: 24px;
+}
+
+.sheet__works article.wide h3 {
+  column-span: all;
+}
+
+.sheet__works article.wide p {
+  break-inside: avoid;
+}
+
+.sheet td {
+  padding: 5px 12px 5px 0;
+}
+
+.page-sheet .sheet {
+  font-size: 11.5px;
+  line-height: 1.42;
+}
+
+.sheet td.d {
+  width: 108px;
+  font-size: 11px;
+}
+
+.sheet td.r {
+  width: 168px;
+}
+
+.sheet__stack dt {
+  flex-basis: 120px;
+}
+
+.sheet__stack dd,
+.sheet__works .m {
+  font-size: 11px;
+}
+
+.page-sheet .sheet {
+  line-height: 1.38;
+}
+
+.sheet section {
+  margin-top: 13px;
+}
+
+.sheet__head h1 {
+  font-size: 26px;
+}
+
+.sheet__intro {
+  margin-top: 10px;
+}
+
+.sheet__more {
+  display: none;
+}
+
+.sheet {
+  padding-bottom: 24px;
+}
+
+.sheet__foot {
+  padding-top: 8px;
+}
+
+.sheet__facts {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.page-sheet .sheet {
+  line-height: 1.36;
+}
+
+@media print {
+  .card--wide {
+    break-inside: auto;
+  }
+
+  .stack-list > div {
+    padding: 6pt 0;
+  }
+
+  .stack-list dt {
+    flex-basis: 150px;
+  }
+
+  .stack-list dd {
+    gap: 4px;
+  }
+
+  .timeline li,
+  .auto-list li {
+    padding: 6pt 0;
+  }
+}
+
+@media print {
+  .feature {
+    break-inside: auto;
+  }
+
+  .feature__media {
+    break-inside: avoid;
   }
 }
