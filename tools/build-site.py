@@ -1638,72 +1638,83 @@ def portfolio(lang):
 # --------------------------------------------------------------------------
 
 def cv_sheet(lang):
+    """The one-page A4 CV: a dark sidebar (about, contacts, skills, languages)
+    and a main column (experience, selected work, education)."""
     p = P[lang]
-    # The stack is listed under Technologies, so the sheet keeps the first three facts.
-    facts = "\n".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["facts"][:3])
-    intro = " ".join(about_text(lang, links=False))
-    works = []
-    for c in p["cards"]:
-        sentence = c["what"][0].upper() + c["what"][1:] + "."
-        agent = f'<p class="gap">{c["cv_agent"]}</p>' if c.get("cv_agent") else ""
-        wide = ' class="wide"' if c.get("wide") else ""
-        works.append(f"""<article{wide}>
-<h3>{c["title"]}</h3>
-<p>{sentence}</p>
-{agent}
-<p class="gap"><span class="lbl">{p["role_l"]}</span> {c["role"]}</p>
-<p><span class="lbl">{p["work_l"]}</span> {c["work"]}</p>
-<p class="gap m">{" · ".join(c["tags"])}</p>
-</article>""")
-    rows = "\n".join(
-        f'<tr{" class=\"is-past\"" if past else ""}><td class="d">{d}</td><td class="r">{r}</td><td>{w}</td></tr>'
-        for d, r, w, past in p["exp"])
-    tech = "\n".join(f"<div><dt>{g}</dt><dd>{' · '.join(items)}</dd></div>" for g, items in p["tech_cv"])
+    c = C[lang]
+    about = "".join(f"<p>{x}</p>" for x in about_text(lang, links=False))
     # LT has a short address of its own: /portfolio redirects to the LT page.
     site_cv = "codeart.lt/portfolio" if lang == "lt" else "codeart.lt" + url("portfolio", lang)
+    contacts = [
+        ("mail", f'<a href="mailto:{EMAIL}">{EMAIL}</a>'),
+        ("globe", f'<a href="{SITE + url("portfolio", lang)}">{site_cv}</a>'),
+        ("github", f'<a href="{GITHUB}">github.com/gabwowce</a>'),
+        ("linkedin", f'<a href="{LINKEDIN}">LinkedIn</a>'),
+        ("tiktok", f'<a href="{TIKTOK}">tiktok.com/@gabiebuilds</a>'),
+    ]
+    contact_li = "".join(f"<li>{icon(i, 14)}<span>{v}</span></li>" for i, v in contacts)
+    skills = "".join(f"<div><dt>{g}</dt><dd>{', '.join(items)}</dd></div>" for g, items in p["tech_cv"])
+    langs = "".join(f"<li><span>{n}</span><span>{lvl}</span></li>" for n, lvl in c["langs"])
+
+    exp = "".join(
+        f'<li{" class=\"is-past\"" if past else ""}><span class="cvs-date">{d}</span>'
+        f'<div><h3>{r}</h3><p>{w}</p></div></li>'
+        for d, r, w, past in p["exp"])
+
+    works = []
+    for w in p["cards"]:
+        sentence = w["what"][0].upper() + w["what"][1:] + "."
+        agent = f'<p>{w["cv_agent"]}</p>' if w.get("cv_agent") else ""
+        works.append(f"""<article>
+<h3>{w["title"]}</h3>
+<p>{sentence}</p>
+{agent}
+<p><span class="lbl">{p["role_l"]}</span> {w["role"]}</p>
+<p><span class="lbl">{p["work_l"]}</span> {w["work"]}</p>
+<p class="cvs-tags">{" · ".join(w["tags"])}</p>
+</article>""")
 
     body = f"""<body class="page-sheet">
 <main class="sheet">
-<header class="sheet__head">
-<div>
-<h1>Gabrielė Tamaševičiūtė</h1>
-<p class="sheet__role">{p["role"]}</p>
-<p class="sheet__where">{todo(p["where"])}</p>
-</div>
-<div class="sheet__contacts">
-<div><a href="mailto:{EMAIL}">{EMAIL}</a></div>
-<div><a href="{GITHUB}">github.com/gabwowce</a></div>
-<div><a href="{SITE + url("portfolio", lang)}">{site_cv}</a></div>
-<div><a href="{LINKEDIN}">LinkedIn</a> · <a href="{TIKTOK}">TikTok</a></div>
-</div>
-</header>
-<p class="sheet__intro">{intro}</p>
-<dl class="sheet__facts">
-{facts}
-</dl>
+<aside class="cvs-side">
 <section>
-<h2><span class="m">01 — </span>{p["works_h"]}</h2>
-<div class="sheet__works">
+<h2>{p["about_h"]}</h2>
+{about}
+</section>
+<section>
+<h2>{p["contacts_label"]}</h2>
+<ul class="cvs-contacts">{contact_li}</ul>
+</section>
+<section>
+<h2>{p["tech_h"]}</h2>
+<dl class="cvs-skills">{skills}</dl>
+</section>
+<section>
+<h2>{c["lang_h"]}</h2>
+<ul class="cvs-langs">{langs}</ul>
+</section>
+</aside>
+<div class="cvs-main">
+<header class="cvs-head">
+<h1>Gabrielė Tamaševičiūtė</h1>
+<p>{p["role"]}</p>
+<p class="cvs-where">{icon("pin", 14)}{p["where"]}</p>
+</header>
+<section>
+<h2>{p["exp_h"]}</h2>
+<ol class="cvs-timeline">{exp}</ol>
+</section>
+<section>
+<h2>{p["works_h"]}</h2>
+<div class="cvs-works">
 {chr(10).join(works)}
 </div>
-<p class="sheet__more">{p["more"]}</p>
 </section>
 <section>
-<h2><span class="m">02 — </span>{p["exp_h"]}</h2>
-<table><tbody>
-{rows}
-</tbody></table>
+<h2>{p["edu_l"]}</h2>
+<div class="cvs-edu"><h3>{p["edu"]}</h3><p>{p["thesis"]}</p></div>
 </section>
-<section>
-<h2><span class="m">03 — </span>{p["tech_h"]}</h2>
-<dl class="sheet__stack">
-{tech}
-</dl>
-</section>
-<section class="sheet__edu">
-<p><strong>{p["edu_l"]}</strong> · {p["edu"]}. {p["thesis"]}</p>
-</section>
-<footer class="sheet__foot"><span>{p["sheet_foot"]}</span><span>{site_cv}</span></footer>
+</div>
 </main>
 </body>
 </html>

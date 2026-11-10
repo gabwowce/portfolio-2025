@@ -2269,235 +2269,7 @@ textarea {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/* CV sheet (A4, also printed to the PDF)                             */
-/* ------------------------------------------------------------------ */
-
-.page-sheet {
-  background: #e9e3d8;
-  font-size: 12.5px;
-  line-height: 1.5;
-}
-
-.sheet {
-  width: 794px;
-  min-height: 1123px;
-  margin: 40px auto;
-  padding: 56px 60px 44px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  box-shadow: 0 20px 50px -30px rgba(80, 58, 34, 0.5);
-}
-
-.sheet__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-}
-
-.sheet__head h1 {
-  font-size: 30px;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-}
-
-.sheet__role {
-  margin-top: 6px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.sheet__where {
-  margin-top: 2px;
-  color: var(--text-muted);
-}
-
-.sheet__contacts {
-  flex: none;
-  text-align: right;
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--text-body);
-}
-
-.sheet__contacts a {
-  text-decoration: none;
-}
-
-.sheet__facts {
-  margin-top: 22px;
-  padding: 12px 0;
-  border-top: 1.5px solid var(--line-strong);
-  border-bottom: 1px solid #cfc5b6;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.sheet__facts dt,
-.sheet .m {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.sheet__facts dd {
-  margin-top: 2px;
-  font-weight: 500;
-}
-
-.sheet section {
-  margin-top: 26px;
-}
-
-.sheet h2 {
-  font-size: 15px;
-}
-
-.sheet h2 .m {
-  font-weight: 400;
-}
-
-.sheet__works {
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.sheet__works article {
-  padding-top: 10px;
-  border-top: 1px solid #cfc5b6;
-}
-
-.sheet__works h3 {
-  font-size: 14px;
-}
-
-.sheet__works p {
-  margin-top: 2px;
-}
-
-.sheet__works p.gap {
-  margin-top: 8px;
-}
-
-.sheet__works .lbl {
-  color: var(--text-muted);
-}
-
-.sheet__more {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.sheet table {
-  margin-top: 10px;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.sheet tr {
-  border-top: 1px solid #cfc5b6;
-}
-
-.sheet tr:last-child {
-  border-bottom: 1px solid #cfc5b6;
-}
-
-.sheet td {
-  padding: 7px 12px 7px 0;
-  vertical-align: top;
-}
-
-.sheet td:last-child {
-  padding-right: 0;
-}
-
-.sheet td.d {
-  width: 140px;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.sheet td.r {
-  width: 200px;
-  font-weight: 600;
-}
-
-.sheet tr.is-past td {
-  color: var(--text-muted);
-}
-
-.sheet__stack {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.sheet__stack div {
-  display: flex;
-  gap: 12px;
-}
-
-.sheet__stack dt {
-  flex: 0 0 140px;
-  font-weight: 500;
-}
-
-.sheet__stack dd {
-  flex: 1;
-  font-family: var(--mono);
-  font-size: 12px;
-}
-
-.sheet__edu {
-  padding-top: 12px;
-  border-top: 1.5px solid var(--line-strong);
-}
-
-.sheet__foot {
-  margin-top: auto;
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* The CV sheet fills its page edge to edge; every other page prints with margins. */
-@page {
-  size: A4;
-  margin: 14mm 13mm 16mm;
-}
-
-@page cvsheet {
-  size: A4;
-  margin: 0;
-}
-
-.sheet {
-  page: cvsheet;
-}
-
-@media print {
-  .page-sheet {
-    background: #fff;
-  }
-
-  .sheet {
-    margin: 0;
-    box-shadow: none;
-    height: 1123px;
-  }
-}
+/* (CV sheet styles: see the end of this file) */
 
 /* ------------------------------------------------------------------ */
 /* Shared small pieces                                                */
@@ -4589,20 +4361,6 @@ textarea {
 }
 
 /* ------------------------------------------------------------------ */
-/* CV sheet: intro and thesis                                         */
-/* ------------------------------------------------------------------ */
-
-.sheet__intro {
-  margin-top: 14px;
-  color: var(--text-body);
-}
-
-.sheet__edu p + p {
-  margin-top: 2px;
-  color: var(--text-body);
-}
-
-/* ------------------------------------------------------------------ */
 /* Printing the portfolio and project pages on A4                     */
 /* ------------------------------------------------------------------ */
 
@@ -4778,102 +4536,6 @@ textarea {
   }
 }
 
-/* CV sheet: TikMaker across the full width in two columns, the other works below it */
-.sheet {
-  padding: 40px 50px 32px;
-}
-
-.sheet section {
-  margin-top: 18px;
-}
-
-.sheet__facts {
-  margin-top: 14px;
-  padding: 9px 0;
-}
-
-.sheet__works {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 24px;
-}
-
-.sheet__works article.wide {
-  grid-column: 1 / -1;
-  column-count: 2;
-  column-gap: 24px;
-}
-
-.sheet__works article.wide h3 {
-  column-span: all;
-}
-
-.sheet__works article.wide p {
-  break-inside: avoid;
-}
-
-.sheet td {
-  padding: 5px 12px 5px 0;
-}
-
-.page-sheet .sheet {
-  font-size: 11.5px;
-  line-height: 1.42;
-}
-
-.sheet td.d {
-  width: 108px;
-  font-size: 11px;
-}
-
-.sheet td.r {
-  width: 168px;
-}
-
-.sheet__stack dt {
-  flex-basis: 120px;
-}
-
-.sheet__stack dd,
-.sheet__works .m {
-  font-size: 11px;
-}
-
-.page-sheet .sheet {
-  line-height: 1.38;
-}
-
-.sheet section {
-  margin-top: 13px;
-}
-
-.sheet__head h1 {
-  font-size: 26px;
-}
-
-.sheet__intro {
-  margin-top: 10px;
-}
-
-.sheet__more {
-  display: none;
-}
-
-.sheet {
-  padding-bottom: 24px;
-}
-
-.sheet__foot {
-  padding-top: 8px;
-}
-
-.sheet__facts {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.page-sheet .sheet {
-  line-height: 1.36;
-}
-
 @media print {
   .card--wide {
     break-inside: auto;
@@ -4904,4 +4566,311 @@ textarea {
   .feature__media {
     break-inside: avoid;
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* CV sheet (A4, also printed to the PDF): dark sidebar + main column */
+/* ------------------------------------------------------------------ */
+
+/* The sheet fills its page edge to edge; every other page prints with margins. */
+@page {
+  size: A4;
+  margin: 14mm 13mm 16mm;
+}
+
+@page cvsheet {
+  size: A4;
+  margin: 0;
+}
+
+.page-sheet {
+  background: #e9e3d8;
+}
+
+.sheet {
+  --side-bg: #2b2824;
+  --side-text: #ece6dc;
+  --side-muted: #b8afa2;
+  page: cvsheet;
+  width: 794px;
+  height: 1123px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 262px minmax(0, 1fr);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 20px 50px -30px rgba(80, 58, 34, 0.5);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+.sheet a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sheet h2 {
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Sidebar */
+
+.cvs-side {
+  padding: 40px 26px 32px;
+  background: var(--side-bg);
+  color: var(--side-text);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.cvs-side section + section {
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.cvs-side h2 {
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.cvs-side p {
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.cvs-side p + p {
+  margin-top: 6px;
+}
+
+.cvs-contacts,
+.cvs-langs {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11.5px;
+}
+
+.cvs-contacts li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cvs-contacts .ico {
+  color: var(--side-muted);
+}
+
+.cvs-contacts span {
+  overflow-wrap: anywhere;
+}
+
+.cvs-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.cvs-skills dt {
+  font-weight: 600;
+  color: #fff;
+}
+
+.cvs-skills dd {
+  color: var(--side-text);
+}
+
+.cvs-langs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cvs-langs li span:last-child {
+  color: var(--side-muted);
+}
+
+/* Main column */
+
+.cvs-main {
+  padding: 40px 38px 32px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.cvs-head {
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid var(--line-strong);
+}
+
+.cvs-head h1 {
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+
+.cvs-head p {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--ca-accent);
+}
+
+.cvs-main h2 {
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+}
+
+.cvs-main h3 {
+  font-size: 12.5px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cvs-timeline {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cvs-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 102px minmax(0, 1fr);
+  gap: 16px;
+  padding-bottom: 9px;
+}
+
+/* the line and the dot between the date and the role */
+.cvs-timeline li::before {
+  content: "";
+  position: absolute;
+  left: 110px;
+  top: 6px;
+  bottom: -6px;
+  width: 1px;
+  background: var(--line);
+}
+
+.cvs-timeline li:last-child::before {
+  display: none;
+}
+
+.cvs-timeline li::after {
+  content: "";
+  position: absolute;
+  left: 107px;
+  top: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ca-accent);
+}
+
+.cvs-timeline .is-past::after {
+  background: var(--line-input);
+}
+
+.cvs-date {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.cvs-timeline p {
+  margin-top: 1px;
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.cvs-timeline .is-past h3,
+.cvs-timeline .is-past p {
+  color: var(--text-muted);
+}
+
+.cvs-works {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cvs-works article p {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.cvs-works .lbl {
+  color: var(--text-muted);
+}
+
+.cvs-works .cvs-tags {
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.cvs-edu p {
+  margin-top: 2px;
+  font-size: 11.5px;
+}
+
+@media print {
+  .page-sheet {
+    background: #fff;
+  }
+
+  .sheet {
+    margin: 0;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+.cvs-side {
+  padding-top: 36px;
+  gap: 16px;
+}
+
+.cvs-side section + section {
+  padding-top: 14px;
+}
+
+.cvs-side h2 {
+  margin-bottom: 7px;
+}
+
+.cvs-head .cvs-where {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.cvs-side p,
+.cvs-skills {
+  line-height: 1.42;
 }
