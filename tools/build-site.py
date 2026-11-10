@@ -1265,16 +1265,14 @@ P = {
         "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "~2,5 m. komercinio programavimo"),
                   ("Fokusas", "DI agentai ir automatizavimas"), ("Stackas", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
         "about_h": "Apie mane",
-        # {tiktok} and {codeart} become links on the page and plain text on the A4 sheet.
         "about": [
-            "Laisvalaikiu kuriu automatizuotą trumpų vaizdo įrašų kūrimo ir publikavimo sistemą ({tiktok}). "
+            "Laisvalaikiu kuriu automatizuotą trumpų vaizdo įrašų kūrimo ir publikavimo sistemą. "
             "Jau veikia DI agentas, kuris iš idėjos parengia vaizdo įrašą: scenarijų, scenas, įgarsinimą ir subtitrus. "
             "Jo darbą tikrina kodas, o svarbiausius sprendimus priima žmogus. "
-            "Kitas žingsnis – agentas, kuris siūlys aktualias temas, ir socialinių tinklų API, kad paruoštus įrašus būtų galima iškart suplanuoti publikuoti. "
             "Šis agentas yra ir mano baigiamasis darbas Vilniaus kolegijoje.",
             "Automatizuoti man patiko visada: dar prieš komercinį darbą rašiau Python skriptus, kurie analizei rinko butų ir automobilių skelbimų duomenis. "
             "Programuoju apie 2,5 metų (React, TypeScript, C# .NET). "
-            "Su savo įmone {codeart} kuriu sistemas užsakovams nuo poreikių išsiaiškinimo iki paleidimo. "
+            "Kuriu sistemas užsakovams nuo poreikių išsiaiškinimo iki paleidimo. "
             "Prieš IT dirbau transporto planuotoja „Girteka“, todėl suprantu darbą su KPI ir skirtingais padaliniais.",
         ],
         "works_h": "Atrinkti darbai",
@@ -1391,14 +1389,13 @@ P = {
                   ("Focus", "AI agents and automation"), ("Stack", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
         "about_h": "About me",
         "about": [
-            "In my free time I'm building an automated system for creating and publishing short vertical videos ({tiktok}). "
+            "In my free time I'm building an automated system for creating and publishing short vertical videos. "
             "An AI agent that turns an idea into a video – script, scenes, voice-over and subtitles – already works. "
             "Its output is checked by code, and a human makes the key decisions. "
-            "Next come an agent that suggests timely topics and social media APIs, so finished videos can be scheduled for publishing right away. "
             "The agent is also my final thesis at Vilnius University of Applied Sciences.",
             "I've always enjoyed automating things: before my first commercial job I wrote Python scripts that collected flat and car listing data for analysis. "
             "I've been programming for about 2.5 years (React, TypeScript, C# .NET). "
-            "With my company {codeart} I build systems for clients, from working out the requirements to launch. "
+            "I build systems for clients, from working out the requirements to launch. "
             "Before IT I worked as a transport planner at Girteka, so I understand working with KPIs and across departments.",
         ],
         "works_h": "Selected work",
