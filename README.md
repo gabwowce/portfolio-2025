@@ -24,6 +24,7 @@ All text and markup for both languages lives in `tools/build-site.py`. Edit it t
 python3 tools/build-site.py           # writes the pages, redirects and sitemap.xml
 python3 -m http.server 8765           # serve the repo root
 node tools/build-cv-pdf.mjs           # prints lt/cv.pdf and en/cv.pdf (needs Playwright)
+python3 tools/build-site.py           # again, so the CV links carry the new PDF's hash
 ```
 
 The design handoff (mockups, tokens, assets) is in `_redesign/handoff/`. Folders starting with `_` are not published.
