@@ -1337,8 +1337,6 @@ P = {
         ],
         "tech_h": "Technologijos",
         "tech": [
-            ("Analizė ir dokumentavimas", ["Poreikių analizė", "Reikalavimai (FR / NFR)", "UML (PlantUML)",
-                                           "Techninės specifikacijos", "Naudotojų instrukcijos", "Figma prototipai"]),
             ("DI ir automatizavimas", ["DI agentai su žmogaus patvirtinimu", "Struktūrizuota LLM išvestis (Zod)",
                                        "Gemini API (Vercel AI SDK)", "Claude / Claude Code", "Paieška su šaltiniais",
                                        "Kadrų vertinimas multimodaliniu modeliu", "ElevenLabs TTS su žodžių laikais",
@@ -1351,7 +1349,7 @@ P = {
             ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)"]),
             ("Mobile ir desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
             ("Testavimas ir kokybė", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
-            ("Įrankiai", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)"]),
+            ("Įrankiai", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "UML (PlantUML)", "Figma"]),
         ],
         "tech_cv": [
             ("DI ir automatizavimas", ["DI agentai", "LLM išvestis su Zod", "Gemini", "Claude Code", "ElevenLabs", "Python (Scrapy, Selenium)"]),
@@ -1451,8 +1449,6 @@ P = {
         ],
         "tech_h": "Technologies",
         "tech": [
-            ("Analysis and documentation", ["Requirements analysis", "Requirements (FR / NFR)", "UML (PlantUML)",
-                                            "Technical specifications", "User guides", "Figma prototypes"]),
             ("AI and automation", ["AI agents with human approval", "Structured LLM output (Zod)",
                                    "Gemini API (Vercel AI SDK)", "Claude / Claude Code", "Search with sources",
                                    "Frame review with a multimodal model", "ElevenLabs TTS with word timings",
@@ -1465,7 +1461,7 @@ P = {
             ("Databases", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)"]),
             ("Mobile and desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
             ("Testing and quality", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
-            ("Tools", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)"]),
+            ("Tools", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "UML (PlantUML)", "Figma"]),
         ],
         "tech_cv": [
             ("AI and automation", ["AI agents", "LLM output with Zod", "Gemini", "Claude Code", "ElevenLabs", "Python (Scrapy, Selenium)"]),
