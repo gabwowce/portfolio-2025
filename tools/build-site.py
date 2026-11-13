@@ -1265,7 +1265,7 @@ P = {
         "cv_dl": "Atsisiųsti CV (PDF)",
         "facts_label": "Trumpai",
         "facts": [("Dabar", "Programuotoja (Mid), UVS"), ("Patirtis", "~2,5 m. komercinio programavimo"),
-                  ("Fokusas", "DI agentai ir automatizavimas"), ("Stackas", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
+                  ("Fokusas", "DI agentai ir automatizavimas"), ("Stackas", "React, TypeScript, Next.js, .NET, Node.js, Python, SQL")],
         "about_h": "Apie mane",
         "about": [
             "Laisvalaikiu kuriu automatizuotą trumpų vaizdo įrašų kūrimo ir publikavimo sistemą. "
@@ -1282,6 +1282,7 @@ P = {
         "agent_l": "Kaip veikia DI agentas",
         "tags_label": "Technologijos",
         "read_more": "Skaityti plačiau",
+        "code": "Kodas GitHub",
         "cards": [
             {"key": "p_tik", "shape": "b", "tone": "lavender", "image": "tik", "title": "TikMaker: DI agentas ir vaizdo redaktorius",
              "what": "DI agentas, kuris iš idėjos parengia redaguojamą trumpo vertikalaus vaizdo įrašo projektą, ir redaktorius jam peržiūrėti",
@@ -1294,7 +1295,7 @@ P = {
              "cv_agent": "Agentas žingsniais kviečia LLM (Gemini / Claude), kiekvieną atsakymą tikrina Zod schema ir taisyklėmis kodu, o projektą sudaro kodas; kabliuką ir scenarijų tvirtina žmogus.",
              "fact": "dizaino taisyklės tikrinamos kodu · savikontrolė pagal kadrus · kiekvienas DI kvietimas žurnale",
              "tags": ["React", "TypeScript", "Remotion", "tRPC", "Zod", "Gemini / Claude", "ElevenLabs"],
-             "alt": "TikMaker redaktorius su laiko juosta", "wide": True},
+             "alt": "TikMaker redaktorius su laiko juosta", "wide": True, "repo": "https://github.com/gabwowce/TikMaker"},
             {"key": "p_lang", "shape": "a", "tone": "rose", "image": "kalbos", "title": "Kalbų mokymosi platforma",
              "what": "kalbų mokymosi platforma su turinio valdymo sistema",
              "role": "viena, visa sistema",
@@ -1321,6 +1322,10 @@ P = {
             ("AutoRent", "Automobilių nuomos platforma su pilnu rezervacijos srautu",
              "React · FastAPI · PostgreSQL", "2025",
              [("Live", "https://car-rental-frontend-v2.vercel.app/"), ("GitHub", "https://github.com/gabwowce/car-rental-frontend")]),
+            ("Pardavimų analizė", "Parduotuvės pardavimų, klientų ir darbuotojų analizė SQL užklausomis ir Power BI ataskaita",
+             "SQL · MySQL · Power BI · Python (pandas)", "2024", [("GitHub", "https://github.com/gabwowce/Data-analysis-project-Bike-Store-Relational-Database-SQL")]),
+            ("NT skelbimų analizė", "Scrapy voras renka butų skelbimus į MySQL, SQL užklausos m² kainai pagal miestą ir būklę",
+             "Python · Scrapy · MySQL · SQL", "2024", [("GitHub", "https://github.com/gabwowce/Real-Estate-Data-Collection-and-Analysis-Project")]),
             ("LTSA", "Viktorina, kurios atsakymai patys suvedami į Google Sheets",
              "HTML · CSS · JS", "2026", [("Live", "https://ltsa.vercel.app/")]),
             ("Travel App", "Kelionių planavimo aplikacijos pagrindas Android ir iOS",
@@ -1340,21 +1345,23 @@ P = {
             ("DI ir automatizavimas", ["DI agentai su žmogaus patvirtinimu", "Struktūrizuota LLM išvestis (Zod)",
                                        "Gemini API (Vercel AI SDK)", "Claude / Claude Code", "Paieška su šaltiniais",
                                        "Kadrų vertinimas multimodaliniu modeliu", "ElevenLabs TTS su žodžių laikais",
-                                       "Promptai ir žinių bazė", "Tokenų ir kainos žurnalas", "Python: Scrapy, Selenium"]),
+                                       "Promptai ir žinių bazė", "Tokenų ir kainos žurnalas"]),
             ("Frontend", ["React", "TypeScript", "JavaScript", "Next.js", "HTML / CSS", "Tailwind CSS", "shadcn/ui",
                           "Redux Toolkit / RTK Query", "TanStack Query", "Zustand", "React Hook Form + Zod",
                           "AG Grid", "Recharts / ECharts", "Remotion"]),
             ("Backend ir API", ["C# / .NET (ASP.NET Core)", "Entity Framework Core", "Node.js", "Express", "tRPC",
                                 "REST API / OpenAPI", "Next.js Server Actions", "FastAPI"]),
-            ("Duomenų bazės", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)"]),
+            ("Duomenys ir BI", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)",
+                                "Python: pandas, Scrapy, Selenium", "Power BI"]),
             ("Mobile ir desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
             ("Testavimas ir kokybė", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
             ("Įrankiai", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "UML (PlantUML)", "Figma"]),
         ],
         "tech_cv": [
-            ("DI ir automatizavimas", ["DI agentai", "LLM išvestis su Zod", "Gemini", "Claude Code", "ElevenLabs", "Python (Scrapy, Selenium)"]),
+            ("DI ir automatizavimas", ["DI agentai", "LLM išvestis su Zod", "Gemini", "Claude Code", "ElevenLabs"]),
             ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand"]),
-            ("Backend ir DB", ["C# / .NET", "Node.js", "tRPC", "REST / OpenAPI", "PostgreSQL", "SQL Server", "Supabase"]),
+            ("Backend", ["C# / .NET", "Node.js", "tRPC", "REST / OpenAPI", "Supabase"]),
+            ("Duomenys ir BI", ["SQL (PostgreSQL, SQL Server, MySQL)", "Python (pandas, Scrapy)", "Power BI"]),
             ("Kita", ["React Native", "WPF", "Vitest", "Playwright", "xUnit", "Git", "UML", "Figma"]),
         ],
         "edu_l": "Išsilavinimas",
@@ -1377,7 +1384,7 @@ P = {
         "cv_dl": "Download CV (PDF)",
         "facts_label": "In short",
         "facts": [("Now", "Developer (Mid), UVS"), ("Experience", "~2.5 years of commercial development"),
-                  ("Focus", "AI agents and automation"), ("Stack", "React, TypeScript, Next.js, .NET, Node.js, PostgreSQL")],
+                  ("Focus", "AI agents and automation"), ("Stack", "React, TypeScript, Next.js, .NET, Node.js, Python, SQL")],
         "about_h": "About me",
         "about": [
             "In my free time I'm building an automated system for creating and publishing short vertical videos. "
@@ -1394,6 +1401,7 @@ P = {
         "agent_l": "How the AI agent works",
         "tags_label": "Technologies",
         "read_more": "Read more",
+        "code": "Code on GitHub",
         "cards": [
             {"key": "p_tik", "shape": "b", "tone": "lavender", "image": "tik", "title": "TikMaker: AI agent and video editor",
              "what": "an AI agent that turns an idea into an editable short vertical video project, and an editor to review it",
@@ -1406,7 +1414,7 @@ P = {
              "cv_agent": "The agent calls an LLM (Gemini / Claude) step by step, checks every answer with a Zod schema and rules in code, and code builds the project; a human approves the hook and the script.",
              "fact": "design rules checked in code · self-review of the frames · every AI call logged",
              "tags": ["React", "TypeScript", "Remotion", "tRPC", "Zod", "Gemini / Claude", "ElevenLabs"],
-             "alt": "The TikMaker editor with its timeline", "wide": True},
+             "alt": "The TikMaker editor with its timeline", "wide": True, "repo": "https://github.com/gabwowce/TikMaker"},
             {"key": "p_lang", "shape": "a", "tone": "rose", "image": "kalbos", "title": "Language learning platform",
              "what": "language learning platform with a content management system",
              "role": "solo, the whole system",
@@ -1433,6 +1441,10 @@ P = {
             ("AutoRent", "A car rental platform with a full booking flow",
              "React · FastAPI · PostgreSQL", "2025",
              [("Live", "https://car-rental-frontend-v2.vercel.app/"), ("GitHub", "https://github.com/gabwowce/car-rental-frontend")]),
+            ("Sales analysis", "Analysis of a store's sales, customers and staff with SQL queries and a Power BI report",
+             "SQL · MySQL · Power BI · Python (pandas)", "2024", [("GitHub", "https://github.com/gabwowce/Data-analysis-project-Bike-Store-Relational-Database-SQL")]),
+            ("Real estate listings", "A Scrapy spider collects flat listings into MySQL, SQL queries for the price per m² by city and condition",
+             "Python · Scrapy · MySQL · SQL", "2024", [("GitHub", "https://github.com/gabwowce/Real-Estate-Data-Collection-and-Analysis-Project")]),
             ("LTSA", "A quiz whose answers go straight into Google Sheets",
              "HTML · CSS · JS", "2026", [("Live", "https://ltsa.vercel.app/")]),
             ("Travel App", "The foundation of a trip planning app for Android and iOS",
@@ -1452,21 +1464,23 @@ P = {
             ("AI and automation", ["AI agents with human approval", "Structured LLM output (Zod)",
                                    "Gemini API (Vercel AI SDK)", "Claude / Claude Code", "Search with sources",
                                    "Frame review with a multimodal model", "ElevenLabs TTS with word timings",
-                                   "Prompts and knowledge base", "Token and cost logging", "Python: Scrapy, Selenium"]),
+                                   "Prompts and knowledge base", "Token and cost logging"]),
             ("Frontend", ["React", "TypeScript", "JavaScript", "Next.js", "HTML / CSS", "Tailwind CSS", "shadcn/ui",
                           "Redux Toolkit / RTK Query", "TanStack Query", "Zustand", "React Hook Form + Zod",
                           "AG Grid", "Recharts / ECharts", "Remotion"]),
             ("Backend and APIs", ["C# / .NET (ASP.NET Core)", "Entity Framework Core", "Node.js", "Express", "tRPC",
                                   "REST API / OpenAPI", "Next.js Server Actions", "FastAPI"]),
-            ("Databases", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)"]),
+            ("Data and BI", ["SQL", "PostgreSQL", "SQL Server", "MySQL", "Supabase (Auth, Storage, RLS)",
+                             "Python: pandas, Scrapy, Selenium", "Power BI"]),
             ("Mobile and desktop", ["React Native", "Expo", "Kotlin", "WPF (XAML)"]),
             ("Testing and quality", ["Vitest", "Playwright", "Testing Library", "MSW", "xUnit", "ESLint", "Prettier"]),
             ("Tools", ["Git / GitHub", "Vite", "Vercel", "Stripe", "WordPress (headless)", "UML (PlantUML)", "Figma"]),
         ],
         "tech_cv": [
-            ("AI and automation", ["AI agents", "LLM output with Zod", "Gemini", "Claude Code", "ElevenLabs", "Python (Scrapy, Selenium)"]),
+            ("AI and automation", ["AI agents", "LLM output with Zod", "Gemini", "Claude Code", "ElevenLabs"]),
             ("Frontend", ["React", "TypeScript", "Next.js", "Tailwind CSS", "RTK Query", "TanStack Query", "Zustand"]),
-            ("Backend and DB", ["C# / .NET", "Node.js", "tRPC", "REST / OpenAPI", "PostgreSQL", "SQL Server", "Supabase"]),
+            ("Backend", ["C# / .NET", "Node.js", "tRPC", "REST / OpenAPI", "Supabase"]),
+            ("Data and BI", ["SQL (PostgreSQL, SQL Server, MySQL)", "Python (pandas, Scrapy)", "Power BI"]),
             ("Other", ["React Native", "WPF", "Vitest", "Playwright", "xUnit", "Git", "UML", "Figma"]),
         ],
         "edu_l": "Education",
@@ -1486,6 +1500,10 @@ OTHER_SHOTS = {
     "LTSA": ("ltsa", 1177, 839, 240, 171),
     "Travel App": ("travel", 1600, 954, 240, 143),
     "ConvertClimb": ("convertclimb", 1600, 954, 240, 143),
+    "Pardavimų analizė": ("bikestore", 1584, 798, 240, 121),
+    "Sales analysis": ("bikestore", 1584, 798, 240, 121),
+    "NT skelbimų analizė": ("nt-analize", 1584, 964, 240, 146),
+    "Real estate listings": ("nt-analize", 1584, 964, 240, 146),
 }
 
 
@@ -1514,6 +1532,10 @@ def portfolio(lang):
             agent = (f'<div class="card__agent"><p class="card__agent-h">{icon("bot", 18)}{p["agent_l"]}</p>'
                      f'<ol>{"".join(f"<li>{x}</li>" for x in c["agent"])}</ol></div>')
         wide = " card--wide" if c.get("wide") else ""
+        repo = ""
+        if c.get("repo"):
+            repo = (f'<a class="link" href="{c["repo"]}" target="_blank" rel="noopener" '
+                    f'aria-label="{p["code"]}: {c["title"]}">{p["code"]} ↗</a>')
         cards.append(f"""<article class="card card--{c["shape"]}{wide}">
 <div class="card__media">
 {blob(c["shape"], c["tone"])}
@@ -1529,7 +1551,7 @@ def portfolio(lang):
 </dl>
 {agent}
 <ul class="tags" aria-label="{p["tags_label"]}">{tag_li}</ul>
-<div class="card__links"><a class="link" href="{url(c["key"], lang)}" aria-label="{p["read_more"]}: {c["title"]}">{p["read_more"]} →</a></div>
+<div class="card__links"><a class="link" href="{url(c["key"], lang)}" aria-label="{p["read_more"]}: {c["title"]}">{p["read_more"]} →</a>{repo}</div>
 </div>
 </article>""")
 
@@ -1805,6 +1827,7 @@ PROJECTS = {
             "title": "TikMaker", "meta": "DI agentas ir vaizdo redaktorius · asmeninis projektas, baigiamasis darbas · 2026",
             "what": "Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau. DI agentas iš idėjos parengia visą projektą, o kūrėjas jį peržiūri ir pataiso redaktoriuje.",
             "status": "Vidinis įrankis, kurį naudojame savo turiniui.",
+            "repo": "https://github.com/gabwowce/TikMaker",
             "features": [
                 ("b", ("tik", "TikMaker redaktorius: scenų sąrašas, peržiūra, nustatymai ir laiko juosta su keliomis eilėmis"),
                  "Laiko juosta kaip montavimo programoje",
@@ -1845,6 +1868,7 @@ PROJECTS = {
             "title": "TikMaker", "meta": "AI agent and video editor · personal project, final thesis · 2026",
             "what": "A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster. An AI agent prepares the whole project from an idea, and the creator reviews and adjusts it in the editor.",
             "status": "An in-house tool we use for our own content.",
+            "repo": "https://github.com/gabwowce/TikMaker",
             "features": [
                 ("b", ("tik", "The TikMaker editor: scene list, preview, settings and a multi-row timeline"),
                  "A timeline like in an editing app",
@@ -2060,10 +2084,10 @@ def agent_section(lang):
 PL = {
     "lt": {"what": "Kas tai", "status": "Būsena", "tech": "Techninė dalis",
            "role": "Ką darėme", "decisions": "Sprendimai", "scale": "Mastas", "stack": "Stackas",
-           "next": "Kitas darbas", "suffix": "projektas | Codeart"},
+           "next": "Kitas darbas", "suffix": "projektas | Codeart", "code": "Kodas GitHub"},
     "en": {"what": "What it is", "status": "Status", "tech": "Technical side",
            "role": "What we did", "decisions": "Decisions", "scale": "Scale", "stack": "Stack",
-           "next": "Next project", "suffix": "project | Codeart"},
+           "next": "Next project", "suffix": "project | Codeart", "code": "Code on GitHub"},
 }
 
 
@@ -2103,6 +2127,8 @@ def project(key, lang):
     else:
         dec = "".join(f"<li>{b}</li>" for a, b in d["decisions"])
     note = f'<p class="lead p-tech__note">{d["note"]}</p>' if d.get("note") else ""
+    repo = (f'<br><a class="link" href="{d["repo"]}" target="_blank" rel="noopener">{l["code"]} ↗</a>'
+            if d.get("repo") else "")
 
     crumbs = [("home", "Pradžia" if lang == "lt" else "Home"), ("portfolio", "Portfolio"), (key, d["title"])]
     body = f"""<section class="p-intro">
@@ -2112,7 +2138,7 @@ def project(key, lang):
 <p class="p-meta">{todo(d["meta"])}</p>
 <dl class="p-summary">
 <div><dt class="mono">{l["what"]}</dt><dd>{d["what"]}</dd></div>
-<div><dt class="mono">{l["status"]}</dt><dd>{todo(d["status"])}</dd></div>
+<div><dt class="mono">{l["status"]}</dt><dd>{todo(d["status"])}{repo}</dd></div>
 </dl>
 </div>
 </section>
