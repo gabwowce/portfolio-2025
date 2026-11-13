@@ -1826,7 +1826,7 @@ PROJECTS = {
         "lt": {
             "title": "TikMaker", "meta": "DI agentas ir vaizdo redaktorius · asmeninis projektas, baigiamasis darbas · 2026",
             "what": "Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau. DI agentas iš idėjos parengia visą projektą, o kūrėjas jį peržiūri ir pataiso redaktoriuje.",
-            "status": "Vidinis įrankis, kurį naudojame savo turiniui.",
+            "status": "Vidinis įrankis, kurį naudoju savo turiniui.",
             "repo": "https://github.com/gabwowce/TikMaker",
             "features": [
                 ("b", ("tik", "TikMaker redaktorius: scenų sąrašas, peržiūra, nustatymai ir laiko juosta su keliomis eilėmis"),
@@ -1867,7 +1867,7 @@ PROJECTS = {
         "en": {
             "title": "TikMaker", "meta": "AI agent and video editor · personal project, final thesis · 2026",
             "what": "A video editor and design system for short vertical (9:16) TikTok, Reels and Shorts videos. Videos no longer need to be edited by hand: they're assembled from ready-made scenes, visuals and animations, so every video looks consistent and gets made faster. An AI agent prepares the whole project from an idea, and the creator reviews and adjusts it in the editor.",
-            "status": "An in-house tool we use for our own content.",
+            "status": "An in-house tool I use for my own content.",
             "repo": "https://github.com/gabwowce/TikMaker",
             "features": [
                 ("b", ("tik", "The TikMaker editor: scene list, preview, settings and a multi-row timeline"),
@@ -2083,10 +2083,10 @@ def agent_section(lang):
 
 PL = {
     "lt": {"what": "Kas tai", "status": "Būsena", "tech": "Techninė dalis",
-           "role": "Ką darėme", "decisions": "Sprendimai", "scale": "Mastas", "stack": "Stackas",
+           "role": "Ką dariau", "decisions": "Sprendimai", "scale": "Mastas", "stack": "Stackas",
            "next": "Kitas darbas", "suffix": "projektas | Codeart", "code": "Kodas GitHub"},
     "en": {"what": "What it is", "status": "Status", "tech": "Technical side",
-           "role": "What we did", "decisions": "Decisions", "scale": "Scale", "stack": "Stack",
+           "role": "What I did", "decisions": "Decisions", "scale": "Scale", "stack": "Stack",
            "next": "Next project", "suffix": "project | Codeart", "code": "Code on GitHub"},
 }
 

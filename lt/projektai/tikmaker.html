@@ -114,7 +114,7 @@
 <p class="p-meta">DI agentas ir vaizdo redaktorius · asmeninis projektas, baigiamasis darbas · 2026</p>
 <dl class="p-summary">
 <div><dt class="mono">Kas tai</dt><dd>Vaizdo įrašų redaktorius ir dizaino sistema trumpiems vertikaliems (9:16) TikTok, Reels ir Shorts įrašams. Video nebereikia montuoti rankomis: jis surenkamas iš paruoštų scenų, vizualų ir animacijų, todėl kiekvienas įrašas atrodo vientisai, o pagaminamas greičiau. DI agentas iš idėjos parengia visą projektą, o kūrėjas jį peržiūri ir pataiso redaktoriuje.</dd></div>
-<div><dt class="mono">Būsena</dt><dd>Vidinis įrankis, kurį naudojame savo turiniui.<br><a class="link" href="https://github.com/gabwowce/TikMaker" target="_blank" rel="noopener">Kodas GitHub ↗</a></dd></div>
+<div><dt class="mono">Būsena</dt><dd>Vidinis įrankis, kurį naudoju savo turiniui.<br><a class="link" href="https://github.com/gabwowce/TikMaker" target="_blank" rel="noopener">Kodas GitHub ↗</a></dd></div>
 </dl>
 </div>
 </section>
@@ -188,7 +188,7 @@
 <div class="p-tech__title"><h2 id="tech-title">Techninė dalis</h2></div>
 <div class="p-tech__body">
 <dl class="tech-list">
-<div><dt>Ką darėme</dt><dd>Visas projektas: analizė, reikalavimai, architektūra, redaktorius, video variklis, DI agentas, serveris ir testai.</dd></div>
+<div><dt>Ką dariau</dt><dd>Visas projektas: analizė, reikalavimai, architektūra, redaktorius, video variklis, DI agentas, serveris ir testai.</dd></div>
 <div><dt>Sprendimai</dt><dd><ul><li><strong>Video kaip duomenys:</strong> visas projektas yra JSON, tikrinamas Zod schemomis. Tos pačios schemos naudojamos redaktoriuje, serverio API ir importuojant, o seni projektų failai automatiškai atnaujinami. Tomis pačiomis schemomis remiasi ir DI agentas.</li><li><strong>Tipų saugus API:</strong> tRPC tarp serverio ir kliento, todėl pakeitus API klaida matoma kompiliuojant. Serverio duomenys – TanStack Query, redaguojama būsena – Zustand su atšaukimo istorija. Automatinis išsaugojimas tik tada, kai projektas pasikeitė.</li><li><strong>Išdėstymas, kurio negalima perpildyti:</strong> kiekvienas vizualas žino savo natūralų dydį, o šablonai pritaiko mastelį saugiai zonai.</li><li><strong>Viena animacijų sistema:</strong> įėjimai, išėjimai, keyframe'ai ir perėjimai turi po vieną įgyvendinimą, o scenų laikas skaičiuojamas vienoje vietoje.</li><li><strong>Automatika:</strong> įmesti failai iškart atsiranda redaktoriuje, įkelti ekrano įrašai perkoduojami tiksliam slinkimui per kadrus, API padengtas testais.</li></ul></dd></div>
 <div><dt>Mastas</dt><dd>113 komponentų · 7 scenų ir 25 vizualų tipai · 44 vizualų šablonai · 109 testai · 27 API procedūros</dd></div>
 <div><dt>Stackas</dt><dd class="tech-stack">React, TypeScript, Vite, Mantine, Tailwind CSS, Zustand, TanStack Query · Remotion · Node.js, Express, tRPC, Zod · Vitest, supertest · ffmpeg · ElevenLabs</dd></div>
